@@ -28,3 +28,7 @@ Exakta slutresultat och rårapporter redovisas i `docs/VERIFICATION.md`. Synteti
 ## Nästa rekommenderade arbete
 
 Samla och granska oberoende data innan modellval/träning. Jämför enkla TF-IDF/logistiska baselines med aktuella heuristiker på författar-/dokumentgrupperade splitar; kalibrera enbart på separat validering och prioritera låg mänsklig falskpositiv frekvens. Gör en blindad redaktionell modellutvärdering med faktakorrekthet, språk, ton och förändrade förbehåll innan humanizern får hög kvalitetsklassning. Verifiera därefter en explicit vald driftmiljö.
+
+## GitHub-leverans
+
+[Pull Request #1](https://github.com/sharbel0022/AiDetector/pull/1) är öppen mot `main`; ingen merge är genomförd. Kodcommit `29b4c90` följs av verifieringsdokumentation och denna leveransnotering. `main` var oförändrad vid fetch, `721e3d384aacfb2e5edee2ddece2e6986bc0ee61`. Arbetskopian är bevarad. Läs aktuell [GitHub Actions-status](https://github.com/sharbel0022/AiDetector/actions) för PR-huvudet; slutstatus ersätts inte av lokal verifiering.
