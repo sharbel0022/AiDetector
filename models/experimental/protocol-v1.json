@@ -1,0 +1,45 @@
+{
+  "config": {
+    "C": 1.0,
+    "analyzer": "char",
+    "class_weight": "balanced",
+    "classifier": "LogisticRegression",
+    "eligibility": "same frozen analyzer language/minimum80words/minimum4sentences guard as style comparator",
+    "lowercase": true,
+    "maxObservedValidationHumanFPR": 0.05,
+    "max_features": 20000,
+    "max_iter": 1000,
+    "min_df": 2,
+    "minimumAssessedPerClass": {
+      "test": 2,
+      "train": 4,
+      "validation": 2
+    },
+    "minimumSourceGroupsPerClass": {
+      "test": 1,
+      "train": 2,
+      "validation": 1
+    },
+    "modelHoldoutDiagnostics": {
+      "models": [
+        "llama3.2:3b",
+        "qwen3.5:4b"
+      ],
+      "protocol": "Fit and select using one model; evaluate human plus the other, unseen model. Report both without choosing a winner."
+    },
+    "ngram_range": [
+      3,
+      5
+    ],
+    "norm": "l2",
+    "random_state": 42,
+    "smooth_idf": true,
+    "solver": "liblinear",
+    "sublinear_tf": true
+  },
+  "configSha256": "1940ed044206adc338febd12d0b8c2f051d515988bc328c35452dd2ca4509151",
+  "decision": "Report all primary and both leave-one-model-out results; no choosing a winner or retuning after test. Exploratory only, no production deployment or calibrated probability.",
+  "declaredAtUtc": "2026-11-02T19:52:14Z",
+  "declaredBeforeHeldoutOutcomes": true,
+  "schemaVersion": "textlab-pilot-protocol-v1"
+}

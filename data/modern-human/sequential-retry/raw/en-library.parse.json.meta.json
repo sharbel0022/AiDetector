@@ -1,0 +1,8 @@
+{
+  "contentType": "text/plain",
+  "file": "en-library.parse.json",
+  "retrievedAtUtc": "2026-11-02T20:01:22.775398+00:00",
+  "sha256": "5f1d15af09999874ef6f611052bbe8932ff6bbf44b33fa9bb25629e38b6f356a",
+  "status": 429,
+  "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&oldid=817731885&prop=text%7Crevid%7Cdisplaytitle%7Ccategories"
+}

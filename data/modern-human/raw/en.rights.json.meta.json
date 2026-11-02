@@ -1,0 +1,8 @@
+{
+  "contentType": "application/json; charset=utf-8",
+  "file": "en.rights.json",
+  "retrievedAtUtc": "2026-11-02T19:59:41.528471+00:00",
+  "sha256": "8a7345e12679082632295a2c2889b16f3c288f0fbc71082bc0fdf5929a518bb7",
+  "status": 200,
+  "url": "https://en.wikipedia.org/w/api.php?action=query&format=json&meta=siteinfo&siprop=rightsinfo"
+}

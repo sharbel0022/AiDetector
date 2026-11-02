@@ -1,0 +1,8 @@
+{
+  "contentType": "text/plain",
+  "file": "sv-telephone.revision.json",
+  "retrievedAtUtc": "2026-11-02T20:01:32.309953+00:00",
+  "sha256": "0a031f7a23cb6c0e77449295db1933ecd08bd844d2a0f746c6e64573956013d1",
+  "status": 429,
+  "url": "https://sv.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=Telefon&rvprop=ids%7Ctimestamp%7Cuser&rvstart=2018-01-01T00%3A00%3A00Z&rvdir=older&rvlimit=1"
+}

@@ -4,6 +4,10 @@ node_modules
 dist
 sites-build
 artifacts
+data
+models
+work
+docs
 .env
 .env.*
 !.env.example

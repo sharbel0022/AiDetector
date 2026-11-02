@@ -120,3 +120,42 @@ test('checked-in fixture runs reproducibly and cannot masquerade as an independe
 test('invalid threshold is rejected even if every example abstains',()=>{
   assert.throws(()=>evaluator.evaluateDataset([record('threshold')],{threshold:NaN}),/Threshold/);
 });
+
+test('documented human and AI-edited near-duplicates stay in one dependent family',()=>{
+  const text=Array.from({length:100},(_,i)=>`token${i}`).join(' ');
+  const human=record('paired-human',{text});
+  const edited=record('paired-edit',{label:'ai-edited',text:text.replace('token50','replacement'),related_source_id:human.source_id,source_group_id:human.source_group_id});
+  const report=evaluator.validateDataset([human,edited]);
+  assert.equal(report.leakage.relatedEditPairs,1);
+  assert.equal(report.leakage.relatedEditExamples[0].kind,'near');
+  assert.equal(report.counts.groups.source_group_id,1);
+  assert.match(report.leakage.note,/dependent|independent/i);
+});
+
+test('unchanged documented AI edits remain visible instead of being discarded for perfect-looking coverage',()=>{
+  const human=record('unchanged-human');
+  const edited=record('unchanged-edit',{label:'ai-edited',text:human.text,related_source_id:human.source_id,source_group_id:human.source_group_id});
+  const report=evaluator.validateDataset([human,edited]);
+  assert.equal(report.leakage.relatedEditPairs,1);
+  assert.equal(report.leakage.relatedEditExamples[0].kind,'exact');
+});
+
+test('two documented revisions share their original dependency without inflating independent groups',()=>{
+  const human=record('original');
+  const first=record('revision1',{label:'ai-edited',text:human.text,related_source_id:human.source_id,source_group_id:human.source_group_id});
+  const second=record('revision2',{label:'ai-edited',text:human.text,related_source_id:first.source_id,source_group_id:human.source_group_id});
+  const report=evaluator.validateDataset([human,first,second]);
+  assert.equal(report.leakage.relatedEditPairs,3);
+  assert.equal(report.counts.groups.source_group_id,1);
+});
+
+test('claiming an edit alone cannot bypass family, ancestry or split leakage checks',()=>{
+  const human=record('guard-original');
+  for(const overrides of [{related_source_id:'missing'},{source_group_id:'other-family'},{label:'ai'},{split:'train'}]){
+    const edited=record('guard-edit',{label:'ai-edited',text:human.text,related_source_id:human.source_id,source_group_id:human.source_group_id,...overrides});
+    assert.throws(()=>evaluator.validateDataset([human,edited]),/duplicate|leakage/);
+  }
+  const generated=record('generated',{label:'ai',text:human.text});
+  const edited=record('edit-of-ai',{label:'ai-edited',text:human.text,source_group_id:generated.source_group_id,related_source_id:generated.source_id});
+  assert.throws(()=>evaluator.validateDataset([generated,edited]),/duplicate/);
+});

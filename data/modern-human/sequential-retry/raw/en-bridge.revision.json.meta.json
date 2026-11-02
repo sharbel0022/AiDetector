@@ -1,0 +1,8 @@
+{
+  "contentType": "application/json; charset=utf-8",
+  "file": "en-bridge.revision.json",
+  "retrievedAtUtc": "2026-11-02T20:01:12.450527+00:00",
+  "sha256": "08955154ab29824ff03cfcda79775c3e2267dd5a864ca191c7b8a6bd5fcddb81",
+  "status": 200,
+  "url": "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=Bridge&rvprop=ids%7Ctimestamp%7Cuser&rvstart=2018-01-01T00%3A00%3A00Z&rvdir=older&rvlimit=1"
+}

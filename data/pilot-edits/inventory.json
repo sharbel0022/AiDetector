@@ -1,0 +1,13 @@
+{
+  "models": {
+    "llama3.2:3b": {
+      "digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72"
+    },
+    "qwen3.5:4b": {
+      "digest": "2a654d98e6fba55d452b7043684e9b57a947e393bbffa62485a7aac05ee4eefd"
+    }
+  },
+  "runtime": {
+    "version": "0.40.13"
+  }
+}

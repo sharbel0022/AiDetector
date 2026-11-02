@@ -9,6 +9,7 @@ __pycache__/
 .pytest_cache/
 *.pyc
 artifacts/
+work/
 .superpowers/
 *.sqlite*
 *.db

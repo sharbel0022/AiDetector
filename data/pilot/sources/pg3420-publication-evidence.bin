@@ -1,0 +1,187 @@
+      <!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Columbia University Libraries Online Exhibitions | Vindication of the Rights of Women </title>
+
+    <!-- Plugin Stuff -->
+        <!-- Stylesheets -->
+    <link href="/application/views/scripts/css/public.css?v=3.1.2" media="screen" rel="stylesheet" type="text/css" >
+<link href="/application/views/scripts//javascripts/highslide/highslide.css?v=3.1.2" media="all" rel="stylesheet" type="text/css" >
+<link href="/themes/rbml-rotator/css/exhibitLayouts.css?v=3.1.2" media="all" rel="stylesheet" type="text/css" >
+<link href="/themes/rbml-rotator/css/screen.css?v=3.1.2" media="all" rel="stylesheet" type="text/css" >    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+    //<!--
+    window.jQuery || document.write("<script type=\"text\/javascript\" src=\"\/application\/views\/scripts\/javascripts\/vendor\/jquery.js?v=3.1.2\" charset=\"utf-8\"><\/script>")    //-->
+</script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript">
+    //<!--
+    window.jQuery.ui || document.write("<script type=\"text\/javascript\" src=\"\/application\/views\/scripts\/javascripts\/vendor\/jquery-ui.js?v=3.1.2\" charset=\"utf-8\"><\/script>")    //-->
+</script>
+<script type="text/javascript" src="/application/views/scripts/javascripts/vendor/jquery.ui.touch-punch.js"></script>
+<script type="text/javascript">
+    //<!--
+    jQuery.noConflict();    //-->
+</script>
+<script type="text/javascript" src="/application/views/scripts/javascripts/highslide/highslide.js?v=3.1.2"></script>    <script type="text/javascript">
+      hs.graphicsDir = "/application/views/scripts/javascripts/highslide/graphics/";
+      hs.outlineType = 'rounded-white';
+    </script>
+              <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-R1Q69GX82E"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-R1Q69GX82E');
+      </script>
+
+      <!-- Matomo -->
+      <script>
+        var _paq = window._paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+          var u="https://columbia-libraries.matomo.cloud/";
+          _paq.push(['setTrackerUrl', u+'matomo.php']);
+          _paq.push(['setSiteId', '15']);
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+          g.async=true; g.src='https://cdn.matomo.cloud/columbia-libraries.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+      </script>
+      <!-- End Matomo Code -->
+      </head>
+  <body class="exhibits exhibit-item-show">
+    <div id="wrap">
+      <div class="headBack">
+        <div style="padding:0;margin:0;width:100%;background:url('/themes/rbml-rotator/images/ContempCiv.jpg') top right no-repeat">                  <h1 class="exhHeader">Core Curriculum        :        <span style="text-transform:none;font-size:24px"> Contemporary Civilization</span>
+                  </h1>
+        </div>      </div> <!--end class="headBack"-->
+      
+
+      <div id="item-page-content">
+        <div id="primary" class="show">
+          <h3 class="exhibit-title-link">Exhibition: 
+          <a href="/exhibits/show/cc" class="link-to-exhibit">Core Curriculum: Contemporary Civilization</a>          </h3>
+          <table>
+            <tr>
+              <td>
+                <div class="list-exhibit-pages"><h3>Item  appears in the following exhibition pages</h3><p><a href="/exhibits/show/plimpton/women/page-3">"Our Tools of Learning" : George Arthur Plimpton's Gifts to Columbia University: Education for Women: Page 3</a></p><p><a href="/exhibits/show/cc/rights/wollstonecraft">Core Curriculum: Contemporary Civilization: Rights: Wollstonecraft</a></p></div>                <h1 class="item-title">Item Information</h1>
+                <div id="itemfiles">
+                  <div class="item-file image-jpeg"><a href="https://online-exhibitions.library.columbia.edu/files/original/plmptn_122_001_2d951ddd2c.jpg" class="highslide" onclick="return hs.expand(this)" target="_blank"><img src="https://online-exhibitions.library.columbia.edu/files/fullsize/plmptn_122_001_2d951ddd2c.jpg" class="full" title="Vindication of the Rights of Women " alt="Vindication of the Rights of Women "/></a></div>                </div>
+                <div class="element-set">
+        <h2>Dublin Core</h2>
+            <div id="dublin-core-title" class="element">
+        <h3>Title</h3>
+                    <div class="element-text">Vindication of the Rights of Women </div>
+            </div><!-- end element -->
+        <div id="dublin-core-subject" class="element">
+        <h3>Subject</h3>
+                    <div class="element-text">Women&#039;s rights</div>
+            </div><!-- end element -->
+        <div id="dublin-core-creator" class="element">
+        <h3>Creator</h3>
+                    <div class="element-text">Wollstonecraft, Mary, 1759-1797</div>
+            </div><!-- end element -->
+        <div id="dublin-core-publisher" class="element">
+        <h3>Publisher</h3>
+                    <div class="element-text">Printed for J. Johnson</div>
+            </div><!-- end element -->
+        <div id="dublin-core-date" class="element">
+        <h3>Date</h3>
+                    <div class="element-text">1792</div>
+            </div><!-- end element -->
+        <div id="dublin-core-language" class="element">
+        <h3>Language</h3>
+                    <div class="element-text">eng</div>
+            </div><!-- end element -->
+    </div><!-- end element-set -->
+<div class="element-set">
+        <h2>Additional Item Metadata</h2>
+            <div id="additional-item-metadata-provenance" class="element">
+        <h3>Provenance</h3>
+                    <div class="element-text">Gift of George Arthur Plimpton</div>
+            </div><!-- end element -->
+    </div><!-- end element-set -->
+<div class="element-set">
+        <h2>MODS</h2>
+            <div id="mods-key-date" class="element">
+        <h3>Key Date</h3>
+                    <div class="element-text">1792 </div>
+            </div><!-- end element -->
+        <div id="mods-type-of-date" class="element">
+        <h3>Type of Date</h3>
+                    <div class="element-text">ex</div>
+            </div><!-- end element -->
+        <div id="mods-place-of-origin" class="element">
+        <h3>Place of Origin</h3>
+                    <div class="element-text">London</div>
+            </div><!-- end element -->
+        <div id="mods-formgenre" class="element">
+        <h3>Form/Genre</h3>
+                    <div class="element-text">books</div>
+            </div><!-- end element -->
+        <div id="mods-physical-description" class="element">
+        <h3>Physical Description</h3>
+                    <div class="element-text">title page</div>
+                    <div class="element-text">1 image</div>
+            </div><!-- end element -->
+        <div id="mods-repository-name" class="element">
+        <h3>Repository Name</h3>
+                    <div class="element-text">nnc-rb</div>
+            </div><!-- end element -->
+        <div id="mods-shelf-location" class="element">
+        <h3>Shelf Location</h3>
+                    <div class="element-text">Plimpton 396 1792 G54</div>
+            </div><!-- end element -->
+        <div id="mods-notes" class="element">
+        <h3>Notes</h3>
+                    <div class="element-text">original filename: plmptn_122_001</div>
+            </div><!-- end element -->
+        <div id="mods-language-of-cataloging" class="element">
+        <h3>Language of Cataloging</h3>
+                    <div class="element-text">eng</div>
+            </div><!-- end element -->
+        <div id="mods-digital-origin" class="element">
+        <h3>Digital Origin</h3>
+                    <div class="element-text">rd</div>
+            </div><!-- end element -->
+        <div id="mods-collection" class="element">
+        <h3>Collection</h3>
+                    <div class="element-text">Plimpton</div>
+            </div><!-- end element -->
+    </div><!-- end element-set -->
+                                <div id="citation" class="field">
+                  <h3>Citation</h3>
+                  <p id="citation-value" class="field-value">
+                    Wollstonecraft, Mary, 1759-1797, &#8220;Vindication of the Rights of Women,&#8221; <em>Columbia University Libraries Online Exhibitions</em>, accessed November 2, 2026, <span class="citation-url">https://online-exhibitions.library.columbia.edu/exhibits/show/cc/item/59</span>.                  </p>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div><!--end id="primary"-->
+      </div><!--end id="item-page-content"-->
+          </div><!--end wrap-->
+    <p class="footer11px">Columbia University Libraries / Rare Book &amp; Manuscript Library / Butler Library, 6th Fl. / 535 West 114th St. / New York, NY 10027 / (212) 854-5590 / <a href="mailto:rbml@library.columbia.edu">rbml@library.columbia.edu</a></p>    <p class="copyright-footer"> 
+      <a target="_blank" href="http://library.columbia.edu/about/policies/copyright-online-collections.html">Copyright & Permissions</a>    </p>
+    <!-- CULTNBW START -->
+    <script type="text/javascript">
+    <!-- 
+      CULh_style = 'staticlink'; // staticlink, static, search, standard (default)
+      //CULh_width = ''; // fixed, fluid (default)
+      //CULh_colorfg = '#333333'; // topnavbar foreground color. hex value. ex: #002B7F
+      //CULh_colorbg = '#666666'; // topnavbar background color. hex value. ex: #779BC3
+      //CULh_nobs = 1; // uncomment to NOT load our bootstrap javascript file and or use your own (v2.3.x required)
+      //CULh_notk = 1; // uncomment to NOT load our ldpd-toolkit.js and or use your own.
+      //-->
+    </script>
+    <!--[if ! IE 8]>
+    <script src="//cdn.cul.columbia.edu/ldpd-toolkit/build/js/jquery-cul.js"></script>
+    <![endif]-->
+    <script src="//cdn.cul.columbia.edu/ldpd-toolkit/widgets/cultnbw.min.js"></script>
+    <!-- /CULTNBW END -->
+  </body>
+</html>

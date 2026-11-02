@@ -1,0 +1,198 @@
+{
+  "schema_version": "textlab-pilot-contract-v1",
+  "created_at": "2026-11-02T19:48:19.864664+00:00",
+  "selection_frozen_before_generation": true,
+  "splits": "author-disjoint, 3 train / 1 validation / 2 test authors per language",
+  "human_passages_per_source": 3,
+  "passage_fraction_starts": [
+    0.18,
+    0.48,
+    0.78
+  ],
+  "passage_word_range": [
+    180,
+    300
+  ],
+  "models": [
+    "llama3.2:3b",
+    "qwen3.5:4b"
+  ],
+  "generations_per_source_per_model": 1,
+  "generation_options": {
+    "seed": 20261102,
+    "temperature": 0.7,
+    "top_p": 0.9,
+    "num_predict": 900,
+    "num_ctx": 4096
+  },
+  "sources": [
+    {
+      "gutenberg_id": 1342,
+      "author_id": "jane-austen",
+      "author_name": "Jane Austen",
+      "author_death_year": 1817,
+      "language": "en",
+      "genre": "fiction",
+      "split": "train",
+      "publication_year": 1894,
+      "publication_year_kind": "digitized-edition",
+      "publication_quote": "Illustration: 1894",
+      "topic": "A village household prepares for an unexpected visit and a young woman considers the visitor carefully."
+    },
+    {
+      "gutenberg_id": 1400,
+      "author_id": "charles-dickens",
+      "author_name": "Charles Dickens",
+      "author_death_year": 1870,
+      "language": "en",
+      "genre": "fiction",
+      "split": "train",
+      "publication_year": 1867,
+      "publication_year_kind": "digitized-edition",
+      "publication_quote": "1867 Edition",
+      "topic": "A young apprentice receives a surprising invitation and watches the people around him react."
+    },
+    {
+      "gutenberg_id": 2009,
+      "author_id": "charles-darwin",
+      "author_name": "Charles Darwin",
+      "author_death_year": 1882,
+      "language": "en",
+      "genre": "science",
+      "split": "train",
+      "publication_year": 1872,
+      "publication_year_kind": "digitized-edition",
+      "publication_quote": "1872, Sixth Edition",
+      "topic": "Explain variation among garden plants and how repeated selection can change their characteristics."
+    },
+    {
+      "gutenberg_id": 34901,
+      "author_id": "john-stuart-mill",
+      "author_name": "John Stuart Mill",
+      "author_death_year": 1873,
+      "language": "en",
+      "genre": "essay",
+      "split": "validation",
+      "publication_year": 1901,
+      "publication_year_kind": "dated-introduction-of-digitized-edition",
+      "publication_quote": "July 5th, 1901",
+      "topic": "Consider when a community may reasonably restrict individual conduct and where personal freedom should begin.",
+      "publication_evidence_note": "Digitized introduction datedJuly5th1901; it states Liberty was published1859. Courtney introduction excluded from excerpts."
+    },
+    {
+      "gutenberg_id": 3420,
+      "author_id": "mary-wollstonecraft",
+      "author_name": "Mary Wollstonecraft",
+      "author_death_year": 1797,
+      "language": "en",
+      "genre": "essay",
+      "split": "test",
+      "publication_year": 1792,
+      "publication_year_kind": "historical-work",
+      "publication_quote": null,
+      "topic": "Discuss why girls and boys should receive a serious education that develops reason and independent judgment.",
+      "publication_evidence_url": "https://online-exhibitions.library.columbia.edu/exhibits/show/cc/item/59",
+      "publication_evidence_note": "ColumbiaUniversityRareBookLibrary records original1792edition titlepage; exactPGtranscribededition notidentified. Exclude unattributedbiographicalsketch."
+    },
+    {
+      "gutenberg_id": 205,
+      "author_id": "henry-david-thoreau",
+      "author_name": "Henry David Thoreau",
+      "author_death_year": 1862,
+      "language": "en",
+      "genre": "memoir",
+      "split": "test",
+      "publication_year": 1854,
+      "publication_year_kind": "historical-work",
+      "publication_quote": null,
+      "topic": "Reflect on a quiet morning beside a lake, practical simplicity, and the habits that distract people.",
+      "publication_evidence_url": "https://commons.digitalthoreau.org/walden/",
+      "publication_evidence_note": "DigitalThoreau reproduces1854Walden title page. PG file includes CivilDisobedience; exclude latter. Exact PG transcribed edition not identified."
+    },
+    {
+      "gutenberg_id": 30078,
+      "author_id": "august-strindberg",
+      "author_name": "August Strindberg",
+      "author_death_year": 1912,
+      "language": "sv",
+      "genre": "fiction",
+      "split": "train",
+      "publication_year": 1914,
+      "publication_year_kind": "digitized-edition",
+      "publication_quote": "BOKTRYCKERI 1914",
+      "topic": "En ny arbetare kommer till en liten kustgård och försöker förstå husfolkets vanor och inbördes förhållanden."
+    },
+    {
+      "gutenberg_id": 28610,
+      "author_id": "viktor-rydberg",
+      "author_name": "Viktor Rydberg",
+      "author_death_year": 1895,
+      "language": "sv",
+      "genre": "fiction",
+      "split": "train",
+      "publication_year": 1915,
+      "publication_year_kind": "digitized-edition",
+      "publication_quote": "1 9 1 5",
+      "topic": "En ung person lämnar en medeltida borg och möter en främmande familj vid skogsbrynet."
+    },
+    {
+      "gutenberg_id": 14144,
+      "author_id": "per-teodor-cleve",
+      "author_name": "Per Teodor Cleve",
+      "author_death_year": 1905,
+      "language": "sv",
+      "genre": "biography",
+      "split": "train",
+      "publication_year": 1886,
+      "publication_year_kind": "digitized-edition",
+      "publication_quote": "CENTRAL-TRYCKERIET 1886",
+      "topic": "Beskriv hur en flitig kemist genom noggranna iakttagelser och enkla experiment bidrar till vetenskapens utveckling."
+    },
+    {
+      "gutenberg_id": 26479,
+      "author_id": "toini-topelius",
+      "author_name": "Toini Topelius",
+      "author_death_year": 1910,
+      "language": "sv",
+      "genre": "fiction",
+      "split": "validation",
+      "publication_year": 1889,
+      "publication_year_kind": "digitized-edition",
+      "publication_quote": "Helsingfors 1889",
+      "topic": "Två unga flickor talar om vänskap, skolgång och de förväntningar som vuxenvärlden ställer på dem."
+    },
+    {
+      "gutenberg_id": 46538,
+      "author_id": "emilie-flygare-carlen",
+      "author_name": "Emilie Flygare-Carlén",
+      "author_death_year": 1892,
+      "language": "sv",
+      "genre": "fiction",
+      "split": "test",
+      "publication_year": 1849,
+      "publication_year_kind": "digitized-edition",
+      "publication_quote": "boktryckeriet, 1849",
+      "topic": "En familj i en avskild dal ställs inför ett vardagligt beslut som visar deras olika lynnen och förhoppningar."
+    },
+    {
+      "gutenberg_id": 59646,
+      "author_id": "georg-august-wallin",
+      "author_name": "Georg August Wallin",
+      "author_death_year": 1852,
+      "language": "sv",
+      "genre": "travel",
+      "split": "test",
+      "publication_year": 1864,
+      "publication_year_kind": "digitized-edition",
+      "publication_quote": "1864.",
+      "topic": "En resenär beskriver ankomsten till en hamnstad, möten med invånarna och vardagens ovana detaljer."
+    }
+  ],
+  "replacements": [
+    {
+      "excluded_gutenberg_id": 14670,
+      "replacement_gutenberg_id": 26479,
+      "reason": "Unknown physical edition and apparent modern spelling normalization; replaced before any generation/model fitting."
+    }
+  ]
+}

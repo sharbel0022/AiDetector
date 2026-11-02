@@ -1,0 +1,8 @@
+{
+  "contentType": "application/json; charset=utf-8",
+  "file": "sv-bridge.parse.json",
+  "retrievedAtUtc": "2026-11-02T20:01:18.992125+00:00",
+  "sha256": "39a250e4f9fe0baea343cc2b85b6063fdb81183b3b2d555038da8987fa953aee",
+  "status": 200,
+  "url": "https://sv.wikipedia.org/w/api.php?action=parse&format=json&oldid=42244645&prop=text%7Crevid%7Cdisplaytitle%7Ccategories"
+}

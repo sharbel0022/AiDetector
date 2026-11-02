@@ -1,0 +1,8 @@
+{
+  "contentType": "text/plain",
+  "file": "sv-volcano.revision.json",
+  "retrievedAtUtc": "2026-11-02T19:59:45.666455+00:00",
+  "sha256": "227b6d88b69415e872e914e783f654fc46226dc0abaa63cbb9b9b3bf5a9162ac",
+  "status": 429,
+  "url": "https://sv.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=Vulkan&rvprop=ids%7Ctimestamp%7Cuser&rvstart=2018-01-01T00%3A00%3A00Z&rvdir=older&rvlimit=1"
+}

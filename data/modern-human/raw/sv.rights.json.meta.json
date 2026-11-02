@@ -1,0 +1,8 @@
+{
+  "contentType": "application/json; charset=utf-8",
+  "file": "sv.rights.json",
+  "retrievedAtUtc": "2026-11-02T19:59:42.020512+00:00",
+  "sha256": "a0e8c4a6722c8680db8fa9ccb0f2b798e8016e8630a96198d28f7150e82690da",
+  "status": 200,
+  "url": "https://sv.wikipedia.org/w/api.php?action=query&format=json&meta=siteinfo&siprop=rightsinfo"
+}

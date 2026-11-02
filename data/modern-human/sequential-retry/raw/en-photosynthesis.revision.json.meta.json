@@ -1,0 +1,8 @@
+{
+  "contentType": "application/json; charset=utf-8",
+  "file": "en-photosynthesis.revision.json",
+  "retrievedAtUtc": "2026-11-02T20:01:03.375298+00:00",
+  "sha256": "5a18a51841d74057150883fc87e9fd98accd101e01982fbccdef9a793b3b0b3d",
+  "status": 200,
+  "url": "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=Photosynthesis&rvprop=ids%7Ctimestamp%7Cuser&rvstart=2018-01-01T00%3A00%3A00Z&rvdir=older&rvlimit=1"
+}

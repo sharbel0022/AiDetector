@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "purpose": "Predeclared post-review network canary; separate from the comparative 72 calls. Natural mode only, both languages, three installed models. No tuning from outputs.",
+  "cases": [
+    {
+      "id": "signed-en",
+      "split": "canary",
+      "language": "en",
+      "text": "To keep a clear record, Leah Cole measured a change of −12 °C on 2 May 2025 and +3 °C on 3 May 2025. The reported range was 12–15 °C. These readings do not prove that the device caused the change.",
+      "protected_terms": [],
+      "exact_values": ["Leah Cole", "−12 °C", "+3 °C", "2 May 2025", "3 May 2025", "12–15 °C"],
+      "claims": [
+        {"id": "negative", "description": "Negative reading stays negative", "any": ["−12 °C"]},
+        {"id": "positive", "description": "Explicit positive reading stays positive", "any": ["\\+3 °C"]},
+        {"id": "range", "description": "Range is distinct from unary minus", "any": ["12–15 °C"]},
+        {"id": "limitation", "description": "The readings do not establish device causation", "any": ["(?:not|never)[^.]{0,40}(?:prove|establish|show|demonstrate|confirm)[^.]{0,70}(?:caused|cause)"]}
+      ]
+    },
+    {
+      "id": "signed-sv",
+      "split": "canary",
+      "language": "sv",
+      "text": "För att föra tydliga anteckningar mätte Maja Lind en förändring på -12 °C den 2 maj 2025 och +3 °C den 3 maj 2025. Det rapporterade intervallet var 12–15 °C. Avläsningarna visar inte att apparaten orsakade förändringen.",
+      "protected_terms": [],
+      "exact_values": ["Maja Lind", "-12 °C", "+3 °C", "2 maj 2025", "3 maj 2025", "12–15 °C"],
+      "claims": [
+        {"id": "negative", "description": "Negative reading stays negative", "any": ["-12 °C"]},
+        {"id": "positive", "description": "Explicit positive reading stays positive", "any": ["\\+3 °C"]},
+        {"id": "range", "description": "Range is distinct from unary minus", "any": ["12–15 °C"]},
+        {"id": "limitation", "description": "The readings do not establish device causation", "any": ["(?:inte|ej|aldrig)[^.]{0,70}orsakade"]}
+      ]
+    }
+  ]
+}

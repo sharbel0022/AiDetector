@@ -99,25 +99,58 @@ function auditLeakage(records) {
     if (components.has(parent) && components.get(parent) !== row.split) throw new Error(`Split leakage in related_source_id: ${row.source_id}`);
     components.set(parent, row.split);
   }
-  const exact = new Map(), indexed = new Map(), sets = [];
-  let nearDuplicateComparisons = 0;
+  const byId = new Map(records.map(row => [row.source_id, row]));
+  const editRoot = row => {
+    const seen = new Set();
+    let current = row;
+    while (current?.label === 'ai-edited') {
+      if (seen.has(current.source_id)) return null;
+      seen.add(current.source_id);
+      const parent = byId.get(current.related_source_id);
+      if (!parent || parent.split !== row.split || parent.source_group_id !== row.source_group_id) return null;
+      current = parent;
+    }
+    return current?.label === 'human' ? current.source_id : null;
+  };
+  const roots = records.map(editRoot);
+  const isDocumentedEditPair = (a, b) => records[a].split === records[b].split
+    && records[a].source_group_id === records[b].source_group_id
+    && (records[a].label === 'ai-edited' || records[b].label === 'ai-edited')
+    && roots[a] !== null && roots[a] === roots[b];
+  const exact = new Map(), indexed = new Map(), sets = [], relatedEditExamples = [], recorded = new Set();
+  let nearDuplicateComparisons = 0, relatedEditPairs = 0, relatedExactPairs = 0, relatedNearPairs = 0;
+  const recordDependency = (a, b, kind) => {
+    const pair = `${a}:${b}`;
+    if (recorded.has(pair)) return;
+    recorded.add(pair);
+    relatedEditPairs++;
+    if (kind === 'exact') relatedExactPairs++; else relatedNearPairs++;
+    if (relatedEditExamples.length < 1000) relatedEditExamples.push({ originalRoot: roots[a], first: records[a].source_id, second: records[b].source_id, kind, sourceGroup: records[a].source_group_id, split: records[a].split });
+  };
   for (let i = 0; i < records.length; i++) {
     const row = records[i], tokens = normalizedTokens(row.text), key = tokens.join(' ');
     if (!tokens.length) throw new Error(`No lexical text in ${row.source_id}`);
-    if (exact.has(key)) throw new Error(`Exact duplicate: ${exact.get(key)} and ${row.source_id}; duplicates cannot count as independent examples`);
-    exact.set(key, row.source_id);
+    for (const previous of exact.get(key) || []) {
+      if (!isDocumentedEditPair(previous, i)) throw new Error(`Exact duplicate: ${records[previous].source_id} and ${row.source_id}; duplicates cannot count as independent examples`);
+      recordDependency(previous, i, 'exact');
+    }
+    if (!exact.has(key)) exact.set(key, []);
+    exact.get(key).push(i);
     const set = shingles(tokens), intersections = new Map();
     // An inverted index checks only pairs sharing a shingle; all Jaccard >=0.8 pairs must share one.
     for (const shingle of set) for (const previous of indexed.get(shingle) || []) intersections.set(previous, (intersections.get(previous) || 0) + 1);
     for (const [previous, intersection] of intersections) {
       nearDuplicateComparisons++;
       const similarity = intersection / (set.size + sets[previous].size - intersection);
-      if (similarity >= NEAR_DUPLICATE_THRESHOLD) throw new Error(`Near-duplicate: ${records[previous].source_id} and ${row.source_id}; five-token shingle Jaccard=${similarity.toFixed(3)}`);
+      if (similarity >= NEAR_DUPLICATE_THRESHOLD) {
+        if (!isDocumentedEditPair(previous, i)) throw new Error(`Near-duplicate: ${records[previous].source_id} and ${row.source_id}; five-token shingle Jaccard=${similarity.toFixed(3)}`);
+        recordDependency(previous, i, 'near');
+      }
     }
     for (const shingle of set) { if (!indexed.has(shingle)) indexed.set(shingle, []); indexed.get(shingle).push(i); }
     sets.push(set);
   }
-  return { passed: true, groupingFields: ['author_id', 'document_id', 'source_group_id', 'related_source_id'], exactDuplicates: 0, nearDuplicates: 0, nearDuplicateComparisons, shingleWords: 5, jaccardThreshold: NEAR_DUPLICATE_THRESHOLD, note: 'Token overlap cannot establish semantic independence. Translations, paraphrases and shared prompts still require a manual source-family audit.' };
+  return { passed: true, groupingFields: ['author_id', 'document_id', 'source_group_id', 'related_source_id'], exactDuplicates: 0, nearDuplicates: 0, nearDuplicateComparisons, relatedEditPairs, relatedExactPairs, relatedNearPairs, relatedEditExamples, relatedExamplesTruncated: relatedEditPairs > relatedEditExamples.length, shingleWords: 5, jaccardThreshold: NEAR_DUPLICATE_THRESHOLD, note: 'Duplicate counts exclude explicitly documented human/AI-edited pairs with a shared human ancestor in the same split/source family. Related pairs are dependent observations, never independent examples. Token overlap cannot establish semantic independence; source-family audit and grouped uncertainty are still required.' };
 }
 
 /** Validates metadata assertions; it cannot verify external rights or labels itself. */
@@ -181,14 +214,14 @@ export function evaluateDataset(records, { threshold = 65, fixture = false, tune
     schemaVersion: SCHEMA_VERSION, method: METHOD,
     mode: fixture ? 'synthetic-fixture' : 'independent-data-required', qualityEvidence: false,
     provenanceStatus: fixture ? 'synthetic_not_quality_evidence' : 'asserted_not_independently_audited',
-    notice: fixture ? 'SYNTHETIC ENGINEERING FIXTURES ONLY. Labels are deliberately assigned and do not represent measured authorship detection quality.' : 'Diagnostic evaluation of a descriptive style threshold. Provenance fields are assertions requiring independent review. No trained classifier or calibrated AI probability is present.',
+    notice: fixture ? 'SYNTHETIC ENGINEERING FIXTURES ONLY. Labels are deliberately assigned and do not represent measured authorship detection quality.' : 'Diagnostic evaluation of a descriptive style threshold. Provenance fields are assertions requiring independent review. This report contains no trained-model classification or calibrated AI probability; the offline experimental baseline has separate reports.',
     dataset, selection, overall: summarize(test, threshold),
     byLanguage: slices(row => row.language), byGenre: slices(row => row.genre),
     byLength: slices(row => row.words < 80 ? 'short' : row.words < 300 ? 'medium' : 'long'), byModel: slices(row => row.model),
     abstentionReasons: countBy(test.flatMap(row => row.abstentionReasons), reason => reason),
     predictions: test, calibration,
     reproducibility: { datasetSha256: hash(JSON.stringify(records)), method: METHOD, evaluatedSplit: 'test', threshold, tuneOnValidation, nearDuplicateThreshold: NEAR_DUPLICATE_THRESHOLD, recordsOrdered: true, runtime: process.version },
-    limitations: ['Accuracy, precision, recall, F1, FPR and FNR are diagnostic threshold metrics among assessed human/ai examples. ai-edited is separate.', 'Coverage includes all labels; recallAllAI also includes abstained ai examples in its denominator. AUROC excludes abstentions and ai-edited.', 'Wilson intervals assume independent observations; repeated authors and source families can make them too narrow. Grouped resampling is required for inferential claims.', 'Split and duplicate checks cannot detect every translated, paraphrased, related, contaminated or mislabeled text.', 'No independent rights-verified benchmark corpus or learned model ships with TextLab. Do not interpret fixture metrics as detector quality.'],
+    limitations: ['Accuracy, precision, recall, F1, FPR and FNR are diagnostic threshold metrics among assessed human/ai examples. ai-edited is separate.', 'Coverage includes all labels; recallAllAI also includes abstained ai examples in its denominator. AUROC excludes abstentions and ai-edited.', 'Wilson intervals assume independent observations; repeated authors and source families can make them too narrow. Grouped resampling is required for inferential claims.', 'Split and duplicate checks cannot detect every translated, paraphrased, related, contaminated or mislabeled text.', 'The real historical pilot and offline learned baseline have separate scope/limitations; neither validates this style threshold for general authorship detection. Do not interpret engineering fixture metrics as detector quality.'],
   };
 }
 

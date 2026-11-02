@@ -28,6 +28,7 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 from starlette.datastructures import MutableHeaders
 from backend.limits import SharedLimits
+from backend.meaning import QUANTITIES, QUANTITY_PATTERN, changed_risk_categories
 
 load_dotenv()
 
@@ -104,7 +105,7 @@ NAMES = rf'\b{NAME_WORD}(?:\s+(?:(?:van|von|de|del|af)\s+)?{NAME_WORD})*\b|\b[A-
 # lowercase/non-Latin names and ambiguous common words.
 COMMON_STARTERS = set('A An And As At But By For From He Her His How I If In It Its My No On Or Our She So That The Their Them There These They This Those To We What When Where Which Who Why With You Your De Den Det Dessa Detta Din Ditt Du En Ett Er Era För Från Han Hans Har Hon Hennes Hur I Inte Jag Läs Man Med Men Min Mitt Ni Nu När Om Och På Rapporten Som Så Till Vad Var Vi Vår Våra Även Är'.split())
 SENTENCE_STARTERS = set('More Further Finally However Therefore Team Report Reports Research Results Study Goal Aim Teamet Mer Syfte Syftet Studien Resultatet Resultaten Information Forskningen'.split())
-PROTECTED = re.compile(rf'{DATE}|{FACT_PATTERN}|{NAMES}')
+PROTECTED = re.compile(rf'{DATE}|{QUANTITY_PATTERN}|{FACT_PATTERN}|{NAMES}')
 TOKEN = re.compile(r'__TL_[a-f0-9]{16}_\d+__')
 
 def protect_text(text: str, protected_terms: list[str] | None = None) -> tuple[str, dict[str,str]]:
@@ -141,7 +142,9 @@ def restore_text(output: str, mapping: dict[str,str], original: str) -> str:
     if Counter(FACTS.findall(output)) != Counter(FACTS.findall(original)):
         raise PreservationError('Protected facts added or changed')
     if any(output.count(value) != original.count(value) for value in set(mapping.values())):
-        raise PreservationError('Protected values duplicated')
+        raise PreservationError('Protected values missing, changed or duplicated')
+    if changed_risk_categories(original, output, mapping.values()):
+        raise PreservationError('Meaning-bearing surface markers changed')
     return output.strip()
 
 def make_diff(original: str, rewritten: str) -> list[dict]:
@@ -162,43 +165,49 @@ MODES = {
     'professional': 'Use a clear, polished, courteous business tone without promotional exaggeration.',
     'academic': 'Use precise, measured academic phrasing; retain limitations and citations; never invent sources.',
     'concise': 'Remove repetition and unnecessary wording while preserving all claims, caveats and protected values.',
-    'detailed': 'Clarify the existing reasoning and transitions using only information present in the source. Do not add facts, examples or citations.',
+    'detailed': 'Clarify existing wording and references using only information explicitly present in the source. Do not supply missing reasoning, causes, recommendations, facts, examples or citations.',
 }
 SCHEMA = {'type':'object','properties':{'text':{'type':'string'}},'required':['text'],'additionalProperties':False}
 
-async def generate(settings: Settings, payload: RewriteRequest, protected: str, transport=None, output_tokens=None) -> str:
+def generation_body(settings: Settings, payload: RewriteRequest, protected: str, output_tokens=None) -> dict:
+    """One secret-free payload builder shared by every adapter and quota checks."""
     user=json.dumps({'language':payload.language,'tone':payload.tone,'text':protected},ensure_ascii=False)
-    instructions = SYSTEM + '\nPlaceholders also include names, dates and user-selected exact terms.\nMode guidance: ' + MODES[payload.tone]
+    instructions = SYSTEM + '\nPlaceholders also include names, dates, numbers with their units and user-selected exact terms. Keep each actor/action/date/quantity relationship and explicit uncertainty unchanged. Do not infer causation from simultaneous observations.\nMode guidance: ' + MODES[payload.tone]
     cap = output_tokens or settings.max_output_tokens
+    if settings.provider == 'ollama':
+        body = {'model': settings.model, 'stream': False, 'format': SCHEMA,
+                'messages': [{'role': 'system', 'content': instructions}, {'role': 'user', 'content': user}],
+                'options': {'temperature': 0.3, 'num_predict': cap, 'num_ctx': 32768}}
+        if settings.ollama_think is not None:
+            body['think'] = settings.ollama_think
+        return body
+    if settings.provider == 'openai':
+        return {'model': settings.model, 'instructions': instructions, 'input': user, 'store': False,
+                'max_output_tokens': cap,
+                'text': {'format': {'type': 'json_schema', 'name': 'rewrite', 'strict': True, 'schema': SCHEMA}}}
+    if settings.provider == 'compatible':
+        return {'model': settings.model, 'stream': False, 'max_tokens': cap,
+                'messages': [{'role': 'system', 'content': instructions}, {'role': 'user', 'content': user}],
+                'response_format': {'type': 'json_schema', 'json_schema': {'name': 'rewrite', 'strict': True, 'schema': SCHEMA}}}
+    raise HTTPException(503, 'Ingen stödd AI-leverantör är konfigurerad.')
+
+
+async def generate(settings: Settings, payload: RewriteRequest, protected: str, transport=None, output_tokens=None) -> str:
+    body = generation_body(settings, payload, protected, output_tokens)
     async with httpx.AsyncClient(timeout=httpx.Timeout(settings.request_timeout,connect=5),transport=transport,follow_redirects=False,trust_env=False) as client:
         if settings.provider=='ollama':
             endpoint = settings.ollama_url.rstrip('/')+'/api/chat'
             headers = {}
-            body = {
-                'model':settings.model, 'stream':False, 'format':SCHEMA,
-                'messages':[{'role':'system','content':instructions},{'role':'user','content':user}],
-                'options':{'temperature':0.3,'num_predict':cap,'num_ctx':32768},
-            }
-            if settings.ollama_think is not None:
-                body['think'] = settings.ollama_think
         elif settings.provider=='openai':
             if not settings.openai_key or not settings.model:
                 raise HTTPException(503,'OpenAI kräver AI_MODEL och OPENAI_API_KEY på servern.')
             endpoint = 'https://api.openai.com/v1/responses'
             headers = {'Authorization':f'Bearer {settings.openai_key}'}
-            body = {
-                'model':settings.model,'instructions':instructions,'input':user,'store':False,
-                'max_output_tokens':cap,
-                'text':{'format':{'type':'json_schema','name':'rewrite','strict':True,'schema':SCHEMA}},
-            }
         elif settings.provider == 'compatible':
             if not settings.compatible_url or not settings.model or not settings.compatible_key:
                 raise HTTPException(503, 'Kompatibel AI kräver serveradress, modell och servernyckel.')
             endpoint = settings.compatible_url.rstrip('/') + '/chat/completions'
             headers = {'Authorization': f'Bearer {settings.compatible_key}'}
-            body = {'model': settings.model, 'stream': False, 'max_tokens': cap,
-                    'messages': [{'role': 'system', 'content': instructions}, {'role': 'user', 'content': user}],
-                    'response_format': {'type': 'json_schema', 'json_schema': {'name': 'rewrite', 'strict': True, 'schema': SCHEMA}}}
         else:
             raise HTTPException(503,'Ingen stödd AI-leverantör är konfigurerad.')
         if not settings.model:
@@ -354,9 +363,13 @@ def create_app(settings: Settings | None = None, transport=None) -> FastAPI:
         request.state.principal = principal
 
     async def bounded_generate(request, payload, protected, timeout, cap=None):
-        # Include the serialized prompt/schema overhead with a conservative allowance.
-        serialized_input = json.dumps({'language':payload.language,'tone':payload.tone,'text':protected},ensure_ascii=False)
-        reserve_tokens = len(serialized_input.encode()) + len(SYSTEM.encode()) + 3000 + (cap or s.max_output_tokens)
+        # Bound the actual nested JSON body, including source, mode instructions,
+        # schema and escaped Unicode/backslashes. The shared
+        # builder also serves readiness probes and all provider adapters. Headers
+        # and server credentials are never part of this payload or quota storage.
+        body = generation_body(s, payload, protected, cap)
+        body_bytes = httpx.Request('POST', 'http://localhost', json=body).content
+        reserve_tokens = len(body_bytes) + 1024 + (cap or s.max_output_tokens)
         try:
             lease = limits.reserve(request.state.principal, reserve_tokens, s, timeout)
         except sqlite3.Error:
@@ -423,14 +436,14 @@ def create_app(settings: Settings | None = None, transport=None) -> FastAPI:
             output=await bounded_generate(request,payload,protected,s.request_timeout)
             output=restore_text(output,mapping,payload.text)
         except PreservationError:
-            raise HTTPException(502,'Modellen ändrade skyddade uppgifter. Omskrivningen stoppades; originalet är oförändrat.') from None
+            raise HTTPException(502,'Modellen ändrade skyddade uppgifter, enheter eller betydelsebärande markörer. Omskrivningen stoppades; originalet är oförändrat.') from None
         except (httpx.TimeoutException,TimeoutError):
             raise HTTPException(504,'Modellen svarade inte i tid.') from None
         except httpx.ConnectError:
             raise HTTPException(503,'AI-servern kunde inte nås. Kontrollera Ollama eller serverinställningarna.') from None
         except (httpx.HTTPError,ValueError,KeyError,TypeError,IndexError):
             raise HTTPException(502,'AI-tjänsten returnerade inget giltigt, fullständigt svar. Kontrollera serverns modellkonfiguration.') from None
-        return {'text':output,'provider':s.provider,'model':s.model,'diff':make_diff(payload.text,output),'protected_count':len(mapping),'review_required':True,'preservation':{'exact_values_checked':True,'semantic_equivalence_verified':False,'names':'heuristic_and_explicit_terms'},'warning':'Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad.'}
+        return {'text':output,'provider':s.provider,'model':s.model,'diff':make_diff(payload.text,output),'protected_count':len(mapping),'review_required':True,'preservation':{'exact_values_checked':True,'semantic_equivalence_verified':False,'names':'heuristic_and_explicit_terms','meaning_risk_checks':'bounded_marker_counts_and_known_units'},'warning':'Skyddade textdelar och kända tal med enheter har kontrollerats exakt. Begränsade kontroller söker ändrade markörer för negation, osäkerhet, skyldighet och orsak; de verifierar inte betydelsen. Namn identifieras med heuristik och valda exakta ord. Granska fakta, relationer, nyanser och tillagda påståenden; semantisk likvärdighet är inte verifierad.'}
 
     built=Path(__file__).resolve().parent.parent/'dist'
     if built.is_dir():app.mount('/',StaticFiles(directory=built,html=True),name='frontend')
