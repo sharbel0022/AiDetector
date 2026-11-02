@@ -1,0 +1,18 @@
+{
+  "checks_passed": 10,
+  "checks": [
+    "page loads without external assets",
+    "local analysis reports signals and uncertainty",
+    "editing invalidates previous result; short text abstains",
+    "untrusted text renders as text, not HTML",
+    "rewrite request, result and diff use the API contract (mock)",
+    "late responses cannot overwrite changed input",
+    "provider failure is an error, not a fake rewrite",
+    "access token is not persisted in browser storage",
+    "390px mobile layout has no horizontal overflow",
+    "no uncaught browser JavaScript errors"
+  ],
+  "llm_responses": "mocked",
+  "live_model_verified": false,
+  "sites_publication_verified": false
+}
