@@ -13,6 +13,8 @@ async def main():
         page=await browser.new_page(viewport={'width':1440,'height':1050},device_scale_factor=1)
         errors=[]
         page.on('pageerror',lambda error:errors.append(str(error)))
+        posted=[]
+        page.on('request',lambda request:posted.append(request.url) if request.method=='POST' else None)
         await page.route('**/api/health',lambda route:route.fulfill(json={'provider':'ollama','model':'test-model','auth_required':False}))
         await page.route('**/api/provider-status',lambda route:route.fulfill(json={'ready':False,'verified':False,'message':'Test: riktig modell är inte ansluten.'}))
         await page.goto(os.getenv('TEXTLAB_TEST_URL','http://127.0.0.1:8767'),wait_until='networkidle')
@@ -24,6 +26,7 @@ async def main():
         await page.locator('.analysis-result').wait_for()
         assert await page.locator('.score').inner_text()!='—'
         assert await page.get_by_text('Författarskap: kan inte avgöras.').count()==1
+        assert not posted, 'Local analysis must not POST source text'
         checks.append('local analysis reports signals and uncertainty')
         await page.screenshot(path=str(out/'analysis.png'),full_page=True)
         editor=page.get_by_role('textbox',name='Din originaltext')
@@ -34,7 +37,7 @@ async def main():
         checks.append('editing invalidates previous result; short text abstains')
         await editor.fill('<img src=x onerror=alert(1)> ' + 'Text med vanliga ord. '*30)
         await page.get_by_role('button',name='Analysera text').click()
-        await page.locator('.evidence summary').click()
+        await page.locator('.evidence > summary').click()
         assert await page.locator('.evidence img').count()==0
         checks.append('untrusted text renders as text, not HTML')
         await page.get_by_role('button',name='AI-humanizer').click()

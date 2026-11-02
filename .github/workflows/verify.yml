@@ -1,59 +1,89 @@
 name: Verify and build TextLab
 on:
   push:
-    branches: [main]
+    branches: [main, codex/textlab-v3]
   pull_request:
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
 concurrency:
   group: textlab-${{ github.ref }}
   cancel-in-progress: true
+defaults:
+  run:
+    shell: bash --noprofile --norc -euo pipefail {0}
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: '22'
-      - uses: actions/setup-python@v5
+          cache: npm
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: '3.12'
-      - name: Install dependencies
-        run: |
-          if [ -f package-lock.json ]; then npm ci; else npm install; fi
-          python -m pip install -r requirements.txt playwright
-          python -m playwright install --with-deps chromium
-      - name: Unit and API tests
+          cache: pip
+          cache-dependency-path: |
+            requirements-lock.txt
+            requirements-dev.txt
+            requirements-dev-lock.txt
+      - name: Install locked dependencies
         run: |
           mkdir -p artifacts
+          npm ci
+          python -m pip install -r requirements-dev.txt
+          python -m playwright install --with-deps chromium
+      - name: Dependency vulnerability audit
+        run: |
+          npm audit --audit-level=moderate 2>&1 | tee artifacts/npm-audit.txt
+          python -m pip_audit -r requirements-lock.txt --format=json --output artifacts/pip-audit.json
+      - name: Scan git history for secrets
+        run: |
+          curl --fail --silent --show-error --location https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz -o /tmp/gitleaks.tar.gz
+          echo '551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb  /tmp/gitleaks.tar.gz' | sha256sum --check --strict
+          mkdir -p /tmp/textlab-gitleaks
+          tar -xzf /tmp/gitleaks.tar.gz -C /tmp/textlab-gitleaks gitleaks
+          /tmp/textlab-gitleaks/gitleaks git --redact --no-banner --report-format json --report-path artifacts/secrets-history.json
+      - name: Unit and API tests
+        run: |
           npm test 2>&1 | tee artifacts/node-tests.txt
           python -m pytest -q 2>&1 | tee artifacts/api-tests.txt
-      - name: Production build
-        run: npm run build
-      - name: Browser verification
+          node tools/evaluate.mjs tools/fixtures/detector.synthetic.jsonl --fixture > artifacts/detector-fixture.json
+      - name: Reproducible production build and performance budgets
         run: |
-          python -m uvicorn backend.main:app --host 127.0.0.1 --port 8767 > artifacts/server.log 2>&1 &
-          SERVER_PID=$!
-          trap 'kill "$SERVER_PID" || true' EXIT
-          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8767/api/health && break || sleep 1; done
+          npm run build
+          find dist -type f -exec sha256sum {} + | sort > /tmp/textlab-first-build.txt
+          npm run build
+          find dist -type f -exec sha256sum {} + | sort > /tmp/textlab-second-build.txt
+          diff -u /tmp/textlab-first-build.txt /tmp/textlab-second-build.txt
+          cp /tmp/textlab-second-build.txt artifacts/build-sha256.txt
+          npm run performance > artifacts/performance-console.txt
+      - name: Browser, accessibility and backend overhead verification
+        run: |
+          python -m uvicorn backend.main:app --host 127.0.0.1 --port 8767 --no-access-log > artifacts/server.log 2>&1 &
+          TEXTLAB_SERVER_PID=$!
+          trap 'kill "$TEXTLAB_SERVER_PID" || true' EXIT
+          ready=false
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8767/api/health > /dev/null; then ready=true; break; fi
+            sleep 1
+          done
+          [ "$ready" = true ]
           python tools/browser_checks.py
-      - name: Save verified build on main
-        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+          python sites/src/ui_checks.py
+          python tools/accessibility_checks.py
+          python tools/api_performance.py
+      - name: Container with two production workers
         run: |
-          rm -rf sites-build
-          cp -R dist sites-build
-          cp artifacts/browser-results.json sites-build/verification.json
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add package-lock.json sites-build
-          if ! git diff --cached --quiet; then
-            git commit -m 'build: save verified TextLab frontend and dependency lock'
-            git push origin HEAD:main
-          fi
-      - uses: actions/upload-artifact@v4
+          docker build -t textlab:v3-review .
+          python tools/container_checks.py --image textlab:v3-review
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
           name: textlab-verification

@@ -1,0 +1,97 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { validateBase, validateRewriteInput, normalizeRewriteResult, sourceHighlights, createRequestGate, parseProtectedTerms, normalizeHealthResponse, normalizeProviderStatus, apiErrorMessage } from './ui-state.mjs';
+
+test('API origin validation allows secure origins and loopback without leaking credentials', () => {
+  assert.equal(validateBase(' https://api.example.se/ '), 'https://api.example.se');
+  assert.equal(validateBase('http://localhost:8767'), 'http://localhost:8767');
+  for (const value of ['http://example.se', 'https://user:secret@example.se', 'https://example.se/api', 'https://example.se/?key=secret', 'invalid']) assert.throws(() => validateBase(value));
+});
+
+test('rewrite validation reports the actionable character limit', () => {
+  assert.match(validateRewriteInput('kort'), /10/);
+  assert.match(validateRewriteInput('a'.repeat(8001)), /8 000/);
+  assert.equal(validateRewriteInput('Tio tecken räcker.'), '');
+});
+
+test('a mismatched diff is rejected instead of showing changes for a different original', () => {
+  const reply = {text:'Ny text.', diff:[{kind:'delete',text:'Fel text.'},{kind:'insert',text:'Ny text.'}], protected_count:0};
+  assert.throws(() => normalizeRewriteResult(reply,'Min text.'), /jämförelse/);
+  assert.throws(() => normalizeRewriteResult({...reply,text:''},'Fel text.'));
+  const valid = normalizeRewriteResult({...reply,diff:[{kind:'delete',text:'Min text.'},{kind:'insert',text:'Ny text.'}]},'Min text.');
+  assert.equal(valid.text,'Ny text.');
+  assert.equal(valid.original,'Min text.');
+});
+
+test('overlapping source evidence merges without losing literal text or UTF-16 offsets', () => {
+  const text='🙂 Hej världen!';
+  assert.deepEqual(sourceHighlights(text,[{start:3,end:6,id:'a',explanation:'Ord'},{start:5,end:14,id:'b',explanation:'Fras'}]), [
+    {text:'🙂 ',marked:false,explanations:[]}, {text:'Hej världen',marked:true,explanations:['Ord','Fras']}, {text:'!',marked:false,explanations:[]}
+  ]);
+  assert.deepEqual(sourceHighlights('<img>',[{start:-1,end:99},{start:2,end:2}]),[{text:'<img>',marked:false,explanations:[]}]);
+});
+
+test('superseded and cancelled requests cannot publish even when a fetch ignores abort', () => {
+  const gate=createRequestGate();
+  const first=gate.begin();
+  const second=gate.begin();
+  assert.equal(first.signal.aborted,true);
+  assert.equal(gate.isCurrent(first),false);
+  assert.equal(gate.isCurrent(second),true);
+  gate.cancel();
+  assert.equal(second.signal.aborted,true);
+  assert.equal(gate.isCurrent(second),false);
+});
+
+test('explicit protected terms require exact source matches and reject silent truncation', () => {
+  assert.deepEqual(parseProtectedTerms('Åsa\nProjekt Atlas\nÅsa','Åsa leder Projekt Atlas.'),['Åsa','Projekt Atlas']);
+  assert.throws(()=>parseProtectedTerms('atlas','Projekt Atlas.'),/atlas/);
+  assert.throws(()=>parseProtectedTerms('a'.repeat(161),'a'.repeat(161)),/160/);
+  assert.throws(()=>parseProtectedTerms(Array.from({length:41},(_,i)=>`ord${i}`).join('\n'),Array.from({length:41},(_,i)=>`ord${i}`).join(' ')),/40/);
+});
+
+
+test('valid rewrite text and diff cannot publish malformed rendered metadata', () => {
+  const reply = {text:'Ny text.', diff:[{kind:'delete',text:'Min text.'},{kind:'insert',text:'Ny text.'}], protected_count:0};
+  for (const field of ['provider','model','warning']) {
+    for (const value of [null, {}, [], 17, true, 'x'.repeat(100000)]) {
+      assert.throws(() => normalizeRewriteResult({...reply,[field]:value},'Min text.'), /metadata/);
+    }
+  }
+  const result=normalizeRewriteResult(reply,'Min text.');
+  assert.equal(typeof result.provider,'string');
+  assert.equal(typeof result.model,'string');
+  assert.equal(typeof result.warning,'string');
+  assert.equal('unexpected' in normalizeRewriteResult({...reply,unexpected:{bad:true}},'Min text.'),false);
+});
+
+test('health metadata is bounded and cannot inject React children', () => {
+  for (const field of ['provider','model']) {
+    for (const value of [null,{},[],42,false,'x'.repeat(100000)]) assert.throws(() => normalizeHealthResponse({provider:'ollama',model:'test',[field]:value}), /metadata/);
+  }
+  assert.deepEqual(normalizeHealthResponse({provider:'ollama',model:'test',untrusted:{bad:true}}),{provider:'ollama',model:'test'});
+  assert.throws(() => normalizeHealthResponse(null));
+});
+
+test('provider status validates actual booleans and bounded message text', () => {
+  for (const value of [null,{},[],42,false,'x'.repeat(100000)]) assert.throws(() => normalizeProviderStatus({ready:false,verified:false,message:value}), /metadata/);
+  for (const field of ['ready','verified']) assert.throws(() => normalizeProviderStatus({ready:false,verified:false,[field]:'true'}), /metadata/);
+  assert.deepEqual(normalizeProviderStatus({ready:true,verified:true,message:'Modellen svarade.',untrusted:{bad:true}}),{ready:true,verified:true,message:'Modellen svarade.'});
+  assert.throws(() => normalizeProviderStatus([]));
+});
+
+test('malformed or oversized API error details use an actionable bounded fallback', () => {
+  assert.equal(apiErrorMessage({detail:'Modellen är inte tillgänglig.'},503),'Modellen är inte tillgänglig.');
+  for(const detail of [{bad:true},[], 'x'.repeat(100000),'']) {
+    const message=apiErrorMessage({detail},503);
+    assert.ok(message.length<300);
+    assert.match(message,/503/);
+    assert.match(message,/försök igen/);
+  }
+});
+
+
+test('protected-value counts are safe integers bounded by the submitted text', () => {
+  const reply={text:'Ny text.',diff:[{kind:'delete',text:'Min text.'},{kind:'insert',text:'Ny text.'}],protected_count:0};
+  for(const count of [-1,0.5,Infinity,Number.MAX_SAFE_INTEGER,100000]) assert.throws(()=>normalizeRewriteResult({...reply,protected_count:count},'Min text.'));
+});
