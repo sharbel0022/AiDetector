@@ -1,0 +1,16 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { analyzeText, wordCount, MAX_CHARS } from './analyzer.mjs';
+const longText = 'Jag tog bussen till biblioteket. Där läste jag en bok om nätverk och skrev några egna anteckningar. Sedan provade jag ett annat exempel hemma och upptäckte ett fel som jag behövde rätta. '.repeat(5);
+test('empty input abstains with no score', () => { const r=analyzeText(''); assert.equal(r.styleIndex,null); assert.equal(r.status,'insufficient'); });
+test('short input never receives an authorship probability', () => { const r=analyzeText('Det är viktigt att notera att detta är ett test.'); assert.equal(r.styleIndex,null); assert.equal(r.authorship,'undetermined'); assert.equal('probability' in r,false); });
+test('supports Swedish unicode words', () => assert.equal(wordCount('Åsa äter blåbär, 2026.'),4));
+test('analysis is deterministic and bounded', () => {const a=analyzeText(longText);assert.deepEqual(a,analyzeText(longText));assert.ok(a.styleIndex>=0&&a.styleIndex<=100);assert.equal(a.method,'style-heuristics-v2');});
+test('sentence ranges exactly refer to original text', () => {const s='Hej världen!\n\nDetta är nästa mening. 🙂';for(const x of analyzeText(s).sentences) assert.equal(s.slice(x.start,x.end),x.text);});
+test('marker detection handles Swedish and English', () => {assert.ok(analyzeText('Sammanfattningsvis är det viktigt. Moreover, this matters.').markers.length>=2);});
+test('markers are not matched inside other words',()=>assert.equal(analyzeText('moreoverly sammanfattningsvisare').markers.length,0));
+test('no HTML is generated from hostile input',()=>{const r=analyzeText('<script>alert(1)</script> '+longText);assert.equal(r.authorship,'undetermined');assert.equal('html' in r,false);});
+test('minimum 80 words required',()=>{assert.equal(analyzeText('ord '.repeat(79)).styleIndex,null);assert.notEqual(analyzeText('ord '.repeat(80)).styleIndex,null);});
+test('oversized input is rejected rather than silently truncated',()=>assert.throws(()=>analyzeText('a'.repeat(MAX_CHARS+1)),RangeError));
+test('non-string input rejected',()=>assert.throws(()=>analyzeText(null),TypeError));
+test('abbreviations and decimals do not create extra sentences',()=>assert.equal(analyzeText('Dr. Smith mätte 3.14 meter. Det fungerade.').sentences.length,2));

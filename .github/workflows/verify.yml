@@ -1,0 +1,62 @@
+name: Verify and build TextLab
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: textlab-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+          python -m pip install -r requirements.txt playwright
+          python -m playwright install --with-deps chromium
+      - name: Unit and API tests
+        run: |
+          mkdir -p artifacts
+          npm test 2>&1 | tee artifacts/node-tests.txt
+          python -m pytest -q 2>&1 | tee artifacts/api-tests.txt
+      - name: Production build
+        run: npm run build
+      - name: Browser verification
+        run: |
+          python -m uvicorn backend.main:app --host 127.0.0.1 --port 8767 > artifacts/server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8767/api/health && break || sleep 1; done
+          python tools/browser_checks.py
+      - name: Save verified build on main
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        run: |
+          rm -rf sites-build
+          cp -R dist sites-build
+          cp artifacts/browser-results.json sites-build/verification.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add package-lock.json sites-build
+          if ! git diff --cached --quiet; then
+            git commit -m 'build: save verified TextLab frontend and dependency lock'
+            git push origin HEAD:main
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: textlab-verification
+          path: |
+            dist/
+            artifacts/
