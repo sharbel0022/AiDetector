@@ -1,0 +1,84 @@
+{
+  "engine": "axe-core",
+  "screens": [
+    {
+      "violations": [],
+      "passes": 25,
+      "incomplete": 1,
+      "width": 1440,
+      "mode": "AI-detektor"
+    },
+    {
+      "violations": [],
+      "passes": 26,
+      "incomplete": 1,
+      "width": 1440,
+      "mode": "AI-humanizer"
+    },
+    {
+      "violations": [],
+      "passes": 24,
+      "incomplete": 1,
+      "width": 390,
+      "mode": "AI-detektor"
+    },
+    {
+      "violations": [],
+      "passes": 25,
+      "incomplete": 1,
+      "width": 390,
+      "mode": "AI-humanizer"
+    },
+    {
+      "violations": [],
+      "passes": 24,
+      "incomplete": 1,
+      "width": 320,
+      "mode": "AI-detektor"
+    },
+    {
+      "violations": [],
+      "passes": 25,
+      "incomplete": 1,
+      "width": 320,
+      "mode": "AI-humanizer"
+    },
+    {
+      "violations": [],
+      "passes": 27,
+      "incomplete": 2,
+      "width": 1440,
+      "mode": "AI-detektor-result"
+    },
+    {
+      "violations": [],
+      "passes": 26,
+      "incomplete": 1,
+      "width": 1440,
+      "mode": "AI-humanizer-result"
+    },
+    {
+      "violations": [],
+      "passes": 26,
+      "incomplete": 2,
+      "width": 320,
+      "mode": "AI-detektor-result"
+    },
+    {
+      "violations": [],
+      "passes": 25,
+      "incomplete": 1,
+      "width": 320,
+      "mode": "AI-humanizer-result"
+    },
+    {
+      "violations": [],
+      "passes": 15,
+      "incomplete": 1,
+      "mode": "settings",
+      "width": 1440
+    }
+  ],
+  "violations": 0,
+  "manualScreenReaderReview": "not_performed"
+}

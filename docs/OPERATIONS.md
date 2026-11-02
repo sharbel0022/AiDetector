@@ -35,6 +35,8 @@ Ollama och kompatibel endpoint är serverkonfiguration, aldrig användarstyrda U
 
 Namnskyddet är heuristiskt, med konservativa kandidater och undantag för vanliga meningsinledningar. Det täcker inte alla namn, språk eller stavningar; välj exakta termer för särskilt viktiga värden. Maskering kan göra små modeller sämre. Felaktiga markörer stoppas och lämnar originalet orört.
 
+Utvalda markörantal, kända tal/enhetsuttryck, tecken och intervall jämförs också. Detta kan stoppa exempelvis borttaget minus eller tillagt enhetssuffix, men tolkar inte all matematik, ordade kvoter eller betydelse. Det kan avvisa en korrekt parafras. Kvotreservationen använder samma fullständiga HTTPX-serialiserade request-body som respektive adapter, plus protokollmarginal och maxoutput. ML-baslinjen är separat offlinekod och dess beroenden/data läggs inte i servercontainern. Se `HUMANIZER_QUALITY.md` och `EXPERIMENTAL_DETECTOR.md` för faktisk evidens.
+
 Prompt injection begränsas genom separat systeminstruktion, JSON-fält för otillförlitlig text, inget verktygs-/fil-/nätverksanrop från modellen och validerade utdata. Det gör inte språkmodellen immun mot instruktioner i texten. Den får inga serverhemligheter. Backend hindrar inte varje ny sakuppgift eller ändrad logisk relation. Riktiga tester visade att en exakt bevarad datumsträng kan få ny grammatisk roll. Ingen semantisk ekvivalensmodell eller formell faktakontroll har validerats; mänsklig granskning krävs.
 
 ## Container och verifiering

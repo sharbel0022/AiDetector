@@ -1,0 +1,97 @@
+{
+  "measuredAt": "2026-11-02T20:43:23.073Z",
+  "environment": {
+    "node": "v22.16.0",
+    "platform": "win32",
+    "release": "10.0.26300",
+    "cpu": "Intel(R) Core(TM) i7-14700K",
+    "logicalCpus": 28,
+    "physicalMemoryBytes": 34134560768
+  },
+  "assets": [
+    {
+      "path": "index-C7PaYXqC.css",
+      "bytes": 19468,
+      "gzipBytes": 5028
+    },
+    {
+      "path": "index-CQmRMRis.js",
+      "bytes": 259956,
+      "gzipBytes": 82847
+    }
+  ],
+  "bundle": {
+    "passed": true,
+    "jsGzipBytes": 82847,
+    "cssGzipBytes": 5028,
+    "jsBudgetBytes": 100000,
+    "cssBudgetBytes": 10000
+  },
+  "analysis": [
+    {
+      "characters": 1000,
+      "language": "sv",
+      "samples": 100,
+      "p50Ms": 0.7865000000000038,
+      "p95Ms": 1.218199999999996,
+      "maxMs": 1.6206000000000031,
+      "rssBeforeBytes": 45080576,
+      "rssAfterBytes": 45477888
+    },
+    {
+      "characters": 6000,
+      "language": "sv",
+      "samples": 100,
+      "p50Ms": 3.691100000000006,
+      "p95Ms": 4.946699999999993,
+      "maxMs": 5.620899999999949,
+      "rssBeforeBytes": 50335744,
+      "rssAfterBytes": 77697024
+    },
+    {
+      "characters": 12000,
+      "language": "sv",
+      "samples": 100,
+      "p50Ms": 7.476400000000012,
+      "p95Ms": 8.450799999999958,
+      "maxMs": 8.678300000000036,
+      "rssBeforeBytes": 76488704,
+      "rssAfterBytes": 77197312
+    },
+    {
+      "characters": 1000,
+      "language": "en",
+      "samples": 100,
+      "p50Ms": 0.5966000000000804,
+      "p95Ms": 0.8746000000001004,
+      "maxMs": 1.2047999999999774,
+      "rssBeforeBytes": 77197312,
+      "rssAfterBytes": 77246464
+    },
+    {
+      "characters": 6000,
+      "language": "en",
+      "samples": 100,
+      "p50Ms": 3.741899999999987,
+      "p95Ms": 4.2543000000000575,
+      "maxMs": 6.0728999999998905,
+      "rssBeforeBytes": 82853888,
+      "rssAfterBytes": 77291520
+    },
+    {
+      "characters": 12000,
+      "language": "en",
+      "samples": 100,
+      "p50Ms": 7.967399999999998,
+      "p95Ms": 8.836999999999989,
+      "maxMs": 10.21309999999994,
+      "rssBeforeBytes": 77303808,
+      "rssAfterBytes": 77504512
+    }
+  ],
+  "memoryNotice": "Process RSS samples include Node/runtime/GC and are not isolated analyzer allocation measurements.",
+  "modelColdStart": {
+    "status": "not_measured",
+    "reason": "Requires an available configured real model; no timing is inferred from mocks."
+  }
+}

@@ -1,80 +1,84 @@
-# Slutverifiering — TextLab v3, 2026-11-02
+# Verifiering — TextLab v3, evidensiteration 2
 
-## Omfattning och miljö
+Datum: 2026-11-02. Branch `codex/textlab-v3`, befintlig PR #1 mot `main`, utan merge. Utgångspunkt för iterationen: `78d4f70fc6bd188b0ff7e5b541f56f84759f2544`. [Första leveransens verifiering](VERIFICATION-INITIAL.md) och dess rårapporter är bevarade; nedan gäller det fortsatta arbetet.
 
-Utgångspunkt `origin/main`: `721e3d384aacfb2e5edee2ddece2e6986bc0ee61`. Branch `codex/textlab-v3`. Verifierad kodcommit: `29b4c9061f295953546685339d726127ab3e4c95`. Källan och versionssparade rårapporter finns i denna PR. En separat, färsk checkout användes eftersom Documents-arbetsmappen gav WinError 2 vid filskapande; ingen befintlig användarcheckout ändrades.
+## Genomförda förbättringar
 
-Windows 11 build 26300, Intel Core i7-14700K, 20 fysiska kärnor / 28 logiska trådar, 34 134 560 768 byte rapporterat RAM, Node 22.16.0, Python 3.13.15. Lokal GPU: NVIDIA GeForce RTX 5070, 12 227 MiB enligt nvidia-smi, drivrutin 621.01. Docker Desktop Engine 28.1.1 användes för Linux/Python 3.12 och två verkliga workers. Ollama 0.40.13. Modellformat, kvantisering och digest: [model-environment.json](evidence/model-environment.json).
+- Riktiga sv/en-pilotdata, käll-/villkorsgranskning, fullständiga råkällor, utdragspositioner, SHA-256 och verkliga lokala genereringsloggar. Tekniska fixtures hålls separata.
+- Tränad men **offline och experimentell** char3–5 TF-IDF/logistisk baslinje, fryst konfiguration och författar-/källgrupperade splitar. Webbläsarprodukten använder fortfarande beskrivande stilindex; ingen AI-sannolikhet införs.
+- Fristående utvärdering avvisar överlapp mot både träning och tröskelval: source/document/author/group-ID och normaliserade textfingeravtryck. Legacyartefakten godtas inte som bevis för fristående heldout-utvärdering.
+- Dokumenterade original/AI-redigeringar i samma split/familj kan behållas som beroende par; orelaterade kopior och splitläckage avvisas fortfarande.
+- Humanizern skyddar kända tal/enhetspar atomiskt och kontrollerar utvalda negationer, förbehåll, skyldighets-/orsaksmarkörer samt tecken/intervall/enhetssuffix. Detta är begränsade ytkontroller och kan avvisa säkra omskrivningar.
+- Gemensam request-builder gör kvotreservationen utifrån faktiskt HTTPX-serialiserat JSON, inklusive schema, modeinstruktion och escapning, plus protokollmarginal/maxoutput.
+- Auditverktyget avvisar siffer-/enhetsprefix och vägrar skriva över befintlig körning innan provideranslutning. Cachade parloggar binds till planerad modell, responsmodell och fryst digest.
 
-## Automatiska kontroller
+## Automatiska kontroller på slutkoden
 
 | Kontroll | Faktiskt resultat |
 |---|---|
-| V2-baseline | 16 Node och 30 pytest godkända; frontend byggdes |
-| `npm test` | **60 godkända, 0 misslyckade, 0 hoppade över** |
-| `python -m pytest -q` | **77 godkända, 0 misslyckade**; 1 upstream TestClient/httpx-deprecationvarning |
-| `tools/browser_checks.py` | 10 kontroller godkända, inklusive ingen analys-POST, originalrevisioner, XSS-text, API-fel, minnesbaserad token och mobilvy |
-| `sites/src/ui_checks.py` | Godkänd separat svit: sex lägen, språk/termer, tangentbord, diff, clipboard, export, använd/återställ, avbrott, felaktig rewrite/health/status-metadata, dialogfokus och 320 px |
-| `tools/accessibility_checks.py` | **0 axe-överträdelser i 11 vyer**, inklusive resultatpaneler och inställningar; [rårapport](evidence/accessibility.json) |
-| Produktionsbygge | Lyckades; två nya byggen gav identiska SHA-256 för alla 3 filer; [manifest](evidence/build-sha256.json) |
-| Runtime-/devberoenden | `pip-audit` hittade inga kända sårbarheter i låsta runtime- eller devgrafer vid körningen |
-| Frontendberoenden | `npm audit --audit-level=moderate`: 0 kända sårbarheter |
-| Hemligheter | Gitleaks 8.30.1 med verifierad binärchecksumma; historia och staged diff skannas före commit; inga fynd vid redovisad kontroll |
-| Diff | `git diff --check` utan whitespacefel |
-| Container | Dockerbygge godkänt; nonroot UID 10001, två workers, frontend/headers, auth401 samt delad rate: **2 accepterade, 10 avvisade**; [rårapport](evidence/container-results.json) |
+| `npm test` | **64 godkända, 0 misslyckade, 0 överhoppade** |
+| `python -m pytest -q --basetemp=artifacts/pytest-round2-complete` | **210 godkända, 0 misslyckade**, 1 befintlig Starlette/TestClient/httpx-deprecationvarning |
+| `tools/browser_checks.py` | Alla 10 kontroller godkända |
+| `sites/src/ui_checks.py` | Godkänd: sex lägen, språk, termer, tangentbord, diff/kopia/export, återställning, avbrott, metadatafel och 320 px |
+| `tools/accessibility_checks.py` | **0 axe-överträdelser i 11 vyer**; ingen fullständig manuell skärmläsargranskning |
+| `npm run build` | Lyckat produktionsbygge; reproducerbarhet kontrolleras även med två byggen i CI |
+| Container | Bygge lyckades; UID10001, två workers, auth401 och gemensam rategräns: 2 accepterade/10 avvisade |
+| Dataintegritet | Historiska råbyte/utdrag, fryst korpus, moderna revisioner, modeller, snapshots och 72 replay-requesthashar verifierade |
+| Fristående ML-replay | Historiska 20 testresultat och moderna 8 resultat reproducerade; ingen träning eller tröskeljustering på test |
+| Audits | `npm audit` och `pip-audit` för ML-låset utan kända fynd vid körningen; Gitleaks på staged data/kod utan fynd |
 
-Browser-/API-mockar verifierar protokoll, felhantering och användarflöden. De är inga bevis för språkmodellskvalitet. Axe är automatiserad och lämnar manuella kontrollpunkter; skärmläsar-/fullständig WCAG-granskning har inte genomförts.
+Git-attribut bevarar råa databyte och CRLF där de ingår i frysta SHA-256. Kod som hashas använder LF-checkout. En regression visade att automatisk CRLF-normalisering skulle ändra korpushashen; det är rättat och testat. Extern källarkivering stilformateras inte om för att få grön diffkontroll. Genererade data/experiment är märkta för att kunna fällas ihop i GitHub-review.
 
-## Verkliga modelltester — separat från godkända tekniska sviter
+Full testmiljö med låst NumPy/SciPy kräver Python 3.12+. Lokalt: Python 3.13.15 och Node 22.16.0 på Windows 11 build 26300, i7-14700K / 28 logiska trådar, cirka 32 GiB RAM och RTX 5070 / 12 227 MiB. Ollama 0.40.13. Container/CI använder Linux/Python 3.12. Standardtempkatalogen gav Windows-rättighetsfel; slutkörningen använder en avgränsad, ignorerad basetemp. Det är ett miljöproblem, inte dolda misslyckade tester.
 
-Det sista fullständiga provet använde syntetiska svenska/engelska original, samtliga sex lägen och två redan installerade modeller. **24 omskrivningar genomfördes; 23 accepterades och 1 avvisades.** Den skärpta checken avslutades korrekt med **exit 1** och `passed:false`. Den ska inte beskrivas som helt godkänd.
+## Detektor: verkliga pilotresultat och verklig generaliseringsbrist
 
-| Modell | Verifierad probe | Omskrivningar HTTP200 | Skyddskontroller | Oförändrade svar | Omskrivningslatens |
-|---|---|---:|---|---:|---|
-| `llama3.2:3b` | Ja | 12/12 | Alla 12 bevarade kontrollerade fixturevärden | 0 | 0,910–1,172 s |
-| `qwen3.5:4b` | Ja | 11/12 | Alla 11 accepterade svar bevarade fixturevärden | 3 | 1,716–2,128 s för accepterade svar |
+[Historisk korpus](PILOT_CORPUS.md): 36 mänskliga utdrag från12 böcker/författare och24 verkliga genereringar från två modeller. Train30/validation10/test20, med6/2/4 oberoende historiska källfamiljer. Metadata för AI-kommissioner tillskrivs inte historiska författare. Rättigheter och historiskt mänskligt ursprung är källunderbyggda påståenden med uttryckliga editions-/transkriptionsluckor, inte en universell juridisk eller forensisk garanti.
 
-Qwen `sv/detailed` ändrade skyddade uppgifter och stoppades med HTTP502. Originalet förblev tillgängligt. En tidigare körning av samma funktionella backend hade ett avvisat llama `en/simple`-fall i stället; stokastisk stabilitet är inte verifierad. Båda körningarna finns sparade: [sista gated-provet](evidence/live-model-results.json), [föregående prov](evidence/live-model-results-prior.json). Välj inte bara lyckade körningar som kvalitetsbevis.
+Frysta hyperparametrar och lågt observerat validerings-FPR-mål valdes före test. Den historiska testmängden gav **TP8, FP0, TN12, FN0; F1/AUROC1,0**. Detta är endast ett litet pilotresultat. Med0/12 mänskliga fel är Wilson-övregränsen24,25%; fyra källfamiljer där ingen familj som har mänskliga fel ger en övregräns48,99% för det annorlunda familjeestimandet. Det validerar inte låg populations-FPR. Stilindexets godtyckliga fasta tröskel65 missade8/8AI i samma pilot, trots att dess ranking-AUROC också var1,0.
 
-Första observerade prober: llama 0,932 s och Qwen 0,890 s. Modellerna var inte verifierat urladdade, så detta är **inte kallstartsmätningar**. `OLLAMA_THINK=false` användes i slutproven. Tidigare Qwen-försök med tänkande översteg den lilla probens outputbudget; detta motiverade en uttrycklig serverinställning, inte en falsk redo-status.
+Förregistrerade modellholdout-diagnoser missade1/4AI från den helt utelämnade Qwen-modellen i ena riktningen. Kalibrering, sannolikheter och bred genre-/längd-/modellgeneraliserbarhet är inte verifierade.
 
-Exakta namn, siffror, datum, URL:er, citat och referenser kontrollerades i syntetiska fixtures. Automatiska strängkontroller bevisar inte korrekta relationer, betydelse eller ton. Ett tidigare diagnostiskt llama-prov flyttade ett datum från rapportens skrivtid till dess ämne trots bevarad datumsträng. I sista rårapporten finns också språkligt svaga formuleringar, exempelvis Qwen `en/simple`: "without making sure conclusions about why they happened". Inga blindade kvalitetsbetyg eller verifierad semantisk ekvivalens påstås. Lägen har olika promptinstruktioner men konsekvent förbättring är inte fastställd; tre sista Qwen-svar var oförändrade.
+[Extern modern kontroll](MODERN_HUMAN_HOLDOUT.md): åtta sv/en-utdrag från fyra Wikipedia-revisioner från2017, grupperade som två gemensamma ämnesfamiljer. Den oförändrade modellen flaggade **2/8 mänskligt ursprungsmärkta utdrag (25% observerad FPR)**, 1/4 svenska och1/4 engelska, utan avståenden. Wilsonintervallet på utdragsnivå är7,15–59,07%, och beroendet mellan utdrag gör populationsslutsatser ännu svagare. Båda ämnesfamiljerna innehöll minst en flaggning. AI-recall/F1/AUROC kan inte uppskattas från denna human-only kontroll.
 
-Standardmodellen `qwen2.5:7b` var inte installerad och rapporterades korrekt som otillgänglig. OpenAI/extern kompatibel modell testades med HTTP-mockar; riktiga nycklar saknades. Ingen användar-.env ändrades och inga modeller laddades ned eller avinstallerades.
+Åtta ytterligare planerade artiklar returnerade HTTP 429 i två begränsade försök; ingen källa byttes efter modellresultat. Licens/revision/attribution är arkiverade. För-LLM-publicering bevisar inte enskilda författaridentiteter eller frånvaro av bottar/importerat material. Ingen ny prompt, feature, vikt eller tröskel valdes för att få den moderna kontrollen att se bättre ut. Modellen är därför fortfarande avstängd i produkten.
 
-## Detektor och benchmark
+[Experimentell metod och resultat](EXPERIMENTAL_DETECTOR.md), [auditerad modell](../models/experimental/pilot-v1-audited/model.json), [metadata-korrigering](../models/experimental/pilot-v1-audited/audit-correction.json). Originalmodellen `pilot-v1` och den första moderna rapporten är byte-identiskt bevarade. De auditerade vikterna, konfigurationen, tröskeln och samtliga20testmarginaler är exakt lika; rättningen gäller källisolering/proveniens och ändrar inte utfall.
 
-Metod: `style-heuristics-v3`, beskrivande stilmått med konservativt avstående. Ingen tränad klassificerare används. Ingen kalibrerad AI-sannolikhet finns. Ingen oberoende rättighetsgranskad sv/en-korpus fanns att träna eller mäta generalisering på.
+Tolv extra [AI-redigeringar](../data/pilot-edits/README.md) är verkliga loggade interventioner, 6permodell. Fyra finns i testsplit och ingen av dem flaggas av den frysta binära modellen. Blandade texter räknas inte som binära AI-falsknegativ. De ursprungliga12mänskliga testutdragen återanvänds som par och är ingen ny oberoende humanvalidering.
 
-**Accuracy, precision, recall, F1, mänskliga falska positiva, FNR och kalibrering för verklig detektionskvalitet: ej verifierade.** Antalet oberoende mänskliga testtexter är noll; en uppmätt mänsklig FPR kan därför inte anges.
+## Humanizer: faktisk jämförelse och kvarstående svagheter
 
-Benchmarkverktyget beräknar diagnostiska tröskelmetrik, AUROC när båda klasser finns, Wilsonintervall med beroendevarning, coverage och avstående. AI-redigerat hålls utanför binär ground truth. Proveniens-/rättighetsfält, författare/dokument/källfamilj, relaterade källor och exakt-/närduplicering kontrolleras. Externa etiketter/rättigheter måste fortfarande granskas av en människa.
+Två utvecklings- och två reserverade jämförelsekällor på svenska/engelska kördes i alla sex lägen. Baseline hade redan körts även för de reserverade källorna före utveckling. Kandidatval använde utvecklingsutdata; detta är författade, frysta jämförelsefall, **inte en blind eller orörd extern kvalitetsmängd**. Varje cell är en observation vid temperatur0,3 och slumpmässiga skyddsmarkörer. Skillnader är beskrivande utfall, inte en kausal statistisk kvalitetsökning.
 
-`detector.synthetic.jsonl` innehåller 14 tydligt märkta tekniska fixtures: train2/validation4/test8; av test8 får6 ett stilindex och2 avstår. Dessa är **inte oberoende kvalitetsevidens**, och deras artificiella etiketter ger inga accuracy-påståenden. Både fast tröskel och valideringsbaserat tröskelval kördes reproducerbart; CLI-hasharna regressionstestas. [Metod, schema och begränsningar](DETECTOR_BENCHMARK.md).
+Korrigerad efterbedömning av exakt samma sparade utdata, utan ny inferens:
 
-## Prestanda
+| Körning/modell | Fall | API accepterade | Accepterade + begränsade kontroller | Därav även ändrade | Oförändrade accepterade |
+|---|---:|---:|---:|---:|---:|
+| baseline / llama3.2:3b | 24 | 24 | 12 | 4 | 8 |
+| baseline / qwen3.5:4b | 24 | 20 | 16 | 11 | 5 |
+| final / llama3.2:3b | 24 | 20 | 12 | 4 | 8 |
+| final / qwen3.5:4b | 24 | 19 | 18 | 12 | 6 |
+| diagnostic-qwen9b / qwen3.5:9b | 24 | 23 | 22 | 15 | 7 |
 
-Nedan gäller den angivna stationära datorn. Analysen mättes efter 10 uppvärmningsanrop, 100 gånger per språk/längd. Ingen generell mobil- eller produktionslatens hävdas.
+De 48 slutliga småmodellfallen och24 förregistrerade 9B-fallen gav totalt **62/72 accepterade svar, 52/72 som även klarade de begränsade kontrollerna**, där 31 både ändrades och klarade dessa kontroller. Dessa tal är **inte semantisk accuracy**. Sju 9B-svar var oförändrade och lägeskvalitet är inte verifierad bara för att text/ordantal skiljer sig.
 
-JS: **82,847 byte gzip**, CSS: **5,028 byte gzip** (gränser 100 000 / 10 000). Båda passerade.
+Det finns konkreta betydelse- och språkfel även bland kontroller som passerar: ändrad URL-attribution, tidslinje följd som regelefterlevnad, och ett vanligt svenskt ord som överbeskyddas som namn och får fel grammatisk roll. Flera korrekta parafraser ligger samtidigt utanför de handskrivna mönstren och blir `unassessed`. Kodagentens exempelanteckningar är inte en oberoende mänsklig språkbedömning.9B är en ytterligare samma-familjsdiagnos, inte en experimentellt isolerad parameterstorlekseffekt eller produktionsrekommendation.
 
-| Språk | Tecken | p50 ms | p95 ms |
-|---|---:|---:|---:|
-| sv | 1000 | 0.66 | 1.11 |
-| sv | 6000 | 2.91 | 3.81 |
-| sv | 12000 | 5.76 | 7.26 |
-| en | 1000 | 0.49 | 0.74 |
-| en | 6000 | 3.08 | 3.81 |
-| en | 12000 | 6.30 | 7.50 |
+Alla misslyckade kandidater är kvar, inklusive en avbruten10 cells-körning. Bokstavlig värdeordbok, läsbara namn/datum och redigeringsplaner gav inte tillräcklig säker nytta och finns inte som produktionsfallback. Slutkoden behåller det enklare opaka protokollet med exakta markörer och tydliga begränsade efterkontroller.
 
-Verklig lokal HTTP: 40 samtidiga health-anrop gav40 HTTP200, p95 **110.44 ms**. Åtta samtidiga för långa omskrivningar gav8 HTTP422. ASGI med explicit 10ms mockmodell: 20 omskrivningar om8 000tecken, p95 **30.97 ms**; åtta samtidiga gav2 accepterade och6 HTTP429. Detta mäter integrationskostnad, inte verklig inferens.
+Granskning efter de 72 fallen fann en tecken-/suffixlucka och ett prefixfel i auditkontrollen. Frysta rårapporter, toolhash och källsnapshots är kvar. Den korrigerade validatorn spelades upp mot samma sparade providerutdata: **0 av de 62 tidigare accepterade slut-/diagnossvaren avvisas ytterligare**, medan 10 äldre llama-baselinesvar och 3 äldre Qwen-baselinesvar skulle stoppas av de starkare kontrollerna. Alla **72/72providerförfrågningar är byte-identiska** under senaste builder/protection/prompt. Ingen omgenerering eller förbättrad text har lagts in i rapporterna.
 
-RSS är rapporterad för hela benchmarkprocessen före/efter och inkluderar Python/Node, framework och GC. Det är inte isolerad per-request-allokering eller en verifierad peak-minnesgräns. Se [analys/bundle](evidence/performance.json) och [API/minne](evidence/api-performance.json). Modellkallstart, verklig global produktionslast och lågpresterande mobiler är inte mätta.
+Sex nya verkliga sv/en-prov med negativa/positiva tal och intervall kördes därefter på senaste backend: Qwen 9B 2/2 och Qwen 4B 2/2 accepterade med begränsade kontroller; llama 0/2, med säkra502-avvisanden. Därmed är även den senaste API-koden faktiskt modelltestad, men provet är för litet för säkerhets-/kvalitetsgarantier.
 
-## Granskning och leveransgränser
+[Full metod, lägesutfall och begränsningar](HUMANIZER_QUALITY.md), [korrigerad efterbedömning](../data/humanizer/reassessment-v2.json), [72request-replay](../data/humanizer/request-replay-v2.json), [senaste verkliga teckenprov](../data/humanizer/runs/signed-canary.json), [konkreta exempelanteckningar](../data/humanizer/agent-review-notes.json).
 
-En separat agent granskade diffen och verifierade auth-/SQLite-/avbrotts-/benchmarkgränser. Den fann ett viktigt metadatafel som kunde krascha React. Felen reproducerades med röda unit- och browsertester, därefter valideras alla renderade rewrite/health/status-fält innan state uppdateras; originalet behålls. Två mindre fynd åtgärdades: livecheck ger nu exit1 vid fel och devberoendens transitive versioner är låsta. Containerkontrollen fångade även saknad CSP; regression observerades misslyckas före fix, följt av full grön pytest och browserkontroll.
+OpenAI/kompatibel extern provider har protokoll-/feltester med mockar men inga nya verifierade livekörningar här. Inga användarkonfigurationer ändrades och inga modeller hämtades eller manuellt avlastades. Kallstart efter kontrollerad modellurladdning har inte mätts.
 
-CI är ändrat till contents:read, explicita pipefail-kommandon, SHA-pinnade actions, låsta beroenden, audits, checksummeverifierad Gitleaks, tester/fixture/buildjämförelse, browser/axe/performance och två-worker-container. Workflow-artefakten ersätter gamla v2-buildfiler och ingen bot skriver till main. GitHub Actions-slutstatus måste läsas från det faktiska PR-huvudet; lokal framgång ersätter inte CI-evidens.
+## Bygge, drift och återstående krav
 
-Ingen publik URL, ChatGPT Site eller molndeployment finns för denna leverans. Produktionsberedskap och samtliga kvalitetsmål är inte verifierade till9,5/10. [Scorecard](../QUALITY-SCORECARD.md) anger lägre bedömningar och kvarstående evidensgap; [driftdokumentet](OPERATIONS.md) beskriver bland annat en-värdsgränsen, tokenlivscykel, TLS och leverantörsrisker.
+Aktuell bundle: JS **82,847byte gzip**, CSS **5,028byte gzip**, inom gränserna100000/10000. ML och benchmarkdata ingår inte i produktionscontainern eller webbundlen. [Analys/bundlemätning](evidence/round2/performance.json), [API/minne](evidence/round2/api-performance.json), [axe](evidence/round2/accessibility.json), [container](evidence/round2/container-results.json). RSS är för hela benchmarkprocessen, inte isolerad allokering eller peak.
+
+CI installerar låsta ML-testberoenden, verifierar arkiv och auditerade fristående scorer på historiska, moderna och blandade data, samt kör tester, audits/Gitleaks, två byggjämförelser, browser/axe/prestanda och två-worker-container. Riktiga modelltester är opt-in lokala data, inte låtsad inferens i CI. Slutstatus för GitHub Actions ska läsas på aktuellt PR-huvud.
+
+Kvar till 9,5: större modern rättighets-/författargranskad och matchad korpus med en ny orörd extern audit; lägre verifierad mänsklig FPR; separat kalibrering; blindad språk-/fakta-/tonbedömning med fler modellfamiljer; färre falska skyddsavvisanden och oförändrade lägen; manuell tillgänglighet, proxy/TLS/identitetslivscykel och publik drift. Se [scorecard](../QUALITY-SCORECARD.md) och [progress](../PROGRESS.md). Ingen publik deployment eller merge har genomförts.

@@ -11,7 +11,22 @@ En lokal textverkstad för svenska och engelska: förklarbar **stilanalys** i we
 - Faktisk syntetisk generering vid modellkontroll. Separat användaråtkomst och atomiskt delade kvoter/samtidighetsgränser för flera processer på en värd. Begränsade body-/modellsvar, tidsgränser och avbrott.
 - Benchmark med proveniens-/rättighetskrav, separata datasplitar, läckagekontroller, AI-redigerade texter som separat grupp och språk-/genre-/längd-/modellresultat.
 
-**Stilindex 0–100 är inte AI-sannolikhet.** Ingen tränad klassificerare eller oberoende verifierad detektionsprecision finns. Minst 80 ord och tillräckligt språkligt underlag krävs för ett index. Använd inte analysen som bevis om vem som skrivit en text eller för beslut om en person. Se [metod och benchmark](docs/DETECTOR_BENCHMARK.md).
+**Stilindex 0–100 är inte AI-sannolikhet.** Webbläsaren använder beskrivande stilanalys. En separat tränad TF-IDF/logistisk baslinje finns för offlineexperiment, men är inte aktiverad i produkten eller kalibrerad. Den missflaggade 2 av 8 mänskliga ursprungsutdrag i en liten extern mängd från 2017; generell detektionsprecision är inte verifierad. Minst 80 ord och tillräckligt språkligt underlag krävs för ett stilindex. Använd inte resultatet som bevis om vem som skrivit en text eller för beslut om en person. Se [metod och benchmark](docs/DETECTOR_BENCHMARK.md).
+
+## Verifierbara pilotdata och tränad baslinje
+
+Den historiska piloten innehåller **36 källspårbara mänskliga utdrag och 24 loggade genereringar** från två installerade modeller. Författare/källfamiljer delas mellan train, validation och test före modellträning. En fryst TF-IDF/logistisk baslinje klarade testmängdens 8 AI- och 12 mänskliga texter, men 0/12 mänskliga fel ger fortfarande en Wilson-övregräns på 24,25 %. Den separata moderna kontrollen gav **2/8 falska flaggningar**. Det är belägg för en generaliseringsbrist, inte produktionsberedskap.
+
+Rättighetskällor, digitala transkriptionsluckor och verkliga modellförfrågningar redovisas i [pilotens datakort](docs/PILOT_CORPUS.md), [den tränade baslinjen](docs/EXPERIMENTAL_DETECTOR.md) och [det moderna kontrollmaterialet](docs/MODERN_HUMAN_HOLDOUT.md). Tolv ytterligare faktiska AI-redigeringar finns i [parmaterialet](data/pilot-edits/README.md); blandade texter hålls utanför binär AI-ground-truth.
+
+```powershell
+# Python 3.12+ för den låsta ML-/testmiljön; ingen modell körs av dessa kommandon
+.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
+.\.venv\Scripts\python.exe tools/corpus_collect.py verify
+.\.venv\Scripts\python.exe tools/model_evaluate.py --data data/pilot/corpus.jsonl --model models/experimental/pilot-v1-audited/model.json
+```
+
+Utvärderaren avvisar både träningsdata och data som redan använts för tröskelval om de återanvänds som testdata. Den gamla modellartefakten behålls som historik; aktuell CLI kräver den auditerade versionen. Inga pickle-/joblib-filer laddas.
 
 ## Verifieringsstatus
 
@@ -21,7 +36,7 @@ Ingen publik deployment hävdas. Ett lokalt containerbygge är inte en publicera
 
 ## Starta på Windows
 
-Krav: Node.js 22.12+ och Python 3.11+. Körningen använder också Python 3.12 i container och 3.13 på Windows.
+Krav: Node.js 22.12+ och Python 3.11+ för webb/backend. Full test- och ML-miljö kräver Python 3.12+ genom de låsta NumPy/SciPy-versionerna. Körningen använder Python 3.12 i container/CI och 3.13 på Windows.
 
 ```powershell
 git clone https://github.com/sharbel0022/AiDetector.git
