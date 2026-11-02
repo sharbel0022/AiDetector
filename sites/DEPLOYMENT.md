@@ -1,22 +1,13 @@
-# Sites / publiceringsunderlag
+# Publiceringsunderlag — TextLab v3
 
-## Faktisk status
-Ingen ny ChatGPT Site har skapats eller publicerats i denna session. Verktygsinventeringen gav endast operativa verktyg för en annan befintlig Site (MG Fakturakoll), inte generiska skapa-/publicera-åtgärder. Inga anrop gjordes som ändrar den andra appen.
+Ingen publik tjänst eller ChatGPT Site har publicerats under v3-arbetet. Lokal bygg-/containerverifiering redovisas i `docs/VERIFICATION.md`.
 
-## Filer
-- `sites/`: React-källkod, byggs från repots rot med `npm ci` (när lockfil finns) och `npm run build`.
-- `dist/`: genererad statisk frontend.
-- `sites-build/`: kopia av godkänt produktionsbygge när GitHub Actions har lyckats.
-- `backend/main.py`: FastAPI-servern som anropar AI-modellen.
+Kör `npm ci` och `npm run build`. `dist/` innehåller statisk frontend; GitHub Actions sparar den som `textlab-verification`. Äldre incheckade v2-byggfiler ersätts av versionskopplade CI-artefakter.
 
-## Import till en publiceringsmiljö
-Importera frontend med dess JavaScript- och CSS-filer från det verifierade bygget. En statisk publicering ger lokal stilanalys, men gör inte en Python-server eller en lokal Ollama-installation tillgänglig automatiskt. Kontrollera den aktuella Sites-miljöns tillåtna import- och backendfunktioner innan den beskrivs som kompatibel.
+En statisk frontend kan göra lokal stilanalys. För humanizern krävs en tillgänglig backend; statisk publicering startar inte Python eller Ollama. Backend serverar `dist/` om katalogen finns vid start. Samma origin ger enklast nätverkskonfiguration. Vid separat hosting: ange backendens betrodda HTTPS-origin i frontendinställningarna och frontendens origin i `ALLOWED_ORIGINS`. API-nycklar stannar på servern.
 
-För AI-omskrivning behövs en nåbar HTTPS-backend. Konfigurera serverns `ALLOWED_ORIGINS` med den verkliga publicerade webbplatsens origin och `ALLOWED_HOSTS` med backendens värdnamn. Sätt produktionsläge och en lång, slumpmässig åtkomstkod. Förvara alla leverantörsnycklar endast på servern.
+Använd `TEXTLAB_ENV=production`, explicita `ALLOWED_HOSTS`, säkra origins och autentisering. En privat delad kod ersätter inte användarhantering. Publik fleranvändardrift kräver användartoken och delade kvoter. Se `docs/OPERATIONS.md`.
 
-## Godkännandekontroll efter publicering
-1. Kontrollera den verkliga publika URL:en och att rätt GitHub-version visas.
-2. Kör stilanalys med nätverksloggen öppen: texten får inte skickas.
-3. Testa AI-omskrivning med en riktig konfigurerad modell, inte ett mockat svar.
-4. Kontrollera citat, referenser, siffror, mobilvy, fel vid frånkopplad modell och att koder inte ligger i bundle/localStorage.
-5. Dokumentera deployment-ID, commit-SHA, URL och testresultat. Markera inte denna kontroll som klar utan evidens.
+`docker build -t textlab:v3 .` bygger frontend och en Python 3.12-server som kör som UID 10001. Montera beständig lokal `/state` för gemensamma kvoter och tillför konfiguration genom skyddad env-fil. Containern använder två workers, utan accesslogg eller betrodda proxyheaders. Konfigurationsfel stoppar produktionsstart. Lägg TLS och ytterligare nätverksgränser vid en betrodd reverse proxy.
+
+Ingen molnresurs har provisionerats eller orelaterad befintlig Site ändrats. En framtida deployment måste redovisa verklig URL, deployment-ID, commit-SHA, TLS-/auth-verifiering och riktigt modelltest innan den markeras som klar.

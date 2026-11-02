@@ -1,0 +1,18 @@
+{
+  "image": "textlab:v3-review",
+  "published": false,
+  "checks": [
+    "Production config starts and reports v3 authenticated health",
+    "Server runs as nonroot UID 10001",
+    "Built frontend and security headers served",
+    "Anonymous protected endpoint rejected with 401",
+    "Two production workers share per-user quota: 2 accepted, 10 rate limited"
+  ],
+  "modelsTested": false,
+  "workers": 2,
+  "sharedRateStatuses": {
+    "429": 10,
+    "200": 2
+  },
+  "passed": true
+}

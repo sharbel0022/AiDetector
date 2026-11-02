@@ -1,92 +1,103 @@
-# TextLab v2 — AiDetector
+# TextLab v3 — AiDetector
 
-React-gränssnitt för lokal, förklarbar stilanalys och AI-baserad textredigering via FastAPI. Svenska och engelska stöds.
+En lokal textverkstad för svenska och engelska: förklarbar **stilanalys** i webbläsaren och AI-baserad textredigering genom en egen FastAPI-backend.
 
-## Vad fungerar?
+## Nytt i v3
 
-- **AI-detektor / stilanalys:** meningsrytm, ordvariation, återkommande inledningar och standardfraser, med förklaringar och meningar i sitt sammanhang. All analys sker i webbläsaren.
-- **AI-humanizer:** riktig modellkoppling till lokal Ollama eller OpenAI Responses API. Naturligt, enklare eller professionellt tonläge. Ingen regelbaserad reservlösning som utger sig för att vara AI.
-- **Granskning:** jämförelse med tillägg/borttagningar, kopiering och TXT-export. Siffror, URL:er, hakparentesreferenser och citat skyddas och kontrolleras efter generering.
-- **Integritet:** TextLab har ingen texthistorik, databas eller spårningskod. Leverantörens egna lagringsregler kan fortfarande gälla vid AI-anrop.
+- Lokal stilanalys med meningsrytm, MATTR-ordvariation, återkommande inledningar, standardfraser, trigram och strukturmått. Markeringar visar exakta textintervall. Språk som inte stöds, fel språkval och otillräcklig text ger avstående.
+- Sex redigeringslägen: naturlig, enklare, professionell, akademisk, kortare och utförligare. Ollama, OpenAI Responses API och konfigurerbar kompatibel Chat Completions-tjänst med strikt JSON-schema.
+- Original/resultat sida vid sida, ändringsmarkeringar, kopiera, TXT-export, använd som nytt original och återställ originalet. Tangentbord, smala skärmar och fel-/avbrottshantering har förbättrats.
+- Skyddade siffror, datum, URL:er, citat, referenser och namnkandidater samt egna exakta textdelar. Felaktiga modellsvar stoppas. Strängkontroller verifierar **inte** betydelsebevarande.
+- Faktisk syntetisk generering vid modellkontroll. Separat användaråtkomst och atomiskt delade kvoter/samtidighetsgränser för flera processer på en värd. Begränsade body-/modellsvar, tidsgränser och avbrott.
+- Benchmark med proveniens-/rättighetskrav, separata datasplitar, läckagekontroller, AI-redigerade texter som separat grupp och språk-/genre-/längd-/modellresultat.
 
-**Viktig begränsning:** Stilindex 0–100 är INTE sannolikheten för AI-författarskap. Detektorn är en heuristisk stilmodell, inte en tränad och oberoende validerad AI-klassificerare. Korta texter under 80 ord får inget index. Använd inte resultatet som bevis för fusk eller som beslutsunderlag om en person. Omskrivning garanterar inte att fakta/betydelse bevaras eller att andra detektorer påverkas.
+**Stilindex 0–100 är inte AI-sannolikhet.** Ingen tränad klassificerare eller oberoende verifierad detektionsprecision finns. Minst 80 ord och tillräckligt språkligt underlag krävs för ett index. Använd inte analysen som bevis om vem som skrivit en text eller för beslut om en person. Se [metod och benchmark](docs/DETECTOR_BENCHMARK.md).
+
+## Verifieringsstatus
+
+Enhets-, API-, webbläsar- och automatiska tillgänglighetstester, produktionsbygge, beroendegranskning och prestandamätningar har körts lokalt. Riktiga Ollama-anrop redovisas separat från mockade integrationstester. Verifieringen hittade betydelseförskjutning trots bevarade strängvärden. [Exakta resultat och begränsningar](docs/VERIFICATION.md), [kvalitetsbedömning](QUALITY-SCORECARD.md), [återstående arbete](PROGRESS.md).
+
+Ingen publik deployment hävdas. Ett lokalt containerbygge är inte en publicerad tjänst.
 
 ## Starta på Windows
 
-Krav: Python 3.11+ och Node.js 22.12+ (eller en senare kompatibel LTS-version).
+Krav: Node.js 22.12+ och Python 3.11+. Körningen använder också Python 3.12 i container och 3.13 på Windows.
 
 ```powershell
 git clone https://github.com/sharbel0022/AiDetector.git
 cd AiDetector
+git switch codex/textlab-v3
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-npm install
+.\.venv\Scripts\python.exe -m pip install -r requirements-lock.txt
+npm ci
 Copy-Item .env.example .env
+.\.venv\Scripts\Activate.ps1
 npm run dev
 ```
 
-Öppna `http://127.0.0.1:5173`. Backend finns på port 8767. Behåll terminalen öppen. Vid problem med PowerShell-aktivering kan backend köras med `.\.venv\Scripts\python.exe -m uvicorn backend.main:app --host 127.0.0.1 --port 8767` och frontend separat med `npm run dev:web`.
-
-### Lokal AI med Ollama
-
-Installera/starta Ollama på samma dator som backend och hämta den konfigurerade modellen:
+Öppna `http://127.0.0.1:5173`. Om aktivering blockeras, kör backend med venv-Python och frontend separat:
 
 ```powershell
-ollama pull qwen2.5:7b
+.\.venv\Scripts\python.exe -m uvicorn backend.main:app --host 127.0.0.1 --port 8767 --no-access-log --no-proxy-headers
+npm run dev:web
 ```
 
-`qwen2.5:7b` är ett konfigurationsexempel, inte ett påstående om bästa eller senaste modell. Välj en modell som passar datorns minne och testa omskrivningskvaliteten. Ändra `AI_MODEL` i `.env` vid behov och starta om backend. Modellen måste vara installerad innan omskrivning fungerar. Kontrollera status i AI-humanizer-vyn.
+Efter `npm run build` serverar backend `dist/` på `http://127.0.0.1:8767`; starta om backend om katalogen skapades efter serverstart.
 
-### OpenAI som alternativ
+### Anslut en modell
 
-Sätt `AI_PROVIDER=openai`, `AI_MODEL` till en modell ditt API-konto har åtkomst till och `OPENAI_API_KEY` i serverns `.env`. Modellen måste stödja Responses API och det strukturerade schemaformatet. Nyckeln får aldrig läggas i frontend eller skickas till GitHub. TextLab sätter `store: false`; detta är inte en generell garanti om leverantörens loggning/retention. API-användning kan medföra kostnader.
+**Ollama:** starta en lokal tjänst och sätt `AI_MODEL` i `.env` till en installerad modell. Standardvärdet `qwen2.5:7b` är ett exempel, inte ett löfte om tillgänglighet eller kvalitet. V3 laddar inte ned modeller automatiskt. `OLLAMA_THINK` styr resonemang; standard är avstängt för begränsade redigeringsanrop. Starta om backend efter ändringar. Modellstatus gör en liten riktig generering och använder kvot.
 
-## Testa och bygga
+**OpenAI:** sätt `AI_PROVIDER=openai`, `AI_MODEL` och `OPENAI_API_KEY` på servern. Modellen måste stödja Responses API och strikt JSON-schema. `store:false` ersätter inte leverantörens lagringsregler. API-nycklar stannar på servern.
+
+**Kompatibel tjänst:** sätt `AI_PROVIDER=compatible`, `AI_MODEL`, `AI_COMPATIBLE_URL` (betrodd HTTPS-basadress inklusive eventuell `/v1`) och `AI_COMPATIBLE_KEY`. Strikt JSON-schema i Chat Completions krävs; ingen tyst övergång till ostrukturerade svar sker. HTTP tillåts bara på loopback. Verklig extern modellåtkomst för denna adapter har inte verifierats.
+
+En godkänd probe verifierar en liten generering, inte redigeringskvalitet. Granska resultatets betydelse även när skyddade värden passerar.
+
+## Testa, bygga och mäta
 
 ```powershell
+npm ci
+.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
 npm test
-python -m pytest -q
+.\.venv\Scripts\python.exe -m pytest -q
 npm run build
-python -m uvicorn backend.main:app --host 127.0.0.1 --port 8767
+npm run performance
+.\.venv\Scripts\python.exe -m playwright install chromium
 ```
 
-Efter byggning serverar backend frontend från `dist/`, på `http://127.0.0.1:8767`. Starta om en redan körande backend om `dist/` skapades efter serverstart.
-
-Webbläsartester:
+Starta byggd backend på port 8767 och kör:
 
 ```powershell
-python -m pip install playwright
-python -m playwright install chromium
-python tools/browser_checks.py
+.\.venv\Scripts\python.exe tools/browser_checks.py
+.\.venv\Scripts\python.exe sites/src/ui_checks.py
+.\.venv\Scripts\python.exe tools/accessibility_checks.py
+.\.venv\Scripts\python.exe tools/api_performance.py
 ```
 
-Starta den byggda appen på port 8767 först. Testerna använder kontrollerade API-svar för omskrivning. De verifierar inte verklig LLM-kvalitet.
+Webbläsartesterna mockar språkmodellsvaren. API-mätningen skiljer verkliga lokala HTTP-anrop från ASGI-omskrivningar med uttryckligen mockad modell. `artifacts/` innehåller rapporter och skärmbilder. Vid låst standardtemp på Windows: `python -m pytest -q --basetemp=.venv/pytest-local`.
 
-GitHub Actions kör enhets-/API-tester, produktionsbygge och desktop-/mobiltester. Vid godkänd körning sparas byggd frontend i `sites-build/` och `package-lock.json` på `main`. Använd därefter `npm ci` för reproducerbara installationer. Build-artefakten innehåller skärmbilder och testresultat. Ett grönt bygge är inte en publicerad Site eller en verifierad AI-modell.
-
-## Mät detektorn med egna etiketterade data
-
-Skapa en JSONL-fil där varje rad har `source_id`, `language` (`sv`/`en`), `label` (`human`/`ai`) och `text`. Etiketterna måste ha känt ursprung; modellens gissning får inte användas som facit.
+Valfria riktiga modelltester använder syntetiska original och redan installerade modeller:
 
 ```powershell
-npm run evaluate -- min-oberoende-testdata.jsonl 65
+.\.venv\Scripts\python.exe tools/live_model_checks.py --models llama3.2:3b --output artifacts/live-model-results.json
 ```
 
-Rapporten innehåller förväxlingsmatris, precision, återkallning, falskpositiv frekvens, F1, täckning och språkgrupper. Avstådda bedömningar redovisas separat. Ingen verklig noggrannhet har uppmätts i detta repo utan ett sådant material. Välj tröskeln på separat valideringsdata, inte testdata. Separera författare, ämnen, dokumentfamiljer och generatorer mellan splitarna.
+## Benchmark
 
-## Publicering och Sites
+```powershell
+# Tekniska fixtures; inga kvalitetstal för detektorn
+npm run evaluate -- tools/fixtures/detector.synthetic.jsonl --fixture
+# Eget granskat material enligt JSONL-schemat
+npm run evaluate -- independent.jsonl --select-threshold
+```
 
-Källkoden till frontend finns i `sites/`. Se `sites/DEPLOYMENT.md`. Sites-publicering har **inte** verifierats: de tillgängliga Sites-verktygen i ursprungssessionen gäller en annan, befintlig app och kan inte skapa en ny Site. Den andra appen har inte ändrats.
+Tröskelval sker på valideringssplit och resultat på testsplit. Metadata är påståenden som kräver extern kontroll av rättigheter/etiketter. Se [schema och mätetal](docs/DETECTOR_BENCHMARK.md). Kalibrering är otillgänglig eftersom stilindex inte är en sannolikhet. Oberoende precision och falskpositiv frekvens är **ej verifierade**.
 
-För publik drift krävs HTTPS, en separat säkrad backend eller samma-origin-hosting, `TEXTLAB_ENV=production`, en slumpmässig `TEXTLAB_TOKEN` på minst 32 tecken, explicita `ALLOWED_HOSTS` utan `testserver` och korrekta `ALLOWED_ORIGINS`. Ange backend-adressen och TextLab-koden i Inställningar. Koden ligger endast i sidans minne; den är inte en OpenAI-nyckel. En delad åtkomstkod är avsedd för privat användning, inte en offentlig fleranvändartjänst. Fleranvändardrift kräver separat autentisering, kvoter och robust distribuerad begränsning.
+## Drift och integritet
 
-## Tekniska referenser
+Privat drift använder en serverhanterad åtkomstkod. Publik fleranvändardrift kräver `TEXTLAB_AUTH_MODE=multiuser`, separata SHA-256-hashade användartoken och `TEXTLAB_STATE_DB` till samma SQLite-fil på lokal disk för alla processer. Detta stöder flera processer på **en värd**; flera värdar kräver externa centrala auth-/kvotsystem. Använd TLS, explicita hosts/origins och leverantörens kontogränser. Se [drift/arkitektur](docs/OPERATIONS.md) och [.env.example](.env.example).
 
-- OpenAI, classifier limitations: https://openai.com/index/new-ai-classifier-for-indicating-ai-written-text/
-- OpenAI, Responses API and structured outputs: https://developers.openai.com/api/docs/guides/structured-outputs
-- Ollama, structured outputs: https://docs.ollama.com/capabilities/structured-outputs
+TextLab sparar inte källtext, omskrivningar eller råa åtkomsttoken. SQLite sparar hashade kvotidentiteter, tidsstämplar och reservationer. Webbläsarkoden finns bara i minnet. Leverantör, proxy och hosting kan ha egna lagringsregler. Promptinstruktioner och strängkontroller undanröjer inte all prompt injection eller semantisk risk.
 
-## Projektstruktur
-
-`sites/src/` UI och analys · `backend/` säker AI-koppling · `tests/` API-tester · `tools/` benchmark och webbläsartester · `docs/` design, plan och verifieringsstatus.
+CI har endast läsrättigheter, låsta installationer och verifierade actions-SHA:er. Den kör tester, audits, hemlighetsskanning, två jämförda byggen och sparar artefakter. CI skriver inte till `main`. Äldre `sites-build/` ersätts av workflow-artefakten. Se [publiceringsunderlag](sites/DEPLOYMENT.md).
