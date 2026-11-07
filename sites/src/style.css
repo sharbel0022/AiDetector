@@ -423,7 +423,7 @@ footer { display: flex; justify-content: space-between; border-top: 1px solid #d
 }
 @media (max-width: 380px) {
   .detector-summary { padding: 17px; }
-  .metric-cards { gap: 8px; }
+  .metric-cards { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .metric-card { padding: 11px; }
   .metric-card h3 { font-size: 11px; }
   .metric-card > strong { font-size: 29px; }

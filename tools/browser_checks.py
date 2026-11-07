@@ -111,13 +111,19 @@ async def main():
                 assert 'definitions' in parsed and 'limitation' in parsed
             else:
                 assert unicode_text in report and 'inte bevis' in report
-        await page.evaluate('window.print = () => { window.__printed = true; }')
+        await page.evaluate('window.print = () => { window.__printed = true; window.__printDetails = [...document.querySelectorAll(".method-details, .style-details")].map(element => element.open); }')
         await page.get_by_role('button', name='Skriv ut / PDF', exact=True).click()
         assert await page.evaluate('window.__printed === true')
+        assert await page.evaluate('window.__printDetails.length === 2 && window.__printDetails.every(Boolean)')
         checks.append('TXT/JSON reports retain source, model, definitions, flags and limitations; print invokes browser print')
+        # The native print dialog captures the expanded report before print()
+        # returns. Recreate that observed state for the saved headless PDF.
+        after_print_details = await page.locator('.method-details, .style-details').evaluate_all('(elements) => elements.map(element => element.open)')
+        await page.locator('.method-details, .style-details').evaluate_all('(elements) => elements.forEach(element => { element.open = true; })')
         await page.emulate_media(media='print')
         await page.pdf(path=str(out / 'analysis-report-v5-fixture.pdf'), format='A4', print_background=True)
         await page.emulate_media(media='screen')
+        await page.locator('.method-details, .style-details').evaluate_all('(elements, states) => elements.forEach((element, index) => { element.open = states[index]; })', after_print_details)
         await page.screenshot(path=str(out / 'segments-v5.png'), full_page=True)
         for width in [390, 320]:
             await page.set_viewport_size({'width': width, 'height': 900})
@@ -261,7 +267,12 @@ async def main():
         assert not errors, errors
         checks.append('mobile layouts have no horizontal overflow and no uncaught JavaScript errors')
         await browser.close()
-    report = {'checks_passed':len(checks),'checks':checks,'detector_responses':'mocked','llm_responses':'mocked','live_model_verified':False,'sites_publication_verified':False}
+    report = {'checks_passed':len(checks),'checks':checks,
+              'detector_responses':'actual bundled V5 detector plus labeled UI fixtures',
+              'actual_detector_model_version':actual_result['detector']['modelVersion'],
+              'actual_detector_integration_verified':True,
+              'detector_quality_verified':False,'llm_responses':'mocked',
+              'live_model_verified':False,'sites_publication_verified':False}
     (out / 'browser-results.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf8')
     print(json.dumps(report, ensure_ascii=False, indent=2))
 
