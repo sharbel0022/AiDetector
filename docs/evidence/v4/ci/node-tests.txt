@@ -1,0 +1,434 @@
+
+> textlab-ai-detector@4.0.0 test
+> node --test sites/src/*.test.mjs tools/*.test.mjs
+
+TAP version 13
+# Subtest: empty input abstains with no score
+ok 1 - empty input abstains with no score
+  ---
+  duration_ms: 24.200119
+  type: 'test'
+  ...
+# Subtest: short input never receives an authorship probability
+ok 2 - short input never receives an authorship probability
+  ---
+  duration_ms: 15.338106
+  type: 'test'
+  ...
+# Subtest: supports Swedish unicode words
+ok 3 - supports Swedish unicode words
+  ---
+  duration_ms: 0.199452
+  type: 'test'
+  ...
+# Subtest: analysis is deterministic and bounded
+ok 4 - analysis is deterministic and bounded
+  ---
+  duration_ms: 8.52801
+  type: 'test'
+  ...
+# Subtest: sentence ranges exactly refer to original text
+ok 5 - sentence ranges exactly refer to original text
+  ---
+  duration_ms: 14.752413
+  type: 'test'
+  ...
+# Subtest: marker detection handles Swedish and English
+ok 6 - marker detection handles Swedish and English
+  ---
+  duration_ms: 0.42878
+  type: 'test'
+  ...
+# Subtest: markers are not matched inside other words
+ok 7 - markers are not matched inside other words
+  ---
+  duration_ms: 0.313024
+  type: 'test'
+  ...
+# Subtest: no HTML is generated from hostile input
+ok 8 - no HTML is generated from hostile input
+  ---
+  duration_ms: 2.83019
+  type: 'test'
+  ...
+# Subtest: minimum 80 words required
+ok 9 - minimum 80 words required
+  ---
+  duration_ms: 6.406092
+  type: 'test'
+  ...
+# Subtest: oversized input is rejected rather than silently truncated
+ok 10 - oversized input is rejected rather than silently truncated
+  ---
+  duration_ms: 0.980398
+  type: 'test'
+  ...
+# Subtest: non-string input rejected
+ok 11 - non-string input rejected
+  ---
+  duration_ms: 0.29462
+  type: 'test'
+  ...
+# Subtest: abbreviations and decimals do not create extra sentences
+ok 12 - abbreviations and decimals do not create extra sentences
+  ---
+  duration_ms: 0.327632
+  type: 'test'
+  ...
+# Subtest: closing quotation marks remain in the sentence and allow the next boundary
+ok 13 - closing quotation marks remain in the sentence and allow the next boundary
+  ---
+  duration_ms: 0.381472
+  type: 'test'
+  ...
+# Subtest: common English abbreviation examples do not end a sentence
+ok 14 - common English abbreviation examples do not end a sentence
+  ---
+  duration_ms: 0.333973
+  type: 'test'
+  ...
+# Subtest: Latin script alone does not establish Swedish or English support
+ok 15 - Latin script alone does not establish Swedish or English support
+  ---
+  duration_ms: 3.991277
+  type: 'test'
+  ...
+# Subtest: wrong requested language abstains with an explicit reason
+ok 16 - wrong requested language abstains with an explicit reason
+  ---
+  duration_ms: 2.462113
+  type: 'test'
+  ...
+# Subtest: non-Latin and unsupported requested languages abstain
+ok 17 - non-Latin and unsupported requested languages abstain
+  ---
+  duration_ms: 5.666772
+  type: 'test'
+  ...
+# Subtest: too little sentence structure cannot produce an index
+ok 18 - too little sentence structure cannot produce an index
+  ---
+  duration_ms: 3.537209
+  type: 'test'
+  ...
+# Subtest: every evidence highlight refers to the exact original Unicode source
+ok 19 - every evidence highlight refers to the exact original Unicode source
+  ---
+  duration_ms: 4.688828
+  type: 'test'
+  ...
+# Subtest: phrase boundaries include numbers and combining marks
+ok 20 - phrase boundaries include numbers and combining marks
+  ---
+  duration_ms: 0.367115
+  type: 'test'
+  ...
+# Subtest: repetition includes phrase counts and is not labelled authorship evidence
+ok 21 - repetition includes phrase counts and is not labelled authorship evidence
+  ---
+  duration_ms: 4.541213
+  type: 'test'
+  ...
+# Subtest: the 80-word gate includes its boundary when language and structure are supported
+ok 22 - the 80-word gate includes its boundary when language and structure are supported
+  ---
+  duration_ms: 7.597975
+  type: 'test'
+  ...
+# Subtest: lexical measurement and sentence CV have known values on controlled text
+ok 23 - lexical measurement and sentence CV have known values on controlled text
+  ---
+  duration_ms: 2.625589
+  type: 'test'
+  ...
+# Subtest: ngram repetition cannot be manufactured by crossing sentence boundaries
+ok 24 - ngram repetition cannot be manufactured by crossing sentence boundaries
+  ---
+  duration_ms: 0.296894
+  type: 'test'
+  ...
+# Subtest: API origin validation allows secure origins and loopback without leaking credentials
+ok 25 - API origin validation allows secure origins and loopback without leaking credentials
+  ---
+  duration_ms: 3.658756
+  type: 'test'
+  ...
+# Subtest: rewrite validation reports the actionable character limit
+ok 26 - rewrite validation reports the actionable character limit
+  ---
+  duration_ms: 51.854404
+  type: 'test'
+  ...
+# Subtest: rewrite validation enforces the configured server limit at its exact boundary
+ok 27 - rewrite validation enforces the configured server limit at its exact boundary
+  ---
+  duration_ms: 0.684006
+  type: 'test'
+  ...
+# Subtest: a mismatched diff is rejected instead of showing changes for a different original
+ok 28 - a mismatched diff is rejected instead of showing changes for a different original
+  ---
+  duration_ms: 0.840749
+  type: 'test'
+  ...
+# Subtest: overlapping source evidence merges without losing literal text or UTF-16 offsets
+ok 29 - overlapping source evidence merges without losing literal text or UTF-16 offsets
+  ---
+  duration_ms: 1.577252
+  type: 'test'
+  ...
+# Subtest: superseded and cancelled requests cannot publish even when a fetch ignores abort
+ok 30 - superseded and cancelled requests cannot publish even when a fetch ignores abort
+  ---
+  duration_ms: 0.369058
+  type: 'test'
+  ...
+# Subtest: explicit protected terms require exact source matches and reject silent truncation
+ok 31 - explicit protected terms require exact source matches and reject silent truncation
+  ---
+  duration_ms: 0.844446
+  type: 'test'
+  ...
+# Subtest: valid rewrite text and diff cannot publish malformed rendered metadata
+ok 32 - valid rewrite text and diff cannot publish malformed rendered metadata
+  ---
+  duration_ms: 0.838926
+  type: 'test'
+  ...
+# Subtest: health metadata is bounded and cannot inject React children
+ok 33 - health metadata is bounded and cannot inject React children
+  ---
+  duration_ms: 0.821492
+  type: 'test'
+  ...
+# Subtest: health input limits default safely and accept only integers from 10 to 8000
+ok 34 - health input limits default safely and accept only integers from 10 to 8000
+  ---
+  duration_ms: 0.781167
+  type: 'test'
+  ...
+# Subtest: provider status validates actual booleans and bounded message text
+ok 35 - provider status validates actual booleans and bounded message text
+  ---
+  duration_ms: 0.686201
+  type: 'test'
+  ...
+# Subtest: malformed or oversized API error details use an actionable bounded fallback
+ok 36 - malformed or oversized API error details use an actionable bounded fallback
+  ---
+  duration_ms: 3.872554
+  type: 'test'
+  ...
+# Subtest: protected-value counts are safe integers bounded by the submitted text
+ok 37 - protected-value counts are safe integers bounded by the submitted text
+  ---
+  duration_ms: 0.295792
+  type: 'test'
+  ...
+# Subtest: unchanged results retain the original and a bounded explanation without implying a new version
+ok 38 - unchanged results retain the original and a bounded explanation without implying a new version
+  ---
+  duration_ms: 0.218638
+  type: 'test'
+  ...
+# Subtest: older replies derive unchanged status from exact text and use an honest explanation fallback
+ok 39 - older replies derive unchanged status from exact text and use an honest explanation fallback
+  ---
+  duration_ms: 0.312884
+  type: 'test'
+  ...
+# Subtest: unchanged metadata must be boolean and agree with the returned text
+ok 40 - unchanged metadata must be boolean and agree with the returned text
+  ---
+  duration_ms: 0.54663
+  type: 'test'
+  ...
+# Subtest: explanations reject malformed or oversized metadata before it reaches React
+ok 41 - explanations reject malformed or oversized metadata before it reaches React
+  ---
+  duration_ms: 0.425944
+  type: 'test'
+  ...
+# Subtest: confusion matrix and coverage are measured without hiding abstentions
+ok 42 - confusion matrix and coverage are measured without hiding abstentions
+  ---
+  duration_ms: 3.989594
+  type: 'test'
+  ...
+# Subtest: empty benchmark reports unknown metrics, not perfect accuracy
+ok 43 - empty benchmark reports unknown metrics, not perfect accuracy
+  ---
+  duration_ms: 0.32174
+  type: 'test'
+  ...
+# Subtest: invalid labels rejected
+ok 44 - invalid labels rejected
+  ---
+  duration_ms: 0.343451
+  type: 'test'
+  ...
+# Subtest: invalid scores rejected
+ok 45 - invalid scores rejected
+  ---
+  duration_ms: 0.216384
+  type: 'test'
+  ...
+# Subtest: false negative rate and tie-aware AUROC use only assessed binary labels
+ok 46 - false negative rate and tie-aware AUROC use only assessed binary labels
+  ---
+  duration_ms: 0.500905
+  type: 'test'
+  ...
+# Subtest: AI-edited examples are reported separately from binary authorship metrics
+ok 47 - AI-edited examples are reported separately from binary authorship metrics
+  ---
+  duration_ms: 0.380029
+  type: 'test'
+  ...
+# Subtest: single-class and entirely abstained AUC remain unknown
+ok 48 - single-class and entirely abstained AUC remain unknown
+  ---
+  duration_ms: 0.256238
+  type: 'test'
+  ...
+# Subtest: dataset gate requires all provenance and grouping fields
+ok 49 - dataset gate requires all provenance and grouping fields
+  ---
+  duration_ms: 0.984427
+  type: 'test'
+  ...
+# Subtest: rights and label evidence are required rather than inferred
+ok 50 - rights and label evidence are required rather than inferred
+  ---
+  duration_ms: 0.63241
+  type: 'test'
+  ...
+# Subtest: edited and generated records require model and production provenance
+ok 51 - edited and generated records require model and production provenance
+  ---
+  duration_ms: 0.670421
+  type: 'test'
+  ...
+# Subtest: synthetic fixtures require explicit mode and cannot be mixed with independent data
+ok 52 - synthetic fixtures require explicit mode and cannot be mixed with independent data
+  ---
+  duration_ms: 4.726779
+  type: 'test'
+  ...
+# Subtest: duplicate ids and unknown labels are rejected before scoring
+ok 53 - duplicate ids and unknown labels are rejected before scoring
+  ---
+  duration_ms: 0.32685
+  type: 'test'
+  ...
+# Subtest: all author, document and source-family crossings fail the split audit
+ok 54 - all author, document and source-family crossings fail the split audit
+  ---
+  duration_ms: 0.572348
+  type: 'test'
+  ...
+# Subtest: related-source chains cannot cross train, validation and test
+ok 55 - related-source chains cannot cross train, validation and test
+  ---
+  duration_ms: 0.297415
+  type: 'test'
+  ...
+# Subtest: exact duplicates normalize punctuation, case, Unicode and whitespace
+ok 56 - exact duplicates normalize punctuation, case, Unicode and whitespace
+  ---
+  duration_ms: 0.417198
+  type: 'test'
+  ...
+# Subtest: near duplicates with small edits cannot cross splits
+ok 57 - near duplicates with small edits cannot cross splits
+  ---
+  duration_ms: 0.998202
+  type: 'test'
+  ...
+# Subtest: same-split duplication is explicitly counted and cannot pass as independent examples
+ok 58 - same-split duplication is explicitly counted and cannot pass as independent examples
+  ---
+  duration_ms: 0.321179
+  type: 'test'
+  ...
+# Subtest: evaluation separates test metrics, split counts, slices and fixture status reproducibly
+ok 59 - evaluation separates test metrics, split counts, slices and fixture status reproducibly
+  ---
+  duration_ms: 36.242755
+  type: 'test'
+  ...
+# Subtest: unavailable test split fails instead of evaluating the training rows
+ok 60 - unavailable test split fails instead of evaluating the training rows
+  ---
+  duration_ms: 0.249255
+  type: 'test'
+  ...
+# Subtest: threshold selection uses validation only and freezes it for the test run
+ok 61 - threshold selection uses validation only and freezes it for the test run
+  ---
+  duration_ms: 0.813538
+  type: 'test'
+  ...
+# Subtest: checked-in fixture runs reproducibly and cannot masquerade as an independent benchmark
+ok 62 - checked-in fixture runs reproducibly and cannot masquerade as an independent benchmark
+  ---
+  duration_ms: 338.0028
+  type: 'test'
+  ...
+# Subtest: invalid threshold is rejected even if every example abstains
+ok 63 - invalid threshold is rejected even if every example abstains
+  ---
+  duration_ms: 0.455369
+  type: 'test'
+  ...
+# Subtest: documented human and AI-edited near-duplicates stay in one dependent family
+ok 64 - documented human and AI-edited near-duplicates stay in one dependent family
+  ---
+  duration_ms: 0.708542
+  type: 'test'
+  ...
+# Subtest: unchanged documented AI edits remain visible instead of being discarded for perfect-looking coverage
+ok 65 - unchanged documented AI edits remain visible instead of being discarded for perfect-looking coverage
+  ---
+  duration_ms: 0.206064
+  type: 'test'
+  ...
+# Subtest: two documented revisions share their original dependency without inflating independent groups
+ok 66 - two documented revisions share their original dependency without inflating independent groups
+  ---
+  duration_ms: 0.221924
+  type: 'test'
+  ...
+# Subtest: claiming an edit alone cannot bypass family, ancestry or split leakage checks
+ok 67 - claiming an edit alone cannot bypass family, ancestry or split leakage checks
+  ---
+  duration_ms: 0.662486
+  type: 'test'
+  ...
+# Subtest: latency report uses nearest-rank percentiles without dropping slow outliers
+ok 68 - latency report uses nearest-rank percentiles without dropping slow outliers
+  ---
+  duration_ms: 2.229469
+  type: 'test'
+  ...
+# Subtest: invalid timing values cannot produce a reassuring performance report
+ok 69 - invalid timing values cannot produce a reassuring performance report
+  ---
+  duration_ms: 0.512326
+  type: 'test'
+  ...
+# Subtest: bundle gate fails when aggregate JavaScript or CSS gzip budgets are exceeded
+ok 70 - bundle gate fails when aggregate JavaScript or CSS gzip budgets are exceeded
+  ---
+  duration_ms: 0.369108
+  type: 'test'
+  ...
+1..70
+# tests 70
+# suites 0
+# pass 70
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 503.925903

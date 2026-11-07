@@ -1,4 +1,4 @@
-"""Focused TextLab v3 interaction regressions; external model responses are controlled fixtures."""
+"""Focused TextLab V4 interaction regressions; external model responses are controlled fixtures."""
 import asyncio
 import os
 from pathlib import Path
@@ -13,7 +13,7 @@ async def main():
         page = await browser.new_page(viewport={'width': 1440, 'height': 1050})
         failures = []
         page.on('pageerror', lambda error: failures.append(str(error)))
-        await page.route('**/api/health', lambda route: route.fulfill(json={'provider':'ollama','model':'test-model','auth_required':False,'version':'3.0.0'}))
+        await page.route('**/api/health', lambda route: route.fulfill(json={'provider':'ollama','model':'test-model','auth_required':False,'version':'4.0.0'}))
         await page.route('**/api/provider-status', lambda route: route.fulfill(json={'ready':False,'verified':False,'message':'Test: modellanslutningen är inte verifierad.'}))
         await page.goto(os.getenv('TEXTLAB_TEST_URL', 'http://127.0.0.1:8767'), wait_until='networkidle')
         await page.get_by_role('button', name='AI-humanizer').click()

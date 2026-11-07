@@ -2,8 +2,38 @@
 
 Datum: 2026-11-07. V4 bygger på `5c6328d7c341411042c7d2db150cb88578998302`
 och bevarar V3 och `main` i samma Git-historik. Den här rapporten skiljer
-körda V4-prov från historisk modellevidens. GitHub-verifiering och slutliga
-releaseuppgifter kompletteras när kandidaten har körts där.
+körda V4-prov från historisk modellevidens. Den funktionella kandidaten
+`2f83163d20d4ef98c1d6a2676eb0505a4090bfba` har verifierats både lokalt och
+i GitHub Actions. Slutlig tagg, main-integration och branchrensning är separata
+releaseåtgärder efter godkända kontrollpunkter.
+
+## GitHub Actions
+
+[PR-körning 42367167445](https://github.com/sharbel0022/AiDetector/actions/runs/42367167445)
+och [push-körning 42367164123](https://github.com/sharbel0022/AiDetector/actions/runs/42367164123)
+är båda **success** för kandidaten ovan. Artefakten hämtades och dess SHA-256
+kontrollerades mot GitHubs digest. Efter den körningen uppdaterades endast
+UI:s versionsetiketter till V4 och releaseunderlaget; den nya kandidaten ska
+passera samma fullständiga CI i [PR #2](https://github.com/sharbel0022/AiDetector/pull/2)
+innan taggning.
+
+| Kontroll i CI | Faktiskt resultat |
+|---|---|
+| Python / Node | 309 / 70 passerade; Python 3.12.16 och Node 22.23.4 |
+| Browser | 10 huvudkontroller passerade; dessutom sex lägen, språk, skyddade termer, tangentbord, diff, TXT-export, oförändrat resultat, avbrott, felmetadata och dialogfokus |
+| Mobil | 390 px och 320 px verifierade utan horisontellt överflöde |
+| axe-core | 0 automatiskt upptäckta överträdelser på 11 skärmlägen; fyra `incomplete`-markeringar kvar för manuell bedömning |
+| Container | Byggd; nonroot UID 10001; två produktionsprocesser; autentisering och säkerhetshuvuden verifierade |
+| Delad containerkvot | 2 anrop accepterade och 10 rate limited över de två processerna |
+| Säkerhet / bygge | Audits och historikskanning utan fynd; två identiska produktionsbyggen; bundle-/prestandagränser passerade |
+| Offlineevidens | Dataintegritet, frysta modeller, parade redigeringar, klassificerarjämförelse och historisk humanizeråterspelning passerade |
+
+Se [CI-manifest](evidence/v4/ci-verification.json),
+[browserrapport](evidence/v4/ci/browser-results.json),
+[tillgänglighet](evidence/v4/ci/accessibility.json) och
+[containerrapport](evidence/v4/ci/container-results.json).
+Browser- och humanizertesterna använder kontrollerade modellsvar. Ingen
+modellkvalitet eller publik driftsättning kan utläsas ur gröna CI-prov.
 
 ## Lokalt verifierat
 
@@ -86,9 +116,9 @@ produkten och inga AI-författarskapssannolikheter visas.
 
 Playwrights Chromium-download gav en ogiltig/tom zip. Installerad system-Chromium
 kunde inte starta eftersom miljön avvisade en socketoperation. Docker saknas
-helt: ingen binary, daemon eller socket. Browser-, axe- och containerprov måste
-verifieras i kandidatens GitHub Actions. Tidigare grön V3-CI är historik och
-räknas inte som en ny V4-körning.
+helt: ingen binary, daemon eller socket. Browser-, axe- och containerprov utfördes
+därför i kandidatens GitHub Actions och passerade där. Tidigare grön V3-CI är
+historik och räknas inte som en ny V4-körning.
 
 ## Säkerhet och begränsningar
 

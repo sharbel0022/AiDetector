@@ -26,7 +26,9 @@
     "reason": "No Docker binary, daemon or socket"
   },
   "remote_ci": {
-    "status": "pending_for_v4"
+    "status": "success",
+    "commit": "2f83163d20d4ef98c1d6a2676eb0505a4090bfba",
+    "manifest": "ci-verification.json"
   },
   "historical_replay": {
     "rows": 72,
