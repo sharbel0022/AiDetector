@@ -8,7 +8,8 @@ from urllib.parse import quote
 from fastapi import HTTPException
 
 from ai.humanizer.prompts import SCHEMA
-from ai.providers.common import request_json, validated_text
+from ai.providers.common import metered_response, request_json, validated_text
+from ai.usage import GenerationResult
 
 API_URL = 'https://api.openai.com/v1'
 MODEL_CACHE_SECONDS = 300
@@ -16,7 +17,7 @@ MODEL_CACHE_SECONDS = 300
 
 def generation_body(settings, instructions, user, cap) -> dict:
     return {'model': settings.model, 'instructions': instructions, 'input': user,
-            'store': False, 'max_output_tokens': cap,
+            'store': False, 'max_output_tokens': cap, 'service_tier': 'default',
             'text': {'format': {'type': 'json_schema', 'name': 'rewrite', 'strict': True, 'schema': SCHEMA}}}
 
 
@@ -37,22 +38,24 @@ async def _check_model(client, settings, headers) -> None:
 async def generate(client, settings, body) -> str:
     headers = {'Authorization': f'Bearer {settings.openai_key}'}
     await _check_model(client, settings, headers)
+    started = time.perf_counter()
     data = await request_json(client, settings, 'POST', f'{API_URL}/responses', headers=headers, body=body)
-    if data.get('status') != 'completed':
-        raise HTTPException(502, 'OpenAI slutförde inte textsvar inom den angivna gränsen. Förkorta texten eller kontrollera serverns utmatningsgräns.')
-    try:
-        parts = []
-        for item in data['output']:
-            if item.get('type') != 'message':
-                continue
-            if item.get('status', 'completed') != 'completed':
-                raise HTTPException(502, 'OpenAI slutförde inte hela textsvaret. Förkorta texten eller kontrollera serverns utmatningsgräns.')
-            for content in item['content']:
-                if content.get('type') == 'refusal':
-                    raise HTTPException(502, 'OpenAI avböjde textbearbetningen. Ändra texten och försök igen.')
-                if content.get('type') == 'output_text':
-                    parts.append(content['text'])
-        raw = ''.join(parts)
-    except (KeyError, TypeError, AttributeError):
-        raise HTTPException(502, 'OpenAI gav ett ogiltigt strukturerat svar. Försök igen.') from None
-    return validated_text(raw)
+    with metered_response('openai', data, (time.perf_counter() - started) * 1000) as usage:
+        if data.get('status') != 'completed':
+            raise HTTPException(502, 'OpenAI slutförde inte textsvar inom den angivna gränsen. Förkorta texten eller kontrollera serverns utmatningsgräns.')
+        try:
+            parts = []
+            for item in data['output']:
+                if item.get('type') != 'message':
+                    continue
+                if item.get('status', 'completed') != 'completed':
+                    raise HTTPException(502, 'OpenAI slutförde inte hela textsvaret. Förkorta texten eller kontrollera serverns utmatningsgräns.')
+                for content in item['content']:
+                    if content.get('type') == 'refusal':
+                        raise HTTPException(502, 'OpenAI avböjde textbearbetningen. Ändra texten och försök igen.')
+                    if content.get('type') == 'output_text':
+                        parts.append(content['text'])
+            raw = ''.join(parts)
+        except (KeyError, TypeError, AttributeError):
+            raise HTTPException(502, 'OpenAI gav ett ogiltigt strukturerat svar. Försök igen.') from None
+        return GenerationResult(validated_text(raw), usage)

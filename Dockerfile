@@ -11,6 +11,8 @@ COPY requirements-lock.txt ./
 RUN pip install --no-cache-dir -r requirements-lock.txt && useradd --uid 10001 --create-home textlab && mkdir /state && chown textlab:textlab /state
 COPY backend ./backend
 COPY ai ./ai
+COPY models/v5/detector.json ./models/v5/detector.json
+COPY config ./config
 COPY --from=frontend /build/dist ./dist
 USER textlab
 EXPOSE 8767

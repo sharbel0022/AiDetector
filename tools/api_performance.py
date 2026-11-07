@@ -1,4 +1,4 @@
-"""Measure real local HTTP and ASGI integration overhead, not model inference speed."""
+"""Measure HTTP/ASGI overhead and real local V5 inference, not generative speed."""
 import asyncio
 from collections import Counter
 import json
@@ -34,7 +34,7 @@ async def batch(client, path, count, payload=None):
 
 
 async def main():
-    report = {'measuredAt':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'environment':{'python':platform.python_version(),'platform':platform.platform(),'logicalCpus':psutil.cpu_count(),'physicalMemoryBytes':psutil.virtual_memory().total},'modelInferenceMeasured':False}
+    report = {'measuredAt':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'environment':{'python':platform.python_version(),'platform':platform.platform(),'logicalCpus':psutil.cpu_count(),'physicalMemoryBytes':psutil.virtual_memory().total},'generativeModelInferenceMeasured':False,'detectorInferenceMeasured':True}
     async with httpx.AsyncClient(base_url=os.getenv('TEXTLAB_TEST_URL','http://127.0.0.1:8767'),trust_env=False,timeout=10) as client:
         report['realHttpHealthConcurrent40'], responses = await batch(client,'/api/health',40)
         assert all(r.status_code == 200 for r in responses)
@@ -64,8 +64,27 @@ async def main():
         report['asgiConcurrentRewriteMockProvider'], responses=await batch(client,'/api/rewrite',8,{'text':text,'language':'sv'})
         statuses=Counter(r.status_code for r in responses)
         assert statuses[200]==2 and statuses[429]==6, dict(statuses)
+        # First detector request in this benchmark process includes module
+        # import, JSON validation and actual local ML inference. It does not
+        # measure OS/container startup or a paid generative model.
+        detector_text=('Vi undersöker hur läsaren förstår en text och vi jämför resultatet med det underlag som finns i rapporten. '*120)[:12000]
+        payload={'text':detector_text,'language':'auto'}
+        first,responses=await batch(client,'/api/detect',1,payload)
+        assert responses[0].status_code==200, responses[0].text
+        result=responses[0].json()
+        assert result['detector']['modelVersion'] and result['detector']['analyzedWords']>0
+        assert result['detector']['documentProbability'] is None and result['detector']['aiMarkedPercent'] is None
+        report['v5DetectorFirstObserved']=dict(first,characters=len(detector_text),modelVersion=result['detector']['modelVersion'],scope='First actual detector request in this process, including initial artifact load; no generative provider')
+        detector_times=[]
+        for _ in range(20):
+            measured,responses=await batch(client,'/api/detect',1,payload)
+            assert responses[0].status_code==200
+            detector_times.append(measured['p50Ms'])
+        report['v5DetectorWarm']=dict(timing(detector_times),characters=len(detector_text),qualityEvidence=False)
+        report['v5DetectorConcurrent8'], responses=await batch(client,'/api/detect',8,payload)
+        assert all(response.status_code==200 for response in responses)
     report['processRssBytes']={'before':rss_before,'after':psutil.Process().memory_info().rss,'scope':'Entire benchmark process, framework and Python runtime; not isolated per-request allocations'}
-    report['modelColdStart']={'status':'not_measured','reason':'Not measured by this integration-overhead harness; use opt-in live-model checks for first-observed latency.'}
+    report['modelColdStart']={'status':'not_measured','scope':'generative_provider','reason':'No real generative provider is measured by this harness. Local detector first-observed latency is reported separately.'}
     Path('artifacts').mkdir(exist_ok=True)
     Path('artifacts/api-performance.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf8')
     print(json.dumps(report,indent=2))

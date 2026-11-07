@@ -18,16 +18,19 @@ def docker(*args):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--image',default='textlab:v4-review')
+    parser.add_argument('--image',default='textlab:v5-review')
     args=parser.parse_args()
     name='textlab-check-'+secrets.token_hex(5)
     token=secrets.token_urlsafe(32)
     digest=hashlib.sha256(token.encode()).hexdigest()
-    report={'image':args.image,'published':False,'checks':[],'modelsTested':False}
+    detector_token=secrets.token_urlsafe(32)
+    detector_digest=hashlib.sha256(detector_token.encode()).hexdigest()
+    report={'image':args.image,'published':False,'checks':[],
+            'generativeModelsTested':False,'detectorIntegrationTested':False}
     try:
         docker('run','--rm','-d','--name',name,'-p','127.0.0.1::8767',
                '-e','TEXTLAB_AUTH_MODE=multiuser',
-               '-e','TEXTLAB_USER_TOKENS='+json.dumps({'container-reviewer':digest}),
+               '-e','TEXTLAB_USER_TOKENS='+json.dumps({'container-reviewer':digest,'detector-reviewer':detector_digest}),
                '-e','ALLOWED_HOSTS=127.0.0.1,localhost',
                '-e','ALLOWED_ORIGINS=http://127.0.0.1',
                '-e','TEXTLAB_REQUESTS_PER_MINUTE=2',args.image)
@@ -37,13 +40,13 @@ def main():
             try:
                 with urllib.request.urlopen(url+'/api/health',timeout=1) as response:
                     health=json.load(response)
-                    assert health['version']=='4.0.0' and health['auth_required']
+                    assert health['version']=='5.0.0' and health['auth_required']
                 break
             except (urllib.error.URLError,ConnectionError,TimeoutError):
                 time.sleep(.2)
         else:
             raise AssertionError('Production container did not become healthy')
-        report['checks'].append('Production config starts and reports v4 authenticated health')
+        report['checks'].append('Production config starts and reports v5 authenticated health')
         assert docker('exec',name,'id','-u')=='10001'
         report['checks'].append('Server runs as nonroot UID 10001')
         processes=docker('top',name,'-eo','pid,args')
@@ -55,12 +58,32 @@ def main():
             assert response.headers.get('X-Content-Type-Options')=='nosniff'
             assert response.headers.get('Content-Security-Policy')
         report['checks'].append('Built frontend and security headers served')
-        try:
-            urllib.request.urlopen(url+'/api/provider-status',timeout=2)
-            raise AssertionError('Anonymous request was allowed')
-        except urllib.error.HTTPError as exc:
-            assert exc.code==401
-        report['checks'].append('Anonymous protected endpoint rejected with 401')
+        for path in ['/api/provider-status','/api/usage','/api/detect']:
+            request=urllib.request.Request(url+path,data=b'{}' if path=='/api/detect' else None,
+                                           headers={'Content-Type':'application/json'})
+            try:
+                urllib.request.urlopen(request,timeout=2)
+                raise AssertionError('Anonymous request was allowed')
+            except urllib.error.HTTPError as exc:
+                assert exc.code==401
+        report['checks'].append('Anonymous provider, detector and usage endpoints rejected with 401')
+        detector_headers={'Authorization':'Bearer '+detector_token,'Content-Type':'application/json'}
+        source='We are reading this report and we have some questions about what it means. '*8
+        request=urllib.request.Request(url+'/api/detect',data=json.dumps({'text':source,'language':'auto'}).encode(),
+                                       headers=detector_headers)
+        with urllib.request.urlopen(request,timeout=10) as response:
+            detected=json.load(response)
+            assert detected['languageAssessment']['detected']=='en'
+            assert detected['detector']['documentProbability'] is None
+            assert detected['detector']['aiMarkedPercent'] is None
+            assert detected['detector']['documentValidated'] is False
+            assert detected['segments']
+        with urllib.request.urlopen(urllib.request.Request(url+'/api/usage',headers=detector_headers),timeout=5) as response:
+            usage=json.load(response)
+            assert isinstance(usage,dict)
+            assert source not in json.dumps(usage)
+        report['checks'].append('Packaged detector and authenticated text-free usage work without a generative provider')
+        report['detectorIntegrationTested']=True
         def request(_):
             req=urllib.request.Request(url+'/api/provider-status',headers={'Authorization':'Bearer '+token})
             try:

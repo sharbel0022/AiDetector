@@ -55,6 +55,9 @@ class Settings:
     body_timeout: float = 10
     readiness_timeout: float = 15
     max_input_chars: int = field(default_factory=lambda: int(os.getenv('AI_MAX_INPUT_CHARS', '8000')))
+    detector_model_path: str | None = field(default_factory=lambda: os.getenv('TEXTLAB_DETECTOR_MODEL') or None)
+    daily_cost_budget_usd: float | None = field(default_factory=lambda: float(os.environ['TEXTLAB_DAILY_COST_BUDGET_USD']) if os.getenv('TEXTLAB_DAILY_COST_BUDGET_USD') else None)
+    global_daily_cost_budget_usd: float | None = field(default_factory=lambda: float(os.environ['TEXTLAB_GLOBAL_DAILY_COST_BUDGET_USD']) if os.getenv('TEXTLAB_GLOBAL_DAILY_COST_BUDGET_USD') else None)
     # Only successful, non-generating model metadata checks are cached. The
     # credential is represented by a digest; raw credentials are never retained
     # in cache keys, exceptions or diagnostics.

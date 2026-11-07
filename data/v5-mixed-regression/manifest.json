@@ -1,0 +1,30 @@
+{
+  "byLanguage": {
+    "en": 12,
+    "sv": 12
+  },
+  "bySourceSplit": {
+    "test": 8,
+    "train": 12,
+    "validation": 4
+  },
+  "constructionCodeSha256": "890a7d07ac9fc9361751afb0dee30b408c8628ab9a084738a05628ec5c5b63f1",
+  "corpusSha256": "11a0f84560aa1cd67e1044ff90ac17e9b409a30467a33870175ef25d93750466",
+  "documents": 24,
+  "existingSourceFamilies": 12,
+  "generatorModels": [
+    "llama3.2:3b",
+    "qwen3.5:4b"
+  ],
+  "independentSourceFamiliesAdded": 0,
+  "limitations": [
+    "Existing pilot data are reused; these documents are not a fresh independent test set.",
+    "Parent labels/rights retain their original source-audit limitations.",
+    "Artificial juxtaposition is not representative of naturally mixed writing or editing.",
+    "Known source word shares do not validate classifier percentages or semantic attribution."
+  ],
+  "qualityEvidence": false,
+  "schemaVersion": "textlab-mixed-regression-manifest-v5",
+  "sourceCorpusSha256": "50d65f6d8422d3c9d51f72fa4c7c07d0bf721e097ab604c71c2c502c69ff173a",
+  "status": "derived-historical-diagnostics"
+}

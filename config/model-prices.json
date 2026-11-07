@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "version": "2026-11-07.1",
+  "currency": "USD",
+  "unit": "per_1000000_tokens",
+  "scope": "Standard text-only OpenAI Responses requests, default service tier, no tools. Estimates exclude taxes, credits and negotiated rates. Exact model IDs only; this file does not assert account availability.",
+  "models": [
+    {
+      "provider": "openai",
+      "ids": ["gpt-4.1-mini", "gpt-4.1-mini-2025-04-14"],
+      "input": "0.40",
+      "cached_input": "0.10",
+      "output": "1.60",
+      "verified_at": "2026-11-07",
+      "source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini"
+    },
+    {
+      "provider": "openai",
+      "ids": ["gpt-5-mini", "gpt-5-mini-2025-08-07"],
+      "input": "0.25",
+      "cached_input": "0.025",
+      "output": "2.00",
+      "verified_at": "2026-11-07",
+      "source": "https://developers.openai.com/api/docs/models/gpt-5-mini"
+    }
+  ]
+}

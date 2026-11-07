@@ -1,0 +1,1618 @@
+{
+  "schemaVersion": "textlab-v5-mixed-replay-1",
+  "evidenceUse": "historical-derived-regression",
+  "qualityEvidence": false,
+  "sourceSplit": "test",
+  "documents": 8,
+  "existingSourceFamilies": 4,
+  "independentSourceFamiliesAdded": 0,
+  "modelVersion": "textlab-v5-188bc0e07ddf-e66ac217",
+  "artifactSha256": "da731eead96ee4c11b46d6ab048b2ead6892f29d59a34a567884f00695f06fe3",
+  "constructionCanonicalSha256": "f3b6b0e48e24837a6fb168ed4edbc7d51b481771877a943c495b5c3ce2a0ae9a",
+  "toolSha256": "4c3b60806a710438776f07a2b9c33faf0d7894d41da45356ad53a409bf8197f7",
+  "alignment": {
+    "sourceExact": true,
+    "crossOriginSegments": 0,
+    "originWords": 3973,
+    "runtimeWords": 3973
+  },
+  "metrics": {
+    "classificationCoverage": 0.0,
+    "segmentPrecision": null,
+    "humanFalsePositiveRate": null,
+    "markedShareMeanAbsoluteError": null
+  },
+  "definitions": {
+    "classificationCoverage": "Binary-classified eligible segments / all eligible segments with known single origin.",
+    "segmentPrecision": "AI-origin segments / all AI-marked segments, only with validated segment inference.",
+    "humanFalsePositiveRate": "AI-marked human-origin segments / eligible human-origin segments.",
+    "markedShareMeanAbsoluteError": "Percentage-point error against known AI word share among eligible single-origin segments, not all source words."
+  },
+  "limitations": [
+    "Existing parents and test families have been inspected before; this is not independent quality evidence.",
+    "Exact juxtaposition is not representative of naturally mixed or edited writing.",
+    "Closed segment gates mean no precision, false-positive or percentage-error result is available.",
+    "Origin labels inherit all provenance limitations of the archived parents."
+  ],
+  "records": [
+    {
+      "id": "mixed-v5-b14159e592b6cda42a76",
+      "language": "en",
+      "sourceFamily": "pg205",
+      "textSha256": "351abdf052c828458938d4b89f0c449621f7b865d82caa677c230e6e80a7a9bc",
+      "knownConstructionAiShare": 44.72573839662447,
+      "eligibleOriginAiShare": 51.09289617486339,
+      "detectorMarkedShare": null,
+      "segmentValidated": false,
+      "analyzedWords": 366,
+      "excludedWords": 108,
+      "segments": [
+        {
+          "id": "s1",
+          "start": 0,
+          "end": 69,
+          "wordCount": 15,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s2",
+          "start": 70,
+          "end": 162,
+          "wordCount": 15,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s3",
+          "start": 163,
+          "end": 211,
+          "wordCount": 4,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s4",
+          "start": 212,
+          "end": 548,
+          "wordCount": 64,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s5",
+          "start": 549,
+          "end": 694,
+          "wordCount": 21,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s6",
+          "start": 695,
+          "end": 758,
+          "wordCount": 12,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s7",
+          "start": 759,
+          "end": 863,
+          "wordCount": 19,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s8",
+          "start": 864,
+          "end": 1020,
+          "wordCount": 28,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s9",
+          "start": 1021,
+          "end": 1110,
+          "wordCount": 18,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s10",
+          "start": 1111,
+          "end": 1354,
+          "wordCount": 43,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s11",
+          "start": 1355,
+          "end": 1483,
+          "wordCount": 23,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s12",
+          "start": 1485,
+          "end": 1634,
+          "wordCount": 25,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s13",
+          "start": 1635,
+          "end": 1842,
+          "wordCount": 36,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s14",
+          "start": 1843,
+          "end": 2042,
+          "wordCount": 30,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s15",
+          "start": 2044,
+          "end": 2287,
+          "wordCount": 41,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s16",
+          "start": 2288,
+          "end": 2515,
+          "wordCount": 41,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s17",
+          "start": 2516,
+          "end": 2722,
+          "wordCount": 39,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        }
+      ]
+    },
+    {
+      "id": "mixed-v5-2c344049095ed5bcfdbb",
+      "language": "en",
+      "sourceFamily": "pg205",
+      "textSha256": "3b7e72d1796ad12d5706322cd3251fcfc1f983eea02111972cef601894cbf511",
+      "knownConstructionAiShare": 60.14897579143389,
+      "eligibleOriginAiShare": 54.37100213219616,
+      "detectorMarkedShare": null,
+      "segmentValidated": false,
+      "analyzedWords": 469,
+      "excludedWords": 68,
+      "segments": [
+        {
+          "id": "s1",
+          "start": 0,
+          "end": 189,
+          "wordCount": 33,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s2",
+          "start": 190,
+          "end": 373,
+          "wordCount": 33,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s3",
+          "start": 374,
+          "end": 539,
+          "wordCount": 29,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s4",
+          "start": 540,
+          "end": 771,
+          "wordCount": 39,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s5",
+          "start": 773,
+          "end": 1091,
+          "wordCount": 55,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s6",
+          "start": 1092,
+          "end": 1245,
+          "wordCount": 23,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s7",
+          "start": 1246,
+          "end": 1438,
+          "wordCount": 33,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s8",
+          "start": 1439,
+          "end": 1558,
+          "wordCount": 24,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s9",
+          "start": 1559,
+          "end": 1681,
+          "wordCount": 22,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s10",
+          "start": 1682,
+          "end": 1869,
+          "wordCount": 32,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s11",
+          "start": 1871,
+          "end": 2019,
+          "wordCount": 26,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s12",
+          "start": 2020,
+          "end": 2523,
+          "wordCount": 94,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s13",
+          "start": 2524,
+          "end": 2775,
+          "wordCount": 42,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s14",
+          "start": 2776,
+          "end": 3039,
+          "wordCount": 52,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        }
+      ]
+    },
+    {
+      "id": "mixed-v5-3a41daea2bece6147a7b",
+      "language": "en",
+      "sourceFamily": "pg3420",
+      "textSha256": "c4dc329ff31f7e4294ad6049773bb25edd0615d24a16be6d775c990cd4330133",
+      "knownConstructionAiShare": 48.53932584269663,
+      "eligibleOriginAiShare": 52.04819277108434,
+      "detectorMarkedShare": null,
+      "segmentValidated": false,
+      "analyzedWords": 415,
+      "excludedWords": 30,
+      "segments": [
+        {
+          "id": "s1",
+          "start": 0,
+          "end": 180,
+          "wordCount": 32,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s2",
+          "start": 181,
+          "end": 657,
+          "wordCount": 80,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s3",
+          "start": 658,
+          "end": 809,
+          "wordCount": 31,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s4",
+          "start": 810,
+          "end": 886,
+          "wordCount": 16,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s5",
+          "start": 887,
+          "end": 983,
+          "wordCount": 14,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s6",
+          "start": 984,
+          "end": 1342,
+          "wordCount": 56,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s7",
+          "start": 1344,
+          "end": 1522,
+          "wordCount": 28,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s8",
+          "start": 1523,
+          "end": 1656,
+          "wordCount": 24,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s9",
+          "start": 1657,
+          "end": 1781,
+          "wordCount": 20,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s10",
+          "start": 1783,
+          "end": 1952,
+          "wordCount": 27,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s11",
+          "start": 1953,
+          "end": 2126,
+          "wordCount": 24,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s12",
+          "start": 2128,
+          "end": 2309,
+          "wordCount": 29,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s13",
+          "start": 2310,
+          "end": 2515,
+          "wordCount": 34,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s14",
+          "start": 2516,
+          "end": 2703,
+          "wordCount": 30,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        }
+      ]
+    },
+    {
+      "id": "mixed-v5-70a5b49c9ff95de048f7",
+      "language": "en",
+      "sourceFamily": "pg3420",
+      "textSha256": "41f1dd8eee5f5993d9bda0827590c8b1371471280dbf9bf3146824c9b992f019",
+      "knownConstructionAiShare": 61.758691206543965,
+      "eligibleOriginAiShare": 61.111111111111114,
+      "detectorMarkedShare": null,
+      "segmentValidated": false,
+      "analyzedWords": 396,
+      "excludedWords": 93,
+      "segments": [
+        {
+          "id": "s1",
+          "start": 0,
+          "end": 196,
+          "wordCount": 30,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s2",
+          "start": 197,
+          "end": 442,
+          "wordCount": 41,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s3",
+          "start": 443,
+          "end": 599,
+          "wordCount": 27,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s4",
+          "start": 600,
+          "end": 774,
+          "wordCount": 30,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s5",
+          "start": 775,
+          "end": 971,
+          "wordCount": 32,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s6",
+          "start": 972,
+          "end": 1135,
+          "wordCount": 26,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s7",
+          "start": 1136,
+          "end": 1315,
+          "wordCount": 28,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s8",
+          "start": 1316,
+          "end": 1459,
+          "wordCount": 24,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s9",
+          "start": 1460,
+          "end": 1652,
+          "wordCount": 34,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s10",
+          "start": 1653,
+          "end": 1833,
+          "wordCount": 30,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s11",
+          "start": 1835,
+          "end": 1909,
+          "wordCount": 12,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s12",
+          "start": 1910,
+          "end": 2022,
+          "wordCount": 21,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s13",
+          "start": 2023,
+          "end": 2246,
+          "wordCount": 34,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s14",
+          "start": 2247,
+          "end": 2321,
+          "wordCount": 13,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s15",
+          "start": 2322,
+          "end": 2380,
+          "wordCount": 12,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s16",
+          "start": 2381,
+          "end": 2580,
+          "wordCount": 35,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s17",
+          "start": 2581,
+          "end": 2664,
+          "wordCount": 14,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s18",
+          "start": 2665,
+          "end": 2808,
+          "wordCount": 24,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s19",
+          "start": 2809,
+          "end": 2931,
+          "wordCount": 22,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        }
+      ]
+    },
+    {
+      "id": "mixed-v5-889fe4ad0862a7db153d",
+      "language": "sv",
+      "sourceFamily": "pg46538",
+      "textSha256": "bd10603452df95fc0b0e5bbd87ad17fef9b64bbfb241d52dbfd10eafdbb1f9f6",
+      "knownConstructionAiShare": 54.67289719626168,
+      "eligibleOriginAiShare": 54.621848739495796,
+      "detectorMarkedShare": null,
+      "segmentValidated": false,
+      "analyzedWords": 238,
+      "excludedWords": 190,
+      "segments": [
+        {
+          "id": "s1",
+          "start": 0,
+          "end": 81,
+          "wordCount": 16,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s2",
+          "start": 82,
+          "end": 142,
+          "wordCount": 12,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s3",
+          "start": 143,
+          "end": 188,
+          "wordCount": 6,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s4",
+          "start": 189,
+          "end": 259,
+          "wordCount": 11,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s5",
+          "start": 260,
+          "end": 503,
+          "wordCount": 40,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s6",
+          "start": 504,
+          "end": 535,
+          "wordCount": 5,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s7",
+          "start": 536,
+          "end": 579,
+          "wordCount": 7,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s8",
+          "start": 580,
+          "end": 603,
+          "wordCount": 6,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s9",
+          "start": 604,
+          "end": 625,
+          "wordCount": 5,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s10",
+          "start": 626,
+          "end": 650,
+          "wordCount": 5,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s11",
+          "start": 651,
+          "end": 1018,
+          "wordCount": 68,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s12",
+          "start": 1019,
+          "end": 1071,
+          "wordCount": 9,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s13",
+          "start": 1072,
+          "end": 1096,
+          "wordCount": 4,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s14",
+          "start": 1098,
+          "end": 1203,
+          "wordCount": 19,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s15",
+          "start": 1204,
+          "end": 1262,
+          "wordCount": 10,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s16",
+          "start": 1263,
+          "end": 1354,
+          "wordCount": 17,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s17",
+          "start": 1355,
+          "end": 1427,
+          "wordCount": 13,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s18",
+          "start": 1429,
+          "end": 1484,
+          "wordCount": 11,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s19",
+          "start": 1485,
+          "end": 1607,
+          "wordCount": 23,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s20",
+          "start": 1608,
+          "end": 1658,
+          "wordCount": 10,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s21",
+          "start": 1659,
+          "end": 1749,
+          "wordCount": 17,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s22",
+          "start": 1751,
+          "end": 1790,
+          "wordCount": 8,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s23",
+          "start": 1791,
+          "end": 1876,
+          "wordCount": 17,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s24",
+          "start": 1877,
+          "end": 1925,
+          "wordCount": 10,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s25",
+          "start": 1926,
+          "end": 2000,
+          "wordCount": 15,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s26",
+          "start": 2001,
+          "end": 2103,
+          "wordCount": 18,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s27",
+          "start": 2105,
+          "end": 2153,
+          "wordCount": 8,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s28",
+          "start": 2154,
+          "end": 2240,
+          "wordCount": 17,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s29",
+          "start": 2241,
+          "end": 2352,
+          "wordCount": 21,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        }
+      ]
+    },
+    {
+      "id": "mixed-v5-46d759a6c68c03ee23ef",
+      "language": "sv",
+      "sourceFamily": "pg46538",
+      "textSha256": "39d9e82c6668a569ad30879c4576ce400a2acb2d25b301cd1969999375ce0420",
+      "knownConstructionAiShare": 59.49612403100775,
+      "eligibleOriginAiShare": 66.99751861042184,
+      "detectorMarkedShare": null,
+      "segmentValidated": false,
+      "analyzedWords": 403,
+      "excludedWords": 113,
+      "segments": [
+        {
+          "id": "s1",
+          "start": 0,
+          "end": 157,
+          "wordCount": 25,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s2",
+          "start": 158,
+          "end": 313,
+          "wordCount": 29,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s3",
+          "start": 314,
+          "end": 381,
+          "wordCount": 13,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s4",
+          "start": 382,
+          "end": 509,
+          "wordCount": 22,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s5",
+          "start": 510,
+          "end": 619,
+          "wordCount": 21,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s6",
+          "start": 621,
+          "end": 753,
+          "wordCount": 23,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s7",
+          "start": 754,
+          "end": 886,
+          "wordCount": 27,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s8",
+          "start": 887,
+          "end": 1021,
+          "wordCount": 24,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s9",
+          "start": 1022,
+          "end": 1133,
+          "wordCount": 21,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s10",
+          "start": 1134,
+          "end": 1229,
+          "wordCount": 16,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s11",
+          "start": 1230,
+          "end": 1314,
+          "wordCount": 15,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s12",
+          "start": 1316,
+          "end": 1484,
+          "wordCount": 32,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s13",
+          "start": 1485,
+          "end": 1690,
+          "wordCount": 39,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s14",
+          "start": 1692,
+          "end": 1927,
+          "wordCount": 43,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s15",
+          "start": 1928,
+          "end": 2102,
+          "wordCount": 31,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s16",
+          "start": 2103,
+          "end": 2227,
+          "wordCount": 21,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s17",
+          "start": 2228,
+          "end": 2377,
+          "wordCount": 28,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s18",
+          "start": 2378,
+          "end": 2517,
+          "wordCount": 23,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s19",
+          "start": 2518,
+          "end": 2662,
+          "wordCount": 22,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s20",
+          "start": 2663,
+          "end": 2844,
+          "wordCount": 31,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s21",
+          "start": 2845,
+          "end": 2899,
+          "wordCount": 10,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        }
+      ]
+    },
+    {
+      "id": "mixed-v5-3454d336cee6c9bc8398",
+      "language": "sv",
+      "sourceFamily": "pg59646",
+      "textSha256": "8c485d4b8ab98e450147241a0187aa990662f90d9574de5268758a2ecf3ceda3",
+      "knownConstructionAiShare": 45.34653465346535,
+      "eligibleOriginAiShare": 44.69135802469136,
+      "detectorMarkedShare": null,
+      "segmentValidated": false,
+      "analyzedWords": 405,
+      "excludedWords": 100,
+      "segments": [
+        {
+          "id": "s1",
+          "start": 0,
+          "end": 122,
+          "wordCount": 21,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s2",
+          "start": 123,
+          "end": 234,
+          "wordCount": 19,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s3",
+          "start": 235,
+          "end": 398,
+          "wordCount": 28,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s4",
+          "start": 400,
+          "end": 491,
+          "wordCount": 16,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s5",
+          "start": 492,
+          "end": 600,
+          "wordCount": 22,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s6",
+          "start": 601,
+          "end": 745,
+          "wordCount": 25,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s7",
+          "start": 747,
+          "end": 856,
+          "wordCount": 16,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s8",
+          "start": 857,
+          "end": 927,
+          "wordCount": 13,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s9",
+          "start": 928,
+          "end": 1055,
+          "wordCount": 25,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s10",
+          "start": 1057,
+          "end": 1175,
+          "wordCount": 25,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s11",
+          "start": 1176,
+          "end": 1282,
+          "wordCount": 19,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s12",
+          "start": 1284,
+          "end": 1288,
+          "wordCount": 1,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s13",
+          "start": 1289,
+          "end": 1292,
+          "wordCount": 1,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s14",
+          "start": 1293,
+          "end": 1558,
+          "wordCount": 47,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s15",
+          "start": 1559,
+          "end": 1735,
+          "wordCount": 31,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s16",
+          "start": 1736,
+          "end": 1983,
+          "wordCount": 45,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s17",
+          "start": 1984,
+          "end": 2026,
+          "wordCount": 6,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s18",
+          "start": 2027,
+          "end": 2234,
+          "wordCount": 32,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s19",
+          "start": 2235,
+          "end": 2317,
+          "wordCount": 14,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s20",
+          "start": 2318,
+          "end": 2410,
+          "wordCount": 16,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s21",
+          "start": 2411,
+          "end": 2641,
+          "wordCount": 37,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s22",
+          "start": 2642,
+          "end": 2823,
+          "wordCount": 32,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s23",
+          "start": 2824,
+          "end": 2909,
+          "wordCount": 14,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        }
+      ]
+    },
+    {
+      "id": "mixed-v5-f4b7a83f07fdab8848d6",
+      "language": "sv",
+      "sourceFamily": "pg59646",
+      "textSha256": "be3b41b165ee6d99eb3e238cfe89f2693fe6b1e9a954110a0ad4b14669817e50",
+      "knownConstructionAiShare": 50.259067357512954,
+      "eligibleOriginAiShare": 58.25242718446602,
+      "detectorMarkedShare": null,
+      "segmentValidated": false,
+      "analyzedWords": 412,
+      "excludedWords": 167,
+      "segments": [
+        {
+          "id": "s1",
+          "start": 0,
+          "end": 4,
+          "wordCount": 1,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s2",
+          "start": 5,
+          "end": 8,
+          "wordCount": 1,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s3",
+          "start": 9,
+          "end": 116,
+          "wordCount": 18,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s4",
+          "start": 117,
+          "end": 191,
+          "wordCount": 14,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s5",
+          "start": 192,
+          "end": 372,
+          "wordCount": 36,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s6",
+          "start": 373,
+          "end": 491,
+          "wordCount": 22,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s7",
+          "start": 492,
+          "end": 605,
+          "wordCount": 21,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s8",
+          "start": 606,
+          "end": 922,
+          "wordCount": 45,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s9",
+          "start": 923,
+          "end": 1070,
+          "wordCount": 25,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s10",
+          "start": 1071,
+          "end": 1228,
+          "wordCount": 29,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s11",
+          "start": 1229,
+          "end": 1312,
+          "wordCount": 15,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s12",
+          "start": 1313,
+          "end": 1462,
+          "wordCount": 26,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s13",
+          "start": 1463,
+          "end": 1556,
+          "wordCount": 16,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s14",
+          "start": 1557,
+          "end": 1598,
+          "wordCount": 9,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s15",
+          "start": 1599,
+          "end": 1669,
+          "wordCount": 10,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "human"
+        },
+        {
+          "id": "s16",
+          "start": 1671,
+          "end": 1789,
+          "wordCount": 20,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s17",
+          "start": 1790,
+          "end": 1988,
+          "wordCount": 33,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s18",
+          "start": 1989,
+          "end": 2133,
+          "wordCount": 26,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s19",
+          "start": 2134,
+          "end": 2262,
+          "wordCount": 25,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s20",
+          "start": 2264,
+          "end": 2397,
+          "wordCount": 25,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s21",
+          "start": 2398,
+          "end": 2579,
+          "wordCount": 37,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s22",
+          "start": 2580,
+          "end": 2749,
+          "wordCount": 28,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s23",
+          "start": 2750,
+          "end": 2820,
+          "wordCount": 14,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s24",
+          "start": 2822,
+          "end": 3092,
+          "wordCount": 42,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s25",
+          "start": 3093,
+          "end": 3186,
+          "wordCount": 17,
+          "category": "unassessed",
+          "eligible": false,
+          "knownOrigin": "ai"
+        },
+        {
+          "id": "s26",
+          "start": 3187,
+          "end": 3307,
+          "wordCount": 24,
+          "category": "unassessed",
+          "eligible": true,
+          "knownOrigin": "ai"
+        }
+      ]
+    }
+  ]
+}

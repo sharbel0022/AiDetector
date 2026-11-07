@@ -1,8 +1,11 @@
 """Explicitly configured OpenAI-compatible Chat Completions adapter."""
+import time
+
 from fastapi import HTTPException
 
 from ai.humanizer.prompts import SCHEMA
-from ai.providers.common import request_json, validated_text
+from ai.providers.common import metered_response, request_json, validated_text
+from ai.usage import GenerationResult
 
 
 def generation_body(settings, instructions, user, cap) -> dict:
@@ -13,12 +16,14 @@ def generation_body(settings, instructions, user, cap) -> dict:
 
 async def generate(client, settings, body) -> str:
     headers = {'Authorization': f'Bearer {settings.compatible_key}'}
+    started = time.perf_counter()
     data = await request_json(client, settings, 'POST', settings.compatible_url.rstrip('/') + '/chat/completions', headers=headers, body=body)
-    try:
-        choice = data['choices'][0]
-        if choice.get('finish_reason') != 'stop' or choice['message'].get('refusal'):
-            raise HTTPException(502, 'AI-leverantören slutförde inte textbearbetningen. Kontrollera modellens svar och serverns utmatningsgräns.')
-        raw = choice['message']['content']
-    except (KeyError, TypeError, IndexError, AttributeError):
-        raise HTTPException(502, 'AI-leverantören gav ett ogiltigt strukturerat svar. Försök igen.') from None
-    return validated_text(raw)
+    with metered_response('compatible', data, (time.perf_counter() - started) * 1000) as usage:
+        try:
+            choice = data['choices'][0]
+            if choice.get('finish_reason') != 'stop' or choice['message'].get('refusal'):
+                raise HTTPException(502, 'AI-leverantören slutförde inte textbearbetningen. Kontrollera modellens svar och serverns utmatningsgräns.')
+            raw = choice['message']['content']
+        except (KeyError, TypeError, IndexError, AttributeError):
+            raise HTTPException(502, 'AI-leverantören gav ett ogiltigt strukturerat svar. Försök igen.') from None
+        return GenerationResult(validated_text(raw), usage)

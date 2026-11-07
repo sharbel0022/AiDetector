@@ -1,28 +1,30 @@
 flowchart TD
-    U[Användare] --> F[React i webbläsaren]
-    F --> L[Lokal stilanalys]
-    L --> F
-    F --> S[Host, origin och autentisering]
-    S --> B[FastAPI]
-    B --> A[AIService i ai/ai.py]
-    A --> D[Stilanalys via API]
-    A --> H[Humanizer och skyddade värden]
-    H --> Q[Delade kvoter och avbrott]
-    Q <--> DB[SQLite på en värd]
-    Q --> P[Servervald AI-leverantör]
-    P --> O[OpenAI Responses API]
-    P --> LL[Ollama och installerad modell]
-    P --> C[Kompatibel schema-API]
-    O --> V[Svarsvalidering och granskningskrav]
-    LL --> V
-    C --> V
-    V --> R[Text, jämförelse och osäkerhet]
-    D --> R
-    R --> B
-    B --> F
-    ENV[Serverns .env] --> CFG[Settings]
-    CFG --> A
-    subgraph EXP[Endast offlineexperiment]
-        DS[Spårbara train, validation och testdata] --> ML[ML-klassificerare]
-        ML --> EV[Mätetal och regressionsrapporter]
+    User[Användare] --> React[React och resultatpresentation]
+    React --> Local[Lokal språkregel och stilanalys]
+    React --> HTTP[FastAPI med åtkomst och gränser]
+    HTTP --> AI[AIService]
+    AI --> Detector[Detektor och segmentering]
+    Detector --> Weights[Tränade JSON-vikter]
+    Weights --> Gates[Separata valideringskrav]
+    Gates --> Results[Bedömning eller avstående]
+    Results --> React
+    AI --> Humanizer[Humanizer och skyddade värden]
+    Humanizer --> Quota[Atomiska budgetreservationer]
+    Quota --> Providers[Servervald leverantör]
+    Providers --> OpenAI[OpenAI Responses]
+    Providers --> Ollama[Ollama]
+    Providers --> Compatible[Kompatibel API]
+    Providers --> Usage[Tokenmätning och versionspriser]
+    Usage --> SQLite[SQLite utan användartext]
+    Quota <--> SQLite
+    Providers --> Validation[Svarsvalidering och betydelserisker]
+    Validation --> Comparison[Original och ändringsjämförelse]
+    Comparison --> React
+    subgraph Research[Träning och diagnostik]
+        Data[Historiska data med härkomst] --> Training[Träning på train]
+        Training --> Selection[Modell och tröskelval på validation]
+        Selection --> Evaluation[Frysta historiska regressioner]
+        Evaluation --> Manifest[Modell och evidensmanifest]
     end
+    Manifest --> Weights
+    Manifest --> Gates

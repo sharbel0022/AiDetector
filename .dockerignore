@@ -5,7 +5,9 @@ dist
 sites-build
 artifacts
 data
-models
+models/**
+!models/v5
+!models/v5/detector.json
 work
 docs
 .env

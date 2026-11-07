@@ -1,9 +1,11 @@
 # Archived corpus/model bytes are hashed evidence; never normalize their newlines.
 data/** -text linguist-generated=true whitespace=cr-at-eol
 models/experimental/** -text linguist-generated=true whitespace=cr-at-eol
+models/v5/** -text linguist-generated=true whitespace=cr-at-eol
 docs/evidence/** -text whitespace=cr-at-eol
 # Source hashes use canonical LF checkouts on every host.
 tools/*.py text eol=lf
 tools/*.mjs text eol=lf
 sites/src/*.mjs text eol=lf
 backend/*.py text eol=lf
+ai/**/*.py text eol=lf

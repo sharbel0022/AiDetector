@@ -49,15 +49,17 @@ class AIService:
         async with asyncio.timeout(timeout):
             return await generate(self.settings, payload, protected, self.transport, cap)
 
-    async def detect(self, text: str, language: str = 'sv') -> dict[str, Any]:
-        # No network or model inference. Moving CPU work off the event loop keeps
-        # concurrent authenticated requests responsive at the bounded input size.
-        from ai.detector.features import analyze_text
+    async def detect(self, text: str, language: str = 'auto') -> dict[str, Any]:
+        # Local classifier inference never sends source text to a model provider.
+        # Move bounded CPU work off the event loop; the runtime independently
+        # gates document, calibrated-probability and segment-share presentation.
+        from ai.detector.runtime import analyze_v5
         try:
             payload = DetectRequest(text=text, language=language)
         except ValidationError:
-            raise HTTPException(422, 'Analys kräver 1–12 000 tecken och svenska eller engelska.') from None
-        return await asyncio.to_thread(analyze_text, payload.text, payload.language)
+            raise HTTPException(422, 'Analys kräver 1–12 000 tecken och automatiskt språkval, svenska eller engelska.') from None
+        return await asyncio.to_thread(analyze_v5, payload.text, payload.language,
+                                       model_path=self.settings.detector_model_path)
 
     async def humanize(self, text: str, language: str = 'sv', tone: str = 'natural',
                        protected_terms: list[str] | None = None) -> dict[str, Any]:
@@ -76,6 +78,10 @@ class AIService:
             raise HTTPException(422, 'Texten innehåller för många skyddade uppgifter. Dela upp den i mindre delar.')
         try:
             output = await self._generate(payload, protected, self.settings.request_timeout)
+            # Providers attach actual usage before any restoration/normalization
+            # turns the str-compatible result into a plain string. Trusted legacy
+            # injected generators may omit it; absence must never become zero.
+            usage = getattr(output, 'usage', None)
             output = restore_text(output, mapping, payload.text)
             # Restored quotes/terms can be longer than their placeholders. Apply
             # the browser's UTF-16 output contract to the final returned text.
@@ -95,6 +101,7 @@ class AIService:
             output = payload.text
         return {
             'text': output, 'provider': self.settings.provider, 'model': self.settings.model,
+            'usage': usage,
             'diff': make_diff(payload.text, output), 'protected_count': len(mapping),
             'unchanged': unchanged,
             'explanation': ('Modellen lämnade texten oförändrad. Originalet har behållits exakt; '
@@ -104,7 +111,7 @@ class AIService:
             'preservation': {
                 'exact_values_checked': True, 'semantic_equivalence_verified': False,
                 'names': 'heuristic_and_explicit_terms',
-                'meaning_risk_checks': 'bounded_marker_counts_and_known_units',
+                'meaning_risk_checks': 'bounded_markers_scope_anchor_order_timeline_and_units',
             },
             'warning': REVIEW_WARNING,
         }

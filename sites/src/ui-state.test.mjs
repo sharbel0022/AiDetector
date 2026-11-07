@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import * as uiState from './ui-state.mjs';
 import { validateBase, validateRewriteInput, normalizeRewriteResult, sourceHighlights, createRequestGate, parseProtectedTerms, normalizeHealthResponse, normalizeProviderStatus, apiErrorMessage } from './ui-state.mjs';
 
 test('API origin validation allows secure origins and loopback without leaking credentials', () => {
@@ -50,6 +51,54 @@ test('superseded and cancelled requests cannot publish even when a fetch ignores
   gate.cancel();
   assert.equal(second.signal.aborted,true);
   assert.equal(gate.isCurrent(second),false);
+});
+
+test('usage reads after cancellation retain uncertainty before and after a delayed charge appears', () => {
+  assert.equal(typeof uiState.usageStateReducer, 'function', 'usage snapshots need cancellation state');
+  const scope = JSON.stringify(['https://api.example.se', 'token-a']);
+  let state = uiState.usageStateReducer({}, {type:'received', scope, totals:{requests:2,total_tokens:125}, at:'2026-11-07T12:00:00Z'});
+  state = uiState.usageStateReducer(state, {type:'uncertain', scope});
+  state = uiState.usageStateReducer(state, {type:'loading', scope});
+  assert.equal(state[scope].uncertain, true);
+  assert.equal(state[scope].totals.requests, 2);
+  state = uiState.usageStateReducer(state, {type:'received', scope, totals:{requests:2,total_tokens:125}, at:'2026-11-07T12:00:01Z'});
+  assert.equal(state[scope].uncertain, true, 'an early read cannot confirm server settlement');
+  state = uiState.usageStateReducer(state, {type:'received', scope, totals:{requests:3,total_tokens:250}, at:'2026-11-07T12:00:05Z'});
+  assert.equal(state[scope].totals.total_tokens, 250);
+  assert.equal(state[scope].refreshedAt, '2026-11-07T12:00:05Z');
+  assert.equal(state[scope].refreshing, false);
+  assert.equal(state[scope].uncertain, true, 'aggregate counters cannot identify completion of a particular request');
+});
+
+test('usage uncertainty and snapshots stay scoped to their backend and access code', () => {
+  assert.equal(typeof uiState.usageStateReducer, 'function');
+  const scopes = [JSON.stringify(['https://one.example.se', 'token-a']), JSON.stringify(['https://two.example.se', 'token-a']), JSON.stringify(['https://one.example.se', 'token-b'])];
+  let state = uiState.usageStateReducer({}, {type:'uncertain', scope:scopes[0]});
+  for (const scope of scopes.slice(1)) state = uiState.usageStateReducer(state, {type:'received', scope, totals:{requests:0,total_tokens:null}, at:'2026-11-07T12:00:00Z'});
+  assert.equal(state[scopes[0]].uncertain, true);
+  for (const scope of scopes.slice(1)) assert.equal(state[scope].uncertain, false);
+  state = uiState.usageStateReducer(state, {type:'received', scope:scopes[0], totals:{requests:3,total_tokens:250}, at:'2026-11-07T12:00:05Z'});
+  assert.equal(state[scopes[0]].uncertain, true);
+  assert.equal(state[scopes[1]].totals.requests, 0);
+  assert.equal(state[scopes[2]].totals.requests, 0);
+});
+
+test('a failed usage refresh keeps the last snapshot and cancellation warning until retry', () => {
+  assert.equal(typeof uiState.usageStateReducer, 'function');
+  const scope = JSON.stringify(['', '']);
+  let state = uiState.usageStateReducer({}, {type:'received', scope, totals:{requests:2,total_tokens:125}, at:'2026-11-07T12:00:00Z'});
+  state = uiState.usageStateReducer(state, {type:'uncertain', scope});
+  state = uiState.usageStateReducer(state, {type:'loading', scope});
+  state = uiState.usageStateReducer(state, {type:'failed', scope});
+  assert.equal(state[scope].unavailable, true);
+  assert.equal(state[scope].refreshing, false);
+  assert.equal(state[scope].totals.requests, 2);
+  assert.equal(state[scope].refreshedAt, '2026-11-07T12:00:00Z');
+  assert.equal(state[scope].uncertain, true);
+  state = uiState.usageStateReducer(state, {type:'loading', scope});
+  assert.equal(state[scope].refreshing, true);
+  assert.equal(state[scope].unavailable, false);
+  assert.equal(state[scope].uncertain, true);
 });
 
 test('explicit protected terms require exact source matches and reject silent truncation', () => {

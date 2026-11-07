@@ -4,6 +4,7 @@ from __future__ import annotations
 import asyncio
 import hmac
 import hashlib
+import math
 import re
 import sqlite3
 import time
@@ -25,6 +26,7 @@ from ai.humanizer.prompts import SYSTEM, MODES, SCHEMA
 from ai.humanizer.rewrite import make_diff
 from ai.humanizer.validation import PreservationError, TOKEN, protect_text, restore_text
 from ai.providers import configuration_error, generate, generation_body
+from ai.usage import provider_usage, reservation_cost_nanos
 from backend.config import Settings
 from backend.limits import SharedLimits
 
@@ -74,7 +76,7 @@ class SecurityHeaders:
                                 'Content-Security-Policy': "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https: http://127.0.0.1:* http://localhost:* http://[::1]:*; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"})
             await send(message)
         try:
-            if scope['path'] in ('/api/rewrite', '/api/provider-status', '/api/detect') and scope['method'] != 'OPTIONS':
+            if scope['path'] in ('/api/rewrite', '/api/provider-status', '/api/detect', '/api/usage') and scope['method'] != 'OPTIONS':
                 self.authorize(Request(scope, receive))
         except HTTPException as exc:
             return await JSONResponse({'detail': exc.detail}, exc.status_code, headers=exc.headers)(scope, receive, with_headers)
@@ -115,11 +117,15 @@ def create_app(settings: Settings | None = None, transport=None) -> FastAPI:
         raise ValueError('Invalid resource limits')
     if not isinstance(s.max_input_chars, int) or isinstance(s.max_input_chars, bool) or not 10 <= s.max_input_chars <= 8000:
         raise ValueError('AI_MAX_INPUT_CHARS must be an integer between 10 and 8000')
+    if any(value is not None and (isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or not 0 < value <= 1000000) for value in (s.daily_cost_budget_usd, s.global_daily_cost_budget_usd)):
+        raise ValueError('USD cost limits must be finite and between 0 and 1000000')
+    if (s.daily_cost_budget_usd is not None or s.global_daily_cost_budget_usd is not None) and (not s.state_db or not Path(s.state_db).is_absolute()):
+        raise ValueError('USD cost budgets require an absolute persistent TEXTLAB_STATE_DB path shared by all workers')
     try:
         limits = SharedLimits(s.state_db)
     except (sqlite3.Error, OSError):
         raise ValueError('Shared quota storage is not available') from None
-    app=FastAPI(title='TextLab',version='4.0.0',docs_url='/api/docs' if s.environment!='production' else None,redoc_url=None,openapi_url='/api/openapi.json' if s.environment!='production' else None)
+    app=FastAPI(title='TextLab',version='5.0.0',docs_url='/api/docs' if s.environment!='production' else None,redoc_url=None,openapi_url='/api/openapi.json' if s.environment!='production' else None)
     app.add_middleware(BodyLimit, limit=s.max_body_bytes, timeout=s.body_timeout)
     app.add_middleware(TrustedHostMiddleware,allowed_hosts=list(s.allowed_hosts))
     readiness = {'expires': 0, 'result': None}
@@ -161,11 +167,17 @@ def create_app(settings: Settings | None = None, transport=None) -> FastAPI:
         # and server credentials are never part of this payload or quota storage.
         body = generation_body(s, payload, protected, cap)
         body_bytes = httpx.Request('POST', 'http://localhost', json=body).content
-        reserve_tokens = len(body_bytes) + 1024 + (cap or s.max_output_tokens)
+        output_cap = min(cap or s.max_output_tokens, s.max_output_tokens)
+        input_bound = len(body_bytes) + 1024
+        reserve_tokens = input_bound + output_cap
+        reserve_cost = reservation_cost_nanos(s.provider, s.model, input_bound, output_cap)
         try:
-            lease = limits.reserve(request.state.principal, reserve_tokens, s, timeout)
+            lease = limits.reserve(request.state.principal, reserve_tokens, s, timeout, cost_nanos=reserve_cost)
         except sqlite3.Error:
             raise HTTPException(503, 'Säker kvotkontroll är tillfälligt otillgänglig.') from None
+        request.state.usage_lease = lease
+        started = time.perf_counter()
+        usage, status = None, 'unreported'
         async def disconnected():
             while True:
                 if await request.is_disconnected():
@@ -176,16 +188,37 @@ def create_app(settings: Settings | None = None, transport=None) -> FastAPI:
         try:
             async with asyncio.timeout(timeout):
                 done, _ = await asyncio.wait((work, monitor), return_when=asyncio.FIRST_COMPLETED)
-                return await next(iter(done))
+                result = await (work if work in done else monitor)
+                usage, status = getattr(result, 'usage', None), 'provider_success'
+                return result
+        except asyncio.CancelledError:
+            status = 'cancelled'
+            raise
+        except TimeoutError:
+            status = 'timeout'
+            raise
+        except HTTPException as exc:
+            usage = getattr(exc, 'usage', None)
+            status = 'cancelled' if exc.status_code == 499 else 'failed'
+            raise
         finally:
             for task in (work, monitor):
                 if not task.done():
                     task.cancel()
             await asyncio.gather(work, monitor, return_exceptions=True)
+            # A disconnect and a response can complete together. Recover billing
+            # from the work task even when the disconnect won the request race.
+            if usage is None and work.done() and not work.cancelled():
+                try:
+                    usage = getattr(work.result(), 'usage', None)
+                except Exception as exc:
+                    usage = getattr(exc, 'usage', None)
+            usage = usage or provider_usage(s.provider, None, (time.perf_counter() - started) * 1000)
             try:
-                limits.release(lease)
+                limits.complete(lease, usage, status)
             except sqlite3.Error:
-                # Fail closed until the short lease expires if the database is unavailable.
+                # Durable reservations survive a failed settlement. Only the
+                # concurrency lease expires; missing billing is never refunded.
                 pass
 
     app.add_middleware(SecurityHeaders, authorize=authorize)
@@ -195,18 +228,39 @@ def create_app(settings: Settings | None = None, transport=None) -> FastAPI:
 
     @app.exception_handler(RequestValidationError)
     async def invalid_input(request,exc):
-        return JSONResponse({'detail':'Ogiltig inmatning. Ange 10–8 000 tecken, ett giltigt tonläge och svenska eller engelska.'},422)
+        detail = ('Ogiltig inmatning. Ange 1–12 000 UTF-16-enheter och språk auto, sv eller en.'
+                  if request.url.path == '/api/detect' else
+                  'Ogiltig inmatning. Ange 10–8 000 tecken, ett giltigt tonläge och svenska eller engelska.')
+        return JSONResponse({'detail': detail},422)
 
     @app.get('/api/health')
     async def health():
-        return {'status':'ok','version':'4.0.0','provider':s.provider,'model':s.model,'auth_required':bool(s.app_token) or s.auth_mode == 'multiuser','auth_mode':s.auth_mode,'model_verified':False,'text_storage':False,'max_input_chars':s.max_input_chars,'provider_configured':configuration_error(s) is None}
+        return {'status':'ok','version':'5.0.0','provider':s.provider,'model':s.model,'auth_required':bool(s.app_token) or s.auth_mode == 'multiuser','auth_mode':s.auth_mode,'model_verified':False,'text_storage':False,'max_input_chars':s.max_input_chars,'provider_configured':configuration_error(s) is None}
+
+    @app.get('/api/usage')
+    async def usage(request: Request):
+        try:
+            return limits.summary(request.state.principal, s)
+        except sqlite3.Error:
+            raise HTTPException(503, 'Användningsstatistik är tillfälligt otillgänglig.') from None
+
+    def record_application(request, status):
+        lease = getattr(request.state, 'usage_lease', None)
+        if lease:
+            try:
+                limits.application_result(lease, status)
+            except sqlite3.Error:
+                pass
 
     @app.get('/api/provider-status')
     async def provider_status(request: Request):
         async with readiness_lock:
             if readiness['result'] is not None and readiness['expires'] > time.monotonic():
                 return readiness['result']
-            result = await service_for(request).provider_status()
+            try:
+                result = await service_for(request).provider_status()
+            finally:
+                record_application(request, 'probe')
             readiness.update(result=result, expires=time.monotonic() + (60 if result['ready'] else 5))
             return result
 
@@ -221,7 +275,13 @@ def create_app(settings: Settings | None = None, transport=None) -> FastAPI:
 
     @app.post('/api/rewrite')
     async def rewrite(payload: RewriteRequest, request: Request):
-        return await service_for(request).humanize(payload.text, payload.language, payload.tone, payload.protected_terms)
+        try:
+            result = await service_for(request).humanize(payload.text, payload.language, payload.tone, payload.protected_terms)
+        except BaseException:
+            record_application(request, 'rejected')
+            raise
+        record_application(request, 'accepted')
+        return result
 
     built=Path(__file__).resolve().parent.parent/'dist'
     if built.is_dir():app.mount('/',StaticFiles(directory=built,html=True),name='frontend')

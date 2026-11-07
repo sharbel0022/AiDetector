@@ -28,6 +28,7 @@ export function normalizeRewriteResult(data, original) {
     provider: metadataString(data, 'provider', 128, 'AI'),
     model: metadataString(data, 'model', 256, ''),
     warning: metadataString(data, 'warning', 2000, 'Granska betydelse, namn och fakta. Semantisk likvärdighet är inte verifierad.'),
+    usage: normalizeUsage(data.usage),
   };
 }
 
@@ -61,6 +62,21 @@ export function createRequestGate() {
     cancel() { current?.abort(); current = null; },
     isCurrent(request) { return current === request && !request.signal.aborted; },
   };
+}
+
+// A usage read cannot prove that a cancelled server request has settled.
+// Keep that uncertainty, and each last-read snapshot, within its connection scope.
+export function usageStateReducer(state, action) {
+  const previous = state[action.scope] || {totals:null,unavailable:false,refreshing:false,refreshedAt:null,uncertain:false};
+  let next;
+  switch (action.type) {
+    case 'loading': next = {...previous,refreshing:true,unavailable:false}; break;
+    case 'received': next = {...previous,totals:action.totals,refreshing:false,unavailable:false,refreshedAt:action.at}; break;
+    case 'failed': next = {...previous,refreshing:false,unavailable:true}; break;
+    case 'uncertain': next = {...previous,uncertain:true}; break;
+    default: return state;
+  }
+  return {...state,[action.scope]:next};
 }
 
 export function parseProtectedTerms(draft, text) {
@@ -107,4 +123,44 @@ export function normalizeProviderStatus(data) {
 }
 export function apiErrorMessage(data, status) {
   return typeof data?.detail === 'string' && data.detail.trim() && data.detail.length <= 2000 ? data.detail.trim() : `Begäran misslyckades (${status}). Kontrollera backend och texten och försök igen.`;
+}
+
+// Provider-reported counters only. Null means unavailable, never zero or an invented estimate.
+export function normalizeUsage(data) {
+  if (data == null) return null;
+  assertRecord(data);
+  const count = key => {
+    const value = data[key];
+    if (value == null) return null;
+    if (!Number.isSafeInteger(value) || value < 0) throw new Error(METADATA_ERROR);
+    return value;
+  };
+  const result = Object.fromEntries(['input_tokens','output_tokens','total_tokens','cached_input_tokens'].map(key => [key,count(key)]));
+  if (result.input_tokens !== null && result.output_tokens !== null && result.total_tokens !== null && result.total_tokens !== result.input_tokens + result.output_tokens) throw new Error(METADATA_ERROR);
+  const cost = data.cost;
+  assertRecord(cost);
+  if (cost.currency !== 'USD' || !['estimated','unknown','not_applicable'].includes(cost.status)) throw new Error(METADATA_ERROR);
+  const amount = cost.estimated_amount;
+  if (amount !== null && (typeof amount !== 'number' || !Number.isFinite(amount) || amount < 0 || amount > Number.MAX_SAFE_INTEGER)) throw new Error(METADATA_ERROR);
+  if (cost.status !== 'estimated' && amount !== null) throw new Error(METADATA_ERROR);
+  const recordedAt = metadataString(data,'recorded_at',128,'');
+  if (recordedAt && !Number.isFinite(Date.parse(recordedAt))) throw new Error(METADATA_ERROR);
+  const latency = data.latency_ms;
+  if (latency != null && (typeof latency !== 'number' || !Number.isFinite(latency) || latency < 0)) throw new Error(METADATA_ERROR);
+  if (cost.pricing_version != null && (typeof cost.pricing_version !== 'string' || cost.pricing_version.length > 256)) throw new Error(METADATA_ERROR);
+  return {...result,provider:metadataString(data,'provider',128,''),model:metadataString(data,'model',256,''),recorded_at:recordedAt,latency_ms:latency ?? null,cost:{currency:'USD',status:cost.status,estimated_amount:amount,pricing_version:cost.pricing_version ?? null}};
+}
+
+export function normalizeUsageTotals(data) {
+  assertRecord(data); assertRecord(data.period); assertRecord(data.unreported_counters); assertRecord(data.estimated_cost);
+  const integer = value => { if (!Number.isSafeInteger(value) || value < 0) throw new Error(METADATA_ERROR); return value; };
+  const amount = value => { if (value === null) return null; if (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value > Number.MAX_SAFE_INTEGER) throw new Error(METADATA_ERROR); return value; };
+  const start = metadataString(data.period,'start',128,''), end = metadataString(data.period,'end',128,'');
+  if (!Number.isFinite(Date.parse(start)) || !Number.isFinite(Date.parse(end)) || data.estimated_cost.currency !== 'USD') throw new Error(METADATA_ERROR);
+  const counters = {}, missing = {};
+  for (const key of ['input_tokens','output_tokens','total_tokens','cached_input_tokens']) {
+    counters[key] = data[key] === null ? null : integer(data[key]);
+    missing[key] = integer(data.unreported_counters[key]);
+  }
+  return {period:{start,end},requests:integer(data.requests),...counters,unreported_counters:missing,legacy_usage_unavailable:metadataBoolean(data,'legacy_usage_unavailable'),estimated_cost:{currency:'USD',amount:amount(data.estimated_cost.amount),unknown_requests:integer(data.estimated_cost.unknown_requests),not_applicable_requests:integer(data.estimated_cost.not_applicable_requests)}};
 }

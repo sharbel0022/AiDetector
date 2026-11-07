@@ -1,26 +1,55 @@
-# Kvalitetsbedömning — TextLab V4
+# Kvalitetsbedömning — TextLab V5
 
-**Målet 9,5/10 är inte verifierat.** V4 stärker strukturen, providerfel,
-konfiguration, textskydd och testbarhet. Det gör inte de experimentella
-författarskapsmodellerna statistiskt tillförlitliga eller humanizern semantiskt
-verifierad. En teknisk grön testsuite får inte räknas som bevis för modellkvalitet.
+**9,5/10 är inte verifierat.** V5 har en fungerande tränad detektorpipeline,
+separata evidenskrav, ett omarbetat granskningsgränssnitt och bokföring av
+leverantörens rapporterade förbrukning. Detektorns moderna regression visar fortfarande två
+falska positiva av åtta mänskliga utdrag. Några nya generativa modellprov
+kunde inte köras i denna miljö. Dessa begränsningar går inte att kompensera
+med fler gröna programtester.
 
-| Område | Faktisk bedömning | Underlag / kvarstående gräns |
-|---|---|---|
-| Arkitektur | Tydligare och verifierbar | Central AIService, separata providers/kontrakt/validering, fungerande V3-moduler bevarade |
-| Funktionell kod | Testad lokalt och i GitHub Actions | 309 Python + 70 Node-tester, reproducerbart produktionsbygge och HTTP-/prestandaprov |
-| AI Detector | Beskrivande stilverktyg; ej tillförlitlig författarskapsdetektor | Experiment hålls offline. Känd FPR 2/8 på mycket liten modern kontroll kvarstår |
-| AI Humanizer | Skyddad redigering med obligatorisk granskning | Reparerat överlappningsfel. Historiska betydelseproblem kvarstår; inga nya liveprov här |
-| OpenAI | Tekniskt förberett och mocktestat | Responses, modellåtkomst, schema, quota/errors; projektets verkliga nyckel/modell ej verifierad |
-| Säkerhet | Kontroller och regressioner finns | Auth/origin/kvoter/timeout/bytegränser, hemlighetsskydd och audits; inget oberoende pentest |
-| UI | Browser-, kontrakt- och mobilprov passerade | Sex lägen och granskning fungerar med kontrollerade svar; axe: 0 överträdelser i 11 lägen, manuell skärmläsargranskning ej utförd |
-| Dataintegritet | Bevarad historik och skilda evidenstyper | Gamla dataset/modeller/loggar/snapshots kvar; inga återanvända testdata kallas oberoende |
-| Prestanda | Lokala teknikmätningar | Bundle- och analysgränser samt HTTP-/ASGI-prov; inte verklig modellkallstart eller produktionslast |
-| Dokumentation | Faktisk kodstruktur dokumenterad | Arkitektur/Mermaid, API, installation, OpenAI/Ollama, drift och verifieringsrapport |
-| Releaseberedskap | Tekniska kontrollpunkter godkända på kandidaten | Separat kodgranskning och full CI inklusive tvåprocesscontainer klara; tagg, main-verifiering och rensning följer releaseordningen |
+Betygen nedan är en manuell teknisk bedömning av kandidaten, inte statistiska
+mått, en extern certifiering eller procentuell träffsäkerhet. Modellernas
+empiriska kvalitet redovisas separat. CI- och granskningsresultat finns i
+[verifieringsrapporten](docs/VERIFICATION-V5.md). Det tekniska underlaget omfattar
+faktiska CI-körningar av den byggda appen och en produktionscontainer; generativa
+modelltester redovisas separat.
 
-Exakta resultat och verifieringsstatus finns i [V4-rapporten](docs/VERIFICATION-V4.md).
-För att motivera 9,5/10 för hela produkten behövs större modern oberoende
-kvalitetsdata, bättre verifierad mänsklig falskpositivfrekvens och blindad
-redaktionell bedömning av verkliga modellutdata i samtliga lägen. En ny API-modell
-eller fler gröna mocktester ersätter inte dessa krav.
+| Område | Bedömning / 10 | Faktiskt underlag och kvarstående gräns |
+|---|---:|---|
+| Arkitektur och API | 9 | AIService, rena modulansvar, säker JSON-inferens, fyra separata evidensgrindar, tydliga kontrakt |
+| Funktionell kod och reproduktion | 9 | 482 Python-/84 Node-tester, numerisk reproduktion mellan miljöer, byteidentisk omträning i samma miljö, två matchande byggen och faktisk browser/container-verifiering |
+| UI och användbarhet | 8,5 | Två paneler, auto/manuellt språk, exakta segment, original/diff, export och ofullständig usage; 320/390 px utan horisontell overflow och axe utan rapporterade överträdelser. Ingen oberoende användarstudie eller manuell skärmläsargranskning |
+| Säkerhet och drift | 8,5 | Auth före body, origin/host, begränsade svar, kvoter, textfria loggar, audits och secretskanning; inget oberoende pentest eller verifierad fler-värdsdrift |
+| Token- och kostnadsbokföring | 9 | Faktiska provider-räknare, versionspriser, atomiska reserveringar, avstämning, fel/avbrott och migreringstest; leverantörsfaktura och okända modellpriser förblir externa |
+| AI Detector, produktionsberedskap | 3 | Riktig modell och diagnostik finns. Modern FPR 2/8, ingen oberoende kalibrering eller validerad segmentmodell; alla procentgrindar är stängda |
+| AI Humanizer, verifierad språk-/betydelsekvalitet | 6 | Starkare begränsade skydd och bevarad jämförelse; historiska betydelserisker, inga nya liveprov eller blindad bedömning av nya promptar |
+| Dokumentation och evidensintegritet | 9 | Faktisk arkitektur, API, drift, källgranskning, modeller och rapporter; 247 äldre evidensfiler bevarade byte för byte |
+
+Dessa betyg ska inte medelvärdesberäknas till ett marknadsföringsbetyg. En
+statistiskt osäker detektor blir inte tillförlitlig av en välbyggd frontend.
+
+## Vad som krävs för en högre bedömning
+
+1. **Ny oberoende detektorevidens.** Moderna svenska och engelska mänskliga texter
+   med verifierbara etiketter/rättigheter, flera genrer/längder, ämnes- och
+   tidsmatchade verkliga genereringar från flera modellfamiljer, samt grupperade
+   författare, källor och derivat. En separat fryst utvärdering ska ägas av någon
+   som inte anpassar modellen efter dess resultat.
+2. **Kalibrering och segmentkvalitet.** Separata tränings-, kalibrerings-,
+   validerings- och testmängder; låg övre falskpositivgräns, tillräcklig recall,
+   täckning och segmentprecision, plus kalibreringsfel på held-out data. Varken
+   en logistisk sigmoid eller kända andelar i konstruerade blandningar räcker.
+3. **Nya verkliga humanizerprov.** Kör konfigurerad OpenAI och tillgängliga lokala
+   modeller i alla sex lägen, behåll misslyckade utdata, och granska betydelse,
+   grammatisk kvalitet och lägestrogenhet blindat. Granska även när konservativa
+   regler stoppar korrekta omskrivningar.
+4. **Drift- och användningsvalidering.** Manuell tangentbords-/skärmläsargranskning,
+   användbarhetsprov, realistisk last och felåterställning samt en separat
+   säkerhetsgranskning i den tänkta driftmiljön.
+
+Originalet till det tidigare rapporterade testet med 572 ord och 47 meningar
+saknas. Den regressionen kan läggas till först när faktisk originaltext finns;
+texten har inte återskapats eller hittats på.
+
+Den tidigare bedömningen är bevarad i
+[QUALITY-SCORECARD-V4.md](docs/QUALITY-SCORECARD-V4.md).

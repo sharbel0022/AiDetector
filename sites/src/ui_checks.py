@@ -1,8 +1,11 @@
-"""Focused TextLab V4 interaction regressions; external model responses are controlled fixtures."""
+"""TextLab V5 interaction regressions; external model responses are controlled fixtures."""
 import asyncio
 import os
+import sys
 from pathlib import Path
 from playwright.async_api import async_playwright, expect
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools'))
+from browser_fixtures import USAGE_TOTALS_FIXTURE
 
 ORIGINAL = 'Åsa leder Projekt Atlas. Vi betalade 125 kr.'
 REWRITTEN = 'Åsa ansvarar för Projekt Atlas. Vi betalade 125 kr.'
@@ -15,6 +18,7 @@ async def main():
         page.on('pageerror', lambda error: failures.append(str(error)))
         await page.route('**/api/health', lambda route: route.fulfill(json={'provider':'ollama','model':'test-model','auth_required':False,'version':'4.0.0'}))
         await page.route('**/api/provider-status', lambda route: route.fulfill(json={'ready':False,'verified':False,'message':'Test: modellanslutningen är inte verifierad.'}))
+        await page.route('**/api/usage', lambda route: route.fulfill(json=USAGE_TOTALS_FIXTURE))
         await page.goto(os.getenv('TEXTLAB_TEST_URL', 'http://127.0.0.1:8767'), wait_until='networkidle')
         await page.get_by_role('button', name='AI-humanizer').click()
         editor = page.get_by_role('textbox', name='Din originaltext', exact=True)
@@ -115,7 +119,7 @@ async def main():
         assert await page.evaluate('document.documentElement.scrollWidth <= innerWidth')
         assert not failures, failures
         await browser.close()
-        print('TextLab UI: six modes, language, protected terms, keyboard submit, diff, TXT export, apply/restore, unchanged explanation, cancel, malformed rewrite/health/status metadata, dialog focus and 320px layout passed (mock model).')
+        print('TextLab V5 UI: six modes, language, protected terms, keyboard submit, diff, TXT export, apply/restore, unchanged explanation, cancel, malformed rewrite/health/status metadata, dialog focus and 320px layout passed (mock model).')
 
 if __name__ == '__main__':
     asyncio.run(main())
