@@ -4,6 +4,13 @@ Datum: 7 november 2026. Utgångspunkt: `ab16164c7baef1863cbdbd0a6b52f4fa0fc1e237
 Arbetsbranch: `feature/textlab-v5`. Denna rapport skiljer tekniska tester,
 återanvända diagnostikdata och verkliga generativa modellkörningar.
 
+**Verifierad kodkandidat:** `d92b824c9055f4628511a1df955bc15bb1e01681`.
+[GitHub Actions 42379391802](https://github.com/sharbel0022/AiDetector/actions/runs/42379391802)
+passerade alla steg. Rårapporter, skärmbilder och kontrollerade filhashar finns i
+[V5-evidensen](evidence/v5/README.md). Dokumentations- och utskriftsjusteringar
+efter denna mätpunkt verifieras även av sin egen körning på
+[PR #3](https://github.com/sharbel0022/AiDetector/pull/3).
+
 ## Baslinje före V5
 
 Den oförändrade V4-koden på senaste main gav **309 godkända Python-tester** och
@@ -23,9 +30,9 @@ integration och säkerhet, aldrig modellkvalitet.
 En lokal Uvicorn-server kunde startas. Playwright saknade sin nedladdade
 Chromium-binary; system-Chromium avbröts av `socket() failed: Operation not permitted`
 vid processuppstart. Den separata molnwebbläsaren kunde inte nå denna lokala server.
-Docker-binary och daemon saknas i den lokala körmiljön. Browser- och containerprov
-måste därför redovisas från kandidatens faktiska GitHub Actions-körning när den
-har körts, inte från äldre CI.
+Docker-binary och daemon saknas i den lokala körmiljön. Browser-, axe- och
+containerproven kördes därför i kandidatens faktiska GitHub Actions. Dessa
+resultat kommer från V5-koden och inte från äldre CI.
 
 ## Säkerhet och beroenden
 
@@ -35,7 +42,9 @@ separat från audit-JSON. Detta är en datumbunden beroendekontroll, inte ett pe
 
 Gitleaks 8.30.1 användes efter att den befintliga officiella distributionsfilens
 SHA-256 verifierats mot CI:s fastställda checksumma. Baslinjens 11 commits,
-cirka 14,8 MB, gav inga fynd. Slutkandidatens ändringar ska även skannas före push.
+cirka 14,8 MB, gav inga fynd. Ändringsdiffarna skannades före publicering och
+den aktuella branchens tillgängliga Git-historik skannades i CI, utan fynd.
+CI-actions är pinnade till commit-SHA och checkout behåller inga credentials.
 
 ## Data och modellbevis
 
@@ -72,14 +81,35 @@ Alla **247 tidigare spårade data-, modell- och evidensfiler** jämfördes mot
 baslinjens Git-objekt och var oförändrade byte för byte. V4:s tidigare
 kvalitetsbedömning finns även bevarad i [QUALITY-SCORECARD-V4.md](QUALITY-SCORECARD-V4.md).
 
-Browser-, axe- och containerresultat ska redovisas från den nya branchens
-GitHub Actions. En genomförd lokal build eller kompilering av browser-testkoden
-räknas inte som ett godkänt webbläsarprov. Oberoende kodgranskning och CI-status
-kompletteras i denna rapport efter kandidatkontrollen.
+### Browser, tillgänglighet och container
+
+Den byggda frontenden kördes i Chromium mot den riktiga FastAPI-detektorn.
+Testet kontrollerade modellversion, exakta originalintervall, stängda grindar
+och uteblivna procentsiffror. **17 browsergrupper** passerade, liksom den
+separata UI-körningen för sex redigeringslägen, tangentbord, diff, export,
+återställning, avbrott, felaktig metadata och fokusåtergång. Färgade
+detektorresultat och generativa svar i övriga UI-scenarier är märkta fixtures.
+
+Automatiska axe-kontroller omfattade **11 vyer** vid 1440, 390 och 320 px:
+**0 rapporterade överträdelser**. Två resultatvyer innehåller kvarvarande
+inkonklusiva kontrastkontroller eftersom axe inte kunde fastställa bakgrunden.
+Separat skärmbildsgranskning hittade ingen oavsiktlig överlappning; de berörda
+deklarerade färgparen ger kontrastförhållanden mellan 7,15:1 och 10,03:1.
+Det ersätter inte en kontroll av alla interaktionstillstånd eller en manuell
+skärmläsargranskning. Detaljerna bevaras i `accessibility.json` och
+`visual-review.json`. Ingen horisontell overflow eller okontrollerat JavaScriptfel
+observerades i de körda mobilscenarierna.
+
+Docker-imagen byggdes och kördes som **UID 10001 med två workers**. Provet
+verifierade frontend och säkerhetsheaders, 401 utan autentisering för provider,
+detektor och usage, faktisk inferens med den paketerade modellen och en
+textfri användarvy. Tolv samtidiga anrop för en annan testanvändare gav exakt
+**2 HTTP 200 och 10 HTTP 429**, delat över workers. Ingen verklig generativ
+leverantör användes av containertestet.
 
 ### Granskningsfynd och första CI-körningen
 
-Oberoende granskning identifierade motsägelsefulla kalibreringsräknare som kunde
+Separata agentgranskningar identifierade motsägelsefulla kalibreringsräknare som kunde
 passera valideringen samt en förbrukningsvy som kunde se aktuell ut efter ett
 avbrutet modellanrop. Nya regressioner reproducerade problemen före rättning.
 Kalibreringsgrinden kontrollerar nu positiva observationsantal, heltaliga
@@ -97,6 +127,12 @@ datakällor, typer, heltal och beslut, men accepterar ändliga flyttal inom abso
 plus relativ tolerans `1e-12`. Varje artefakts härledda hashvärden verifieras
 separat. CI tränar dessutom två gånger i samma miljö och kräver byteidentitet
 mellan dessa körningar. Modellvikterna ändrades inte för att dölja skillnaden.
+
+Nästa CI-körning passerade browserfunktionerna men fann knappnamn som saknade
+delar av den synliga texten. Knapparna använder nu sina synliga namn, och
+grupproller ger övriga etiketter korrekt semantik. Inga axe-regler stängdes av.
+Kodgranskningens omfattning, åtgärder och begränsningar finns i
+[granskningsprotokollet](evidence/v5/REVIEW.md).
 
 ## Humanizer: historisk återspelning
 
@@ -136,6 +172,9 @@ avbrutna anrop, processförlust, UTC-dygn, användarisolering och äldre V4-kvot
 USD-gränser kräver en absolut beständig databas. Tidigare okänd kostnad får
 inte räknas som noll när gränsen aktiveras. Gränssnittet märker delvis kända
 totalsummor och förbrukning från äldre versioner som ofullständiga.
+Ett avbrutet anrop markeras som potentiellt ofullständigt även efter nya
+hämtningar; ett browserprov visar en fördröjd debitering, manuell uppdatering
+och isolering mellan olika åtkomstkoder.
 
 ## Prestanda och dess gränser
 
@@ -155,3 +194,15 @@ Python, ramverk, modellcache och tidigare tester; det är inte isolerad
 allokering per anrop. Humanizerns samtidighetsprov använde en uttrycklig HTTP-mock:
 två accepterade och sex begränsade av åtta samtidiga begäranden. Den tiden är
 inte verklig generativ modellprestanda. OpenAI-/Ollama-kallstart har inte mätts.
+
+Den arkiverade CI-mätningen på Python 3.12.16 och en runner med fyra logiska
+CPU:er gav första faktiska detektoranropet **161 ms**, uppvärmd median
+**122 ms** och p95 **131 ms** för 20 anrop med 12 000 tecken. Åtta samtidiga
+analyser gav p95 **844 ms**, samtliga HTTP 200. Benchmarkprocessens RSS gick
+från cirka **62,5 till 79,5 MB**; detta är total process-RSS, inte minne per anrop.
+Skillnaden mot lokala tider visar varför värdena måste knytas till körmiljön.
+
+Frontendens gzipstorlek var **91 360 byte JavaScript och 7 430 byte CSS**, under
+de oförändrade gränserna 100 000/10 000 byte. Den separata lokala stilanalysen
+gav vid 12 000 tecken p95 **8,89 ms för svenska och 5,88 ms för engelska**
+(100 körningar per språk). Dessa tider är inte den ML-baserade serveranalysen.

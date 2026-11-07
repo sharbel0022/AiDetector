@@ -1,0 +1,141 @@
+{
+  "schemaVersion": "textlab-v5-verification-evidence-1",
+  "sourceCommit": "d92b824c9055f4628511a1df955bc15bb1e01681",
+  "sourceTree": "a76abd7404ca8f7d09fa11e2f03fd16e0cfba48d",
+  "runId": 42379391802,
+  "jobId": 128423615800,
+  "runUrl": "https://github.com/sharbel0022/AiDetector/actions/runs/42379391802",
+  "conclusion": "success",
+  "artifactId": 13576109598,
+  "artifactZipSha256": "703f9d89a6bde9b40fe3addaecfb1338b3937f5c84ae522932759e2197123dd8",
+  "artifactZipHashVerifiedBeforeExtraction": true,
+  "note": "Files below are preserved byte-for-byte from the named CI artifact, except the separately identified local preservation audit. UI fixtures do not establish model quality. Later documentation/print-pagination commits are checked by their own PR workflow runs.",
+  "files": [
+    {
+      "path": "api-tests.txt",
+      "bytes": 1131,
+      "sha256": "da39e5c34fabf5fc8fb86cfd9175e30f92b3bb09b9f380b608674cbd7f699547",
+      "origin": "GitHub Actions artifact"
+    },
+    {
+      "path": "node-tests.txt",
+      "bytes": 17599,
+      "sha256": "7b373ea6e013cc305183eea72e94066af4317d43209bda6b6ad6711801363897",
+      "origin": "GitHub Actions artifact"
+    },
+    {
+      "path": "npm-audit.txt",
+      "bytes": 24,
+      "sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3",
+      "origin": "GitHub Actions artifact"
+    },
+    {
+      "path": "pip-audit.json",
+      "bytes": 1339,
+      "sha256": "63fd96e47ba99f65ce4027a3f4895efaccf3cfe610ee9b75ca455f37238d8340",
+      "origin": "GitHub Actions artifact"
+    },
+    {
+      "path": "pip-audit-ml.json",
+      "bytes": 423,
+      "sha256": "b9e6447977838eb9adda6049cc379f5452c39f7ff4e04699d71873aa0a9b397a",
+      "origin": "GitHub Actions artifact"
+    },
+    {
+      "path": "secrets-history.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "origin": "GitHub Actions artifact"
+    },
+    {
+      "path": "build-sha256.txt",
+      "bytes": 275,
+      "sha256": "310afd4e471ec378781aeb14bf8e54482d037796d6a1a66137d0af64ce411657",
+      "origin": "GitHub Actions artifact"
+    },
+    {
+      "path": "browser-results.json",
+      "bytes": 1886,
+      "sha256": "9b021e1984940206df7094ace5e1103ae7cc303a59572fcdabe02bd62211aac9",
+      "origin": "GitHub Actions artifact"
+    },
+    {
+      "path": "accessibility.json",
+      "bytes": 3370,
+      "sha256": "dca5c8ccbdd01539de281f40946883e5f2df032f9c5db7e58bcd13cfd1a54927",
+      "origin": "GitHub Actions artifact"
+    },
+    {
+      "path": "container-results.json",
+      "bytes": 646,
+      "sha256": "ba4be58d5a7643f38c48e785a13ea6c0e8252632ae121341cfebc97e3261cac7",
+      "origin": "GitHub Actions artifact"
+    },
+    {
+      "path": "api-performance.json",
+      "bytes": 2368,
+      "sha256": "c9ba5ff9a37e4500a63599eb2ffdd2ca63b5941cc2eb0c4ee1d68673597fef1b",
+      "origin": "GitHub Actions artifact"
+    },
+    {
+      "path": "performance.json",
+      "bytes": 2450,
+      "sha256": "73cbd2c8d5b204f25f5498131072d7989cfcd337aeaab36df9768e044b7d7810",
+      "origin": "GitHub Actions artifact"
+    },
+    {
+      "path": "v5-reproduction-check.json",
+      "bytes": 7722,
+      "sha256": "86321fd259e54d7bf6b65e0c8841de6efdfb4d5e5397d228e0df707d1b2559b0",
+      "origin": "GitHub Actions artifact"
+    },
+    {
+      "path": "humanizer-reassessment-v5.json",
+      "bytes": 347211,
+      "sha256": "fc0d65548906e560e47c0e77d4dfae30fd36b8fdac3789492a5d7e0e9154779b",
+      "origin": "GitHub Actions artifact"
+    },
+    {
+      "path": "real-detector-v5.png",
+      "bytes": 340407,
+      "sha256": "a9fdff7f8b15d6b9d0b2a198012cd6ed0b2008c0f2977e952d8b1d05ac6bf361",
+      "origin": "GitHub Actions artifact"
+    },
+    {
+      "path": "segments-v5-mobile-320.png",
+      "bytes": 205169,
+      "sha256": "11f3d042438971a979d13d039577ab9debe9ff320a0c6202a125457dd0d0e164",
+      "origin": "GitHub Actions artifact"
+    },
+    {
+      "path": "humanizer-v5.png",
+      "bytes": 217164,
+      "sha256": "afa7f66def654c04353bc3e189e9f029ffd5438664d74ac99695ab3a52eb1c17",
+      "origin": "GitHub Actions artifact"
+    },
+    {
+      "path": "historical-preservation.json",
+      "bytes": 13573,
+      "sha256": "203a5e0a750a7e669bf5dcee60f9a322b0e93d9505a0182c9c1baef4e64010b6",
+      "origin": "local Git blob comparison"
+    },
+    {
+      "path": "accessibility-AI-detektor-1440.png",
+      "bytes": 469904,
+      "sha256": "845b4cfa729e1776f5258a4196f0ce63958cac854a24168dd8f1fbd3841be346",
+      "origin": "GitHub Actions artifact"
+    },
+    {
+      "path": "accessibility-AI-detektor-320.png",
+      "bytes": 405056,
+      "sha256": "30005497abc5083cf8a8b18bee299244c8dfd63373939b9d1c90b8c9a3b6d15c",
+      "origin": "GitHub Actions artifact"
+    },
+    {
+      "path": "visual-review.json",
+      "bytes": 2286,
+      "sha256": "978517b382d11dcc36d36bfb24ecc5eb2f2905dda7aa25bec32febdfed186d71",
+      "origin": "Static screenshot review and CSS calculation"
+    }
+  ]
+}

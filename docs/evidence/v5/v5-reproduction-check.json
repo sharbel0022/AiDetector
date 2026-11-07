@@ -1,0 +1,200 @@
+{
+  "schemaVersion": "textlab-v5-reproduction-check-1",
+  "passed": true,
+  "tolerance": {
+    "absolute": 1e-12,
+    "relative": 1e-12,
+    "rule": "abs(a-b) <= absolute + relative * max(abs(a), abs(b))"
+  },
+  "independentlyValidatedDerivedPaths": [
+    "/artifactSha256",
+    "/evidence/document/calibrationSha256",
+    "/evidence/document/lineageAudit/bindingSha256",
+    "/evidence/document/modelSha256",
+    "/evidence/document/thresholdsSha256",
+    "/evidence/segment/calibrationSha256",
+    "/evidence/segment/lineageAudit/bindingSha256",
+    "/evidence/segment/modelSha256",
+    "/evidence/segment/thresholdsSha256",
+    "/modelVersion"
+  ],
+  "checks": {
+    "referenceIntegrity": true,
+    "candidateIntegrity": true,
+    "structureAndValuesEqualWithinTolerance": true,
+    "gatesEqual": true,
+    "predictionCategoriesEqual": true
+  },
+  "numericComparison": {
+    "comparedFloatCount": 29214,
+    "changedFloatCount": 9965,
+    "maximumAbsoluteDifference": 1.1102230246251565e-16,
+    "maximumAbsoluteDifferencePath": "/evidence/document/predictions/18/score",
+    "maximumRelativeDifference": 1.4103110066372867e-13,
+    "maximumRelativeDifferencePath": "/documentModel/coefficients/1251"
+  },
+  "differenceCount": 0,
+  "errors": [],
+  "reference": {
+    "path": "models/v5/detector.json",
+    "fileSha256": "cb6cc1884d7d895df53f56126d9240a919f30a0ea0a34e99f2d8c86830725e63",
+    "artifactSha256": "da731eead96ee4c11b46d6ab048b2ead6892f29d59a34a567884f00695f06fe3",
+    "modelVersion": "textlab-v5-188bc0e07ddf-e66ac217",
+    "documentModelSha256": "188bc0e07ddf390a2fbb33e623db8522db4ab0016ac452abd6ced00cb2ade34d",
+    "segmentModelSha256": null,
+    "gates": {
+      "document": {
+        "passed": false,
+        "reasons": [
+          "en_ai_recall_bound_not_met",
+          "en_human_false_positive_bound_not_met",
+          "en_sample_size_insufficient",
+          "en_source_family_count_insufficient",
+          "fresh_independent_document_test_missing",
+          "frozen_test_provenance_missing",
+          "overall_ai_recall_bound_not_met",
+          "overall_human_false_positive_bound_not_met",
+          "overall_sample_size_insufficient",
+          "overall_source_family_count_insufficient",
+          "sv_ai_recall_bound_not_met",
+          "sv_human_false_positive_bound_not_met",
+          "sv_sample_size_insufficient",
+          "sv_source_family_count_insufficient"
+        ]
+      },
+      "calibration": {
+        "passed": false,
+        "reasons": [
+          "document_classification_unvalidated",
+          "en_calibration_error_not_validated",
+          "independent_document_calibration_missing",
+          "overall_calibration_error_not_validated",
+          "sv_calibration_error_not_validated"
+        ]
+      },
+      "segment": {
+        "passed": false,
+        "reasons": [
+          "en_ai_recall_bound_not_met",
+          "en_coverage_insufficient",
+          "en_human_false_positive_bound_not_met",
+          "en_invalid_metric_counts_or_intervals",
+          "en_sample_size_insufficient",
+          "en_segment_precision_bound_not_met",
+          "en_source_family_count_insufficient",
+          "evidence_integrity_binding_missing",
+          "fresh_independent_segment_test_missing",
+          "frozen_test_provenance_missing",
+          "independent_lineage_audit_missing",
+          "independently_selected_thresholds_missing",
+          "model_evidence_binding_missing",
+          "overall_ai_recall_bound_not_met",
+          "overall_coverage_insufficient",
+          "overall_human_false_positive_bound_not_met",
+          "overall_invalid_metric_counts_or_intervals",
+          "overall_sample_size_insufficient",
+          "overall_segment_precision_bound_not_met",
+          "overall_source_family_count_insufficient",
+          "sv_ai_recall_bound_not_met",
+          "sv_coverage_insufficient",
+          "sv_human_false_positive_bound_not_met",
+          "sv_invalid_metric_counts_or_intervals",
+          "sv_sample_size_insufficient",
+          "sv_segment_precision_bound_not_met",
+          "sv_source_family_count_insufficient"
+        ]
+      },
+      "segmentCalibration": {
+        "passed": false,
+        "reasons": [
+          "en_calibration_error_not_validated",
+          "independent_segment_calibration_missing",
+          "overall_calibration_error_not_validated",
+          "segment_classification_unvalidated",
+          "sv_calibration_error_not_validated"
+        ]
+      }
+    }
+  },
+  "candidate": {
+    "path": "artifacts/v5-reproduced/detector.json",
+    "fileSha256": "4300dcf0a5772be95b33e743f2feb649acc26c85d7457766e337513f699f8290",
+    "artifactSha256": "22d02c7d2c37fd50866db37e1f41b81117304ce26c11b50746d74ce6da707436",
+    "modelVersion": "textlab-v5-0fe5a0f00528-e66ac217",
+    "documentModelSha256": "0fe5a0f00528b5a42b7af3cc8ba5cf2d8388f7132572330f3791b0d983bedc02",
+    "segmentModelSha256": null,
+    "gates": {
+      "document": {
+        "passed": false,
+        "reasons": [
+          "en_ai_recall_bound_not_met",
+          "en_human_false_positive_bound_not_met",
+          "en_sample_size_insufficient",
+          "en_source_family_count_insufficient",
+          "fresh_independent_document_test_missing",
+          "frozen_test_provenance_missing",
+          "overall_ai_recall_bound_not_met",
+          "overall_human_false_positive_bound_not_met",
+          "overall_sample_size_insufficient",
+          "overall_source_family_count_insufficient",
+          "sv_ai_recall_bound_not_met",
+          "sv_human_false_positive_bound_not_met",
+          "sv_sample_size_insufficient",
+          "sv_source_family_count_insufficient"
+        ]
+      },
+      "calibration": {
+        "passed": false,
+        "reasons": [
+          "document_classification_unvalidated",
+          "en_calibration_error_not_validated",
+          "independent_document_calibration_missing",
+          "overall_calibration_error_not_validated",
+          "sv_calibration_error_not_validated"
+        ]
+      },
+      "segment": {
+        "passed": false,
+        "reasons": [
+          "en_ai_recall_bound_not_met",
+          "en_coverage_insufficient",
+          "en_human_false_positive_bound_not_met",
+          "en_invalid_metric_counts_or_intervals",
+          "en_sample_size_insufficient",
+          "en_segment_precision_bound_not_met",
+          "en_source_family_count_insufficient",
+          "evidence_integrity_binding_missing",
+          "fresh_independent_segment_test_missing",
+          "frozen_test_provenance_missing",
+          "independent_lineage_audit_missing",
+          "independently_selected_thresholds_missing",
+          "model_evidence_binding_missing",
+          "overall_ai_recall_bound_not_met",
+          "overall_coverage_insufficient",
+          "overall_human_false_positive_bound_not_met",
+          "overall_invalid_metric_counts_or_intervals",
+          "overall_sample_size_insufficient",
+          "overall_segment_precision_bound_not_met",
+          "overall_source_family_count_insufficient",
+          "sv_ai_recall_bound_not_met",
+          "sv_coverage_insufficient",
+          "sv_human_false_positive_bound_not_met",
+          "sv_invalid_metric_counts_or_intervals",
+          "sv_sample_size_insufficient",
+          "sv_segment_precision_bound_not_met",
+          "sv_source_family_count_insufficient"
+        ]
+      },
+      "segmentCalibration": {
+        "passed": false,
+        "reasons": [
+          "en_calibration_error_not_validated",
+          "independent_segment_calibration_missing",
+          "overall_calibration_error_not_validated",
+          "segment_classification_unvalidated",
+          "sv_calibration_error_not_validated"
+        ]
+      }
+    }
+  }
+}

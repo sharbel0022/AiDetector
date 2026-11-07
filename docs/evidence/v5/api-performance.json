@@ -1,0 +1,87 @@
+{
+  "measuredAt": "2026-11-07T14:00:08Z",
+  "environment": {
+    "python": "3.12.16",
+    "platform": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43",
+    "logicalCpus": 4,
+    "physicalMemoryBytes": 16759435264
+  },
+  "generativeModelInferenceMeasured": false,
+  "detectorInferenceMeasured": true,
+  "realHttpHealthConcurrent40": {
+    "samples": 40,
+    "p50Ms": 20.287654000000543,
+    "p95Ms": 22.918472000000634,
+    "maxMs": 27.417334999995546,
+    "statuses": {
+      "200": 40
+    }
+  },
+  "realHttpOversizedRewriteConcurrent8": {
+    "samples": 8,
+    "p50Ms": 5.500971000003574,
+    "p95Ms": 8.416201000002843,
+    "maxMs": 8.416201000002843,
+    "statuses": {
+      "422": 8
+    }
+  },
+  "asgiLongRewriteMockProvider": {
+    "samples": 20,
+    "p50Ms": 24.944380999997406,
+    "p95Ms": 25.532995999995478,
+    "maxMs": 26.626368999998817,
+    "characters": 8000,
+    "provider": "HTTP mock echo with fixed 10ms delay",
+    "qualityEvidence": false
+  },
+  "asgiConcurrentRewriteMockProvider": {
+    "samples": 8,
+    "p50Ms": 2.6892040000063844,
+    "p95Ms": 53.63045099998942,
+    "maxMs": 53.63045099998942,
+    "statuses": {
+      "429": 6,
+      "200": 2
+    }
+  },
+  "v5DetectorFirstObserved": {
+    "samples": 1,
+    "p50Ms": 160.79609000000517,
+    "p95Ms": 160.79609000000517,
+    "maxMs": 160.79609000000517,
+    "statuses": {
+      "200": 1
+    },
+    "characters": 12000,
+    "modelVersion": "textlab-v5-188bc0e07ddf-e66ac217",
+    "scope": "First actual detector request in this process, including initial artifact load; no generative provider"
+  },
+  "v5DetectorWarm": {
+    "samples": 20,
+    "p50Ms": 121.76045799999713,
+    "p95Ms": 131.3882179999979,
+    "maxMs": 136.18004600000688,
+    "characters": 12000,
+    "qualityEvidence": false
+  },
+  "v5DetectorConcurrent8": {
+    "samples": 8,
+    "p50Ms": 527.2644490000005,
+    "p95Ms": 843.9784600000024,
+    "maxMs": 843.9784600000024,
+    "statuses": {
+      "200": 8
+    }
+  },
+  "processRssBytes": {
+    "before": 62455808,
+    "after": 79503360,
+    "scope": "Entire benchmark process, framework and Python runtime; not isolated per-request allocations"
+  },
+  "modelColdStart": {
+    "status": "not_measured",
+    "scope": "generative_provider",
+    "reason": "No real generative provider is measured by this harness. Local detector first-observed latency is reported separately."
+  }
+}

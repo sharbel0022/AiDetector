@@ -1,0 +1,66 @@
+{
+  "sourceCommit": "d92b824c9055f4628511a1df955bc15bb1e01681",
+  "sourceRun": 42379391802,
+  "reviewType": "Static screenshot inspection by a separate agent and declared CSS color calculation",
+  "screenshots": [
+    "accessibility-AI-detektor-1440.png",
+    "accessibility-AI-detektor-320.png",
+    "segments-v5-mobile-320.png"
+  ],
+  "observations": [
+    "No unintended control clipping or overlap was observed in these screenshots.",
+    "The evidence panel has an intentional 390px scroll viewport with overflow:auto.",
+    "The 320px metric cards form one column and the heading fits.",
+    "The four fixture paragraphs retain source spacing.",
+    "Axe still has background-determination inconclusives in two views; they are not reported as measured low-contrast failures."
+  ],
+  "colorPairs": [
+    {
+      "element": "Evidence explanation summary",
+      "foreground": "#425d32",
+      "background": "#fafcf7",
+      "declaredColorContrastRatio": 7.1505
+    },
+    {
+      "element": "Evidence source text",
+      "foreground": "#33452b",
+      "background": "#fafcf7",
+      "declaredColorContrastRatio": 10.0311
+    },
+    {
+      "element": "Evidence highlighted text",
+      "foreground": "#284418",
+      "background": "#dbeab9",
+      "declaredColorContrastRatio": 8.5386
+    },
+    {
+      "element": "AI-like source segment",
+      "foreground": "#71332a",
+      "background": "#ffe4dc",
+      "declaredColorContrastRatio": 7.8687
+    },
+    {
+      "element": "Human-like source segment",
+      "foreground": "#294e30",
+      "background": "#e0f0df",
+      "declaredColorContrastRatio": 7.9485
+    },
+    {
+      "element": "Uncertain source segment",
+      "foreground": "#675019",
+      "background": "#fff1c4",
+      "declaredColorContrastRatio": 6.8041
+    },
+    {
+      "element": "Unassessed source segment",
+      "foreground": "#34482b",
+      "background": "#f1f3ee",
+      "declaredColorContrastRatio": 8.9167
+    }
+  ],
+  "limitations": [
+    "Static review does not verify every scroll position, interaction, browser configuration or assistive-technology experience.",
+    "Ratios use declared CSS color pairs, not an independent measurement of every composited pixel.",
+    "No manual screen-reader review or PDF/UA certification was performed."
+  ]
+}

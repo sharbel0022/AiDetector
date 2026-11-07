@@ -450,7 +450,7 @@ footer { display: flex; justify-content: space-between; border-top: 1px solid #d
   .panel { box-shadow: none; border-radius: 0; overflow: visible; break-inside: auto; }
   .results, .source-review { margin: 12px 0; }
   .detector-summary, .source-intro, .annotated-source { padding: 16px; }
-  .metric-card, .coverage-grid, .segment-detail, .method-grid > div { break-inside: avoid; }
+  .metric-card, .metrics, .coverage-grid, .segment-detail, .method-grid > div { break-inside: avoid; }
   .signal-list details, .method-grid { break-inside: avoid; }
   .panel-heading, .method-details > summary { break-after: avoid; }
   .document-layout { display: block; }

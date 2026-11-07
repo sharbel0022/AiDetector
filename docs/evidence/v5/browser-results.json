@@ -1,0 +1,29 @@
+{
+  "checks_passed": 17,
+  "checks": [
+    "page loads with local assets and explicit server/local processing description",
+    "server detection is explicit; unvalidated raw scores cannot appear as percentages or highlights",
+    "built frontend integrates with actual FastAPI V5 model, exact source and closed evidence gates",
+    "editing invalidates the entire previous result and short text abstains",
+    "untrusted full source and local evidence render as literal text",
+    "labeled UI fixtures exercise separate document/share gates, four labels, exact Unicode source, keyboard details and segment-calibration gating",
+    "TXT/JSON reports retain source, model, definitions, flags and limitations; print invokes browser print",
+    "auto language follows English input and manual mismatch is visible",
+    "late detection replies cannot publish results for changed input",
+    "detector failure keeps source and exposes local style without fabricated AI output",
+    "humanizer keeps original/diff and distinguishes usage, estimated cost and incomplete totals",
+    "legacy ledger records keep token and cost totals incomplete even with zero current missing counters",
+    "cancelled rewrites retain a usage warning through early and later manual reads, including a delayed bill",
+    "late rewrite replies cannot overwrite changed input",
+    "provider failure is an error, not a fake rewrite",
+    "access token is not persisted in browser storage",
+    "mobile layouts have no horizontal overflow and no uncaught JavaScript errors"
+  ],
+  "detector_responses": "actual bundled V5 detector plus labeled UI fixtures",
+  "actual_detector_model_version": "textlab-v5-188bc0e07ddf-e66ac217",
+  "actual_detector_integration_verified": true,
+  "detector_quality_verified": false,
+  "llm_responses": "mocked",
+  "live_model_verified": false,
+  "sites_publication_verified": false
+}

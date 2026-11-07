@@ -1,8 +1,8 @@
 # Kvalitetsbedömning — TextLab V5
 
 **9,5/10 är inte verifierat.** V5 har en fungerande tränad detektorpipeline,
-separata evidenskrav, ett omarbetat granskningsgränssnitt och mätt
-leverantörsförbrukning. Detektorns moderna regression visar fortfarande två
+separata evidenskrav, ett omarbetat granskningsgränssnitt och bokföring av
+leverantörens rapporterade förbrukning. Detektorns moderna regression visar fortfarande två
 falska positiva av åtta mänskliga utdrag. Några nya generativa modellprov
 kunde inte köras i denna miljö. Dessa begränsningar går inte att kompensera
 med fler gröna programtester.
@@ -10,14 +10,15 @@ med fler gröna programtester.
 Betygen nedan är en manuell teknisk bedömning av kandidaten, inte statistiska
 mått, en extern certifiering eller procentuell träffsäkerhet. Modellernas
 empiriska kvalitet redovisas separat. CI- och granskningsresultat finns i
-[verifieringsrapporten](docs/VERIFICATION-V5.md); slutbedömningen förutsätter
-att kandidatens faktiska kontroller är avslutade.
+[verifieringsrapporten](docs/VERIFICATION-V5.md). Det tekniska underlaget omfattar
+faktiska CI-körningar av den byggda appen och en produktionscontainer; generativa
+modelltester redovisas separat.
 
 | Område | Bedömning / 10 | Faktiskt underlag och kvarstående gräns |
 |---|---:|---|
 | Arkitektur och API | 9 | AIService, rena modulansvar, säker JSON-inferens, fyra separata evidensgrindar, tydliga kontrakt |
-| Funktionell kod och reproduktion | 9 | Fulla Python-/Node-sviter, deterministisk modell, reproducerbart bygge; slutlig browser/container-verifiering ska bindas till aktuell CI |
-| UI och användbarhet | 8,5 | Två paneler, auto/manuellt språk, exakta segment, original/diff, export och ofullständig usage; ingen oberoende användarstudie eller manuell skärmläsargranskning |
+| Funktionell kod och reproduktion | 9 | 482 Python-/84 Node-tester, numerisk reproduktion mellan miljöer, byteidentisk omträning i samma miljö, två matchande byggen och faktisk browser/container-verifiering |
+| UI och användbarhet | 8,5 | Två paneler, auto/manuellt språk, exakta segment, original/diff, export och ofullständig usage; 320/390 px utan horisontell overflow och axe utan rapporterade överträdelser. Ingen oberoende användarstudie eller manuell skärmläsargranskning |
 | Säkerhet och drift | 8,5 | Auth före body, origin/host, begränsade svar, kvoter, textfria loggar, audits och secretskanning; inget oberoende pentest eller verifierad fler-värdsdrift |
 | Token- och kostnadsbokföring | 9 | Faktiska provider-räknare, versionspriser, atomiska reserveringar, avstämning, fel/avbrott och migreringstest; leverantörsfaktura och okända modellpriser förblir externa |
 | AI Detector, produktionsberedskap | 3 | Riktig modell och diagnostik finns. Modern FPR 2/8, ingen oberoende kalibrering eller validerad segmentmodell; alla procentgrindar är stängda |

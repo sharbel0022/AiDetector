@@ -1,0 +1,135 @@
+{
+  "engine": "axe-core",
+  "screens": [
+    {
+      "violations": [],
+      "passes": 24,
+      "incomplete": 0,
+      "incompleteChecks": [],
+      "width": 1440,
+      "mode": "AI-detektor"
+    },
+    {
+      "violations": [],
+      "passes": 25,
+      "incomplete": 0,
+      "incompleteChecks": [],
+      "width": 1440,
+      "mode": "AI-humanizer"
+    },
+    {
+      "violations": [],
+      "passes": 23,
+      "incomplete": 0,
+      "incompleteChecks": [],
+      "width": 390,
+      "mode": "AI-detektor"
+    },
+    {
+      "violations": [],
+      "passes": 24,
+      "incomplete": 0,
+      "incompleteChecks": [],
+      "width": 390,
+      "mode": "AI-humanizer"
+    },
+    {
+      "violations": [],
+      "passes": 23,
+      "incomplete": 0,
+      "incompleteChecks": [],
+      "width": 320,
+      "mode": "AI-detektor"
+    },
+    {
+      "violations": [],
+      "passes": 24,
+      "incomplete": 0,
+      "incompleteChecks": [],
+      "width": 320,
+      "mode": "AI-humanizer"
+    },
+    {
+      "violations": [],
+      "passes": 31,
+      "incomplete": 1,
+      "incompleteChecks": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".evidence-explanations > summary"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+            },
+            {
+              "target": [
+                "#source-segment-0"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+            }
+          ]
+        }
+      ],
+      "width": 1440,
+      "mode": "AI-detektor-result"
+    },
+    {
+      "violations": [],
+      "passes": 29,
+      "incomplete": 0,
+      "incompleteChecks": [],
+      "width": 1440,
+      "mode": "AI-humanizer-result"
+    },
+    {
+      "violations": [],
+      "passes": 32,
+      "incomplete": 1,
+      "incompleteChecks": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".evidence-source"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+            },
+            {
+              "target": [
+                "#source-segment-0"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+            }
+          ]
+        }
+      ],
+      "width": 320,
+      "mode": "AI-detektor-result"
+    },
+    {
+      "violations": [],
+      "passes": 28,
+      "incomplete": 0,
+      "incompleteChecks": [],
+      "width": 320,
+      "mode": "AI-humanizer-result"
+    },
+    {
+      "violations": [],
+      "passes": 15,
+      "incomplete": 0,
+      "incompleteChecks": [],
+      "mode": "settings",
+      "width": 1440
+    }
+  ],
+  "violations": 0,
+  "manualScreenReaderReview": "not_performed"
+}

@@ -166,6 +166,9 @@ Leverantörens rapporterade input-, output- och totaltoken följer med resultate
 En total som summeras från delräknare märks som härledd. Saknade värden visas
 som **Ej tillgängligt**. `GET /api/usage` ger den autentiserade användarens
 aggregerade UTC-dygn, ofullständig rapportering och kvarstående reservationer.
+UI visar när uppgifterna senast hämtades och har en knapp för uppdatering.
+Efter ett avbrutet anrop ligger osäkerhetsmarkeringen kvar: en ny totalsumma
+bevisar inte att just det anropet är färdigt på servern.
 
 [Prisregistret](config/model-prices.json) anger exakta modell-ID:n, valuta,
 version, källdatum och officiella priskällor. Okända modeller eller tjänstenivåer
@@ -189,6 +192,7 @@ en produktionscontainer med två workers.
 
 ```powershell
 python -m tools.train_v5 --output-dir artifacts/v5-reproduced
+python -m tools.check_v5_reproduction models/v5/detector.json artifacts/v5-reproduced/detector.json
 python -m tools.evaluate_v5 --data data/modern-human/corpus.jsonl --output artifacts/v5-evaluation.json
 docker build -t textlab:v5-review .
 python tools/container_checks.py --image textlab:v5-review
