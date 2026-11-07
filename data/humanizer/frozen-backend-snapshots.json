@@ -1,0 +1,18 @@
+{
+  "backend\\__init__.py": {
+    "sha256": "7e3d95c18c8010641af919ebbcfbfc079417caa5b24bae6e419ba9fe15a60c49",
+    "snapshot": "data\\humanizer\\backend-snapshots\\__init__-7e3d95c18c8010641af919ebbcfbfc079417caa5b24bae6e419ba9fe15a60c49.py"
+  },
+  "backend\\limits.py": {
+    "sha256": "8ff7e672af974122698bc9aca69b02495862afbde9386edb2715fbab0e02e245",
+    "snapshot": "data\\humanizer\\backend-snapshots\\limits-8ff7e672af974122698bc9aca69b02495862afbde9386edb2715fbab0e02e245.py"
+  },
+  "backend\\main.py": {
+    "sha256": "f916372878732879160b5cc9b0d51a9d0d44345e2f71ca8c336ef294720f2811",
+    "snapshot": "data\\humanizer\\backend-snapshots\\main-f916372878732879160b5cc9b0d51a9d0d44345e2f71ca8c336ef294720f2811.py"
+  },
+  "backend\\meaning.py": {
+    "sha256": "6b4481526729fda7d5db74cda156d8a57ea555337b6901d7e321f6fa90a751ac",
+    "snapshot": "data\\humanizer\\backend-snapshots\\meaning-6b4481526729fda7d5db74cda156d8a57ea555337b6901d7e321f6fa90a751ac.py"
+  }
+}

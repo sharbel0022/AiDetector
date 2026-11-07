@@ -1,0 +1,8 @@
+{
+  "contentType": "application/json; charset=utf-8",
+  "file": "en-bridge.parse.json",
+  "retrievedAtUtc": "2026-11-02T19:59:45.159682+00:00",
+  "sha256": "f637ac9fe91fe1a1807ba2ba5ee3cc9bc72f40078a9b0855a8590ad776577aa9",
+  "status": 200,
+  "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&oldid=817433099&prop=text%7Crevid%7Cdisplaytitle%7Ccategories"
+}

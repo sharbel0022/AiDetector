@@ -1,0 +1,8 @@
+{
+  "contentType": "application/json; charset=utf-8",
+  "file": "en-photosynthesis.parse.json",
+  "retrievedAtUtc": "2026-11-02T20:01:05.875978+00:00",
+  "sha256": "f1c7b3764c79b6b74d47706b601493d3798f6010b0e389c889eded29e9da8575",
+  "status": 200,
+  "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&oldid=816636789&prop=text%7Crevid%7Cdisplaytitle%7Ccategories"
+}

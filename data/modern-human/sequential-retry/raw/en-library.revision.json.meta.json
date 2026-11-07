@@ -1,0 +1,8 @@
+{
+  "contentType": "application/json; charset=utf-8",
+  "file": "en-library.revision.json",
+  "retrievedAtUtc": "2026-11-02T20:01:20.944278+00:00",
+  "sha256": "da2da56a0adbdd69296998252e301182c0576b6ed749ad27fc7a9da4391697bc",
+  "status": 200,
+  "url": "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=Library&rvprop=ids%7Ctimestamp%7Cuser&rvstart=2018-01-01T00%3A00%3A00Z&rvdir=older&rvlimit=1"
+}

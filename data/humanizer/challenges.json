@@ -1,0 +1,350 @@
+{
+  "schema": 1,
+  "preregistered_before_prompt_change": true,
+  "modes": [
+    "natural",
+    "simple",
+    "professional",
+    "academic",
+    "concise",
+    "detailed"
+  ],
+  "limitations": "Hand-authored bounded relation/marker checks, not semantic proof or no-added-facts proof. Heldout results must not be used for prompt tuning.",
+  "cases": [
+    {
+      "id": "development-en",
+      "split": "development",
+      "language": "en",
+      "text": "For the purpose of keeping a clear record, Nora Vale submitted the draft on 3 May 2025, and Omar Bell reviewed it on 7 May 2025. Omar Bell did not approve the draft. The treatment may reduce pain at 12 mg; it has not been shown to improve sleep. The team tested the device, and energy use fell by 8 %. The report [Vale, 2025] states \"The findings are uncertain\". Further information is available at https://example.org/trial. The purpose of this note is to communicate these observations in a clear way.",
+      "exact_values": [
+        "Nora Vale",
+        "Omar Bell",
+        "3 May 2025",
+        "7 May 2025",
+        "12 mg",
+        "8 %",
+        "[Vale, 2025]",
+        "\"The findings are uncertain\"",
+        "https://example.org/trial"
+      ],
+      "protected_terms": [],
+      "claims": [
+        {
+          "id": "actor-date-submit",
+          "description": "Nora submitted on 3 May, not reviewed on that date",
+          "any": [
+            "Nora Vale[^.;]{0,100}(?:submitted|sent|delivered)[^.;]{0,50}3 May 2025",
+            "(?:draft|Draft)[^.;]{0,70}(?:submitted|sent|delivered)[^.;]{0,50}Nora Vale[^.;]{0,50}3 May 2025"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "actor-date-review",
+          "description": "Omar reviewed on 7 May",
+          "any": [
+            "Omar Bell[^.;]{0,70}(?:reviewed|examined|assessed)[^.;]{0,50}7 May 2025"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "negation",
+          "description": "Omar did not approve the draft",
+          "any": [
+            "Omar Bell[^.;]{0,50}(?:did not|has not|had not|never)[^.;]{0,20}approv",
+            "(?:draft|Draft)[^.;]{0,50}(?:not|never)[^.;]{0,20}approv[^.;]{0,50}Omar Bell"
+          ],
+          "forbidden": [
+            "Omar Bell (?:approved|has approved)"
+          ]
+        },
+        {
+          "id": "uncertainty",
+          "description": "Pain reduction is possible, not established",
+          "any": [
+            "(?:treatment|Treatment)[^.;]{0,50}(?:may|might|could)[^.;]{0,40}(?:reduce|ease|lessen|alleviate)[^.;]{0,20}pain"
+          ],
+          "forbidden": [
+            "(?:treatment|Treatment) (?:reduces|will reduce|eliminates) pain"
+          ]
+        },
+        {
+          "id": "unit",
+          "description": "Dose remains 12 mg",
+          "any": [
+            "12 mg"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "limitation",
+          "description": "No established sleep improvement",
+          "any": [
+            "(?:not|never)[^.;]{0,40}(?:shown|demonstrated|proven|established)[^.;]{0,40}(?:improve|enhance)[^.;]{0,20}sleep",
+            "no evidence[^.;]{0,60}(?:improve|enhance)[^.;]{0,20}sleep"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "no-new-cause",
+          "description": "Testing and lower energy are observations; no causal claim",
+          "any": [
+            "(?:team|Team)[^.;]{0,70}(?:tested|evaluated)[^.;]{0,50}device[^.;]{0,30}(?:and|while)[^.;]{0,40}energy"
+          ],
+          "forbidden": [
+            "(?:resulting in|led to|leading to|therefore|so energy|caused|because|consequently)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "development-sv",
+      "split": "development",
+      "language": "sv",
+      "text": "För att föra tydliga anteckningar skickade Maja Lind utkastet den 3 maj 2025, och Erik Berg granskade det den 7 maj 2025. Erik Berg godkände inte utkastet. Behandlingen kan möjligen minska smärtan vid 12 mg; den har inte visats förbättra sömnen. Teamet testade apparaten, och energianvändningen minskade med 8 %. Rapporten [Lind, 2025] säger ”Resultaten är osäkra”. Ytterligare information finns på https://example.org/forsok. Syftet med denna anteckning är att förmedla dessa observationer på ett tydligt sätt.",
+      "exact_values": [
+        "Maja Lind",
+        "Erik Berg",
+        "3 maj 2025",
+        "7 maj 2025",
+        "12 mg",
+        "8 %",
+        "[Lind, 2025]",
+        "”Resultaten är osäkra”",
+        "https://example.org/forsok"
+      ],
+      "protected_terms": [],
+      "claims": [
+        {
+          "id": "actor-date-submit",
+          "description": "Maja sent on 3 May",
+          "any": [
+            "(?:skickade|sände|lämnade)[^.;]{0,30}Maja Lind[^.;]{0,70}3 maj 2025",
+            "Maja Lind[^.;]{0,50}(?:skickade|sände|lämnade)[^.;]{0,50}3 maj 2025"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "actor-date-review",
+          "description": "Erik reviewed on 7 May",
+          "any": [
+            "Erik Berg[^.;]{0,50}(?:granskade|granskat|bedömde)[^.;]{0,50}7 maj 2025"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "negation",
+          "description": "Erik did not approve",
+          "any": [
+            "Erik Berg[^.;]{0,40}godkände inte",
+            "Erik Berg[^.;]{0,30}(?:inte|aldrig)[^.;]{0,20}godkän",
+            "utkastet[^.;]{0,20}godkändes inte[^.;]{0,20}Erik Berg"
+          ],
+          "forbidden": [
+            "Erik Berg godkände utkastet"
+          ]
+        },
+        {
+          "id": "uncertainty",
+          "description": "Pain reduction remains uncertain",
+          "any": [
+            "(?:Behandlingen|behandlingen)[^.;]{0,35}(?:möjligen|eventuellt|kanske)[^.;]{0,30}(?:minska|lindra)[^.;]{0,20}smärt"
+          ],
+          "forbidden": [
+            "Behandlingen minskar smärt"
+          ]
+        },
+        {
+          "id": "unit",
+          "description": "Dose remains 12 mg",
+          "any": [
+            "12 mg"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "limitation",
+          "description": "No established sleep improvement",
+          "any": [
+            "(?:inte|aldrig)[^.;]{0,30}(?:visats|visat|påvisats|bevisats|belagts)[^.;]{0,30}förbättra[^.;]{0,20}sömn",
+            "inga belägg[^.;]{0,50}förbättra[^.;]{0,20}sömn"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "no-new-cause",
+          "description": "No causal claim from the device test",
+          "any": [
+            "(?:Teamet|teamet)[^.;]{0,60}(?:testade|provade|utvärderade)[^.;]{0,30}apparaten[^.;]{0,25}(?:och|samtidigt)[^.;]{0,30}energ"
+          ],
+          "forbidden": [
+            "(?:vilket (?:ledde|resulterade)|till följd|därför|orsakade|eftersom|som en följd)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "heldout-en",
+      "split": "heldout",
+      "language": "en",
+      "text": "In order to make the timeline easier to follow, we note that Leila Noor received the sample on 14 June 2024, whereas Tomas Reed stored it on 18 June 2024. Leila Noor was required to label the sample, but Tomas Reed was only permitted to move it. The sample must remain below 4 °C; a reading of 3 °C does not establish that transport was safe. The laboratory reported a possible link, not a proven cause. The log [Noor, 2024] says \"Storage is not approval\". The record can be found at https://example.net/log. This note restates the available record without adding a recommendation.",
+      "exact_values": [
+        "Leila Noor",
+        "Tomas Reed",
+        "14 June 2024",
+        "18 June 2024",
+        "4 °C",
+        "3 °C",
+        "[Noor, 2024]",
+        "\"Storage is not approval\"",
+        "https://example.net/log"
+      ],
+      "protected_terms": [],
+      "claims": [
+        {
+          "id": "actor-date-receive",
+          "description": "Leila received on 14 June",
+          "any": [
+            "Leila Noor[^.;]{0,50}(?:received|got|accepted)[^.;]{0,60}14 June 2024"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "actor-date-store",
+          "description": "Tomas stored on 18 June",
+          "any": [
+            "Tomas Reed[^.;]{0,50}(?:stored|placed)[^.;]{0,60}18 June 2024"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "obligation",
+          "description": "Leila had an obligation to label",
+          "any": [
+            "Leila Noor[^.;]{0,30}(?:required|obliged|had to|must)[^.;]{0,30}label"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "permission",
+          "description": "Tomas had permission only to move",
+          "any": [
+            "Tomas Reed[^.;]{0,40}(?:permitted|allowed|could)[^.;]{0,30}move"
+          ],
+          "forbidden": [
+            "Tomas Reed[^.;]{0,30}(?:required|obliged|must)[^.;]{0,30}move"
+          ]
+        },
+        {
+          "id": "threshold",
+          "description": "Sample must stay below 4 degrees",
+          "any": [
+            "(?:must|has to|required to)[^.;]{0,30}(?:remain|stay|kept)[^.;]{0,20}below 4 °C"
+          ],
+          "forbidden": [
+            "(?:at least|above) 4 °C"
+          ]
+        },
+        {
+          "id": "limitation",
+          "description": "3-degree reading does not establish safe transport",
+          "any": [
+            "3 °C[^.;]{0,40}(?:does not|cannot|can.t)[^.;]{0,30}(?:establish|prove|show|confirm|guarantee)[^.;]{0,50}(?:transport|safe)"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "no-new-cause",
+          "description": "Possible association, not proven cause",
+          "any": [
+            "(?:possible|potential)[^.;]{0,20}(?:link|association)[^.;]{0,30}(?:not|rather than)[^.;]{0,20}(?:proven|established)[^.;]{0,15}cause"
+          ],
+          "forbidden": [
+            "laboratory (?:proved|established|confirmed) (?:a|the) cause"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "heldout-sv",
+      "split": "heldout",
+      "language": "sv",
+      "text": "För att göra tidslinjen lättare att följa noterar vi att Selma Ek tog emot provet den 14 juni 2024, medan Nils Roos förvarade det den 18 juni 2024. Selma Ek var skyldig att märka provet, men Nils Roos hade endast tillåtelse att flytta det. Provet måste hållas under 4 °C; en avläsning på 3 °C visar inte att transporten var säker. Laboratoriet rapporterade ett möjligt samband, inte en bevisad orsak. Loggen [Ek, 2024] säger ”Förvaring är inte godkännande”. Dokumentet finns på https://example.net/logg. Denna anteckning återger det tillgängliga underlaget utan att lägga till en rekommendation.",
+      "exact_values": [
+        "Selma Ek",
+        "Nils Roos",
+        "14 juni 2024",
+        "18 juni 2024",
+        "4 °C",
+        "3 °C",
+        "[Ek, 2024]",
+        "”Förvaring är inte godkännande”",
+        "https://example.net/logg"
+      ],
+      "protected_terms": [],
+      "claims": [
+        {
+          "id": "actor-date-receive",
+          "description": "Selma received on 14 June",
+          "any": [
+            "Selma Ek[^.;]{0,50}(?:tog emot|mottog|erhöll)[^.;]{0,60}14 juni 2024"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "actor-date-store",
+          "description": "Nils stored on 18 June",
+          "any": [
+            "Nils Roos[^.;]{0,50}(?:förvarade|lagrade)[^.;]{0,60}18 juni 2024"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "obligation",
+          "description": "Selma had an obligation to label",
+          "any": [
+            "Selma Ek[^.;]{0,40}(?:skyldig|måste|skulle)[^.;]{0,30}märka"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "permission",
+          "description": "Nils had permission only to move",
+          "any": [
+            "Nils Roos[^.;]{0,50}(?:tillåtelse|tilläts|fick|tillåten)[^.;]{0,30}flytta"
+          ],
+          "forbidden": [
+            "Nils Roos[^.;]{0,30}(?:skyldig|måste)[^.;]{0,30}flytta"
+          ]
+        },
+        {
+          "id": "threshold",
+          "description": "Sample must stay below 4 degrees",
+          "any": [
+            "(?:måste|ska|skall)[^.;]{0,30}(?:hållas|förvaras|vara)[^.;]{0,20}under 4 °C"
+          ],
+          "forbidden": [
+            "(?:minst|över) 4 °C"
+          ]
+        },
+        {
+          "id": "limitation",
+          "description": "3-degree reading does not show safe transport",
+          "any": [
+            "3 °C[^.;]{0,40}(?:visar inte|bevisar inte|bekräftar inte|innebär inte)[^.;]{0,50}(?:transport|säker)"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "no-new-cause",
+          "description": "Possible association, not proven cause",
+          "any": [
+            "möjligt[^.;]{0,20}samband[^.;]{0,30}(?:inte|snarare än)[^.;]{0,20}bevisad[^.;]{0,15}orsak"
+          ],
+          "forbidden": [
+            "Laboratoriet (?:bevisade|fastställde|bekräftade) (?:en|orsaken)"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "declaredAtUtc": "2026-11-02T20:00:57.926407+00:00",
+  "declaredBeforeModelScoring": true,
+  "grouping": "both languages of each topic share one source_group_id; all Wikipedia contributors share an author_id",
+  "label": "human is a pre-LLM collaborative-publication inference; bots/templates and copied material are not excluded by timestamp",
+  "languages": [
+    "en",
+    "sv"
+  ],
+  "maximumWords": 300,
+  "minimumWords": 180,
+  "model": "models/experimental/pilot-v1/model.json",
+  "noTuning": true,
+  "passagesPerArticleMaximum": 2,
+  "revisionCutoffUtc": "2018-01-01T00:00:00Z",
+  "selection": "first two disjoint consecutive whole-paragraph runs of 180–300 words, greedily extending to at least180; skip paragraphs longer than300",
+  "styleThreshold": 65,
+  "topics": [
+    [
+      "photosynthesis",
+      "Photosynthesis",
+      "Fotosyntes"
+    ],
+    [
+      "bridge",
+      "Bridge",
+      "Bro"
+    ],
+    [
+      "library",
+      "Library",
+      "Bibliotek"
+    ],
+    [
+      "volcano",
+      "Volcano",
+      "Vulkan"
+    ],
+    [
+      "telephone",
+      "Telephone",
+      "Telefon"
+    ],
+    [
+      "bicycle",
+      "Bicycle",
+      "Cykel"
+    ]
+  ],
+  "use": "external human-only false-positive/coverage diagnostic; no accuracy, recall, calibration or training claim"
+}

@@ -1,0 +1,8 @@
+{
+  "contentType": "text/plain",
+  "file": "en-bicycle.revision.json",
+  "retrievedAtUtc": "2026-11-02T20:01:34.188353+00:00",
+  "sha256": "9da220adf288d4a42a7a1f8a3bea24b40be5efd4f6857a0d075ed177ff3d72fe",
+  "status": 429,
+  "url": "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=Bicycle&rvprop=ids%7Ctimestamp%7Cuser&rvstart=2018-01-01T00%3A00%3A00Z&rvdir=older&rvlimit=1"
+}

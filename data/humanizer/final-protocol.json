@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "frozen_at_utc": "2026-11-02T20:17:32.685016+00:00",
+  "strategy": "Original short opaque full-text protocol; atomic number/unit anchors; bounded marker-count checks; exact full-body quota; compact relationship reminder and safer detailed wording.",
+  "selection_reason": "Literal dictionaries, before/after edit plans, readable source, readable actors/dates, and typed-anchor inventory were rejected as final strategies after development-only testing. Retain minimal proven protocol and guard fixes.",
+  "strict_anchor_multiset": true,
+  "literal_expansion_accepted": false,
+  "typed_inventory_sent": false,
+  "automatic_repair_or_partial_edit_acceptance": false,
+  "heldout_outputs_used_for_tuning": false,
+  "planned_small_model_final_calls": 48,
+  "predeclared_larger_diagnostic_calls": 24,
+  "fixture_sha256": "4cc8088074026bdf13776879479a6c1a6fba2057444689c1ace0b2f72547fb4a",
+  "source_sha256": {
+    "backend\\__init__.py": "7e3d95c18c8010641af919ebbcfbfc079417caa5b24bae6e419ba9fe15a60c49",
+    "backend\\limits.py": "8ff7e672af974122698bc9aca69b02495862afbde9386edb2715fbab0e02e245",
+    "backend\\main.py": "f916372878732879160b5cc9b0d51a9d0d44345e2f71ca8c336ef294720f2811",
+    "backend\\meaning.py": "6b4481526729fda7d5db74cda156d8a57ea555337b6901d7e321f6fa90a751ac",
+    "tools\\humanizer_quality.py": "5a9597efe6d3ff1354fa11a092d512ae59436a11fd52afe713590083b813aa2a"
+  }
+}

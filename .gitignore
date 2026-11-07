@@ -1,5 +1,6 @@
 node_modules/
 dist/
+sites-build/
 .venv/
 .env
 .env.*
@@ -8,4 +9,7 @@ __pycache__/
 .pytest_cache/
 *.pyc
 artifacts/
+work/
 .superpowers/
+*.sqlite*
+*.db

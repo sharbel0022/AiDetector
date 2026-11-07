@@ -1,0 +1,8 @@
+{
+  "contentType": "text/plain",
+  "file": "sv-bicycle.revision.json",
+  "retrievedAtUtc": "2026-11-02T20:01:35.981780+00:00",
+  "sha256": "ccb25b98f61f72432e705e06e9289405bae503adc47b3aad952f86ae58ff39df",
+  "status": 429,
+  "url": "https://sv.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=Cykel&rvprop=ids%7Ctimestamp%7Cuser&rvstart=2018-01-01T00%3A00%3A00Z&rvdir=older&rvlimit=1"
+}

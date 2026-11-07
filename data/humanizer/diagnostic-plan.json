@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "declared_at_utc": "2026-11-02T20:13:06.998595+00:00",
+  "model": "qwen3.5:9b",
+  "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+  "selection_reason": "Installed Q4_K_M 6.55GB is smaller than gemma3:12b 8.16GB, leaving more memory headroom on the observed 12227MiB RTX5070. Same-family diagnostic only; parameter count is not isolated experimentally.",
+  "matrix": "All four frozen sources, all six modes, one request per cell. 24 calls.",
+  "protocol": "Same frozen final protocol as small-model after matrix. No tuning from heldout or diagnostic outputs.",
+  "fixtures_sha256": "4cc8088074026bdf13776879479a6c1a6fba2057444689c1ace0b2f72547fb4a",
+  "timeout_seconds_per_request": 300,
+  "output_tokens_per_request": 6000,
+  "no_download_or_manual_unload": true,
+  "failure_policy": "Record failures at configured timeout; do not change model/protocol to select successful results."
+}

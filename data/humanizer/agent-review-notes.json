@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "reviewer_type": "coding_agent",
+  "independent_human_review": false,
+  "semantic_accuracy_estimate": null,
+  "scope": "Changed accepted-output diffs in all final and diagnostic rows were inspected; these notes highlight concrete issues and oracle coverage gaps, not exhaustive or independent truth labels. No production/prompt tuning followed these observations.",
+  "observations": [
+    {
+      "source_report": "data\\humanizer\\runs\\final.json",
+      "source_report_sha256": "7a91e672beb7a6151d7a50214ca06da97ab9f65f642718e97955cb70e9540359",
+      "model": "llama3.2:3b",
+      "case_id": "heldout-sv",
+      "mode": "simple",
+      "output_sha256": "ba8a16155d64a281e0bb809841316bc768fc1f4b40066bc8e74a2ef332e0a118",
+      "api_status": 200,
+      "bounded_checks_pass": false,
+      "category": "meaning_and_language_risk",
+      "note": "Ordinary Swedish words are corrupted, including förvarade→förvärdade and hållas→hällas; protected strings remain exact."
+    },
+    {
+      "source_report": "data\\humanizer\\runs\\final.json",
+      "source_report_sha256": "7a91e672beb7a6151d7a50214ca06da97ab9f65f642718e97955cb70e9540359",
+      "model": "llama3.2:3b",
+      "case_id": "heldout-sv",
+      "mode": "detailed",
+      "output_sha256": "ba8a16155d64a281e0bb809841316bc768fc1f4b40066bc8e74a2ef332e0a118",
+      "api_status": 200,
+      "bounded_checks_pass": false,
+      "category": "meaning_and_language_risk",
+      "note": "Same ordinary-word corruption as simple mode; exact values do not establish meaningful Swedish."
+    },
+    {
+      "source_report": "data\\humanizer\\runs\\diagnostic-qwen9b.json",
+      "source_report_sha256": "27b341c6033c02a593720cd088064147e3207092c83532b9dfae5fac9a98e5c7",
+      "model": "qwen3.5:9b",
+      "case_id": "development-sv",
+      "mode": "academic",
+      "output_sha256": "c3792558902c75af24a87c7a1ff7f2667e1705a535cfc32ca9c26d5eed7029d5",
+      "api_status": 200,
+      "bounded_checks_pass": true,
+      "category": "bounded_check_false_reassurance",
+      "note": "Information om Ytterligare treats the ordinary source word Ytterligare as a referent. The name heuristic overprotected it; all bounded checks still pass."
+    },
+    {
+      "source_report": "data\\humanizer\\runs\\diagnostic-qwen9b.json",
+      "source_report_sha256": "27b341c6033c02a593720cd088064147e3207092c83532b9dfae5fac9a98e5c7",
+      "model": "qwen3.5:9b",
+      "case_id": "heldout-en",
+      "mode": "academic",
+      "output_sha256": "c2c59b1e14fdfe423332870221f4fef69044d3cbfe54578f38175fac7fc5e278",
+      "api_status": 200,
+      "bounded_checks_pass": true,
+      "category": "bounded_check_false_reassurance",
+      "note": "Adherence to the timeline suggests compliance with a schedule, while the source meant making a chronology easier to follow. All bounded checks still pass."
+    },
+    {
+      "source_report": "data\\humanizer\\runs\\diagnostic-qwen9b.json",
+      "source_report_sha256": "27b341c6033c02a593720cd088064147e3207092c83532b9dfae5fac9a98e5c7",
+      "model": "qwen3.5:9b",
+      "case_id": "development-sv",
+      "mode": "concise",
+      "output_sha256": "cd3b33332e57762a4bd4d99717cfc9f1fb9be2427340da6ef39b71202a9d04e8",
+      "api_status": 200,
+      "bounded_checks_pass": false,
+      "category": "language_and_relation_risk",
+      "note": "The output ends with an orphan Ytterligare and uses an ambiguous relative clause after Maja Lind. The bounded actor/date check is unassessed."
+    },
+    {
+      "source_report": "data\\humanizer\\runs\\final.json",
+      "source_report_sha256": "7a91e672beb7a6151d7a50214ca06da97ab9f65f642718e97955cb70e9540359",
+      "model": "llama3.2:3b",
+      "case_id": "development-en",
+      "mode": "professional",
+      "output_sha256": "0eaaf225d2d57675016d3ef91503be9a13e5546d8d7debbcd955ae7ec804194a",
+      "api_status": 200,
+      "bounded_checks_pass": false,
+      "category": "bounded_check_coverage_gap",
+      "note": "Its effectiveness in improving sleep has not been demonstrated is a plausible preservation of the source limitation, but the frozen pattern does not recognize this word order. Not treated as a confirmed semantic error."
+    },
+    {
+      "source_report": "data\\humanizer\\runs\\final.json",
+      "source_report_sha256": "7a91e672beb7a6151d7a50214ca06da97ab9f65f642718e97955cb70e9540359",
+      "model": "qwen3.5:4b",
+      "case_id": "heldout-en",
+      "mode": "academic",
+      "output_sha256": "c47e778acc8ecb8b579533d1c201bb8be2773c951ad9c05de1424178b0c01163",
+      "api_status": 200,
+      "bounded_checks_pass": false,
+      "category": "bounded_check_coverage_gap",
+      "note": "Only authorized to move and must be maintained below are plausible paraphrases outside the frozen permission/threshold patterns. Unassessed does not mean false."
+    }
+  ]
+}

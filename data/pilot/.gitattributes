@@ -1,0 +1,5 @@
+# Archived evidence must retain its exact downloaded bytes and hashes.
+sources/** -text -diff
+# Ordered dataset/log hashes must survive checkout on Windows and Unix.
+*.jsonl -text
+*.json -text

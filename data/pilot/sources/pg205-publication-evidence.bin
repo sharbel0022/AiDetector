@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+	<head>
+
+		<!-- meta -->
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="description" content="http://Title%20Page%20&#8211;%201854%20Edition" />
+		
+		<!-- profile -->
+		<link rel="profile" href="https://gmpg.org/xfn/11" />
+
+		<!-- pingbacks -->
+		<link rel="pingback" href="https://commons.digitalthoreau.org/walden/xmlrpc.php" />
+
+		<!-- wp_head -->
+		<title>Walden | by Henry David Thoreau</title>
+<meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//cdnjs.cloudflare.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel="alternate" type="application/rss+xml" title="Walden &raquo; Feed" href="https://commons.digitalthoreau.org/walden/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Walden &raquo; Comments Feed" href="https://commons.digitalthoreau.org/walden/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Walden &raquo; Title Page &#8211; 1854 Edition Comments Feed" href="https://commons.digitalthoreau.org/walden/298-2/feed/" />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://commons.digitalthoreau.org/walden/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcommons.digitalthoreau.org%2Fwalden%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://commons.digitalthoreau.org/walden/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcommons.digitalthoreau.org%2Fwalden%2F&#038;format=xml" />
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+ 
+<link rel='stylesheet' id='dashicons-css' href='https://commons.digitalthoreau.org/walden/wp-includes/css/dashicons.min.css?ver=7.1.4' media='all' />
+<link rel='stylesheet' id='admin-bar-css' href='https://commons.digitalthoreau.org/walden/wp-includes/css/admin-bar.min.css?ver=7.1.4' media='all' />
+<style id="admin-bar-inline-css">
+
+		@media screen { html { margin-top: 32px !important; } }
+		@media screen and ( max-width: 782px ) { html { margin-top: 46px !important; } }
+	
+@media print { #wpadminbar { display:none; } }
+/*# sourceURL=admin-bar-inline-css */
+</style>
+<style id="wp-emoji-styles-inline-css">
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+/*# sourceURL=wp-emoji-styles-inline-css */
+</style>
+<style id="wp-block-library-inline-css">
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}:root .has-text-align-center{text-align:center}:root .has-text-align-left{text-align:left}:root .has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{word-wrap:normal!important;border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-break:normal!important}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style^=border-color],[style*=";border-color"],[style*="; border-color"]){border-style:solid}html :where([style^=border-top-color],[style*=";border-top-color"],[style*="; border-top-color"]){border-top-style:solid}html :where([style^=border-right-color],[style*=";border-right-color"],[style*="; border-right-color"]){border-right-style:solid}html :where([style^=border-bottom-color],[style*=";border-bottom-color"],[style*="; border-bottom-color"]){border-bottom-style:solid}html :where([style^=border-left-color],[style*=";border-left-color"],[style*="; border-left-color"]){border-left-style:solid}html :where([style^=border-width],[style*=";border-width"],[style*="; border-width"]){border-style:solid}html :where([style^=border-top-width],[style*=";border-top-width"],[style*="; border-top-width"]){border-top-style:solid}html :where([style^=border-right-width],[style*=";border-right-width"],[style*="; border-right-width"]){border-right-style:solid}html :where([style^=border-bottom-width],[style*=";border-bottom-width"],[style*="; border-bottom-width"]){border-bottom-style:solid}html :where([style^=border-left-width],[style*=";border-left-width"],[style*="; border-left-width"]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
+
+/*# sourceURL=/wp-includes/css/dist/block-library/common.min.css */
+</style>
+<style id="classic-theme-styles-inline-css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+
+<style id="global-styles-inline-css">
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}.wp-block-button{--wp--preset--dimension--25: 25%;--wp--preset--dimension--50: 50%;--wp--preset--dimension--75: 75%;--wp--preset--dimension--100: 100%;}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+<link rel='stylesheet' id='bp-admin-bar-css' href='https://commons.digitalthoreau.org/walden/wp-content/plugins/buddypress/bp-core/css/admin-bar.min.css?ver=14.5.0' media='all' />
+<link rel='stylesheet' id='comment_upvoter_css-css' href='https://commons.digitalthoreau.org/walden/wp-content/plugins/comment-upvoter/comment-upvoter.css?ver=0.3a' media='all' />
+<link rel='stylesheet' id='bpgsites_css-css' href='https://commons.digitalthoreau.org/walden/wp-content/plugins/bp-group-sites/assets/css/bpgsites.css?ver=0.4.1a' media='all' />
+<link rel='stylesheet' id='cp_tagging_select2_css-css' href='https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css?ver=4.0.7a' media='all' />
+<link rel='stylesheet' id='wp-jquery-ui-dialog-css' href='https://commons.digitalthoreau.org/walden/wp-includes/css/jquery-ui-dialog.min.css?ver=7.1.4' media='all' />
+<link rel='stylesheet' id='cp_screen_css-css' href='https://commons.digitalthoreau.org/walden/wp-content/plugins/commentpress-core/themes/commentpress-flat/assets/css/screen.min.css?ver=4.0.7a' media='all' />
+<link rel='stylesheet' id='cp_webfont_lato_css-css' href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&#038;ver=4.0.7a' media='all' />
+<link rel='stylesheet' id='cp_buddypress_css-css' href='https://commons.digitalthoreau.org/walden/wp-content/plugins/commentpress-core/themes/commentpress-flat/assets/css/bp-overrides.min.css?ver=4.0.7a' media='all' />
+<link rel='stylesheet' id='cp_buddypress_10_css-css' href='https://commons.digitalthoreau.org/walden/wp-content/plugins/commentpress-core/themes/commentpress-flat/assets/css/bp-overrides-10.min.css?ver=4.0.7a' media='all' />
+<link rel='stylesheet' id='commentpress_thoreau_css-css' href='https://commons.digitalthoreau.org/walden/wp-content/themes/commentpress-thoreau/assets/css/commentpress-thoreau.css?ver=1.0.4' media='all' />
+<link rel='stylesheet' id='cp_print_css-css' href='https://commons.digitalthoreau.org/walden/wp-content/plugins/commentpress-core/themes/commentpress-flat/assets/css/print.min.css?ver=4.0.7a' media='print' />
+<link rel='stylesheet' id='commentpress_introjs_custom_css-css' href='https://commons.digitalthoreau.org/walden/wp-content/plugins/commentpress-tour-guide/assets/css/commentpress-tour-guide.css?ver=0.2.0a' media='all' />
+<script id="jquery-core-js" src="https://commons.digitalthoreau.org/walden/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"></script>
+<script id="jquery-migrate-js" src="https://commons.digitalthoreau.org/walden/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1"></script>
+<script id="comment_upvoter-js-extra">
+var comment_upvoter = {"ajax_url":"https://commons.digitalthoreau.org/walden/wp-admin/admin-ajax.php","ajax_nonce":"3fcacdfce5"};
+//# sourceURL=comment_upvoter-js-extra
+</script>
+<script id="comment_upvoter-js" src="https://commons.digitalthoreau.org/walden/wp-content/plugins/comment-upvoter/comment-upvoter.js?ver=0.3a"></script>
+<script id="jquery_fitvids-js" src="https://commons.digitalthoreau.org/walden/wp-content/plugins/commentpress-core/includes/core/assets/js/jquery.fitvids.js?ver=4.0.7a"></script>
+<script id="jquery-form-js" src="https://commons.digitalthoreau.org/walden/wp-includes/js/jquery/jquery.form.min.js?ver=4.3.0"></script>
+<script id="jquery-ui-core-js-before">
+jQuery.uiBackCompat = true;
+//# sourceURL=jquery-ui-core-js-before
+</script>
+<script id="jquery-ui-core-js" src="https://commons.digitalthoreau.org/walden/wp-includes/js/jquery/ui/core.min.js?ver=1.14.2"></script>
+<script id="jquery-ui-mouse-js" src="https://commons.digitalthoreau.org/walden/wp-includes/js/jquery/ui/mouse.min.js?ver=1.14.2"></script>
+<script id="jquery-ui-resizable-js" src="https://commons.digitalthoreau.org/walden/wp-includes/js/jquery/ui/resizable.min.js?ver=1.14.2"></script>
+<script id="jquery-ui-tooltip-js" src="https://commons.digitalthoreau.org/walden/wp-includes/js/jquery/ui/tooltip.min.js?ver=1.14.2"></script>
+<script id="jquery_commentpress-js-extra">
+var CommentpressSettings = {"cp_comments_open":"y","cp_permalink":"https://commons.digitalthoreau.org/walden/","cp_wp_adminbar":"y","cp_bp_adminbar":"n","cp_wp_adminbar_height":"32","cp_wp_adminbar_expanded":"46","cp_special_page":"0","cp_cookie_path":"/walden/","cp_multipage_page":"0","cp_js_scroll_speed":"800","cp_textblock_meta":"1","cp_sidebar_default":"toc","cp_toc_chapter_is_page":"0","cp_show_subpages":"0","cp_page_nav_enabled":"1","cp_do_not_parse":"0","cp_tinymce":"0","cp_is_mobile":"0","cp_is_touch":"0","cp_is_tablet":"0","cp_touch_testing":"0","cp_promote_reading":"0"};
+//# sourceURL=jquery_commentpress-js-extra
+</script>
+<script id="jquery_commentpress-js" src="https://commons.digitalthoreau.org/walden/wp-content/plugins/commentpress-core/includes/core/assets/js/jquery.commentpress.min.js?ver=4.0.7a"></script>
+<script id="jquery_scrollto-js" src="https://commons.digitalthoreau.org/walden/wp-content/plugins/commentpress-core/includes/core/assets/js/jquery.scrollTo.js?ver=4.0.7a"></script>
+<script id="jquery_wrapselection-js" src="https://commons.digitalthoreau.org/walden/wp-content/plugins/commentpress-core/includes/core/assets/js/jquery.wrap-selection.min.js?ver=4.0.7a"></script>
+<script id="jquery_highlighter-js" src="https://commons.digitalthoreau.org/walden/wp-content/plugins/commentpress-core/includes/core/assets/js/jquery.highlighter.min.js?ver=4.0.7a"></script>
+<script id="jquery_texthighlighter-js-extra">
+var CommentpressTextSelectorSettings = {"popover_textblock":"\u003Cspan class=\"popover-holder\"\u003E\u003Cdiv class=\"popover-holder-inner\"\u003E\u003Cdiv class=\"popover-holder-caret\"\u003E\u003C/div\u003E\u003Cdiv class=\"popover-holder-btn-left\"\u003E\u003Cspan class=\"popover-holder-btn-left-comment\"\u003EComment\u003C/span\u003E\u003Cspan class=\"popover-holder-btn-left-quote\"\u003EQuote & Comment\u003C/span\u003E\u003C/div\u003E\u003Cdiv class=\"popover-holder-btn-right\"\u003E\u00d7\u003C/div\u003E\u003C/div\u003E\u003C/span\u003E","popover_comment":"\u003Cspan class=\"comment-popover-holder\"\u003E\u003Cdiv class=\"popover-holder-inner\"\u003E\u003Cdiv class=\"popover-holder-caret\"\u003E\u003C/div\u003E\u003Cdiv class=\"popover-holder-btn-left\"\u003E\u003Cspan class=\"comment-popover-holder-btn-left-quote\"\u003EQuote\u003C/span\u003E\u003C/div\u003E\u003Cdiv class=\"popover-holder-btn-right\"\u003E\u00d7\u003C/div\u003E\u003C/div\u003E\u003C/span\u003E","localisation":{"dialog_title":"Are you sure?","dialog_content":"You have not yet submitted your comment. Are you sure you want to discard it?","dialog_yes":"Discard","dialog_no":"Keep","backlink_text":"Back"}};
+//# sourceURL=jquery_texthighlighter-js-extra
+</script>
+<script id="jquery_texthighlighter-js" src="https://commons.digitalthoreau.org/walden/wp-content/plugins/commentpress-core/includes/core/assets/js/jquery.texthighlighter.min.js?ver=4.0.7a"></script>
+<script id="thoreau_harding_custom_js-js" src="https://commons.digitalthoreau.org/walden/wp-content/plugins/thoreau-harding/assets/js/thoreau-harding.js?ver=1.0.1a"></script>
+<script id="cp_common_js-js" src="https://commons.digitalthoreau.org/walden/wp-content/plugins/commentpress-core/themes/commentpress-flat/assets/js/screen.min.js?ver=4.0.7a"></script>
+<script id="cp_tagging_select2_js-js" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js?ver=4.0.7a"></script>
+<script id="cp_tagging_js-js-extra">
+var CommentPress_Comments_Tagging_Settings = {"localisation":[],"data":[]};
+//# sourceURL=cp_tagging_js-js-extra
+</script>
+<script id="cp_tagging_js-js" src="https://commons.digitalthoreau.org/walden/wp-content/plugins/commentpress-core/includes/core/assets/js/cp-comment-tagging.min.js?ver=4.0.7a"></script>
+<script id="cp_form-js-extra">
+var CommentPress_Form = {"localisation":{"submit":"Update Comment","title":"Leave a comment","edit_title":"Edit comment"}};
+//# sourceURL=cp_form-js-extra
+</script>
+<script id="cp_form-js" src="https://commons.digitalthoreau.org/walden/wp-content/plugins/commentpress-core/includes/core/assets/js/jquery.commentform.min.js?ver=4.0.7a"></script>
+<link rel="https://api.w.org/" href="https://commons.digitalthoreau.org/walden/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://commons.digitalthoreau.org/walden/wp-json/wp/v2/pages/298" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://commons.digitalthoreau.org/walden/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 7.1.4" />
+<link rel="canonical" href="https://commons.digitalthoreau.org/walden/" />
+<link rel='shortlink' href='https://commons.digitalthoreau.org/walden/' />
+
+	<script type="text/javascript">var ajaxurl = 'https://commons.digitalthoreau.org/walden/wp-admin/admin-ajax.php';</script>
+
+
+		<style type="text/css">
+
+		#header {
+			background-color: #f5f8fa;
+			
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: 50%;
+		}
+
+		#title h1, #title h1 a {
+			color: #000000;
+		}
+
+		#header #tagline {
+			color: #000000;
+		}
+
+		</style>
+		
+		<style type="text/css" id="custom-background-css">
+
+			html,
+			body.custom-background,
+			#toc_sidebar .sidebar_minimiser ul#toc_list,
+			.sidebar_contents_wrapper,
+			#footer_inner
+			{
+				background-color: #f5f8fa;
+			}
+
+		</style>
+		<link rel="icon" href="https://commons.digitalthoreau.org/walden/wp-content/uploads/sites/8/2016/09/cropped-thoreau-favicon-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://commons.digitalthoreau.org/walden/wp-content/uploads/sites/8/2016/09/cropped-thoreau-favicon-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://commons.digitalthoreau.org/walden/wp-content/uploads/sites/8/2016/09/cropped-thoreau-favicon-180x180.png" />
+<meta name="msapplication-TileImage" content="https://commons.digitalthoreau.org/walden/wp-content/uploads/sites/8/2016/09/cropped-thoreau-favicon-270x270.png" />
+
+	</head>
+
+	<body class="home-page bp-legacy home wp-singular page-template-default page page-id-298 admin-bar no-customize-support custom-background wp-theme-commentpress-flat wp-child-theme-commentpress-thoreau commentable tinymce-4 cp_sidebar_toc blogtype-0 not-groupblog">
+
+							<div id="wpadminbar" class="nojq nojs">
+						<div class="quicklinks" id="wp-toolbar" role="navigation" aria-label="Toolbar">
+				<ul role='menu' id='wp-admin-bar-root-default' class="ab-top-menu"><li role='group' id='wp-admin-bar-wp-logo' class="menupop"><a class='ab-item' role="menuitem" aria-expanded="false" href='https://commons.digitalthoreau.org/wp-admin/user/about.php'><span class="ab-icon" aria-hidden="true"></span><span class="screen-reader-text">About WordPress</span></a><div class="ab-sub-wrapper"><ul role='menu' aria-label='About WordPress' id='wp-admin-bar-wp-logo-default' class="ab-submenu"><li role='group' id='wp-admin-bar-about'><a class='ab-item' role="menuitem" href='https://commons.digitalthoreau.org/wp-admin/user/about.php'>About WordPress</a></li><li role='group' id='wp-admin-bar-contribute'><a class='ab-item' role="menuitem" href='https://commons.digitalthoreau.org/wp-admin/user/contribute.php'>Get Involved</a></li></ul><ul role='menu' aria-label='About WordPress' id='wp-admin-bar-wp-logo-external' class="ab-sub-secondary ab-submenu"><li role='group' id='wp-admin-bar-wporg'><a class='ab-item' role="menuitem" href='https://wordpress.org/'>WordPress.org</a></li><li role='group' id='wp-admin-bar-documentation'><a class='ab-item' role="menuitem" href='https://wordpress.org/documentation/'>Documentation</a></li><li role='group' id='wp-admin-bar-learn'><a class='ab-item' role="menuitem" href='https://learn.wordpress.org/'>Learn WordPress</a></li><li role='group' id='wp-admin-bar-support-forums'><a class='ab-item' role="menuitem" href='https://wordpress.org/support/forums/'>Support</a></li><li role='group' id='wp-admin-bar-feedback'><a class='ab-item' role="menuitem" href='https://wordpress.org/support/forum/requests-and-feedback'>Feedback</a></li></ul></div></li><li role='group' id='wp-admin-bar-bp-login'><a class='ab-item' role="menuitem" href='https://commons.digitalthoreau.org/walden/wp-login.php?redirect_to=https%3A%2F%2Fcommons.digitalthoreau.org%2Fwalden%2F'>Log In</a></li><li role='group' id='wp-admin-bar-bp-register'><a class='ab-item' role="menuitem" href='https://commons.digitalthoreau.org/join/'>Register</a></li><li role='group' id='wp-admin-bar-walden-help'><a class='ab-item' role="menuitem" href='/walden/how-to-read/'>Take a Tour</a></li></ul><ul role='menu' id='wp-admin-bar-top-secondary' class="ab-top-secondary ab-top-menu"><li role='group' id='wp-admin-bar-search' class="admin-bar-search"><div class="ab-item ab-empty-item" tabindex="-1" role="menuitem"><form action="https://commons.digitalthoreau.org/walden/" method="get" id="adminbarsearch"><input class="adminbar-input" name="s" id="adminbar-search" type="text" value="" maxlength="150" /><label for="adminbar-search" class="screen-reader-text">Search</label><input type="submit" class="adminbar-button" value="Search" /></form></div></li></ul>			</div>
+		</div>
+
+				
+		<div id="container">
+
+			<a class="skip" href="#content">Skip to Content</a>
+<span class="off-left"> | </span>
+<a class="skip" href="#toc_list">Skip to Table of Contents</a>
+
+<div id="header" class="clearfix">
+
+	
+	
+	<div id="switcher">
+		<ul>
+			<li class="navigation-item"><a class="navigation-button" href="#navigation">Navigate</a></li>
+			<li class="sidebar-item comments-item"><a class="comments-button" href="#comments_sidebar">Comments</a></li>
+			<li class="sidebar-item activity-item"><a class="activity-button" href="#activity_sidebar">Activity</a></li>
+		</ul>
+	</div>
+
+	<div id="page_title">
+		<div id="title">
+			<h1><a href="https://commons.digitalthoreau.org/walden" title="Home">Walden</a></h1>
+		</div>
+		<div id="tagline">
+			by Henry David Thoreau		</div>
+	</div>
+
+	
+</div><!-- /header -->
+
+<div id="content_container" class="clearfix">
+
+	<!-- themes/commentpress-thoreau/assets/templates/toc_sidebar.php -->
+<div id="navigation">
+	<div id="toc_sidebar" class="sidebar_container">
+
+		
+		<div class="sidebar_header">
+			<h2>Contents</h2>
+		</div>
+
+		<div class="sidebar_minimiser">
+			<div class="sidebar_contents_wrapper">
+
+				
+				<h3 class="activity_heading search_heading">
+					Search				</h3>
+
+				<div class="paragraph_wrapper search_wrapper">
+					<div id="document_search">
+						
+		<!-- searchform.php -->
+	<form method="get" id="searchform" action="https://commons.digitalthoreau.org/walden/">
+
+		<label for="s">Search for:</label>
+
+		<input type="text" value="" name="s" id="s" />
+
+		<input type="submit" id="searchsubmit" value="Search" />
+
+	</form>
+
+					</div><!-- /document_search -->
+				</div>
+
+									<h3 class="activity_heading special_pages_heading">
+						Special Pages					</h3>
+
+					<div class="paragraph_wrapper special_pages_wrapper">
+						<!-- themes/commentpress-thoreau/assets/templates/navigation.php -->
+<div id="document_nav">
+	<div id="document_nav_wrapper">
+
+		<ul id="nav">
+
+			
+				
+					
+					<li>
+												<a href="https://commons.digitalthoreau.org/" id="btn_home" class="css_btn" title="Readers’ Thoreau Home">Readers’ Thoreau Home</a>
+					</li>
+
+					<li><a href="#groupsites-list" id="btn_groupsites" class="css_btn" title="Groups reading this Text">Groups reading this Text</a><ul class="children" id="groupsites-list">
+<li><a href="https://commons.digitalthoreau.org/groups/public/" class="css_btn btn_groupsites" title="General Discussion">General Discussion</a></li>
+<li><a href="https://commons.digitalthoreau.org/groups/thoreau-society-ag-2016/" class="css_btn btn_groupsites" title="Thoreau Society AG 2016">Thoreau Society AG 2016</a></li>
+<li><a href="https://commons.digitalthoreau.org/groups/translating-thoreau/" class="css_btn btn_groupsites" title="Translating Thoreau">Translating Thoreau</a></li></ul>
+</li>
+
+					
+				
+				
+					
+					<li>
+						<a href="https://commons.digitalthoreau.org/walden/how-to-read/" id="btn_cover" class="css_btn" title="How to read this Text">How to read this Text</a>
+					</li>
+
+				
+				<li><a href="https://commons.digitalthoreau.org/walden/general-comments/" id="btn_general" class="css_btn" title="General Comments">General Comments</a></li>
+<li><a href="https://commons.digitalthoreau.org/walden/all-comments/" id="btn_allcomments" class="css_btn" title="All Comments">All Comments</a></li>
+<li><a href="https://commons.digitalthoreau.org/walden/comments-by-commenter/" id="btn_members" class="css_btn" title="Comments by Commenter">Comments by Commenter</a></li>
+<li><a href="https://commons.digitalthoreau.org/walden/featured-comments/" title="Featured Comments">Featured Comments</a></li><li><a href="https://commons.digitalthoreau.org/walden/liked-comments/" title="Liked Comments">Liked Comments</a></li>
+			
+			
+														<li>
+						 <a id="btn_login" href="https://commons.digitalthoreau.org/join/">Register</a> 					</li>
+				
+				
+			
+			<li>
+				<a id="btn_login" class="css_btn" href="https://commons.digitalthoreau.org/walden/wp-login.php">Log in</a>			</li>
+
+		</ul>
+
+	</div><!-- /document_nav_wrapper -->
+</div><!-- /document_nav -->
+					</div>
+				
+				<h3 class="activity_heading toc_heading">
+					Table of Contents				</h3>
+
+				<div class="paragraph_wrapper start_open">
+											<ul id="toc_list">
+							<li class="page_item page-item-298 current_page_item"><a href="https://commons.digitalthoreau.org/walden/" aria-current="page">Title Page &#8211; 1854 Edition</a></li>
+<li class="page_item page-item-14 page_item_has_children"><a href="https://commons.digitalthoreau.org/walden/economy/">Economy</a>
+<ul class='children'>
+	<li class="page_item page-item-16"><a href="https://commons.digitalthoreau.org/walden/economy/economy-1-14/">Economy 1-14</a></li>
+	<li class="page_item page-item-22"><a href="https://commons.digitalthoreau.org/walden/economy/economy-15-29/">Economy 15-29</a></li>
+	<li class="page_item page-item-30"><a href="https://commons.digitalthoreau.org/walden/economy/economy-30-44/">Economy 30-44</a></li>
+	<li class="page_item page-item-33"><a href="https://commons.digitalthoreau.org/walden/economy/economy-45-58/">Economy 45-58</a></li>
+	<li class="page_item page-item-37"><a href="https://commons.digitalthoreau.org/walden/economy/economy-59-70/">Economy 59-70</a></li>
+	<li class="page_item page-item-41"><a href="https://commons.digitalthoreau.org/walden/economy/economy-71-81/">Economy 71-81</a></li>
+	<li class="page_item page-item-47"><a href="https://commons.digitalthoreau.org/walden/economy/economy-82-97/">Economy 82-97</a></li>
+	<li class="page_item page-item-51"><a href="https://commons.digitalthoreau.org/walden/economy/economy-98-111/">Economy 98-111</a></li>
+	<li class="page_item page-item-49"><a href="https://commons.digitalthoreau.org/walden/economy/complemental-verses/">Complemental Verses</a></li>
+</ul>
+</li>
+<li class="page_item page-item-58 page_item_has_children"><a href="https://commons.digitalthoreau.org/walden/where-i-lived-and-what-i-lived-for/">Where I Lived, And What I Lived For</a>
+<ul class='children'>
+	<li class="page_item page-item-462"><a href="https://commons.digitalthoreau.org/walden/where-i-lived-and-what-i-lived-for/where-i-lived-and-what-i-lived-for-1-12/">Where I Lived, And What I Lived For 1-12</a></li>
+	<li class="page_item page-item-469"><a href="https://commons.digitalthoreau.org/walden/where-i-lived-and-what-i-lived-for/where-i-lived-and-what-i-lived-for-13-23/">Where I Lived, And What I Lived For 13-23</a></li>
+</ul>
+</li>
+<li class="page_item page-item-84"><a href="https://commons.digitalthoreau.org/walden/reading/">Reading</a></li>
+<li class="page_item page-item-88 page_item_has_children"><a href="https://commons.digitalthoreau.org/walden/sounds/">Sounds</a>
+<ul class='children'>
+	<li class="page_item page-item-90"><a href="https://commons.digitalthoreau.org/walden/sounds/sounds-1-11/">Sounds 1-11</a></li>
+	<li class="page_item page-item-94"><a href="https://commons.digitalthoreau.org/walden/sounds/sounds-12-22/">Sounds 12-22</a></li>
+</ul>
+</li>
+<li class="page_item page-item-99"><a href="https://commons.digitalthoreau.org/walden/solitude/">Solitude</a></li>
+<li class="page_item page-item-103 page_item_has_children"><a href="https://commons.digitalthoreau.org/walden/visitors/">Visitors</a>
+<ul class='children'>
+	<li class="page_item page-item-105"><a href="https://commons.digitalthoreau.org/walden/visitors/visitors-1-11/">Visitors 1-11</a></li>
+	<li class="page_item page-item-109"><a href="https://commons.digitalthoreau.org/walden/visitors/visitors-12-18/">Visitors 12-18</a></li>
+</ul>
+</li>
+<li class="page_item page-item-116 page_item_has_children"><a href="https://commons.digitalthoreau.org/walden/the-bean-field/">The Bean-Field</a>
+<ul class='children'>
+	<li class="page_item page-item-118"><a href="https://commons.digitalthoreau.org/walden/the-bean-field/the-bean-field-1-8/">The Bean-Field 1-8</a></li>
+	<li class="page_item page-item-120"><a href="https://commons.digitalthoreau.org/walden/the-bean-field/the-bean-field-9-17/">The Bean-Field 9-17</a></li>
+</ul>
+</li>
+<li class="page_item page-item-123"><a href="https://commons.digitalthoreau.org/walden/the-village/">The Village</a></li>
+<li class="page_item page-item-126 page_item_has_children"><a href="https://commons.digitalthoreau.org/walden/the-ponds/">The Ponds</a>
+<ul class='children'>
+	<li class="page_item page-item-128"><a href="https://commons.digitalthoreau.org/walden/the-ponds/the-ponds-1-17/">The Ponds 1-17</a></li>
+	<li class="page_item page-item-130"><a href="https://commons.digitalthoreau.org/walden/the-ponds/the-ponds-18-34/">The Ponds 18-34</a></li>
+</ul>
+</li>
+<li class="page_item page-item-177"><a href="https://commons.digitalthoreau.org/walden/baker-farm/">Baker Farm</a></li>
+<li class="page_item page-item-184"><a href="https://commons.digitalthoreau.org/walden/higher-laws/">Higher Laws</a></li>
+<li class="page_item page-item-192 page_item_has_children"><a href="https://commons.digitalthoreau.org/walden/brute-neighbors/">Brute Neighbors</a>
+<ul class='children'>
+	<li class="page_item page-item-195"><a href="https://commons.digitalthoreau.org/walden/brute-neighbors/brute-neighbors-1-9/">Brute Neighbors 1-9</a></li>
+	<li class="page_item page-item-198"><a href="https://commons.digitalthoreau.org/walden/brute-neighbors/brute-neighbors-10-18/">Brute Neighbors 10-18</a></li>
+</ul>
+</li>
+<li class="page_item page-item-200 page_item_has_children"><a href="https://commons.digitalthoreau.org/walden/house-warming/">House-Warming</a>
+<ul class='children'>
+	<li class="page_item page-item-202"><a href="https://commons.digitalthoreau.org/walden/house-warming/house-warming-1-9/">House-Warming 1-9</a></li>
+	<li class="page_item page-item-206"><a href="https://commons.digitalthoreau.org/walden/house-warming/house-warming-10-19/">House-Warming 10-19</a></li>
+</ul>
+</li>
+<li class="page_item page-item-211 page_item_has_children"><a href="https://commons.digitalthoreau.org/walden/former-inhabitants-and-winter-visitors/">Former Inhabitants; and Winter Visitors</a>
+<ul class='children'>
+	<li class="page_item page-item-213"><a href="https://commons.digitalthoreau.org/walden/former-inhabitants-and-winter-visitors/former-inhabitants-and-winter-visitors-1-12/">Former Inhabitants; and Winter Visitors 1-12</a></li>
+	<li class="page_item page-item-218"><a href="https://commons.digitalthoreau.org/walden/former-inhabitants-and-winter-visitors/former-inhabitants-and-winter-visitors-13-24/">Former Inhabitants; and Winter Visitors 13-24</a></li>
+</ul>
+</li>
+<li class="page_item page-item-222"><a href="https://commons.digitalthoreau.org/walden/winter-animals/">Winter Animals</a></li>
+<li class="page_item page-item-225 page_item_has_children"><a href="https://commons.digitalthoreau.org/walden/the-pond-in-winter/">The Pond in Winter</a>
+<ul class='children'>
+	<li class="page_item page-item-227"><a href="https://commons.digitalthoreau.org/walden/the-pond-in-winter/the-pond-in-winter-1-10/">The Pond in Winter 1-10</a></li>
+	<li class="page_item page-item-230"><a href="https://commons.digitalthoreau.org/walden/the-pond-in-winter/the-pond-in-winter-11-21/">The Pond in Winter 11-21</a></li>
+</ul>
+</li>
+<li class="page_item page-item-236 page_item_has_children"><a href="https://commons.digitalthoreau.org/walden/spring/">Spring</a>
+<ul class='children'>
+	<li class="page_item page-item-238"><a href="https://commons.digitalthoreau.org/walden/spring/spring-1-13/">Spring 1-13</a></li>
+	<li class="page_item page-item-242"><a href="https://commons.digitalthoreau.org/walden/spring/spring-14-26/">Spring 14-26</a></li>
+</ul>
+</li>
+<li class="page_item page-item-245 page_item_has_children"><a href="https://commons.digitalthoreau.org/walden/conclusion/">Conclusion</a>
+<ul class='children'>
+	<li class="page_item page-item-247"><a href="https://commons.digitalthoreau.org/walden/conclusion/conclusion-1-9/">Conclusion 1-9</a></li>
+	<li class="page_item page-item-251"><a href="https://commons.digitalthoreau.org/walden/conclusion/conclusion-10-19/">Conclusion 10-19</a></li>
+</ul>
+</li>
+<li class="page_item page-item-506 page_item_has_children"><a href="https://commons.digitalthoreau.org/walden/works-cited/">Works Cited By Walter Harding</a>
+<ul class='children'>
+	<li class="page_item page-item-508"><a href="https://commons.digitalthoreau.org/walden/works-cited/works-cited-a-g/">Works Cited A-G</a></li>
+	<li class="page_item page-item-510"><a href="https://commons.digitalthoreau.org/walden/works-cited/works-cited-h-p/">Works Cited H-P</a></li>
+	<li class="page_item page-item-512"><a href="https://commons.digitalthoreau.org/walden/works-cited/works-cited-r-z/">Works Cited R-Z</a></li>
+</ul>
+</li>
+						</ul>
+									</div>
+
+				
+			</div><!-- /sidebar_contents_wrapper -->
+		</div><!-- /sidebar_minimiser -->
+
+	</div><!-- /toc_sidebar -->
+</div><!-- /navigation -->
+<!-- page.php -->
+
+<div id="wrapper">
+
+	
+		
+			
+			<div id="main_wrapper" class="clearfix">
+				<div id="page_wrapper">
+
+					
+											<!-- page_navigation.php -->
+<div class="page_navigation">
+
+	<ul><li class="alignleft"><a href="https://commons.digitalthoreau.org/walden/how-to-read/" class="previous_page" title="Previous page">Previous page</a></li>
+<li class="alignright"><a href="https://commons.digitalthoreau.org/walden/economy/economy-1-14/" class="next_page" title="Next page">Next page</a></li>
+</ul>
+</div><!-- /page_navigation -->
+					
+					<div id="content" class="content">
+						<div id="post-298" class="post-298 page type-page status-publish hentry post clearfix"">
+
+															<h2 class="post_title" style="display: none;"><a href="https://commons.digitalthoreau.org/walden/">Title Page &#8211; 1854 Edition</a></h2>
+
+								<div class="search_meta" style="display: none;">
+									<img alt='' src='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/1/812d56083949ac2b5f7a77cef42fbd54-bpthumb.png' srcset='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/1/812d56083949ac2b5f7a77cef42fbd54-bpfull.png 2x' class='avatar avatar-32 photo' height='32' width='32' decoding='async'/>
+			<cite class="fn"><a href="https://commons.digitalthoreau.org/members/digitalthoreau/">Digital Thoreau</a></cite>
+
+			<p><a href="https://commons.digitalthoreau.org/walden/">December 18, 2013</a></p>
+
+											</div>
+
+							
+							<p style="text-align: center;" class="textblock textblock-center" id="textblock-pstacifhdacsfwiaaWOLITWshcdotcuswsetpgwh"><span class="para_marker"><a class="textblock_permalink" id="pstacifhdacsfwiaaWOLITWshcdotcuswsetpgwh" href="#pstacifhdacsfwiaaWOLITWshcdotcuswsetpgwh" title="Permalink for paragraph 1">&para; <span>1</span></a></span>
+<span class="commenticonbox"><a class="para_permalink has_comments" href="#pstacifhdacsfwiaaWOLITWshcdotcuswsetpgwh" title="Leave a comment on paragraph 1">Leave a comment on paragraph 1</a> <small class="comment_count" title="There are 4 comments written for this paragraph">4</small></span>
+<img fetchpriority="high" decoding="async" class="size-full wp-image-472 aligncenter" alt="WALDEN; OR, LIFE IN THE WOODS" src="https://commons.digitalthoreau.org/thoreauwalden/wp-content/uploads/sites/8/2013/12/walden_1st_ed_title-page_01.gif" width="435" height="145" /></p>
+<p style="text-align: center;" class="textblock textblock-center" id="textblock-pstacidacsfwiaaBHDTshcdotcuswsetpgwh"><span class="para_marker"><a class="textblock_permalink" id="pstacidacsfwiaaBHDTshcdotcuswsetpgwh" href="#pstacidacsfwiaaBHDTshcdotcuswsetpgwh" title="Permalink for paragraph 2">&para; <span>2</span></a></span>
+<span class="commenticonbox"><a class="para_permalink no_comments" href="#pstacidacsfwiaaBHDTshcdotcuswsetpgwh" title="Leave a comment on paragraph 2">Leave a comment on paragraph 2</a> <small class="comment_count" title="There are 0 comments written for this paragraph">0</small></span>
+<img decoding="async" class="size-full wp-image-473 aligncenter" alt="By HENRY D. THOREAU" src="https://commons.digitalthoreau.org/thoreauwalden/wp-content/uploads/sites/8/2013/12/walden_1st_ed_title-page_02.gif" width="435" height="29" /></p>
+<p style="text-align: center;" class="textblock textblock-center" id="textblock-pstacilldacsfwiaaAOAWOTCAMRshcdotcuswsetpgwh"><span class="para_marker"><a class="textblock_permalink" id="pstacilldacsfwiaaAOAWOTCAMRshcdotcuswsetpgwh" href="#pstacilldacsfwiaaAOAWOTCAMRshcdotcuswsetpgwh" title="Permalink for paragraph 3">&para; <span>3</span></a></span>
+<span class="commenticonbox"><a class="para_permalink no_comments" href="#pstacilldacsfwiaaAOAWOTCAMRshcdotcuswsetpgwh" title="Leave a comment on paragraph 3">Leave a comment on paragraph 3</a> <small class="comment_count" title="There are 0 comments written for this paragraph">0</small></span>
+<img loading="lazy" decoding="async" class="size-full wp-image-474 aligncenter" alt="AUTHOR OF &quot;A WREN ON THE CONCORD AND MERRIMACK RIVERS.&quot;" src="https://commons.digitalthoreau.org/thoreauwalden/wp-content/uploads/sites/8/2013/12/walden_1st_ed_title-page_03.gif" width="435" height="18" /></p>
+<p style="text-align: center;" class="textblock textblock-center" id="textblock-pstacilldacsfwiaaCitwshcdotcuswsetpgwh"><span class="para_marker"><a class="textblock_permalink" id="pstacilldacsfwiaaCitwshcdotcuswsetpgwh" href="#pstacilldacsfwiaaCitwshcdotcuswsetpgwh" title="Permalink for paragraph 4">&para; <span>4</span></a></span>
+<span class="commenticonbox"><a class="para_permalink has_comments" href="#pstacilldacsfwiaaCitwshcdotcuswsetpgwh" title="Leave a comment on paragraph 4">Leave a comment on paragraph 4</a> <small class="comment_count" title="There is 1 comment written for this paragraph">1</small></span>
+<img loading="lazy" decoding="async" class="size-full wp-image-475 aligncenter" alt="Cabin in the woods" src="https://commons.digitalthoreau.org/thoreauwalden/wp-content/uploads/sites/8/2013/12/walden_1st_ed_title-page_04.gif" width="435" height="423" /></p>
+<p style="text-align: center;" class="textblock textblock-center" id="textblock-pstacilldacsfwiaaIdnptwaodbbalcitmsohriowmnushcdotcuswsetpgwh"><span class="para_marker"><a class="textblock_permalink" id="pstacilldacsfwiaaIdnptwaodbbalcitmsohriowmnushcdotcuswsetpgwh" href="#pstacilldacsfwiaaIdnptwaodbbalcitmsohriowmnushcdotcuswsetpgwh" title="Permalink for paragraph 5">&para; <span>5</span></a></span>
+<span class="commenticonbox"><a class="para_permalink has_comments" href="#pstacilldacsfwiaaIdnptwaodbbalcitmsohriowmnushcdotcuswsetpgwh" title="Leave a comment on paragraph 5">Leave a comment on paragraph 5</a> <small class="comment_count" title="There is 1 comment written for this paragraph">1</small></span>
+<img loading="lazy" decoding="async" class="size-full wp-image-476 aligncenter" alt="I do not propose to write an ode to dejection, but to brag as lustily as chantecleer in the morning, standing on his roost, if only to wake my neighbors up" src="https://commons.digitalthoreau.org/thoreauwalden/wp-content/uploads/sites/8/2013/12/walden_1st_ed_title-page_05.gif" width="435" height="40" /></p>
+<p style="text-align: center;" class="textblock textblock-center" id="textblock-pstacilldacsfwiaaBTaFMshcdotcuswsetpgwh"><span class="para_marker"><a class="textblock_permalink" id="pstacilldacsfwiaaBTaFMshcdotcuswsetpgwh" href="#pstacilldacsfwiaaBTaFMshcdotcuswsetpgwh" title="Permalink for paragraph 6">&para; <span>6</span></a></span>
+<span class="commenticonbox"><a class="para_permalink no_comments" href="#pstacilldacsfwiaaBTaFMshcdotcuswsetpgwh" title="Leave a comment on paragraph 6">Leave a comment on paragraph 6</a> <small class="comment_count" title="There are 0 comments written for this paragraph">0</small></span>
+<img loading="lazy" decoding="async" class="size-full wp-image-477 aligncenter" alt="Boston, Ticknor and Fieds. MDCCCLIV" src="https://commons.digitalthoreau.org/thoreauwalden/wp-content/uploads/sites/8/2013/12/walden_1st_ed_title-page_06.gif" width="435" height="73" /></p>
+
+							
+														
+															<div class="running_header_bottom">
+									<span class="arabic">Page <span class="page_num_bottom">1</span></span>								</div>
+							
+						</div><!-- /post -->
+					</div><!-- /content -->
+
+					<div class="page_nav_lower">
+						<!-- page_navigation.php -->
+<div class="page_navigation">
+
+	<ul><li class="alignleft"><a href="https://commons.digitalthoreau.org/walden/how-to-read/" class="previous_page" title="Previous page">Previous page</a></li>
+<li class="alignright"><a href="https://commons.digitalthoreau.org/walden/economy/economy-1-14/" class="next_page" title="Next page">Next page</a></li>
+</ul>
+</div><!-- /page_navigation -->
+					</div><!-- /page_nav_lower -->
+
+				</div><!-- /page_wrapper -->
+			</div><!-- /main_wrapper -->
+
+		
+	
+</div><!-- /wrapper -->
+
+<!-- sidebar.php -->
+
+<div id="sidebar">
+	<div id="sidebar_inner">
+
+		<ul id="sidebar_tabs">
+			
+						<li id="comments_header" class="sidebar_header">
+							<h2><a href="#comments_sidebar" class="active-tab">
+								Comments							</a></h2>
+
+							<span id="cp_minimise_all_comments" title="Minimize all Comment Sections"></span>						</li>
+
+													<li id="activity_header" class="sidebar_header">
+								<h2><a href="#activity_sidebar">Activity</a></h2>
+
+								<span id="cp_minimise_all_activity" title="Minimize all Activity Sections"></span>							</li>
+
+							
+		</ul>
+
+		<!-- comments_sidebar.php -->
+<div id="comments_sidebar" class="sidebar_container">
+
+	<div class="sidebar_header">
+		<h2>Comments</h2>
+	</div>
+
+	<div class="sidebar_minimiser">
+		<!-- comments_by_para.php -->
+<div class="sidebar_contents_wrapper">
+
+	
+	<div class="comments_container" id="comments_post_identifier-298">
+
+		
+		<h3 class="bpgsites_group_filter_heading no_comments"><a href="#bpgsites_group_filter">Filter comments by group</a></h3>
+<div id="bpgsites_group_filter" class="bpgsites_group_filter no_comments">
+<form id="bpgsites_comment_group_filter" name="bpgsites_comment_group_filter" action="https://commons.digitalthoreau.org/walden/" method="post">
+<span class="bpgsites_comment_group">
+<input type="checkbox" name="bpgsites_comment_group_toggle" id="bpgsites_comment_group_toggle" class="bpgsites_group_checkbox_toggle" value="" checked="checked" />
+<label class="bpgsites_comment_group_label" for="bpgsites_comment_group_toggle">Show all groups</label>
+</span>
+<span class="bpgsites_comment_group bpgsites_comment_group_header bpgsites_comment_group_auth">Showcase Groups</span>
+<span class="bpgsites_comment_group">
+<input type="checkbox" class="bpgsites_group_checkbox bpgsites_group_checkbox_auth" name="bpgsites_comment_groups[]" id="bpgsites_comment_group_65" value="65" checked="checked" />
+<label class="bpgsites_comment_group_label" for="bpgsites_comment_group_65">ENGL 203 Geneseo F18</label>
+</span>
+
+<span class="bpgsites_comment_group">
+<input type="checkbox" class="bpgsites_group_checkbox bpgsites_group_checkbox_auth" name="bpgsites_comment_groups[]" id="bpgsites_comment_group_74" value="74" checked="checked" />
+<label class="bpgsites_comment_group_label" for="bpgsites_comment_group_74">ENGL 340 S20 Geneseo</label>
+</span>
+
+<span class="bpgsites_comment_group">
+<input type="checkbox" class="bpgsites_group_checkbox bpgsites_group_checkbox_auth" name="bpgsites_comment_groups[]" id="bpgsites_comment_group_91" value="91" checked="checked" />
+<label class="bpgsites_comment_group_label" for="bpgsites_comment_group_91">ENGL 340 S24 Geneseo</label>
+</span>
+
+<span class="bpgsites_comment_group">
+<input type="checkbox" class="bpgsites_group_checkbox bpgsites_group_checkbox_auth" name="bpgsites_comment_groups[]" id="bpgsites_comment_group_94" value="94" checked="checked" />
+<label class="bpgsites_comment_group_label" for="bpgsites_comment_group_94">ENGL 340 S25 Geneseo</label>
+</span>
+
+<span class="bpgsites_comment_group">
+<input type="checkbox" class="bpgsites_group_checkbox bpgsites_group_checkbox_auth" name="bpgsites_comment_groups[]" id="bpgsites_comment_group_96" value="96" checked="checked" />
+<label class="bpgsites_comment_group_label" for="bpgsites_comment_group_96">ENGL 340 S26 Geneseo</label>
+</span>
+
+<span class="bpgsites_comment_group">
+<input type="checkbox" class="bpgsites_group_checkbox bpgsites_group_checkbox_auth" name="bpgsites_comment_groups[]" id="bpgsites_comment_group_56" value="56" checked="checked" />
+<label class="bpgsites_comment_group_label" for="bpgsites_comment_group_56">Into the Woods</label>
+</span>
+
+<span class="bpgsites_comment_group">
+<input type="checkbox" class="bpgsites_group_checkbox bpgsites_group_checkbox_auth" name="bpgsites_comment_groups[]" id="bpgsites_comment_group_83" value="83" checked="checked" />
+<label class="bpgsites_comment_group_label" for="bpgsites_comment_group_83">SNHUmans</label>
+</span>
+
+<span class="bpgsites_comment_group">
+<input type="checkbox" class="bpgsites_group_checkbox bpgsites_group_checkbox_auth" name="bpgsites_comment_groups[]" id="bpgsites_comment_group_52" value="52" checked="checked" />
+<label class="bpgsites_comment_group_label" for="bpgsites_comment_group_52">Willamette University</label>
+</span>
+<span class="bpgsites_comment_group bpgsites_comment_group_header bpgsites_comment_group_public">Public Groups</span>
+<span class="bpgsites_comment_group">
+<input type="checkbox" class="bpgsites_group_checkbox bpgsites_group_checkbox_public" name="bpgsites_comment_groups[]" id="bpgsites_comment_group_27" value="27" checked="checked" />
+<label class="bpgsites_comment_group_label" for="bpgsites_comment_group_27">General Discussion</label>
+</span>
+
+<span class="bpgsites_comment_group">
+<input type="checkbox" class="bpgsites_group_checkbox bpgsites_group_checkbox_public" name="bpgsites_comment_groups[]" id="bpgsites_comment_group_49" value="49" checked="checked" />
+<label class="bpgsites_comment_group_label" for="bpgsites_comment_group_49">Thoreau Society AG 2016</label>
+</span>
+
+<span class="bpgsites_comment_group">
+<input type="checkbox" class="bpgsites_group_checkbox bpgsites_group_checkbox_public" name="bpgsites_comment_groups[]" id="bpgsites_comment_group_75" value="75" checked="checked" />
+<label class="bpgsites_comment_group_label" for="bpgsites_comment_group_75">Translating Thoreau</label>
+</span>
+<input type="submit" id="bpgsites_comment_group_submit" value="Filter" />
+</form>
+</div>
+<h3 id="para_heading-" class="no_comments"><a class="comment_block_permalink" title="Permalink for comments on the whole Page" href="#para_heading-"><span class="cp_comment_num">0</span> <span class="cp_comment_word">Comments</span> on <span class="source_block">the whole Page</span></a></h3>
+
+<div id="para_wrapper-" class="paragraph_wrapper no_comments">
+
+<div class="reply_to_para" id="reply_to_para-">
+<p><a class="reply_to_para" href="https://commons.digitalthoreau.org/join/">Create an account to leave a comment</a></p>
+</div>
+
+</div>
+
+
+
+<h3 id="para_heading-pstacifhdacsfwiaaWOLITWshcdotcuswsetpgwh"><a class="comment_block_permalink" title="Permalink for comments on paragraph 1" href="#para_heading-pstacifhdacsfwiaaWOLITWshcdotcuswsetpgwh"><span class="cp_comment_num">4</span> <span class="cp_comment_word">Comments</span> on <span class="source_block">paragraph 1</span></a></h3>
+
+<div id="para_wrapper-pstacifhdacsfwiaaWOLITWshcdotcuswsetpgwh" class="paragraph_wrapper">
+
+<ol class="commentlist">
+
+<li id="li-comment-4" class="comment byuser comment-author-walterharding even thread-even depth-1 bpgsites-shown bpgsites-group-25">
+			<div class="comment-wrapper">
+				<div id="comment-4">
+
+					<div class="comment-identifier">
+						
+						<img alt='' src='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/129/60409775b6176f4015e5df79aaed098c-bpthumb.png' srcset='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/129/60409775b6176f4015e5df79aaed098c-bpfull.png 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+						<span class="alignright comment-upvote"><a href="/walden/" class="comment_upvoter upvote" data-do="upvote" data-comment_id="4" title="Like">Like (<span class="upvotes">3</span>)</a></span>
+						<cite class="fn"><a href="https://commons.digitalthoreau.org/members/walterharding/">Walter Harding (1917-1996)</a></cite>
+						<a class="comment_permalink" href="https://commons.digitalthoreau.org/walden/#comment-4" title="Permalink for this comment"><span class="comment_permalink_copy"></span>January 3, 2014 at 5:18 pm</a>
+						<div class="comment_tagger_tags"></div>
+
+
+					</div><!-- /comment-identifier -->
+
+					<div class="comment-content">
+						<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/panel-of-experts/">Panel of Experts</a></p>
+</div>
+<p><strong>[WALDEN; OR, LIFE IN THE WOODS]</strong></p>
+<p>Although the first edition gives the title <em>Walden; or, Life in the Woods</em>, on March 4, 1862, two months before he died, T wrote to his publishers, Ticknor &amp; Fields, asking them to omit the subtitle in a new edition. They complied with this request, although it has rarely been followed since. Paul (75) suggests that T may have dropped the subtitle because he feared his audience was taking it too literally and thus missing the more important philosophy permeating the book. T could have derived the subtitle from his friend Charles Lane&#8217;s essay &#8220;Life in the Woods&#8221; in the <em>Dial</em> (IV, 1844, 415) or from John S. Williams, &#8220;Our Cabin; or, Life in the Woods&#8221; in the October 1843 <em>American Pioneer</em> (DeMott), but not from the then popular <em>The Adirondack; or Life in the Woods</em>, by J.T. Headley (New York, 1849), which did not appear until after T had used the subtitle in an advertisement for W in the back pages of the first edition of <em>A Week. </em>For a comprehensive study of the types of books on which T based the structure of W, see Linck Johnson. For a discussion of the organic structure of W, see Lane (1960). Kurtz is one o the most straightforward analyses of W&#8217;s style.</p>
+
+					</div><!-- /comment-content -->
+
+					<div class="reply"><a rel="nofollow" href="https://commons.digitalthoreau.org/join/">Create an account to reply</a></div><!-- /reply -->
+
+				</div><!-- /comment-4 -->
+			</div><!-- /comment-wrapper -->
+			</li><!-- #comment-## -->
+<li id="li-comment-2111" class="comment byuser comment-author-keithbadger odd alt thread-odd thread-alt depth-1 bpgsites-shown bpgsites-group-27">
+			<div class="comment-wrapper">
+				<div id="comment-2111">
+
+					<div class="comment-identifier">
+						
+						<img alt='' src='//www.gravatar.com/avatar/f50f3fc52f77481e695f80f00aa60926?s=32&#038;r=g&#038;d=identicon' srcset='//www.gravatar.com/avatar/f50f3fc52f77481e695f80f00aa60926?s=32&#038;r=g&#038;d=identicon 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+						<span class="alignright comment-upvote"><a href="/walden/" class="comment_upvoter upvote" data-do="upvote" data-comment_id="2111" title="Like">Like (<span class="upvotes">1</span>)</a></span>
+						<cite class="fn"><a href="https://commons.digitalthoreau.org/members/keithbadger/">Keith Badger</a></cite>
+						<a class="comment_permalink" href="https://commons.digitalthoreau.org/walden/#comment-2111" title="Permalink for this comment"><span class="comment_permalink_copy"></span>December 17, 2014 at 4:55 pm</a>
+						<div class="comment_tagger_tags"></div>
+
+
+					</div><!-- /comment-identifier -->
+
+					<div class="comment-content">
+						<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/public/">General Discussion</a></p>
+</div>
+<p>Is there any possibility of Thoreau borrowing from the Christian tradition and positing &#8220;the woods&#8221; as a corollary of &#8220;wilderness&#8221;, where the demons (in us) are often portrayed and living? To reach one&#8217;s &#8220;higher self&#8221;, one must wake up inwardly to those elements that lead the soul (psychological and emotional state) astray.</p>
+
+					</div><!-- /comment-content -->
+
+					<div class="reply"><a rel="nofollow" href="https://commons.digitalthoreau.org/join/">Create an account to reply</a></div><!-- /reply -->
+
+				</div><!-- /comment-2111 -->
+			</div><!-- /comment-wrapper -->
+			</li><!-- #comment-## -->
+<li id="li-comment-5441" class="comment byuser comment-author-markg713 even thread-even depth-1 featured bpgsites-shown bpgsites-group-25">
+			<div class="comment-wrapper">
+				<div id="comment-5441">
+
+					<div class="comment-identifier">
+						
+						<img alt='' src='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/15171/9a957162c25618a4fd9939cfb0e0390c-bpthumb.jpg' srcset='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/15171/9a957162c25618a4fd9939cfb0e0390c-bpfull.jpg 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+						<span class="alignright comment-upvote"><a href="/walden/" class="comment_upvoter upvote" data-do="upvote" data-comment_id="5441" title="Like">Like (<span class="upvotes">1</span>)</a></span>
+						<cite class="fn"><a href="https://commons.digitalthoreau.org/members/markg713/">Mark Gallagher</a></cite>
+						<a class="comment_permalink" href="https://commons.digitalthoreau.org/walden/#comment-5441" title="Permalink for this comment"><span class="comment_permalink_copy"></span>February 17, 2019 at 5:50 pm</a>
+						<div class="comment_tagger_tags"></div>
+
+
+					</div><!-- /comment-identifier -->
+
+					<div class="comment-content">
+						<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/panel-of-experts/">Panel of Experts</a></p>
+</div>
+<p>In his new book, <em>Cryptic Subtexts in Literature and Film: Secret Messages and Buried Treasure</em> (New York: Routledge, 2019), Steven F. Walker offers a new interpretation of <em>Walden</em>’s 1854 subtitle, “Life in the Woods.” It is well known that that subtitle was hardly original, having appeared in several publications prior to the publication of <em>Walden</em>, including an article of that name by Charles Lane which appears in the final issue of <em>The Dial</em>. Walker grants that Thoreau may have used the title “ironically,” that is, “as a vigorous rejoinder to the thesis of Lane’s <em>Dial</em> essay” (13). More intriguing, however, is Walker’s argument that Thoreau may have associated “life in the woods” with a phase of life known in Hindu as “vanaprastha” (literally translated as “life in the woods”)—“the third stage of life—that of the solitary, contemplative hermit living in the forest on the outskirts of the village—as described in <em>The Laws of Manu</em>” (14) which Thoreau read in Emerson’s library in 1840. “Such a new framing,” Walker says, “certainly provides a new perspective on Thoreau’s life-in-the-woods enterprise, which, for all its Yankee originality, also can be seen as a spiritual retreat based on an ancient Hindu paradigm of the stages of life” (16).</p>
+
+					</div><!-- /comment-content -->
+
+					<div class="reply"><a rel="nofollow" href="https://commons.digitalthoreau.org/join/">Create an account to reply</a></div><!-- /reply -->
+
+				</div><!-- /comment-5441 -->
+			</div><!-- /comment-wrapper -->
+			</li><!-- #comment-## -->
+<li id="li-comment-6502" class="comment byuser comment-author-cc54 odd alt thread-odd thread-alt depth-1 bpgsites-shown bpgsites-group-27">
+			<div class="comment-wrapper">
+				<div id="comment-6502">
+
+					<div class="comment-identifier">
+						
+						<img alt='' src='//www.gravatar.com/avatar/562b2db69138c8df8658a270a3357444?s=32&#038;r=g&#038;d=identicon' srcset='//www.gravatar.com/avatar/562b2db69138c8df8658a270a3357444?s=32&#038;r=g&#038;d=identicon 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+						<span class="alignright comment-upvote"><a href="/walden/" class="comment_upvoter upvote" data-do="upvote" data-comment_id="6502" title="Like">Like (<span class="upvotes">0</span>)</a></span>
+						<cite class="fn"><a href="https://commons.digitalthoreau.org/members/cc54/">Caroline Crimmins</a></cite>
+						<a class="comment_permalink" href="https://commons.digitalthoreau.org/walden/#comment-6502" title="Permalink for this comment"><span class="comment_permalink_copy"></span>February 12, 2020 at 12:53 pm</a>
+						<div class="comment_tagger_tags"></div>
+
+
+					</div><!-- /comment-identifier -->
+
+					<div class="comment-content">
+						<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/public/">General Discussion</a></p>
+</div>
+<p>Caroline Crimmins<br />
+Paragraph 1: Last semester I took Professor Cooper’s English 368 Connections in Recent Literature: Unplugged and ParaDigitial class and examined the relationship between books and technology. On the first day of class, we talked about how Thoreau was actually much closer to civilization than it seems in his writing. Although I cannot find the original map that I saw on my first day of class, this map also demonstrates that even though Thoreau was somewhat “tucked away” he was still decently close to civilization. He talks about occasionally catching people off the train to hear the town’s gossip, something he cannot resist. He also mentions occasionally wandering into town for the human connection that he sometimes yearned for. I believe that this is an interesting point to bring into his first chapter “Economy” because he talks to the reader about how he builds his own house that is meant to be so distant from society but in reality it is quite the opposite. This relates strongly to technology today because even people that claim they want to be distant from the innovations we are creating as a society are still somehow connected to technology in some way. Technology has a huge influence on our society and there is almost no way of having total seclusion from the world or from the devices we have invented and are still working on today.<br />
+&nbsp;</p>
+
+					</div><!-- /comment-content -->
+
+					<div class="reply"><a rel="nofollow" href="https://commons.digitalthoreau.org/join/">Create an account to reply</a></div><!-- /reply -->
+
+				</div><!-- /comment-6502 -->
+			</div><!-- /comment-wrapper -->
+			</li><!-- #comment-## -->
+</ol>
+
+<div class="reply_to_para" id="reply_to_para-1">
+<p><a class="reply_to_para" href="https://commons.digitalthoreau.org/join/">Create an account to leave a comment</a></p>
+</div>
+
+</div>
+
+
+
+<h3 id="para_heading-pstacidacsfwiaaBHDTshcdotcuswsetpgwh" class="no_comments"><a class="comment_block_permalink" title="Permalink for comments on paragraph 2" href="#para_heading-pstacidacsfwiaaBHDTshcdotcuswsetpgwh"><span class="cp_comment_num">0</span> <span class="cp_comment_word">Comments</span> on <span class="source_block">paragraph 2</span></a></h3>
+
+<div id="para_wrapper-pstacidacsfwiaaBHDTshcdotcuswsetpgwh" class="paragraph_wrapper no_comments">
+
+<div class="reply_to_para" id="reply_to_para-2">
+<p><a class="reply_to_para" href="https://commons.digitalthoreau.org/join/">Create an account to leave a comment</a></p>
+</div>
+
+</div>
+
+
+
+<h3 id="para_heading-pstacilldacsfwiaaAOAWOTCAMRshcdotcuswsetpgwh" class="no_comments"><a class="comment_block_permalink" title="Permalink for comments on paragraph 3" href="#para_heading-pstacilldacsfwiaaAOAWOTCAMRshcdotcuswsetpgwh"><span class="cp_comment_num">0</span> <span class="cp_comment_word">Comments</span> on <span class="source_block">paragraph 3</span></a></h3>
+
+<div id="para_wrapper-pstacilldacsfwiaaAOAWOTCAMRshcdotcuswsetpgwh" class="paragraph_wrapper no_comments">
+
+<div class="reply_to_para" id="reply_to_para-3">
+<p><a class="reply_to_para" href="https://commons.digitalthoreau.org/join/">Create an account to leave a comment</a></p>
+</div>
+
+</div>
+
+
+
+<h3 id="para_heading-pstacilldacsfwiaaCitwshcdotcuswsetpgwh"><a class="comment_block_permalink" title="Permalink for comments on paragraph 4" href="#para_heading-pstacilldacsfwiaaCitwshcdotcuswsetpgwh"><span class="cp_comment_num">1</span> <span class="cp_comment_word">Comment</span> on <span class="source_block">paragraph 4</span></a></h3>
+
+<div id="para_wrapper-pstacilldacsfwiaaCitwshcdotcuswsetpgwh" class="paragraph_wrapper">
+
+<ol class="commentlist">
+
+<li id="li-comment-5" class="comment byuser comment-author-walterharding even thread-even depth-1 bpgsites-shown bpgsites-group-25">
+			<div class="comment-wrapper">
+				<div id="comment-5">
+
+					<div class="comment-identifier">
+						
+						<img alt='' src='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/129/60409775b6176f4015e5df79aaed098c-bpthumb.png' srcset='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/129/60409775b6176f4015e5df79aaed098c-bpfull.png 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+						<span class="alignright comment-upvote"><a href="/walden/" class="comment_upvoter upvote" data-do="upvote" data-comment_id="5" title="Like">Like (<span class="upvotes">4</span>)</a></span>
+						<cite class="fn"><a href="https://commons.digitalthoreau.org/members/walterharding/">Walter Harding (1917-1996)</a></cite>
+						<a class="comment_permalink" href="https://commons.digitalthoreau.org/walden/#comment-5" title="Permalink for this comment"><span class="comment_permalink_copy"></span>January 3, 2014 at 5:22 pm</a>
+						<div class="comment_tagger_tags"></div>
+
+
+					</div><!-- /comment-identifier -->
+
+					<div class="comment-content">
+						<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/panel-of-experts/">Panel of Experts</a></p>
+</div>
+<p>The drawing of T&#8217;s cabin was made by his sister Sophia, an amateur artist. T himself complained of it, &#8220;Thoreau would suggest a little alteration, chiefly in the door, in the wide projection of the roof at the front; and that the bank more immediately about the house be brought out more distinctly&#8221; (Sanborn, 1917, 338). Sanborn adds, &#8220;He must have noticed that her trees were firs and pines, with a few deciduous tress that did not then grow there.&#8221; Ellery Channing thought it a &#8220;feeble caricature.&#8221; Other contemporary drawings of the cabin may be found in Meltzer and Harding (144-5).</p>
+
+					</div><!-- /comment-content -->
+
+					<div class="reply"><a rel="nofollow" href="https://commons.digitalthoreau.org/join/">Create an account to reply</a></div><!-- /reply -->
+
+				</div><!-- /comment-5 -->
+			</div><!-- /comment-wrapper -->
+			</li><!-- #comment-## -->
+</ol>
+
+<div class="reply_to_para" id="reply_to_para-4">
+<p><a class="reply_to_para" href="https://commons.digitalthoreau.org/join/">Create an account to leave a comment</a></p>
+</div>
+
+</div>
+
+
+
+<h3 id="para_heading-pstacilldacsfwiaaIdnptwaodbbalcitmsohriowmnushcdotcuswsetpgwh"><a class="comment_block_permalink" title="Permalink for comments on paragraph 5" href="#para_heading-pstacilldacsfwiaaIdnptwaodbbalcitmsohriowmnushcdotcuswsetpgwh"><span class="cp_comment_num">1</span> <span class="cp_comment_word">Comment</span> on <span class="source_block">paragraph 5</span></a></h3>
+
+<div id="para_wrapper-pstacilldacsfwiaaIdnptwaodbbalcitmsohriowmnushcdotcuswsetpgwh" class="paragraph_wrapper">
+
+<ol class="commentlist">
+
+<li id="li-comment-6" class="comment byuser comment-author-walterharding even thread-even depth-1 bpgsites-shown bpgsites-group-25">
+			<div class="comment-wrapper">
+				<div id="comment-6">
+
+					<div class="comment-identifier">
+						
+						<img alt='' src='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/129/60409775b6176f4015e5df79aaed098c-bpthumb.png' srcset='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/129/60409775b6176f4015e5df79aaed098c-bpfull.png 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+						<span class="alignright comment-upvote"><a href="/walden/" class="comment_upvoter upvote" data-do="upvote" data-comment_id="6" title="Like">Like (<span class="upvotes">1</span>)</a></span>
+						<cite class="fn"><a href="https://commons.digitalthoreau.org/members/walterharding/">Walter Harding (1917-1996)</a></cite>
+						<a class="comment_permalink" href="https://commons.digitalthoreau.org/walden/#comment-6" title="Permalink for this comment"><span class="comment_permalink_copy"></span>January 3, 2014 at 5:25 pm</a>
+						<div class="comment_tagger_tags"></div>
+
+
+					</div><!-- /comment-identifier -->
+
+					<div class="comment-content">
+						<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/panel-of-experts/">Panel of Experts</a></p>
+</div>
+<p><strong>[to wake my neighbors up]</strong></p>
+<p>The epigraph is quoted from the second chapter of W. It is omitted from many modern editions, and unfortunately so, for it sets the mood for the whole book. Broderick (1954) points out how this awakening and morning theme is a basic image carried throughout W. A possible source for T&#8217;s idea is Orestes Brownson&#8217;s statement in his <em>Boston Quarterly Review</em> in 1839 that he &#8220;aimed to startle, and made it a point to be as paradoxical and extravagant as he could.&#8221;</p>
+
+					</div><!-- /comment-content -->
+
+					<div class="reply"><a rel="nofollow" href="https://commons.digitalthoreau.org/join/">Create an account to reply</a></div><!-- /reply -->
+
+				</div><!-- /comment-6 -->
+			</div><!-- /comment-wrapper -->
+			</li><!-- #comment-## -->
+</ol>
+
+<div class="reply_to_para" id="reply_to_para-5">
+<p><a class="reply_to_para" href="https://commons.digitalthoreau.org/join/">Create an account to leave a comment</a></p>
+</div>
+
+</div>
+
+
+
+<h3 id="para_heading-pstacilldacsfwiaaBTaFMshcdotcuswsetpgwh" class="no_comments"><a class="comment_block_permalink" title="Permalink for comments on paragraph 6" href="#para_heading-pstacilldacsfwiaaBTaFMshcdotcuswsetpgwh"><span class="cp_comment_num">0</span> <span class="cp_comment_word">Comments</span> on <span class="source_block">paragraph 6</span></a></h3>
+
+<div id="para_wrapper-pstacilldacsfwiaaBTaFMshcdotcuswsetpgwh" class="paragraph_wrapper no_comments">
+
+<div class="reply_to_para" id="reply_to_para-6">
+<p><a class="reply_to_para" href="https://commons.digitalthoreau.org/join/">Create an account to leave a comment</a></p>
+</div>
+
+</div>
+
+
+
+
+		<!-- comment_form.php -->
+
+	<div id="respond_wrapper">
+		<div id="respond">
+
+			<div class="cancel-comment-reply">
+				<p><a rel="nofollow" id="cancel-comment-reply-link" href="/walden/#respond" style="display:none;">Cancel</a></p>
+			</div>
+
+			<h4 id="respond_title">
+				Leave a Comment			</h4>
+
+			
+				<p class="commentpress_comment_form_hidden">
+					<a href="https://commons.digitalthoreau.org/join/">Create an account to leave a comment</a>				</p>
+
+			
+		</div><!-- /respond -->
+	</div><!-- /respond_wrapper -->
+
+
+	</div><!-- /comments_container -->
+
+	
+</div><!-- /sidebar_contents_wrapper -->
+	</div><!-- /sidebar_minimiser -->
+
+</div><!-- /comments_sidebar -->
+<!-- activity_sidebar.php -->
+<div id="activity_sidebar" class="sidebar_container">
+
+	<div class="sidebar_header">
+		<h2>Activity</h2>
+	</div>
+
+	<div class="sidebar_minimiser">
+		<div class="sidebar_contents_wrapper">
+
+			<div class="comments_container">
+
+				
+				
+					
+					<h3 class="activity_heading">Recent Comments on this Page</h3>
+
+					<div class="paragraph_wrapper page_comments_output">
+						<ol class="comment_activity">
+
+<li><!-- item li -->
+
+
+		<div class="comment-wrapper">
+
+			<div class="comment-identifier">
+				<img alt='' src='//www.gravatar.com/avatar/562b2db69138c8df8658a270a3357444?s=32&#038;r=g&#038;d=identicon' srcset='//www.gravatar.com/avatar/562b2db69138c8df8658a270a3357444?s=32&#038;r=g&#038;d=identicon 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+				<cite class="fn"><a href="https://commons.digitalthoreau.org/members/cc54/">Caroline Crimmins</a></cite>
+				<p class="comment_activity_date"><a class="comment_activity_link comment_on_post" href="https://commons.digitalthoreau.org/walden/#comment-6502">February 12, 2020 at 12:53 pm</a></p>
+			</div><!-- /comment-identifier -->
+
+			<div class="comment-content">
+				<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/public/">General Discussion</a></p>
+</div>
+<p>Caroline Crimmins<br />
+Paragraph 1: Last semester I took Professor Cooper’s English 368 Connections in Recent Literature: Unplugged and ParaDigitial class and examined the relationship between books and technology. On the first day of class, we talked about how Thoreau was actually much closer to civilization than it seems in his writing. Although I cannot find the original map that I saw on my first day of class, this map also demonstrates that even though Thoreau was somewhat “tucked away” he was still decently close to civilization. He talks about occasionally catching people off the train to hear the town’s gossip, something he cannot resist. He also mentions occasionally wandering into town for the human connection that he sometimes yearned for. I believe that this is an interesting point to bring into his first chapter “Economy” because he talks to the reader about how he builds his own house that is meant to be so distant from society but in reality it is quite the opposite. This relates strongly to technology today because even people that claim they want to be distant from the innovations we are creating as a society are still somehow connected to technology in some way. Technology has a huge influence on our society and there is almost no way of having total seclusion from the world or from the devices we have invented and are still working on today.<br />
+&nbsp;</p>
+
+			</div><!-- /comment-content -->
+
+			<div class="reply"><p><a class="comment_activity_link comment_on_post" href="https://commons.digitalthoreau.org/walden/#comment-6502">See in context</a></p></div><!-- /reply -->
+
+		</div><!-- /comment-wrapper -->
+		
+
+</li><!-- /item li -->
+
+<li><!-- item li -->
+
+
+		<div class="comment-wrapper">
+
+			<div class="comment-identifier">
+				<img alt='' src='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/15171/9a957162c25618a4fd9939cfb0e0390c-bpthumb.jpg' srcset='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/15171/9a957162c25618a4fd9939cfb0e0390c-bpfull.jpg 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+				<cite class="fn"><a href="https://commons.digitalthoreau.org/members/markg713/">Mark Gallagher</a></cite>
+				<p class="comment_activity_date"><a class="comment_activity_link comment_on_post" href="https://commons.digitalthoreau.org/walden/#comment-5441">February 17, 2019 at 5:50 pm</a></p>
+			</div><!-- /comment-identifier -->
+
+			<div class="comment-content">
+				<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/panel-of-experts/">Panel of Experts</a></p>
+</div>
+<p>In his new book, <em>Cryptic Subtexts in Literature and Film: Secret Messages and Buried Treasure</em> (New York: Routledge, 2019), Steven F. Walker offers a new interpretation of <em>Walden</em>’s 1854 subtitle, “Life in the Woods.” It is well known that that subtitle was hardly original, having appeared in several publications prior to the publication of <em>Walden</em>, including an article of that name by Charles Lane which appears in the final issue of <em>The Dial</em>. Walker grants that Thoreau may have used the title “ironically,” that is, “as a vigorous rejoinder to the thesis of Lane’s <em>Dial</em> essay” (13). More intriguing, however, is Walker’s argument that Thoreau may have associated “life in the woods” with a phase of life known in Hindu as “vanaprastha” (literally translated as “life in the woods”)—“the third stage of life—that of the solitary, contemplative hermit living in the forest on the outskirts of the village—as described in <em>The Laws of Manu</em>” (14) which Thoreau read in Emerson’s library in 1840. “Such a new framing,” Walker says, “certainly provides a new perspective on Thoreau’s life-in-the-woods enterprise, which, for all its Yankee originality, also can be seen as a spiritual retreat based on an ancient Hindu paradigm of the stages of life” (16).</p>
+
+			</div><!-- /comment-content -->
+
+			<div class="reply"><p><a class="comment_activity_link comment_on_post" href="https://commons.digitalthoreau.org/walden/#comment-5441">See in context</a></p></div><!-- /reply -->
+
+		</div><!-- /comment-wrapper -->
+		
+
+</li><!-- /item li -->
+
+<li><!-- item li -->
+
+
+		<div class="comment-wrapper">
+
+			<div class="comment-identifier">
+				<img alt='' src='//www.gravatar.com/avatar/f50f3fc52f77481e695f80f00aa60926?s=32&#038;r=g&#038;d=identicon' srcset='//www.gravatar.com/avatar/f50f3fc52f77481e695f80f00aa60926?s=32&#038;r=g&#038;d=identicon 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+				<cite class="fn"><a href="https://commons.digitalthoreau.org/members/keithbadger/">Keith Badger</a></cite>
+				<p class="comment_activity_date"><a class="comment_activity_link comment_on_post" href="https://commons.digitalthoreau.org/walden/#comment-2111">December 17, 2014 at 4:55 pm</a></p>
+			</div><!-- /comment-identifier -->
+
+			<div class="comment-content">
+				<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/public/">General Discussion</a></p>
+</div>
+<p>Is there any possibility of Thoreau borrowing from the Christian tradition and positing &#8220;the woods&#8221; as a corollary of &#8220;wilderness&#8221;, where the demons (in us) are often portrayed and living? To reach one&#8217;s &#8220;higher self&#8221;, one must wake up inwardly to those elements that lead the soul (psychological and emotional state) astray.</p>
+
+			</div><!-- /comment-content -->
+
+			<div class="reply"><p><a class="comment_activity_link comment_on_post" href="https://commons.digitalthoreau.org/walden/#comment-2111">See in context</a></p></div><!-- /reply -->
+
+		</div><!-- /comment-wrapper -->
+		
+
+</li><!-- /item li -->
+
+<li><!-- item li -->
+
+
+		<div class="comment-wrapper">
+
+			<div class="comment-identifier">
+				<img alt='' src='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/129/60409775b6176f4015e5df79aaed098c-bpthumb.png' srcset='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/129/60409775b6176f4015e5df79aaed098c-bpfull.png 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+				<cite class="fn"><a href="https://commons.digitalthoreau.org/members/walterharding/">Walter Harding (1917-1996)</a></cite>
+				<p class="comment_activity_date"><a class="comment_activity_link comment_on_post" href="https://commons.digitalthoreau.org/walden/#comment-5">January 3, 2014 at 5:22 pm</a></p>
+			</div><!-- /comment-identifier -->
+
+			<div class="comment-content">
+				<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/panel-of-experts/">Panel of Experts</a></p>
+</div>
+<p>The drawing of T&#8217;s cabin was made by his sister Sophia, an amateur artist. T himself complained of it, &#8220;Thoreau would suggest a little alteration, chiefly in the door, in the wide projection of the roof at the front; and that the bank more immediately about the house be brought out more distinctly&#8221; (Sanborn, 1917, 338). Sanborn adds, &#8220;He must have noticed that her trees were firs and pines, with a few deciduous tress that did not then grow there.&#8221; Ellery Channing thought it a &#8220;feeble caricature.&#8221; Other contemporary drawings of the cabin may be found in Meltzer and Harding (144-5).</p>
+
+			</div><!-- /comment-content -->
+
+			<div class="reply"><p><a class="comment_activity_link comment_on_post" href="https://commons.digitalthoreau.org/walden/#comment-5">See in context</a></p></div><!-- /reply -->
+
+		</div><!-- /comment-wrapper -->
+		
+
+</li><!-- /item li -->
+
+<li><!-- item li -->
+
+
+		<div class="comment-wrapper">
+
+			<div class="comment-identifier">
+				<img alt='' src='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/129/60409775b6176f4015e5df79aaed098c-bpthumb.png' srcset='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/129/60409775b6176f4015e5df79aaed098c-bpfull.png 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+				<cite class="fn"><a href="https://commons.digitalthoreau.org/members/walterharding/">Walter Harding (1917-1996)</a></cite>
+				<p class="comment_activity_date"><a class="comment_activity_link comment_on_post" href="https://commons.digitalthoreau.org/walden/#comment-4">January 3, 2014 at 5:18 pm</a></p>
+			</div><!-- /comment-identifier -->
+
+			<div class="comment-content">
+				<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/panel-of-experts/">Panel of Experts</a></p>
+</div>
+<p><strong>[WALDEN; OR, LIFE IN THE WOODS]</strong></p>
+<p>Although the first edition gives the title <em>Walden; or, Life in the Woods</em>, on March 4, 1862, two months before he died, T wrote to his publishers, Ticknor &amp; Fields, asking them to omit the subtitle in a new edition. They complied with this request, although it has rarely been followed since. Paul (75) suggests that T may have dropped the subtitle because he feared his audience was taking it too literally and thus missing the more important philosophy permeating the book. T could have derived the subtitle from his friend Charles Lane&#8217;s essay &#8220;Life in the Woods&#8221; in the <em>Dial</em> (IV, 1844, 415) or from John S. Williams, &#8220;Our Cabin; or, Life in the Woods&#8221; in the October 1843 <em>American Pioneer</em> (DeMott), but not from the then popular <em>The Adirondack; or Life in the Woods</em>, by J.T. Headley (New York, 1849), which did not appear until after T had used the subtitle in an advertisement for W in the back pages of the first edition of <em>A Week. </em>For a comprehensive study of the types of books on which T based the structure of W, see Linck Johnson. For a discussion of the organic structure of W, see Lane (1960). Kurtz is one o the most straightforward analyses of W&#8217;s style.</p>
+
+			</div><!-- /comment-content -->
+
+			<div class="reply"><p><a class="comment_activity_link comment_on_post" href="https://commons.digitalthoreau.org/walden/#comment-4">See in context</a></p></div><!-- /reply -->
+
+		</div><!-- /comment-wrapper -->
+		
+
+</li><!-- /item li -->
+
+<li><!-- item li -->
+
+
+		<div class="comment-wrapper">
+
+			<div class="comment-identifier">
+				<img alt='' src='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/129/60409775b6176f4015e5df79aaed098c-bpthumb.png' srcset='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/129/60409775b6176f4015e5df79aaed098c-bpfull.png 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+				<cite class="fn"><a href="https://commons.digitalthoreau.org/members/walterharding/">Walter Harding (1917-1996)</a></cite>
+				<p class="comment_activity_date"><a class="comment_activity_link comment_on_post" href="https://commons.digitalthoreau.org/walden/#comment-6">January 3, 2014 at 5:25 pm</a></p>
+			</div><!-- /comment-identifier -->
+
+			<div class="comment-content">
+				<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/panel-of-experts/">Panel of Experts</a></p>
+</div>
+<p><strong>[to wake my neighbors up]</strong></p>
+<p>The epigraph is quoted from the second chapter of W. It is omitted from many modern editions, and unfortunately so, for it sets the mood for the whole book. Broderick (1954) points out how this awakening and morning theme is a basic image carried throughout W. A possible source for T&#8217;s idea is Orestes Brownson&#8217;s statement in his <em>Boston Quarterly Review</em> in 1839 that he &#8220;aimed to startle, and made it a point to be as paradoxical and extravagant as he could.&#8221;</p>
+
+			</div><!-- /comment-content -->
+
+			<div class="reply"><p><a class="comment_activity_link comment_on_post" href="https://commons.digitalthoreau.org/walden/#comment-6">See in context</a></p></div><!-- /reply -->
+
+		</div><!-- /comment-wrapper -->
+		
+
+</li><!-- /item li -->
+
+</ol><!-- /comment_activity -->
+
+					</div>
+
+					<h3 class="activity_heading">Most liked comments on this page</h3>
+
+			<div class="paragraph_wrapper page_comments_output">
+				<ol class="comment_activity">
+
+<li><!-- item li -->
+
+
+		<div class="comment-wrapper">
+
+			<div class="comment-identifier">
+				<img alt='' src='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/129/60409775b6176f4015e5df79aaed098c-bpthumb.png' srcset='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/129/60409775b6176f4015e5df79aaed098c-bpfull.png 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+				<cite class="fn"><a href="https://commons.digitalthoreau.org/members/walterharding/">Walter Harding (1917-1996)</a></cite>
+				<p class="comment_activity_date"><a class="comment_activity_link comment_on_post" href="https://commons.digitalthoreau.org/walden/#comment-5">January 3, 2014 at 5:22 pm</a></p>
+			</div><!-- /comment-identifier -->
+
+			<div class="comment-content">
+				<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/panel-of-experts/">Panel of Experts</a></p>
+</div>
+<p>The drawing of T&#8217;s cabin was made by his sister Sophia, an amateur artist. T himself complained of it, &#8220;Thoreau would suggest a little alteration, chiefly in the door, in the wide projection of the roof at the front; and that the bank more immediately about the house be brought out more distinctly&#8221; (Sanborn, 1917, 338). Sanborn adds, &#8220;He must have noticed that her trees were firs and pines, with a few deciduous tress that did not then grow there.&#8221; Ellery Channing thought it a &#8220;feeble caricature.&#8221; Other contemporary drawings of the cabin may be found in Meltzer and Harding (144-5).</p>
+
+			</div><!-- /comment-content -->
+
+			<div class="reply"><p><a class="comment_activity_link comment_on_post" href="https://commons.digitalthoreau.org/walden/#comment-5">See in context</a></p></div><!-- /reply -->
+
+		</div><!-- /comment-wrapper -->
+		
+
+</li><!-- /item li -->
+
+<li><!-- item li -->
+
+
+		<div class="comment-wrapper">
+
+			<div class="comment-identifier">
+				<img alt='' src='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/129/60409775b6176f4015e5df79aaed098c-bpthumb.png' srcset='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/129/60409775b6176f4015e5df79aaed098c-bpfull.png 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+				<cite class="fn"><a href="https://commons.digitalthoreau.org/members/walterharding/">Walter Harding (1917-1996)</a></cite>
+				<p class="comment_activity_date"><a class="comment_activity_link comment_on_post" href="https://commons.digitalthoreau.org/walden/#comment-4">January 3, 2014 at 5:18 pm</a></p>
+			</div><!-- /comment-identifier -->
+
+			<div class="comment-content">
+				<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/panel-of-experts/">Panel of Experts</a></p>
+</div>
+<p><strong>[WALDEN; OR, LIFE IN THE WOODS]</strong></p>
+<p>Although the first edition gives the title <em>Walden; or, Life in the Woods</em>, on March 4, 1862, two months before he died, T wrote to his publishers, Ticknor &amp; Fields, asking them to omit the subtitle in a new edition. They complied with this request, although it has rarely been followed since. Paul (75) suggests that T may have dropped the subtitle because he feared his audience was taking it too literally and thus missing the more important philosophy permeating the book. T could have derived the subtitle from his friend Charles Lane&#8217;s essay &#8220;Life in the Woods&#8221; in the <em>Dial</em> (IV, 1844, 415) or from John S. Williams, &#8220;Our Cabin; or, Life in the Woods&#8221; in the October 1843 <em>American Pioneer</em> (DeMott), but not from the then popular <em>The Adirondack; or Life in the Woods</em>, by J.T. Headley (New York, 1849), which did not appear until after T had used the subtitle in an advertisement for W in the back pages of the first edition of <em>A Week. </em>For a comprehensive study of the types of books on which T based the structure of W, see Linck Johnson. For a discussion of the organic structure of W, see Lane (1960). Kurtz is one o the most straightforward analyses of W&#8217;s style.</p>
+
+			</div><!-- /comment-content -->
+
+			<div class="reply"><p><a class="comment_activity_link comment_on_post" href="https://commons.digitalthoreau.org/walden/#comment-4">See in context</a></p></div><!-- /reply -->
+
+		</div><!-- /comment-wrapper -->
+		
+
+</li><!-- /item li -->
+
+<li><!-- item li -->
+
+
+		<div class="comment-wrapper">
+
+			<div class="comment-identifier">
+				<img alt='' src='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/15171/9a957162c25618a4fd9939cfb0e0390c-bpthumb.jpg' srcset='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/15171/9a957162c25618a4fd9939cfb0e0390c-bpfull.jpg 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+				<cite class="fn"><a href="https://commons.digitalthoreau.org/members/markg713/">Mark Gallagher</a></cite>
+				<p class="comment_activity_date"><a class="comment_activity_link comment_on_post" href="https://commons.digitalthoreau.org/walden/#comment-5441">February 17, 2019 at 5:50 pm</a></p>
+			</div><!-- /comment-identifier -->
+
+			<div class="comment-content">
+				<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/panel-of-experts/">Panel of Experts</a></p>
+</div>
+<p>In his new book, <em>Cryptic Subtexts in Literature and Film: Secret Messages and Buried Treasure</em> (New York: Routledge, 2019), Steven F. Walker offers a new interpretation of <em>Walden</em>’s 1854 subtitle, “Life in the Woods.” It is well known that that subtitle was hardly original, having appeared in several publications prior to the publication of <em>Walden</em>, including an article of that name by Charles Lane which appears in the final issue of <em>The Dial</em>. Walker grants that Thoreau may have used the title “ironically,” that is, “as a vigorous rejoinder to the thesis of Lane’s <em>Dial</em> essay” (13). More intriguing, however, is Walker’s argument that Thoreau may have associated “life in the woods” with a phase of life known in Hindu as “vanaprastha” (literally translated as “life in the woods”)—“the third stage of life—that of the solitary, contemplative hermit living in the forest on the outskirts of the village—as described in <em>The Laws of Manu</em>” (14) which Thoreau read in Emerson’s library in 1840. “Such a new framing,” Walker says, “certainly provides a new perspective on Thoreau’s life-in-the-woods enterprise, which, for all its Yankee originality, also can be seen as a spiritual retreat based on an ancient Hindu paradigm of the stages of life” (16).</p>
+
+			</div><!-- /comment-content -->
+
+			<div class="reply"><p><a class="comment_activity_link comment_on_post" href="https://commons.digitalthoreau.org/walden/#comment-5441">See in context</a></p></div><!-- /reply -->
+
+		</div><!-- /comment-wrapper -->
+		
+
+</li><!-- /item li -->
+
+<li><!-- item li -->
+
+
+		<div class="comment-wrapper">
+
+			<div class="comment-identifier">
+				<img alt='' src='//www.gravatar.com/avatar/f50f3fc52f77481e695f80f00aa60926?s=32&#038;r=g&#038;d=identicon' srcset='//www.gravatar.com/avatar/f50f3fc52f77481e695f80f00aa60926?s=32&#038;r=g&#038;d=identicon 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+				<cite class="fn"><a href="https://commons.digitalthoreau.org/members/keithbadger/">Keith Badger</a></cite>
+				<p class="comment_activity_date"><a class="comment_activity_link comment_on_post" href="https://commons.digitalthoreau.org/walden/#comment-2111">December 17, 2014 at 4:55 pm</a></p>
+			</div><!-- /comment-identifier -->
+
+			<div class="comment-content">
+				<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/public/">General Discussion</a></p>
+</div>
+<p>Is there any possibility of Thoreau borrowing from the Christian tradition and positing &#8220;the woods&#8221; as a corollary of &#8220;wilderness&#8221;, where the demons (in us) are often portrayed and living? To reach one&#8217;s &#8220;higher self&#8221;, one must wake up inwardly to those elements that lead the soul (psychological and emotional state) astray.</p>
+
+			</div><!-- /comment-content -->
+
+			<div class="reply"><p><a class="comment_activity_link comment_on_post" href="https://commons.digitalthoreau.org/walden/#comment-2111">See in context</a></p></div><!-- /reply -->
+
+		</div><!-- /comment-wrapper -->
+		
+
+</li><!-- /item li -->
+
+<li><!-- item li -->
+
+
+		<div class="comment-wrapper">
+
+			<div class="comment-identifier">
+				<img alt='' src='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/129/60409775b6176f4015e5df79aaed098c-bpthumb.png' srcset='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/129/60409775b6176f4015e5df79aaed098c-bpfull.png 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+				<cite class="fn"><a href="https://commons.digitalthoreau.org/members/walterharding/">Walter Harding (1917-1996)</a></cite>
+				<p class="comment_activity_date"><a class="comment_activity_link comment_on_post" href="https://commons.digitalthoreau.org/walden/#comment-6">January 3, 2014 at 5:25 pm</a></p>
+			</div><!-- /comment-identifier -->
+
+			<div class="comment-content">
+				<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/panel-of-experts/">Panel of Experts</a></p>
+</div>
+<p><strong>[to wake my neighbors up]</strong></p>
+<p>The epigraph is quoted from the second chapter of W. It is omitted from many modern editions, and unfortunately so, for it sets the mood for the whole book. Broderick (1954) points out how this awakening and morning theme is a basic image carried throughout W. A possible source for T&#8217;s idea is Orestes Brownson&#8217;s statement in his <em>Boston Quarterly Review</em> in 1839 that he &#8220;aimed to startle, and made it a point to be as paradoxical and extravagant as he could.&#8221;</p>
+
+			</div><!-- /comment-content -->
+
+			<div class="reply"><p><a class="comment_activity_link comment_on_post" href="https://commons.digitalthoreau.org/walden/#comment-6">See in context</a></p></div><!-- /reply -->
+
+		</div><!-- /comment-wrapper -->
+		
+
+</li><!-- /item li -->
+
+</ol><!-- /comment_activity -->
+
+			</div>
+
+			
+				
+				
+					
+					<h3 class="activity_heading">Recent Comments in this Text</h3>
+
+					<div class="paragraph_wrapper all_comments_output">
+						<ol class="comment_activity">
+
+<li><!-- item li -->
+
+
+		<div class="comment-wrapper">
+
+			<div class="comment-identifier">
+				<img alt='' src='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/2744/3d1f8bd24375d240cced1524f41ba128-bpthumb.jpg' srcset='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/2744/3d1f8bd24375d240cced1524f41ba128-bpfull.jpg 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+				<cite class="fn"><a href="https://commons.digitalthoreau.org/members/paulschacht/">Paul Schacht</a></cite>
+				<p class="comment_activity_date"><a class="comment_activity_link" href="https://commons.digitalthoreau.org/walden/conclusion/conclusion-1-9/#comment-9381">April 10, 2026 at 2:43 pm</a></p>
+			</div><!-- /comment-identifier -->
+
+			<div class="comment-content">
+				<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/engl-340-s26-geneseo/">ENGL 340 S26 Geneseo</a></p>
+</div>
+<p>I love this connection between chapters, <a class="bp-suggestions-mention" href="https://commons.digitalthoreau.org/members/livikelly/" rel="nofollow ugc">@livikelly</a>. I think there&#8217;s no question that in &#8220;Conclusion,&#8221; Thoreau lays particular emphasis on the importance of mental independence and inner exploration. I&#8217;d say that idea pervades <em>Walden</em> all the way through, though. In &#8220;Where I Lived, and What I Lived For&#8221; paragraph <a href="https://commons.digitalthoreau.org/walden/where-i-lived-and-what-i-lived-for/where-i-lived-and-what-i-lived-for-13-23/#pBpatwcIdnttpotueihwhmamWlwafomarvnbaWawirdpsrmccsbcCsCfnddtmhaisswbfnupIiwwsnPoHAAtrtaaerlldtwfrnnbsomnhScwsscbpbieTsdlblAhhthAmwfD" rel="ugc">13</a>, for example, he writes:</p>
+<blockquote><p>Where I lived was as far off as many a region viewed nightly by astronomers. We are wont to imagine rare and delectable places in some remote and more celestial corner of the system, behind the constellation of Cassiopeia&#8217;s Chair, far from noise and disturbance. I discovered that my house actually had its site in such a withdrawn, but forever new and unprofaned, part of the universe.</p></blockquote>
+<p>In other words, he only had to be a short physical distance from his neighbors to experience solitude, because the experience is as much a function of mind as of matter.</p>
+
+			</div><!-- /comment-content -->
+
+			<div class="reply"><p><a class="comment_activity_link" href="https://commons.digitalthoreau.org/walden/conclusion/conclusion-1-9/#comment-9381">See in context</a></p></div><!-- /reply -->
+
+		</div><!-- /comment-wrapper -->
+		
+
+</li><!-- /item li -->
+
+<li><!-- item li -->
+
+
+		<div class="comment-wrapper">
+
+			<div class="comment-identifier">
+				<img alt='' src='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/2744/3d1f8bd24375d240cced1524f41ba128-bpthumb.jpg' srcset='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/2744/3d1f8bd24375d240cced1524f41ba128-bpfull.jpg 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+				<cite class="fn"><a href="https://commons.digitalthoreau.org/members/paulschacht/">Paul Schacht</a></cite>
+				<p class="comment_activity_date"><a class="comment_activity_link" href="https://commons.digitalthoreau.org/walden/conclusion/conclusion-1-9/#comment-9380">April 10, 2026 at 2:31 pm</a></p>
+			</div><!-- /comment-identifier -->
+
+			<div class="comment-content">
+				<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/public/">General Discussion</a></p>
+</div>
+<p><a class="bp-suggestions-mention" href="https://commons.digitalthoreau.org/members/courtneygoodwin/" rel="nofollow ugc">@courtneygoodwin</a>: I think this is a great point about the different ways that Thoreau references animals in <em>Walden</em>. Including their Latin genus-species names makes most sense when they&#8217;re objects of his attention as a naturalist and less sense when he&#8217;s referencing them to illustrate general truths like those he offers in this conclusion.</p>
+
+			</div><!-- /comment-content -->
+
+			<div class="reply"><p><a class="comment_activity_link" href="https://commons.digitalthoreau.org/walden/conclusion/conclusion-1-9/#comment-9380">See in context</a></p></div><!-- /reply -->
+
+		</div><!-- /comment-wrapper -->
+		
+
+</li><!-- /item li -->
+
+<li><!-- item li -->
+
+
+		<div class="comment-wrapper">
+
+			<div class="comment-identifier">
+				<img alt='' src='//www.gravatar.com/avatar/b0059f01ae3b4242f35c8f941b531e18?s=32&#038;r=g&#038;d=identicon' srcset='//www.gravatar.com/avatar/b0059f01ae3b4242f35c8f941b531e18?s=32&#038;r=g&#038;d=identicon 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+				<cite class="fn"><a href="https://commons.digitalthoreau.org/members/ekclodfelter/">Elizabeth Clodfelter</a></cite>
+				<p class="comment_activity_date"><a class="comment_activity_link" href="https://commons.digitalthoreau.org/walden/conclusion/conclusion-1-9/#comment-9379">April 8, 2026 at 5:00 pm</a></p>
+			</div><!-- /comment-identifier -->
+
+			<div class="comment-content">
+				<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/engl-340-s26-geneseo/">ENGL 340 S26 Geneseo</a></p>
+</div>
+<p><strong>[? Be rather the Mungo Park, the Lewis and Clark and Frobisher, of your own streams and oceans; explore your own higher latitudes,—]</strong></p>
+<p>This is a similar sentiment to Thoreau&#8217;s remarks in Where I Lived, And What I Lived For about the railroads. In WILAWILF, Thoreau resists the invention of the railroad, rather proposing that if everyone boycotts the train, then it will no longer run. I think at the center of this argument is really Thoreau trying to emphasize the power of the individual to forge his own path, which is the central message of this paragraph in Conclusion.</p>
+
+			</div><!-- /comment-content -->
+
+			<div class="reply"><p><a class="comment_activity_link" href="https://commons.digitalthoreau.org/walden/conclusion/conclusion-1-9/#comment-9379">See in context</a></p></div><!-- /reply -->
+
+		</div><!-- /comment-wrapper -->
+		
+
+</li><!-- /item li -->
+
+<li><!-- item li -->
+
+
+		<div class="comment-wrapper">
+
+			<div class="comment-identifier">
+				<img alt='' src='//www.gravatar.com/avatar/f2ac7fe5273b6153496fc3f3f1e6da7b?s=32&#038;r=g&#038;d=identicon' srcset='//www.gravatar.com/avatar/f2ac7fe5273b6153496fc3f3f1e6da7b?s=32&#038;r=g&#038;d=identicon 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+				<cite class="fn"><a href="https://commons.digitalthoreau.org/members/bkc7/">Brenna Cumming</a></cite>
+				<p class="comment_activity_date"><a class="comment_activity_link" href="https://commons.digitalthoreau.org/walden/conclusion/conclusion-1-9/#comment-9378">April 8, 2026 at 11:44 am</a></p>
+			</div><!-- /comment-identifier -->
+
+			<div class="comment-content">
+				<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/engl-340-s26-geneseo/">ENGL 340 S26 Geneseo</a></p>
+</div>
+<p>Thoreau’s whole thing about “beaten tracks” in <em>Conclusion</em> reminds me of what he says earlier in “Where I Lived, and What I Lived For.” Back there, he talks about how people fall into routines without thinking and end up living those “quiet desperation” lives. Here, he uses the literal path he wore in the woods as a symbol for the mental habits we slip into. It’s like he’s circling back to the same idea but showing it in a new way, not just society pushing us into ruts, but us doing it to ourselves. And when he says he wants to “go before the mast,” it connects to his earlier push to live deliberately and see the world clearly instead of hiding below deck. It is the same message, just with a fresh angle.</p>
+
+			</div><!-- /comment-content -->
+
+			<div class="reply"><p><a class="comment_activity_link" href="https://commons.digitalthoreau.org/walden/conclusion/conclusion-1-9/#comment-9378">See in context</a></p></div><!-- /reply -->
+
+		</div><!-- /comment-wrapper -->
+		
+
+</li><!-- /item li -->
+
+<li><!-- item li -->
+
+
+		<div class="comment-wrapper">
+
+			<div class="comment-identifier">
+				<img alt='' src='//www.gravatar.com/avatar/1d11a24d9092bcaa97fd3d9f6fa798e5?s=32&#038;r=g&#038;d=identicon' srcset='//www.gravatar.com/avatar/1d11a24d9092bcaa97fd3d9f6fa798e5?s=32&#038;r=g&#038;d=identicon 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+				<cite class="fn"><a href="https://commons.digitalthoreau.org/members/livikelly/">Olivia Kelly</a></cite>
+				<p class="comment_activity_date"><a class="comment_activity_link" href="https://commons.digitalthoreau.org/walden/conclusion/conclusion-1-9/#comment-9377">April 8, 2026 at 11:08 am</a></p>
+			</div><!-- /comment-identifier -->
+
+			<div class="comment-content">
+				<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/engl-340-s26-geneseo/">ENGL 340 S26 Geneseo</a></p>
+</div>
+<p>In this paragraph, Thoreau’s imagery of migration and movement echoes his earlier voice in “Where I Lived, and What I Lived For,” when he emphasizes the importance of breaking free from our routines that can limit human potential. I think that his earlier chapters focus more on physically removing yourself from society to live more intentionally. Thoreau expands that same idea by suggesting that the real limitation isn&#8217;t necessarily physical, but mental. By comparing migrating animals to humans who feel stuck in social roles (like a town clerk), Thoreau slightly shifts his earlier argument, suggesting that the ways we limit ourselves can be more restrictive than any physical boundaries. This helps him strengthen his main idea that real freedom isn’t just about changing your surroundings, it is about changing the ways you think about all the possibilities.</p>
+
+			</div><!-- /comment-content -->
+
+			<div class="reply"><p><a class="comment_activity_link" href="https://commons.digitalthoreau.org/walden/conclusion/conclusion-1-9/#comment-9377">See in context</a></p></div><!-- /reply -->
+
+		</div><!-- /comment-wrapper -->
+		
+
+</li><!-- /item li -->
+
+<li><!-- item li -->
+
+
+		<div class="comment-wrapper">
+
+			<div class="comment-identifier">
+				<img alt='' src='//www.gravatar.com/avatar/1e7aecac1a34ed9ace1908e08628a2e4?s=32&#038;r=g&#038;d=identicon' srcset='//www.gravatar.com/avatar/1e7aecac1a34ed9ace1908e08628a2e4?s=32&#038;r=g&#038;d=identicon 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+				<cite class="fn"><a href="https://commons.digitalthoreau.org/members/daphnepl/">Daphne Paul-LaRonca</a></cite>
+				<p class="comment_activity_date"><a class="comment_activity_link" href="https://commons.digitalthoreau.org/walden/conclusion/conclusion-1-9/#comment-9376">April 8, 2026 at 10:56 am</a></p>
+			</div><!-- /comment-identifier -->
+
+			<div class="comment-content">
+				<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/engl-340-s26-geneseo/">ENGL 340 S26 Geneseo</a></p>
+</div>
+<p><strong>[ Leave a comment on paragraph 4 30 I left the woods for as good a reason as I went there. Perhaps it seemed to me that I had several more lives to live, and could not spare any more time for that one. It is remarkable how easily and insensibly we fall into a particular route, and make a beaten track for ourselves]</strong></p>
+<p>Henry David Thoreau explains here that he left the woods and returned to normal life for a similar reason as why he went there. He felt as though his time at Walden Pond had come to an end and that it would have been a disservice to himself and humanity to not embark on a new chapter. This reminds me of language he ahs used throughout the whole book and especially in the beginning in Where I lived and What I lived for as he is explaining why he went to the woods in the first place. The similar language Thoreau has used throughout the whole book and especially in the ending emphasizes his wish to live life deliberately and focus on the true meaning of life without all the distractions of modern society.  By him saying he left Walden pond because he knew it was time to start a new chapter of life and discovery, he is living the philosophy that he preaches which is one of experience and true meaning.</p>
+
+			</div><!-- /comment-content -->
+
+			<div class="reply"><p><a class="comment_activity_link" href="https://commons.digitalthoreau.org/walden/conclusion/conclusion-1-9/#comment-9376">See in context</a></p></div><!-- /reply -->
+
+		</div><!-- /comment-wrapper -->
+		
+
+</li><!-- /item li -->
+
+<li><!-- item li -->
+
+
+		<div class="comment-wrapper">
+
+			<div class="comment-identifier">
+				<img alt='' src='//www.gravatar.com/avatar/e624144674d49be6c45f0c560df439e0?s=32&#038;r=g&#038;d=identicon' srcset='//www.gravatar.com/avatar/e624144674d49be6c45f0c560df439e0?s=32&#038;r=g&#038;d=identicon 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+				<cite class="fn"><a href="https://commons.digitalthoreau.org/members/courtneygoodwin/">Courtney Goodwin</a></cite>
+				<p class="comment_activity_date"><a class="comment_activity_link" href="https://commons.digitalthoreau.org/walden/conclusion/conclusion-1-9/#comment-9375">April 8, 2026 at 10:04 am</a></p>
+			</div><!-- /comment-identifier -->
+
+			<div class="comment-content">
+				<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/public/">General Discussion</a></p>
+</div>
+<p>Some of the language and mention of animals in this first paragraph of the conclusion remind me of Thoreau&#8217;s discussion and observation of animals in the chapters Former Inhabitants and Winter Visitors, along with Winter Animals. In the Winter Animals chapter, for example, Thoreau often talks about the beauty of simply observing the animals around you, and he was incredibly patient in doing so. The animals discussed in these chapters consisted of local wildlife that Thoreau saw on most days. However, in this chapter he broadens the wildlife he discusses, mentioning bison in Colorado, and even giraffes in Africa later in the chapter. This is helping to express his message that anyone, anywhere, can choose to do what he did. Broaden their views of the world by looking inside themselves and appreciating the small things of life, such as nature, rather than chasing a materialistic life. Along with this, a difference within this chapter is that when referring to various animals, Thoreau does not include their scentific name in italics as he did in previous chapters. Perhaps this is because he is not observing these animals specifically, or that he simply did not want that in the final chapter.</p>
+
+			</div><!-- /comment-content -->
+
+			<div class="reply"><p><a class="comment_activity_link" href="https://commons.digitalthoreau.org/walden/conclusion/conclusion-1-9/#comment-9375">See in context</a></p></div><!-- /reply -->
+
+		</div><!-- /comment-wrapper -->
+		
+
+</li><!-- /item li -->
+
+<li><!-- item li -->
+
+
+		<div class="comment-wrapper">
+
+			<div class="comment-identifier">
+				<img alt='' src='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/16562/1770054544-bpthumb.jpg' srcset='https://commons.digitalthoreau.org/walden/wp-content/uploads/avatars/16562/1770054544-bpfull.jpg 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+				<cite class="fn"><a href="https://commons.digitalthoreau.org/members/skyriedell/">Sky</a></cite>
+				<p class="comment_activity_date"><a class="comment_activity_link" href="https://commons.digitalthoreau.org/walden/conclusion/conclusion-10-19/#comment-9374">April 8, 2026 at 8:56 am</a></p>
+			</div><!-- /comment-identifier -->
+
+			<div class="comment-content">
+				<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/engl-340-s26-geneseo/">ENGL 340 S26 Geneseo</a></p>
+</div>
+<p>The language used in this last sentence, specifically when he discusses &#8220;Only that day dawns to which we are awake,&#8221; &#8220;There is more day to dawn. The sun is but a morning star,&#8221; is very familiar to that of earlier sections like &#8220;Where I Lived, and What I Lived For.&#8221; In that previous section, he urges people to live deliberately and awake and to make the most of every moment. This is discussing the same thing, as it is saying that awakening is not a one-time act but an ongoing process of renewal. I love that his last paragraph connects to other parts of the book because it makes it feel full circle.</p>
+
+			</div><!-- /comment-content -->
+
+			<div class="reply"><p><a class="comment_activity_link" href="https://commons.digitalthoreau.org/walden/conclusion/conclusion-10-19/#comment-9374">See in context</a></p></div><!-- /reply -->
+
+		</div><!-- /comment-wrapper -->
+		
+
+</li><!-- /item li -->
+
+<li><!-- item li -->
+
+
+		<div class="comment-wrapper">
+
+			<div class="comment-identifier">
+				<img alt='' src='//www.gravatar.com/avatar/5dd01baae3523b18c349c99727b705f2?s=32&#038;r=g&#038;d=identicon' srcset='//www.gravatar.com/avatar/5dd01baae3523b18c349c99727b705f2?s=32&#038;r=g&#038;d=identicon 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+				<cite class="fn"><a href="https://commons.digitalthoreau.org/members/jaidyn/">Jaidyn</a></cite>
+				<p class="comment_activity_date"><a class="comment_activity_link" href="https://commons.digitalthoreau.org/walden/conclusion/conclusion-10-19/#comment-9373">April 8, 2026 at 4:05 am</a></p>
+			</div><!-- /comment-identifier -->
+
+			<div class="comment-content">
+				<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/engl-340-s26-geneseo/">ENGL 340 S26 Geneseo</a></p>
+</div>
+<p><strong>[I called on the king, but he made me wait in his hall, and conducted like a man incapacitated for hospitality. There was a man in my neighborhood who lived in a hollow tree. His manners were truly regal. I should have done better had I called on him.]</strong></p>
+<p>This line is incredibly reminiscent of a scene noted earlier in Walden,  in House-Warming 7. There, the line was&#8230;</p>
+<p><strong>[A house whose inside is as open and manifest as a bird’s nest, and you cannot go in at the front door and out at the back without seeing some of its inhabitants; where to be a guest is to be presented with the freedom of the house, and not to be carefully excluded from seven eighths of it, shut up in a particular cell, and told to make yourself at home there,—in solitary confinement. Nowadays the host does not admit you to his hearth, but has got the mason to build one for yourself somewhere in his alley, and hospitality is the art of keeping you at the greatest distance].</strong></p>
+<p>In both lines, the point Thoreau is trying to make is very much the same. In seems that today&#8217;s society is flawed. We are focused on wealth and progress as the most important thing, rather than morality or connection. In both cases, someone is pictured as being welcomed into a mansion, but ignored. In this section, Thoreau points out that a man who lived in a hollow tree has more manners. He has less, so his values are better.</p>
+
+			</div><!-- /comment-content -->
+
+			<div class="reply"><p><a class="comment_activity_link" href="https://commons.digitalthoreau.org/walden/conclusion/conclusion-10-19/#comment-9373">See in context</a></p></div><!-- /reply -->
+
+		</div><!-- /comment-wrapper -->
+		
+
+</li><!-- /item li -->
+
+<li><!-- item li -->
+
+
+		<div class="comment-wrapper">
+
+			<div class="comment-identifier">
+				<img alt='' src='//www.gravatar.com/avatar/6d423e9f8f9ee9568d9783090e6b6460?s=32&#038;r=g&#038;d=identicon' srcset='//www.gravatar.com/avatar/6d423e9f8f9ee9568d9783090e6b6460?s=32&#038;r=g&#038;d=identicon 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>
+				<cite class="fn"><a href="https://commons.digitalthoreau.org/members/annaenright/">Anna Enright</a></cite>
+				<p class="comment_activity_date"><a class="comment_activity_link" href="https://commons.digitalthoreau.org/walden/conclusion/conclusion-1-9/#comment-9372">April 7, 2026 at 1:46 pm</a></p>
+			</div><!-- /comment-identifier -->
+
+			<div class="comment-content">
+				<div class="bpgsites_comment_posted_in">
+<p>Posted in: <a href="https://commons.digitalthoreau.org/groups/engl-340-s26-geneseo/">ENGL 340 S26 Geneseo</a></p>
+</div>
+<p>In this paragraph, Thoreau reiterates what he said earlier in &#8220;Where I Lived, and What I Lived For&#8221; about living deliberately.  In both chapters, he’s pushing the idea that people should stop just going through the motions and actually choose how they want to live. But here in the “Conclusion,” it feels more directed at the reader, like he’s trying to motivate us instead of just reflecting on his own experience. It kind of turns his earlier ideas into a challenge, making it feel more personal and motivating toward readers.</p>
+
+			</div><!-- /comment-content -->
+
+			<div class="reply"><p><a class="comment_activity_link" href="https://commons.digitalthoreau.org/walden/conclusion/conclusion-1-9/#comment-9372">See in context</a></p></div><!-- /reply -->
+
+		</div><!-- /comment-wrapper -->
+		
+
+</li><!-- /item li -->
+
+</ol><!-- /comment_activity -->
+
+					</div>
+
+					
+				
+				
+					
+					
+					
+					
+					
+					
+				
+				
+			</div><!-- /comments_container -->
+		</div><!-- /sidebar_contents_wrapper -->
+
+	</div><!-- /sidebar_minimiser -->
+</div><!-- /activity_sidebar -->
+
+	</div><!-- /sidebar_inner -->
+</div><!-- /sidebar -->
+
+<!-- footer.php -->
+						</div><!-- /content_container -->
+
+			<div id="footer">
+				<div id="footer_inner">
+
+					
+											<div class="footer_widgets">
+							<div id="text-2" class="widget widget_text"><h3 class="widget-title">Untitled Widget</h3>			<div class="textwidget"><p><a href="https://commons.digitalthoreau.org/join"> Register</a> to join a group and leave comments.</p>
+</div>
+		</div>						</div>
+					
+				</div><!-- /footer_inner -->
+			</div><!-- /footer -->
+
+		</div><!-- /container -->
+
+		<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/walden/*"},{"not":{"href_matches":["/walden/wp-*.php","/walden/wp-admin/*","/walden/wp-content/uploads/sites/8/*","/walden/wp-content/*","/walden/wp-content/plugins/*","/walden/wp-content/themes/commentpress-thoreau/*","/walden/wp-content/plugins/commentpress-core/themes/commentpress-flat/*","/walden/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<p class="hidden_page_url">Source: https://commons.digitalthoreau.org/walden/</p><script id="hoverintent-js-js" src="https://commons.digitalthoreau.org/walden/wp-includes/js/hoverintent-js.min.js?ver=2.2.1"></script>
+<script id="admin-bar-js" src="https://commons.digitalthoreau.org/walden/wp-includes/js/admin-bar.min.js?ver=7.1.4"></script>
+<script id="bpgsites_cp_jquery_cookie-js" src="https://commons.digitalthoreau.org/walden/wp-content/plugins/commentpress-core/includes/core/assets/js/jquery.biscuit.js?ver=4.0.7a"></script>
+<script id="bpgsites_cp_js-js-extra">
+var BpgsitesSettings = {"show_public":"1"};
+//# sourceURL=bpgsites_cp_js-js-extra
+</script>
+<script id="bpgsites_cp_js-js" src="https://commons.digitalthoreau.org/walden/wp-content/plugins/bp-group-sites/assets/js/bpgsites-commentpress.js?ver=0.4.1a"></script>
+<script id="jquery-ui-draggable-js" src="https://commons.digitalthoreau.org/walden/wp-includes/js/jquery/ui/draggable.min.js?ver=1.14.2"></script>
+<script id="jquery-ui-droppable-js" src="https://commons.digitalthoreau.org/walden/wp-includes/js/jquery/ui/droppable.min.js?ver=1.14.2"></script>
+<script id="jquery-ui-controlgroup-js" src="https://commons.digitalthoreau.org/walden/wp-includes/js/jquery/ui/controlgroup.min.js?ver=1.14.2"></script>
+<script id="jquery-ui-checkboxradio-js" src="https://commons.digitalthoreau.org/walden/wp-includes/js/jquery/ui/checkboxradio.min.js?ver=1.14.2"></script>
+<script id="jquery-ui-button-js" src="https://commons.digitalthoreau.org/walden/wp-includes/js/jquery/ui/button.min.js?ver=1.14.2"></script>
+<script id="jquery-ui-dialog-js" src="https://commons.digitalthoreau.org/walden/wp-includes/js/jquery/ui/dialog.min.js?ver=1.14.2"></script>
+<script id="cpajax-js-extra">
+var CommentPress_AJAX_Settings = {"cpajax_nonce":"0d61690c34","cpajax_live":"0","cpajax_ajax_url":"https://commons.digitalthoreau.org/walden/wp-admin/admin-ajax.php","cpajax_spinner_url":"https://commons.digitalthoreau.org/walden/wp-content/plugins/commentpress-core/includes/core/assets/images/loading.gif","cpajax_current_time":"2026-10-29 19:02:05","cpajax_comment_count":"6","cpajax_post_id":"298","cpajax_post_comment_status":"open","cpajax_lang":["Loading...","Please enter your name.","Please enter your email address.","Please enter a valid email address.","Please enter your comment.","Your comment has been added.","AJAX error!","Are you sure?","Are you sure you want to assign the comment and its replies to the textblock? This action cannot be undone.","Submitting...","Please wait while the comments are reassigned. The page will refresh when this has been done.","Comment","Comments"],"cpajax_comment_refresh_interval":"5000"};
+//# sourceURL=cpajax-js-extra
+</script>
+<script id="cpajax-js" src="https://commons.digitalthoreau.org/walden/wp-content/plugins/commentpress-core/includes/core/assets/js/cp-ajax-comments.min.js?ver=4.0.7a"></script>
+<script id="wp-emoji-settings" type="application/json">
+{"baseUrl":"https://s.w.org/images/core/emoji/17.0.2/72x72/","ext":".png","svgUrl":"https://s.w.org/images/core/emoji/17.0.2/svg/","svgExt":".svg","source":{"concatemoji":"https://commons.digitalthoreau.org/walden/wp-includes/js/wp-emoji-release.min.js?ver=7.1.4"}}
+</script>
+<script type="module">
+/*! This file is auto-generated */
+var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof HTMLScriptElement))throw new Error("Element missing: "+e);const r=JSON.parse(t.text),s=(window._wpemojiSettings=r,"wpEmojiSettingsSupports"),o=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(s,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const r=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===r[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,r){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!r(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,r){let a;const s=(a="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),o=(s.textBaseline="top",s.font="600 32px Arial",{});return e.forEach(e=>{o[e]=t(s,e,n,r)}),o}function a(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}r.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(s));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(o),u.toString(),c.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"});const a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=e=>{i(n=e.data),a.terminate(),t(n)})}catch(e){}i(n=f(o,u,c,p))}t(n)}).then(e=>{for(const n in e)r.supports[n]=e[n],r.supports.everything=r.supports.everything&&r.supports[n],"flag"!==n&&(r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&r.supports[n]);var t;r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&!r.supports.flag,r.supports.everything||((t=r.source||{}).concatemoji?a(t.concatemoji):t.wpemoji&&t.twemoji&&(a(t.twemoji),a(t.wpemoji)))});
+//# sourceURL=https://commons.digitalthoreau.org/walden/wp-includes/js/wp-emoji-loader.min.js
+</script>
+
+	</body>
+
+</html>
+
+
+<!-- Page cached by LiteSpeed Cache 7.9.2 on 2026-10-29 14:02:05 -->

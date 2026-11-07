@@ -1,0 +1,149 @@
+{
+  "checksumLimitation": "Binding detects corruption and accidental metadata edits; it is not a digital signature or independent source-identity verification.",
+  "configSha256": "1940ed044206adc338febd12d0b8c2f051d515988bc328c35452dd2ca4509151",
+  "developmentCounts": {
+    "fitting": 30,
+    "thresholdSelection": 10
+  },
+  "exactEquality": {
+    "coefficients": true,
+    "config": true,
+    "configSha256": true,
+    "idf": true,
+    "intercept": true,
+    "selection": true,
+    "vocabulary": true
+  },
+  "modernHumanReplay": {
+    "allEightPredictionsExactlyEqual": true,
+    "denominator": 8,
+    "frozenOriginalReportUnchanged": true,
+    "humanFalsePositives": 2
+  },
+  "newModelSha256": "eaa474826b0da2f14b0aaefcebd4b9142159428a00d0e8b144476f5552dc261d",
+  "oldModelSha256": "150100c166288c06a0d8c8f930564aff30bb95180eb6b1c2495062bbd8e7fe5d",
+  "originalEvidencePreserved": {
+    "data/modern-human/report.json": {
+      "sha256": "27c7e35dbbdf279ae001657494c306b893f9eef382092b5ba667117766140dcb",
+      "unchanged": true
+    },
+    "models/experimental/pilot-v1/model.json": {
+      "sha256": "150100c166288c06a0d8c8f930564aff30bb95180eb6b1c2495062bbd8e7fe5d",
+      "unchanged": true
+    },
+    "models/experimental/pilot-v1/report.json": {
+      "sha256": "af07c019cfe573aed87d4d701dbc6907d010ce8ccb2536ce0470ee63ad2312a9",
+      "unchanged": true
+    },
+    "models/experimental/pilot-v1/reproduced-test.json": {
+      "sha256": "b0090c2a859ac6509a67cbec0367d6cb3068229c34539c8c722cfcb116b757b6",
+      "unchanged": true
+    }
+  },
+  "primaryTestMetricsExactlyEqual": true,
+  "reason": "Legacy standalone gate checked fitted groups/authors but omitted threshold-selection rows and direct source/document identities. New schema fails closed without hash-bound development provenance.",
+  "status": "metadata-and-holdout-audit-correction-not-retuning",
+  "testScorePairs": [
+    [
+      "pg3420-h1",
+      -0.1126598156629697,
+      -0.1126598156629697
+    ],
+    [
+      "pg3420-h2",
+      -0.1466202202222171,
+      -0.1466202202222171
+    ],
+    [
+      "pg3420-h3",
+      -0.07702950849022853,
+      -0.07702950849022853
+    ],
+    [
+      "pg205-h1",
+      -0.21078240717953511,
+      -0.21078240717953511
+    ],
+    [
+      "pg205-h2",
+      -0.15214842489779576,
+      -0.15214842489779576
+    ],
+    [
+      "pg205-h3",
+      -0.21298420914089788,
+      -0.21298420914089788
+    ],
+    [
+      "pg46538-h1",
+      -0.12651251435788666,
+      -0.12651251435788666
+    ],
+    [
+      "pg46538-h2",
+      -0.12068198226917287,
+      -0.12068198226917287
+    ],
+    [
+      "pg46538-h3",
+      -0.17868912691041933,
+      -0.17868912691041933
+    ],
+    [
+      "pg59646-h1",
+      -0.17269108265957614,
+      -0.17269108265957614
+    ],
+    [
+      "pg59646-h2",
+      -0.17713965802806228,
+      -0.17713965802806228
+    ],
+    [
+      "pg59646-h3",
+      -0.12156395939117856,
+      -0.12156395939117856
+    ],
+    [
+      "pg3420-ai-llama3-2-3b",
+      0.051271957275167465,
+      0.051271957275167465
+    ],
+    [
+      "pg205-ai-llama3-2-3b",
+      0.01580854570055057,
+      0.01580854570055057
+    ],
+    [
+      "pg46538-ai-llama3-2-3b",
+      0.10665147173494853,
+      0.10665147173494853
+    ],
+    [
+      "pg59646-ai-llama3-2-3b",
+      0.1313202173952217,
+      0.1313202173952217
+    ],
+    [
+      "pg3420-ai-qwen3-5-4b",
+      0.022081381580270218,
+      0.022081381580270218
+    ],
+    [
+      "pg205-ai-qwen3-5-4b",
+      0.006105258431616162,
+      0.006105258431616162
+    ],
+    [
+      "pg46538-ai-qwen3-5-4b",
+      0.14215948897024755,
+      0.14215948897024755
+    ],
+    [
+      "pg59646-ai-qwen3-5-4b",
+      0.16283846440251737,
+      0.16283846440251737
+    ]
+  ],
+  "twentyTestScoresExactlyEqual": true
+}

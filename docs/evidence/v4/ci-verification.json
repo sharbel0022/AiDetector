@@ -1,0 +1,161 @@
+{
+  "version": "4.0.0",
+  "verified_commit": "2f83163d20d4ef98c1d6a2676eb0505a4090bfba",
+  "verified_tree": "ba86edfcaef7aba992133ec72bd13bfa43a8f722",
+  "pr": {
+    "number": 2,
+    "url": "https://github.com/sharbel0022/AiDetector/pull/2"
+  },
+  "runs": [
+    {
+      "id": 42367167445,
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/sharbel0022/AiDetector/actions/runs/42367167445",
+      "created_at": "2026-11-07T11:12:00Z",
+      "updated_at": "2026-11-07T11:13:53Z"
+    },
+    {
+      "id": 42367164123,
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/sharbel0022/AiDetector/actions/runs/42367164123",
+      "created_at": "2026-11-07T11:11:57Z",
+      "updated_at": "2026-11-07T11:13:58Z"
+    }
+  ],
+  "jobs": [
+    {
+      "id": 128387545939,
+      "name": "verify",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 42367167445,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Install locked dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Dependency vulnerability audit",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Scan git history for secrets",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Unit and API tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Reproducible production build and performance budgets",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Browser, accessibility and backend overhead verification",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Container with two production workers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22
+        },
+        {
+          "name": "Post Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23
+        },
+        {
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        }
+      ]
+    }
+  ],
+  "artifact": {
+    "id": 13572231347,
+    "name": "textlab-verification",
+    "sha256": "58d7fd56d1cf667a8afac9d10d59b9b739c1c246faf50414c7c136e25142f996",
+    "download_digest_verified": true,
+    "expires_at": "2027-02-05T11:12:00Z"
+  },
+  "results": {
+    "python_passed": 309,
+    "node_passed": 70,
+    "browser_checks": 10,
+    "ui_flow_suite_passed": true,
+    "axe_screens": 11,
+    "axe_violations": 0,
+    "axe_incomplete_total": 4,
+    "manual_screen_reader_review": false,
+    "container_workers": 2,
+    "container_uid": 10001,
+    "container_quota_accepted": 2,
+    "container_quota_rate_limited": 10,
+    "live_model_generation": false,
+    "public_deployment": false
+  },
+  "evidence_scope": "Recorded first V4 candidate. Subsequent version-label/documentation commit must pass the same workflow before tag/main integration."
+}

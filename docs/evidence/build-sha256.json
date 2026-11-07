@@ -1,0 +1,9 @@
+{
+  "identical": true,
+  "builds": 2,
+  "sha256": {
+    "dist/assets/index-C7PaYXqC.css": "1118489e81e714cf1baf5da3695a4b0dcdd7920018c1404ad1cbbe261350701d",
+    "dist/assets/index-CQmRMRis.js": "13be610ab513070143da357326171c7d394e6a604851c499f0ff4de49addb010",
+    "dist/index.html": "1d87daf44b195dce3c21859174d8ce9b72e54a27d3e8c38de9c96ae0c61d8905"
+  }
+}

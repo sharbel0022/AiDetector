@@ -1,0 +1,56 @@
+{
+  "measuredAt": "2026-11-07T11:13:32Z",
+  "environment": {
+    "python": "3.12.16",
+    "platform": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43",
+    "logicalCpus": 4,
+    "physicalMemoryBytes": 16759439360
+  },
+  "modelInferenceMeasured": false,
+  "realHttpHealthConcurrent40": {
+    "samples": 40,
+    "p50Ms": 55.67342600001268,
+    "p95Ms": 61.854272999994464,
+    "maxMs": 68.93381700000134,
+    "statuses": {
+      "200": 40
+    }
+  },
+  "realHttpOversizedRewriteConcurrent8": {
+    "samples": 8,
+    "p50Ms": 11.332983000002628,
+    "p95Ms": 17.203460999994036,
+    "maxMs": 17.203460999994036,
+    "statuses": {
+      "422": 8
+    }
+  },
+  "asgiLongRewriteMockProvider": {
+    "samples": 20,
+    "p50Ms": 24.096267000004445,
+    "p95Ms": 24.394341999993685,
+    "maxMs": 26.335636000013096,
+    "characters": 8000,
+    "provider": "HTTP mock echo with fixed 10ms delay",
+    "qualityEvidence": false
+  },
+  "asgiConcurrentRewriteMockProvider": {
+    "samples": 8,
+    "p50Ms": 5.112558999996963,
+    "p95Ms": 63.56458300000156,
+    "maxMs": 63.56458300000156,
+    "statuses": {
+      "429": 6,
+      "200": 2
+    }
+  },
+  "processRssBytes": {
+    "before": 62324736,
+    "after": 62971904,
+    "scope": "Entire benchmark process, framework and Python runtime; not isolated per-request allocations"
+  },
+  "modelColdStart": {
+    "status": "not_measured",
+    "reason": "Not measured by this integration-overhead harness; use opt-in live-model checks for first-observed latency."
+  }
+}

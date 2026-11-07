@@ -1,0 +1,8 @@
+{
+  "contentType": "application/json; charset=utf-8",
+  "file": "sv-bridge.revision.json",
+  "retrievedAtUtc": "2026-11-02T19:59:42.674529+00:00",
+  "sha256": "b20a14c6911ffc027c36dae64f004ddad6e416cd0c70ad8be6874db96b175bc5",
+  "status": 200,
+  "url": "https://sv.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=Bro&rvprop=ids%7Ctimestamp%7Cuser&rvstart=2018-01-01T00%3A00%3A00Z&rvdir=older&rvlimit=1"
+}

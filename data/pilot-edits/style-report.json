@@ -1,0 +1,997 @@
+{
+  "schemaVersion": "textlab-benchmark-v3",
+  "method": "style-heuristics-v3",
+  "mode": "independent-data-required",
+  "qualityEvidence": false,
+  "provenanceStatus": "asserted_not_independently_audited",
+  "notice": "Diagnostic evaluation of a descriptive style threshold. Provenance fields are assertions requiring independent review. This report contains no trained-model classification or calibrated AI probability; the offline experimental baseline has separate reports.",
+  "dataset": {
+    "counts": {
+      "total": 48,
+      "bySplit": {
+        "test": 16,
+        "train": 24,
+        "validation": 8
+      },
+      "byLabel": {
+        "ai-edited": 12,
+        "human": 36
+      },
+      "byLanguage": {
+        "en": 24,
+        "sv": 24
+      },
+      "groups": {
+        "author_id": 24,
+        "document_id": 24,
+        "source_group_id": 12
+      }
+    },
+    "leakage": {
+      "passed": true,
+      "groupingFields": [
+        "author_id",
+        "document_id",
+        "source_group_id",
+        "related_source_id"
+      ],
+      "exactDuplicates": 0,
+      "nearDuplicates": 0,
+      "nearDuplicateComparisons": 12,
+      "relatedEditPairs": 5,
+      "relatedExactPairs": 0,
+      "relatedNearPairs": 5,
+      "relatedEditExamples": [
+        {
+          "originalRoot": "pg1342-h1",
+          "first": "pg1342-h1",
+          "second": "pg1342-h1-ai-edit",
+          "kind": "near",
+          "sourceGroup": "pg1342",
+          "split": "train"
+        },
+        {
+          "originalRoot": "pg1400-h1",
+          "first": "pg1400-h1",
+          "second": "pg1400-h1-ai-edit",
+          "kind": "near",
+          "sourceGroup": "pg1400",
+          "split": "train"
+        },
+        {
+          "originalRoot": "pg2009-h1",
+          "first": "pg2009-h1",
+          "second": "pg2009-h1-ai-edit",
+          "kind": "near",
+          "sourceGroup": "pg2009",
+          "split": "train"
+        },
+        {
+          "originalRoot": "pg3420-h1",
+          "first": "pg3420-h1",
+          "second": "pg3420-h1-ai-edit",
+          "kind": "near",
+          "sourceGroup": "pg3420",
+          "split": "test"
+        },
+        {
+          "originalRoot": "pg34901-h1",
+          "first": "pg34901-h1",
+          "second": "pg34901-h1-ai-edit",
+          "kind": "near",
+          "sourceGroup": "pg34901",
+          "split": "validation"
+        }
+      ],
+      "relatedExamplesTruncated": false,
+      "shingleWords": 5,
+      "jaccardThreshold": 0.8,
+      "note": "Duplicate counts exclude explicitly documented human/AI-edited pairs with a shared human ancestor in the same split/source family. Related pairs are dependent observations, never independent examples. Token overlap cannot establish semantic independence; source-family audit and grouped uncertainty are still required."
+    }
+  },
+  "selection": {
+    "threshold": 65,
+    "selectionSplit": "predeclared",
+    "warning": "Default 65 is an arbitrary descriptive style threshold, not a validated operating point. Predeclare a threshold before examining test outcomes."
+  },
+  "overall": {
+    "total": 16,
+    "assessed": 16,
+    "binaryAssessed": 12,
+    "abstained": 0,
+    "abstentionsByLabel": {
+      "human": 0,
+      "ai": 0,
+      "ai-edited": 0
+    },
+    "threshold": 65,
+    "coverage": 1,
+    "confusion": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 12,
+      "fn": 0
+    },
+    "accuracyAssessed": 1,
+    "precision": null,
+    "recallAssessed": null,
+    "recallAllAI": null,
+    "falsePositiveRate": 0,
+    "falseNegativeRate": null,
+    "f1": null,
+    "auroc": null,
+    "aiEdited": {
+      "total": 4,
+      "assessed": 4,
+      "flagged": 0,
+      "abstained": 0,
+      "coverage": 1,
+      "flagRateAssessed": 0
+    },
+    "intervals95": {
+      "accuracyAssessed": {
+        "lower": 0.7575059933447592,
+        "upper": 1,
+        "n": 12,
+        "method": "Wilson observation-level; does not adjust for grouped samples"
+      },
+      "precision": null,
+      "recallAssessed": null,
+      "falsePositiveRate": {
+        "lower": 2.7755575615628914e-17,
+        "upper": 0.24249400665524085,
+        "n": 12,
+        "method": "Wilson observation-level; does not adjust for grouped samples"
+      },
+      "falseNegativeRate": null,
+      "coverage": {
+        "lower": 0.8063923194655637,
+        "upper": 1,
+        "n": 16,
+        "method": "Wilson observation-level; does not adjust for grouped samples"
+      }
+    },
+    "calibration": {
+      "available": false,
+      "reason": "No independently calibrated authorship probabilities exist. Style indices cannot be used for Brier score, ECE or probability claims."
+    },
+    "evidenceWarning": "Fewer than 100 assessed binary examples in this slice; no reliability or generalization claim is supported."
+  },
+  "byLanguage": {
+    "en": {
+      "total": 8,
+      "assessed": 8,
+      "binaryAssessed": 6,
+      "abstained": 0,
+      "abstentionsByLabel": {
+        "human": 0,
+        "ai": 0,
+        "ai-edited": 0
+      },
+      "threshold": 65,
+      "coverage": 1,
+      "confusion": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 6,
+        "fn": 0
+      },
+      "accuracyAssessed": 1,
+      "precision": null,
+      "recallAssessed": null,
+      "recallAllAI": null,
+      "falsePositiveRate": 0,
+      "falseNegativeRate": null,
+      "f1": null,
+      "auroc": null,
+      "aiEdited": {
+        "total": 2,
+        "assessed": 2,
+        "flagged": 0,
+        "abstained": 0,
+        "coverage": 1,
+        "flagRateAssessed": 0
+      },
+      "intervals95": {
+        "accuracyAssessed": {
+          "lower": 0.6096657120978346,
+          "upper": 1,
+          "n": 6,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        },
+        "precision": null,
+        "recallAssessed": null,
+        "falsePositiveRate": {
+          "lower": 2.7755575615628914e-17,
+          "upper": 0.3903342879021653,
+          "n": 6,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        },
+        "falseNegativeRate": null,
+        "coverage": {
+          "lower": 0.6755924351161198,
+          "upper": 1,
+          "n": 8,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        }
+      },
+      "calibration": {
+        "available": false,
+        "reason": "No independently calibrated authorship probabilities exist. Style indices cannot be used for Brier score, ECE or probability claims."
+      },
+      "evidenceWarning": "Fewer than 100 assessed binary examples in this slice; no reliability or generalization claim is supported."
+    },
+    "sv": {
+      "total": 8,
+      "assessed": 8,
+      "binaryAssessed": 6,
+      "abstained": 0,
+      "abstentionsByLabel": {
+        "human": 0,
+        "ai": 0,
+        "ai-edited": 0
+      },
+      "threshold": 65,
+      "coverage": 1,
+      "confusion": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 6,
+        "fn": 0
+      },
+      "accuracyAssessed": 1,
+      "precision": null,
+      "recallAssessed": null,
+      "recallAllAI": null,
+      "falsePositiveRate": 0,
+      "falseNegativeRate": null,
+      "f1": null,
+      "auroc": null,
+      "aiEdited": {
+        "total": 2,
+        "assessed": 2,
+        "flagged": 0,
+        "abstained": 0,
+        "coverage": 1,
+        "flagRateAssessed": 0
+      },
+      "intervals95": {
+        "accuracyAssessed": {
+          "lower": 0.6096657120978346,
+          "upper": 1,
+          "n": 6,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        },
+        "precision": null,
+        "recallAssessed": null,
+        "falsePositiveRate": {
+          "lower": 2.7755575615628914e-17,
+          "upper": 0.3903342879021653,
+          "n": 6,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        },
+        "falseNegativeRate": null,
+        "coverage": {
+          "lower": 0.6755924351161198,
+          "upper": 1,
+          "n": 8,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        }
+      },
+      "calibration": {
+        "available": false,
+        "reason": "No independently calibrated authorship probabilities exist. Style indices cannot be used for Brier score, ECE or probability claims."
+      },
+      "evidenceWarning": "Fewer than 100 assessed binary examples in this slice; no reliability or generalization claim is supported."
+    }
+  },
+  "byGenre": {
+    "essay": {
+      "total": 4,
+      "assessed": 4,
+      "binaryAssessed": 3,
+      "abstained": 0,
+      "abstentionsByLabel": {
+        "human": 0,
+        "ai": 0,
+        "ai-edited": 0
+      },
+      "threshold": 65,
+      "coverage": 1,
+      "confusion": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 3,
+        "fn": 0
+      },
+      "accuracyAssessed": 1,
+      "precision": null,
+      "recallAssessed": null,
+      "recallAllAI": null,
+      "falsePositiveRate": 0,
+      "falseNegativeRate": null,
+      "f1": null,
+      "auroc": null,
+      "aiEdited": {
+        "total": 1,
+        "assessed": 1,
+        "flagged": 0,
+        "abstained": 0,
+        "coverage": 1,
+        "flagRateAssessed": 0
+      },
+      "intervals95": {
+        "accuracyAssessed": {
+          "lower": 0.4385029682449546,
+          "upper": 1,
+          "n": 3,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        },
+        "precision": null,
+        "recallAssessed": null,
+        "falsePositiveRate": {
+          "lower": 5.551115123125783e-17,
+          "upper": 0.5614970317550454,
+          "n": 3,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        },
+        "falseNegativeRate": null,
+        "coverage": {
+          "lower": 0.5101091635454027,
+          "upper": 1,
+          "n": 4,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        }
+      },
+      "calibration": {
+        "available": false,
+        "reason": "No independently calibrated authorship probabilities exist. Style indices cannot be used for Brier score, ECE or probability claims."
+      },
+      "evidenceWarning": "Fewer than 100 assessed binary examples in this slice; no reliability or generalization claim is supported."
+    },
+    "fiction": {
+      "total": 4,
+      "assessed": 4,
+      "binaryAssessed": 3,
+      "abstained": 0,
+      "abstentionsByLabel": {
+        "human": 0,
+        "ai": 0,
+        "ai-edited": 0
+      },
+      "threshold": 65,
+      "coverage": 1,
+      "confusion": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 3,
+        "fn": 0
+      },
+      "accuracyAssessed": 1,
+      "precision": null,
+      "recallAssessed": null,
+      "recallAllAI": null,
+      "falsePositiveRate": 0,
+      "falseNegativeRate": null,
+      "f1": null,
+      "auroc": null,
+      "aiEdited": {
+        "total": 1,
+        "assessed": 1,
+        "flagged": 0,
+        "abstained": 0,
+        "coverage": 1,
+        "flagRateAssessed": 0
+      },
+      "intervals95": {
+        "accuracyAssessed": {
+          "lower": 0.4385029682449546,
+          "upper": 1,
+          "n": 3,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        },
+        "precision": null,
+        "recallAssessed": null,
+        "falsePositiveRate": {
+          "lower": 5.551115123125783e-17,
+          "upper": 0.5614970317550454,
+          "n": 3,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        },
+        "falseNegativeRate": null,
+        "coverage": {
+          "lower": 0.5101091635454027,
+          "upper": 1,
+          "n": 4,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        }
+      },
+      "calibration": {
+        "available": false,
+        "reason": "No independently calibrated authorship probabilities exist. Style indices cannot be used for Brier score, ECE or probability claims."
+      },
+      "evidenceWarning": "Fewer than 100 assessed binary examples in this slice; no reliability or generalization claim is supported."
+    },
+    "memoir": {
+      "total": 4,
+      "assessed": 4,
+      "binaryAssessed": 3,
+      "abstained": 0,
+      "abstentionsByLabel": {
+        "human": 0,
+        "ai": 0,
+        "ai-edited": 0
+      },
+      "threshold": 65,
+      "coverage": 1,
+      "confusion": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 3,
+        "fn": 0
+      },
+      "accuracyAssessed": 1,
+      "precision": null,
+      "recallAssessed": null,
+      "recallAllAI": null,
+      "falsePositiveRate": 0,
+      "falseNegativeRate": null,
+      "f1": null,
+      "auroc": null,
+      "aiEdited": {
+        "total": 1,
+        "assessed": 1,
+        "flagged": 0,
+        "abstained": 0,
+        "coverage": 1,
+        "flagRateAssessed": 0
+      },
+      "intervals95": {
+        "accuracyAssessed": {
+          "lower": 0.4385029682449546,
+          "upper": 1,
+          "n": 3,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        },
+        "precision": null,
+        "recallAssessed": null,
+        "falsePositiveRate": {
+          "lower": 5.551115123125783e-17,
+          "upper": 0.5614970317550454,
+          "n": 3,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        },
+        "falseNegativeRate": null,
+        "coverage": {
+          "lower": 0.5101091635454027,
+          "upper": 1,
+          "n": 4,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        }
+      },
+      "calibration": {
+        "available": false,
+        "reason": "No independently calibrated authorship probabilities exist. Style indices cannot be used for Brier score, ECE or probability claims."
+      },
+      "evidenceWarning": "Fewer than 100 assessed binary examples in this slice; no reliability or generalization claim is supported."
+    },
+    "travel": {
+      "total": 4,
+      "assessed": 4,
+      "binaryAssessed": 3,
+      "abstained": 0,
+      "abstentionsByLabel": {
+        "human": 0,
+        "ai": 0,
+        "ai-edited": 0
+      },
+      "threshold": 65,
+      "coverage": 1,
+      "confusion": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 3,
+        "fn": 0
+      },
+      "accuracyAssessed": 1,
+      "precision": null,
+      "recallAssessed": null,
+      "recallAllAI": null,
+      "falsePositiveRate": 0,
+      "falseNegativeRate": null,
+      "f1": null,
+      "auroc": null,
+      "aiEdited": {
+        "total": 1,
+        "assessed": 1,
+        "flagged": 0,
+        "abstained": 0,
+        "coverage": 1,
+        "flagRateAssessed": 0
+      },
+      "intervals95": {
+        "accuracyAssessed": {
+          "lower": 0.4385029682449546,
+          "upper": 1,
+          "n": 3,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        },
+        "precision": null,
+        "recallAssessed": null,
+        "falsePositiveRate": {
+          "lower": 5.551115123125783e-17,
+          "upper": 0.5614970317550454,
+          "n": 3,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        },
+        "falseNegativeRate": null,
+        "coverage": {
+          "lower": 0.5101091635454027,
+          "upper": 1,
+          "n": 4,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        }
+      },
+      "calibration": {
+        "available": false,
+        "reason": "No independently calibrated authorship probabilities exist. Style indices cannot be used for Brier score, ECE or probability claims."
+      },
+      "evidenceWarning": "Fewer than 100 assessed binary examples in this slice; no reliability or generalization claim is supported."
+    }
+  },
+  "byLength": {
+    "medium": {
+      "total": 16,
+      "assessed": 16,
+      "binaryAssessed": 12,
+      "abstained": 0,
+      "abstentionsByLabel": {
+        "human": 0,
+        "ai": 0,
+        "ai-edited": 0
+      },
+      "threshold": 65,
+      "coverage": 1,
+      "confusion": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 12,
+        "fn": 0
+      },
+      "accuracyAssessed": 1,
+      "precision": null,
+      "recallAssessed": null,
+      "recallAllAI": null,
+      "falsePositiveRate": 0,
+      "falseNegativeRate": null,
+      "f1": null,
+      "auroc": null,
+      "aiEdited": {
+        "total": 4,
+        "assessed": 4,
+        "flagged": 0,
+        "abstained": 0,
+        "coverage": 1,
+        "flagRateAssessed": 0
+      },
+      "intervals95": {
+        "accuracyAssessed": {
+          "lower": 0.7575059933447592,
+          "upper": 1,
+          "n": 12,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        },
+        "precision": null,
+        "recallAssessed": null,
+        "falsePositiveRate": {
+          "lower": 2.7755575615628914e-17,
+          "upper": 0.24249400665524085,
+          "n": 12,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        },
+        "falseNegativeRate": null,
+        "coverage": {
+          "lower": 0.8063923194655637,
+          "upper": 1,
+          "n": 16,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        }
+      },
+      "calibration": {
+        "available": false,
+        "reason": "No independently calibrated authorship probabilities exist. Style indices cannot be used for Brier score, ECE or probability claims."
+      },
+      "evidenceWarning": "Fewer than 100 assessed binary examples in this slice; no reliability or generalization claim is supported."
+    }
+  },
+  "byModel": {
+    "(human)": {
+      "total": 12,
+      "assessed": 12,
+      "binaryAssessed": 12,
+      "abstained": 0,
+      "abstentionsByLabel": {
+        "human": 0,
+        "ai": 0,
+        "ai-edited": 0
+      },
+      "threshold": 65,
+      "coverage": 1,
+      "confusion": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 12,
+        "fn": 0
+      },
+      "accuracyAssessed": 1,
+      "precision": null,
+      "recallAssessed": null,
+      "recallAllAI": null,
+      "falsePositiveRate": 0,
+      "falseNegativeRate": null,
+      "f1": null,
+      "auroc": null,
+      "aiEdited": {
+        "total": 0,
+        "assessed": 0,
+        "flagged": 0,
+        "abstained": 0,
+        "coverage": null,
+        "flagRateAssessed": null
+      },
+      "intervals95": {
+        "accuracyAssessed": {
+          "lower": 0.7575059933447592,
+          "upper": 1,
+          "n": 12,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        },
+        "precision": null,
+        "recallAssessed": null,
+        "falsePositiveRate": {
+          "lower": 2.7755575615628914e-17,
+          "upper": 0.24249400665524085,
+          "n": 12,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        },
+        "falseNegativeRate": null,
+        "coverage": {
+          "lower": 0.7575059933447592,
+          "upper": 1,
+          "n": 12,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        }
+      },
+      "calibration": {
+        "available": false,
+        "reason": "No independently calibrated authorship probabilities exist. Style indices cannot be used for Brier score, ECE or probability claims."
+      },
+      "evidenceWarning": "Fewer than 100 assessed binary examples in this slice; no reliability or generalization claim is supported."
+    },
+    "llama3.2:3b": {
+      "total": 2,
+      "assessed": 2,
+      "binaryAssessed": 0,
+      "abstained": 0,
+      "abstentionsByLabel": {
+        "human": 0,
+        "ai": 0,
+        "ai-edited": 0
+      },
+      "threshold": 65,
+      "coverage": 1,
+      "confusion": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 0,
+        "fn": 0
+      },
+      "accuracyAssessed": null,
+      "precision": null,
+      "recallAssessed": null,
+      "recallAllAI": null,
+      "falsePositiveRate": null,
+      "falseNegativeRate": null,
+      "f1": null,
+      "auroc": null,
+      "aiEdited": {
+        "total": 2,
+        "assessed": 2,
+        "flagged": 0,
+        "abstained": 0,
+        "coverage": 1,
+        "flagRateAssessed": 0
+      },
+      "intervals95": {
+        "accuracyAssessed": null,
+        "precision": null,
+        "recallAssessed": null,
+        "falsePositiveRate": null,
+        "falseNegativeRate": null,
+        "coverage": {
+          "lower": 0.34238022750665303,
+          "upper": 1,
+          "n": 2,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        }
+      },
+      "calibration": {
+        "available": false,
+        "reason": "No independently calibrated authorship probabilities exist. Style indices cannot be used for Brier score, ECE or probability claims."
+      },
+      "evidenceWarning": "Fewer than 100 assessed binary examples in this slice; no reliability or generalization claim is supported."
+    },
+    "qwen3.5:4b": {
+      "total": 2,
+      "assessed": 2,
+      "binaryAssessed": 0,
+      "abstained": 0,
+      "abstentionsByLabel": {
+        "human": 0,
+        "ai": 0,
+        "ai-edited": 0
+      },
+      "threshold": 65,
+      "coverage": 1,
+      "confusion": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 0,
+        "fn": 0
+      },
+      "accuracyAssessed": null,
+      "precision": null,
+      "recallAssessed": null,
+      "recallAllAI": null,
+      "falsePositiveRate": null,
+      "falseNegativeRate": null,
+      "f1": null,
+      "auroc": null,
+      "aiEdited": {
+        "total": 2,
+        "assessed": 2,
+        "flagged": 0,
+        "abstained": 0,
+        "coverage": 1,
+        "flagRateAssessed": 0
+      },
+      "intervals95": {
+        "accuracyAssessed": null,
+        "precision": null,
+        "recallAssessed": null,
+        "falsePositiveRate": null,
+        "falseNegativeRate": null,
+        "coverage": {
+          "lower": 0.34238022750665303,
+          "upper": 1,
+          "n": 2,
+          "method": "Wilson observation-level; does not adjust for grouped samples"
+        }
+      },
+      "calibration": {
+        "available": false,
+        "reason": "No independently calibrated authorship probabilities exist. Style indices cannot be used for Brier score, ECE or probability claims."
+      },
+      "evidenceWarning": "Fewer than 100 assessed binary examples in this slice; no reliability or generalization claim is supported."
+    }
+  },
+  "abstentionReasons": {},
+  "predictions": [
+    {
+      "source_id": "pg3420-h1",
+      "split": "test",
+      "label": "human",
+      "language": "en",
+      "genre": "essay",
+      "model": "(human)",
+      "score": 1,
+      "words": 229,
+      "status": "analyzed",
+      "abstentionReasons": []
+    },
+    {
+      "source_id": "pg3420-h2",
+      "split": "test",
+      "label": "human",
+      "language": "en",
+      "genre": "essay",
+      "model": "(human)",
+      "score": 7,
+      "words": 187,
+      "status": "analyzed",
+      "abstentionReasons": []
+    },
+    {
+      "source_id": "pg3420-h3",
+      "split": "test",
+      "label": "human",
+      "language": "en",
+      "genre": "essay",
+      "model": "(human)",
+      "score": 7,
+      "words": 296,
+      "status": "analyzed",
+      "abstentionReasons": []
+    },
+    {
+      "source_id": "pg205-h1",
+      "split": "test",
+      "label": "human",
+      "language": "en",
+      "genre": "memoir",
+      "model": "(human)",
+      "score": 4,
+      "words": 262,
+      "status": "analyzed",
+      "abstentionReasons": []
+    },
+    {
+      "source_id": "pg205-h2",
+      "split": "test",
+      "label": "human",
+      "language": "en",
+      "genre": "memoir",
+      "model": "(human)",
+      "score": 6,
+      "words": 214,
+      "status": "analyzed",
+      "abstentionReasons": []
+    },
+    {
+      "source_id": "pg205-h3",
+      "split": "test",
+      "label": "human",
+      "language": "en",
+      "genre": "memoir",
+      "model": "(human)",
+      "score": 1,
+      "words": 276,
+      "status": "analyzed",
+      "abstentionReasons": []
+    },
+    {
+      "source_id": "pg46538-h1",
+      "split": "test",
+      "label": "human",
+      "language": "sv",
+      "genre": "fiction",
+      "model": "(human)",
+      "score": 3,
+      "words": 194,
+      "status": "analyzed",
+      "abstentionReasons": []
+    },
+    {
+      "source_id": "pg46538-h2",
+      "split": "test",
+      "label": "human",
+      "language": "sv",
+      "genre": "fiction",
+      "model": "(human)",
+      "score": 9,
+      "words": 209,
+      "status": "analyzed",
+      "abstentionReasons": []
+    },
+    {
+      "source_id": "pg46538-h3",
+      "split": "test",
+      "label": "human",
+      "language": "sv",
+      "genre": "fiction",
+      "model": "(human)",
+      "score": 0,
+      "words": 189,
+      "status": "analyzed",
+      "abstentionReasons": []
+    },
+    {
+      "source_id": "pg59646-h1",
+      "split": "test",
+      "label": "human",
+      "language": "sv",
+      "genre": "travel",
+      "model": "(human)",
+      "score": 0,
+      "words": 276,
+      "status": "analyzed",
+      "abstentionReasons": []
+    },
+    {
+      "source_id": "pg59646-h2",
+      "split": "test",
+      "label": "human",
+      "language": "sv",
+      "genre": "travel",
+      "model": "(human)",
+      "score": 1,
+      "words": 288,
+      "status": "analyzed",
+      "abstentionReasons": []
+    },
+    {
+      "source_id": "pg59646-h3",
+      "split": "test",
+      "label": "human",
+      "language": "sv",
+      "genre": "travel",
+      "model": "(human)",
+      "score": 7,
+      "words": 278,
+      "status": "analyzed",
+      "abstentionReasons": []
+    },
+    {
+      "source_id": "pg205-h1-ai-edit",
+      "split": "test",
+      "label": "ai-edited",
+      "language": "en",
+      "genre": "memoir",
+      "model": "qwen3.5:4b",
+      "score": 4,
+      "words": 258,
+      "status": "analyzed",
+      "abstentionReasons": []
+    },
+    {
+      "source_id": "pg3420-h1-ai-edit",
+      "split": "test",
+      "label": "ai-edited",
+      "language": "en",
+      "genre": "essay",
+      "model": "llama3.2:3b",
+      "score": 1,
+      "words": 229,
+      "status": "analyzed",
+      "abstentionReasons": []
+    },
+    {
+      "source_id": "pg46538-h1-ai-edit",
+      "split": "test",
+      "label": "ai-edited",
+      "language": "sv",
+      "genre": "fiction",
+      "model": "llama3.2:3b",
+      "score": 3,
+      "words": 194,
+      "status": "analyzed",
+      "abstentionReasons": []
+    },
+    {
+      "source_id": "pg59646-h1-ai-edit",
+      "split": "test",
+      "label": "ai-edited",
+      "language": "sv",
+      "genre": "travel",
+      "model": "qwen3.5:4b",
+      "score": 0,
+      "words": 277,
+      "status": "analyzed",
+      "abstentionReasons": []
+    }
+  ],
+  "calibration": {
+    "available": false,
+    "reason": "No independently calibrated authorship probabilities exist. Style indices cannot be used for Brier score, ECE or probability claims."
+  },
+  "reproducibility": {
+    "datasetSha256": "0c02d64c848708ef2d4b0067dda4ec44a46754e04d041597004342e742ad3995",
+    "method": "style-heuristics-v3",
+    "evaluatedSplit": "test",
+    "threshold": 65,
+    "tuneOnValidation": false,
+    "nearDuplicateThreshold": 0.8,
+    "recordsOrdered": true,
+    "runtime": "v22.16.0",
+    "fileSha256": "2854edefefbb52c1b9fe33968511f72f6b4d8096ad173b407e7b90557ce54fd1",
+    "analyzerSha256": "05891b34c760b6bb67163436848f71e16bba731697e0ec5183313e0ec099ab4a",
+    "evaluatorSha256": "9a1c23797d82ff91733b28259adff77d617d98f92db2c719b88e56331265cf30"
+  },
+  "limitations": [
+    "Accuracy, precision, recall, F1, FPR and FNR are diagnostic threshold metrics among assessed human/ai examples. ai-edited is separate.",
+    "Coverage includes all labels; recallAllAI also includes abstained ai examples in its denominator. AUROC excludes abstentions and ai-edited.",
+    "Wilson intervals assume independent observations; repeated authors and source families can make them too narrow. Grouped resampling is required for inferential claims.",
+    "Split and duplicate checks cannot detect every translated, paraphrased, related, contaminated or mislabeled text.",
+    "The real historical pilot and offline learned baseline have separate scope/limitations; neither validates this style threshold for general authorship detection. Do not interpret engineering fixture metrics as detector quality."
+  ]
+}

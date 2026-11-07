@@ -1,0 +1,493 @@
+{
+  "audit": {
+    "counts": {
+      "byLabel": {
+        "human": 8
+      },
+      "byLanguage": {
+        "en": 4,
+        "sv": 4
+      },
+      "bySplit": {
+        "test": 8
+      },
+      "groups": {
+        "author_id": 1,
+        "document_id": 4,
+        "source_group_id": 2
+      },
+      "total": 8
+    },
+    "leakage": {
+      "exactDuplicates": 0,
+      "groupingFields": [
+        "author_id",
+        "document_id",
+        "source_group_id",
+        "related_source_id"
+      ],
+      "jaccardThreshold": 0.8,
+      "nearDuplicateComparisons": 0,
+      "nearDuplicates": 0,
+      "note": "Duplicate counts exclude explicitly documented human/AI-edited pairs with a shared human ancestor in the same split/source family. Related pairs are dependent observations, never independent examples. Token overlap cannot establish semantic independence; source-family audit and grouped uncertainty are still required.",
+      "passed": true,
+      "relatedEditExamples": [],
+      "relatedEditPairs": 0,
+      "relatedExactPairs": 0,
+      "relatedExamplesTruncated": false,
+      "relatedNearPairs": 0,
+      "shingleWords": 5
+    }
+  },
+  "availabilityNote": "Two pre-outcome attempts returned identical8passages; eight remaining predeclared article requests were rate-limitedHTTP429. No further requests or replacements.",
+  "boundedRetryManifest": "sequential-retry/manifest.json",
+  "collectorSha256": "5fe63d1fdd140eea68ddf5ae7e119a71c607ad8c928355d7d0e34375cd152eec",
+  "collectorSnapshotFile": "collector-attempt1.py.txt",
+  "corpusSha256": "3266a5d574d61a11db438823c99e4e0fd80b25c664aca22a2cd568524592299b",
+  "evaluationCollectorSha256": "815fc9ee533fd56f71d09a641cc130d01d9a496faa8919ea839d9eee67cc94ef",
+  "finalFrozenAtUtc": "2026-11-02T20:03:03.214782+00:00",
+  "frozenBeforeModelScoring": true,
+  "initialManifestSha256": "c80ae3e9f3401e814fa6fd029adf1a042c32879a32d841aeb7e51b3653c2b6d2",
+  "modelFileSha256BeforeScoring": "150100c166288c06a0d8c8f930564aff30bb95180eb6b1c2495062bbd8e7fe5d",
+  "protocol": {
+    "grouping": "both languages of each topic share one source_group_id; all Wikipedia contributors share an author_id",
+    "label": "human is a pre-LLM collaborative-publication inference; bots/templates and copied material are not excluded by timestamp",
+    "languages": [
+      "en",
+      "sv"
+    ],
+    "maximumWords": 300,
+    "minimumWords": 180,
+    "model": "models/experimental/pilot-v1/model.json",
+    "noTuning": true,
+    "passagesPerArticleMaximum": 2,
+    "revisionCutoffUtc": "2018-01-01T00:00:00Z",
+    "selection": "first two disjoint consecutive whole-paragraph runs of 180–300 words, greedily extending to at least180; skip paragraphs longer than300",
+    "styleThreshold": 65,
+    "topics": [
+      [
+        "photosynthesis",
+        "Photosynthesis",
+        "Fotosyntes"
+      ],
+      [
+        "bridge",
+        "Bridge",
+        "Bro"
+      ],
+      [
+        "library",
+        "Library",
+        "Bibliotek"
+      ],
+      [
+        "volcano",
+        "Volcano",
+        "Vulkan"
+      ],
+      [
+        "telephone",
+        "Telephone",
+        "Telefon"
+      ],
+      [
+        "bicycle",
+        "Bicycle",
+        "Cykel"
+      ]
+    ],
+    "use": "external human-only false-positive/coverage diagnostic; no accuracy, recall, calibration or training claim"
+  },
+  "records": 8,
+  "schemaVersion": "textlab-modern-human-holdout-v1",
+  "sourceAuditGap": "Revision date establishes historical publication, not human identity or absence of bots/templates/copied material. No complete contributor/history/talk-page copyright audit. Excerpts are a convenience sample and paired topics may share translated prose.",
+  "sources": [
+    {
+      "categories": [
+        {
+          "*": "Articles_containing_Ancient_Greek_(to_1453)-language_text",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "CS1_errors:_unsupported_parameter",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "CS1_errors:_external_links",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "CS1_maint:_article_number_as_page_number",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "CS1_maint:_unflagged_free_DOI",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "CS1_maint:_periodical_has_ISBN",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "Wikipedia_pages_semi-protected_against_vandalism",
+          "hidden": "",
+          "sortkey": "Photosynthesis"
+        },
+        {
+          "*": "Wikipedia_articles_needing_clarification_from_November_2015",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "All_articles_with_unsourced_statements",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "Articles_with_unsourced_statements_from_July_2008",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "Pages_using_div_col_with_unknown_parameters",
+          "hidden": "",
+          "sortkey": "1 = 2Photosynthesis"
+        },
+        {
+          "*": "Commons_category_link_from_Wikidata",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "Agronomy",
+          "sortkey": ""
+        },
+        {
+          "*": "Biological_processes",
+          "sortkey": ""
+        },
+        {
+          "*": "Botany",
+          "sortkey": ""
+        },
+        {
+          "*": "Cellular_respiration",
+          "sortkey": ""
+        },
+        {
+          "*": "Metabolism",
+          "sortkey": ""
+        },
+        {
+          "*": "Photosynthesis",
+          "sortkey": " "
+        },
+        {
+          "*": "Plant_physiology",
+          "sortkey": ""
+        },
+        {
+          "*": "Ecosystems",
+          "sortkey": ""
+        },
+        {
+          "*": "Quantum_biology",
+          "sortkey": ""
+        },
+        {
+          "*": "Plant_nutrition",
+          "sortkey": ""
+        }
+      ],
+      "historyUrl": "https://en.wikipedia.org/w/index.php?title=Photosynthesis&action=history",
+      "language": "en",
+      "parseApiFile": "raw/en-photosynthesis.parse.json",
+      "passageCount": 2,
+      "revision": {
+        "pageid": 24544,
+        "parentid": 816636508,
+        "revid": 816636789,
+        "timestamp": "2017-12-22T17:29:15Z",
+        "title": "Photosynthesis",
+        "user": "Abhijitmandal1954"
+      },
+      "revisionApiFile": "raw/en-photosynthesis.revision.json",
+      "revisionUrl": "https://en.wikipedia.org/w/index.php?oldid=816636789",
+      "sourceFile": "sources/en-photosynthesis.txt",
+      "sourceTextSha256": "61f4b5a248d336df52162f7094147cc3ed529a28da532bef8644ed8c3df7f8a2",
+      "title": "Photosynthesis",
+      "topic": "photosynthesis"
+    },
+    {
+      "categories": [
+        {
+          "*": "Artiklar_som_behöver_fler_källor_2014-04",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "Alla_artiklar_som_behöver_fler_källor",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "Alla_artiklar_som_behöver_källor",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "Wikipediaartiklar_med_identifierare_från_LCCN",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "Wikipediaartiklar_med_identifierare_från_GND",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "Wikipediaartiklar_med_identifierare_från_BNF",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "Botanik",
+          "sortkey": ""
+        },
+        {
+          "*": "Biokemi",
+          "sortkey": ""
+        },
+        {
+          "*": "Ekologi",
+          "sortkey": ""
+        },
+        {
+          "*": "Wikipedia:Basartiklar",
+          "hidden": "",
+          "sortkey": ""
+        }
+      ],
+      "historyUrl": "https://sv.wikipedia.org/w/index.php?title=Fotosyntes&action=history",
+      "language": "sv",
+      "parseApiFile": "raw/sv-photosynthesis.parse.json",
+      "passageCount": 2,
+      "revision": {
+        "pageid": 2630,
+        "parentid": 42127199,
+        "revid": 42127203,
+        "timestamp": "2017-11-19T13:11:59Z",
+        "title": "Fotosyntes",
+        "user": "Tekannan"
+      },
+      "revisionApiFile": "raw/sv-photosynthesis.revision.json",
+      "revisionUrl": "https://sv.wikipedia.org/w/index.php?oldid=42127203",
+      "sourceFile": "sources/sv-photosynthesis.txt",
+      "sourceTextSha256": "9fac7b30108ed9b72271ca47a16ce309245e0a705898caa4d470a0adaf32496b",
+      "title": "Fotosyntes",
+      "topic": "photosynthesis"
+    },
+    {
+      "categories": [
+        {
+          "*": "CS1_errors:_unsupported_parameter",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "Webarchive_template_archiveis_links",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "CS1_French-language_sources_(fr)",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "Webarchive_template_wayback_links",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "Use_mdy_dates_from_January_2015",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "All_articles_with_unsourced_statements",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "Articles_with_unsourced_statements_from_May_2015",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "Articles_with_unsourced_statements_from_September_2016",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "Portal_templates_with_redlinked_portals",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "Pages_with_empty_portal_template",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "Pages_using_div_col_with_unknown_parameters",
+          "hidden": "",
+          "sortkey": "2 = 20emBridge"
+        },
+        {
+          "*": "Pages_using_Sister_project_links_with_default_search",
+          "hidden": "",
+          "sortkey": "v"
+        },
+        {
+          "*": "Bridges",
+          "sortkey": " "
+        },
+        {
+          "*": "Structural_engineering",
+          "sortkey": ""
+        },
+        {
+          "*": "Articles_containing_video_clips",
+          "hidden": "",
+          "sortkey": ""
+        }
+      ],
+      "historyUrl": "https://en.wikipedia.org/w/index.php?title=Bridge&action=history",
+      "language": "en",
+      "parseApiFile": "raw/en-bridge.parse.json",
+      "passageCount": 2,
+      "revision": {
+        "pageid": 3397,
+        "parentid": 817424611,
+        "revid": 817433099,
+        "timestamp": "2017-12-28T10:01:18Z",
+        "title": "Bridge",
+        "user": "JzG"
+      },
+      "revisionApiFile": "raw/en-bridge.revision.json",
+      "revisionUrl": "https://en.wikipedia.org/w/index.php?oldid=817433099",
+      "sourceFile": "sources/en-bridge.txt",
+      "sourceTextSha256": "40d54c9976ec6342a195df2778b98311429e1c02df54a8651bb13f4f8e13112c",
+      "title": "Bridge",
+      "topic": "bridge"
+    },
+    {
+      "categories": [
+        {
+          "*": "Wikipediaartiklar_med_identifierare_från_LCCN",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "Wikipediaartiklar_med_identifierare_från_GND",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "Wikipediaartiklar_med_identifierare_från_BNF",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "Wikipediaartiklar_med_identifierare_från_BNE",
+          "hidden": "",
+          "sortkey": ""
+        },
+        {
+          "*": "Broar",
+          "sortkey": " "
+        },
+        {
+          "*": "Wikipedia:Basartiklar",
+          "hidden": "",
+          "sortkey": ""
+        }
+      ],
+      "historyUrl": "https://sv.wikipedia.org/w/index.php?title=Bro&action=history",
+      "language": "sv",
+      "parseApiFile": "raw/sv-bridge.parse.json",
+      "passageCount": 2,
+      "revision": {
+        "pageid": 5041,
+        "parentid": 42244644,
+        "revid": 42244645,
+        "timestamp": "2017-12-20T16:23:58Z",
+        "title": "Bro",
+        "user": "Hipster Doofus"
+      },
+      "revisionApiFile": "raw/sv-bridge.revision.json",
+      "revisionUrl": "https://sv.wikipedia.org/w/index.php?oldid=42244645",
+      "sourceFile": "sources/sv-bridge.txt",
+      "sourceTextSha256": "015ca092cd25f4170b9efdd0e75da74e9be68890d0e740d7857a3ccc15b3c8cf",
+      "title": "Bro",
+      "topic": "bridge"
+    }
+  ],
+  "unavailable": [
+    {
+      "language": "en",
+      "reason": "429 Client Error: Too Many Requests for url: https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=Library&rvprop=ids%7Ctimestamp%7Cuser&rvstart=2018-01-01T00%3A00%3A00Z&rvdir=older&rvlimit=1",
+      "title": "Library",
+      "topic": "library"
+    },
+    {
+      "language": "sv",
+      "reason": "429 Client Error: Too Many Requests for url: https://sv.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=Bibliotek&rvprop=ids%7Ctimestamp%7Cuser&rvstart=2018-01-01T00%3A00%3A00Z&rvdir=older&rvlimit=1",
+      "title": "Bibliotek",
+      "topic": "library"
+    },
+    {
+      "language": "en",
+      "reason": "429 Client Error: Too Many Requests for url: https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=Volcano&rvprop=ids%7Ctimestamp%7Cuser&rvstart=2018-01-01T00%3A00%3A00Z&rvdir=older&rvlimit=1",
+      "title": "Volcano",
+      "topic": "volcano"
+    },
+    {
+      "language": "sv",
+      "reason": "429 Client Error: Too Many Requests for url: https://sv.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=Vulkan&rvprop=ids%7Ctimestamp%7Cuser&rvstart=2018-01-01T00%3A00%3A00Z&rvdir=older&rvlimit=1",
+      "title": "Vulkan",
+      "topic": "volcano"
+    },
+    {
+      "language": "en",
+      "reason": "429 Client Error: Too Many Requests for url: https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=Telephone&rvprop=ids%7Ctimestamp%7Cuser&rvstart=2018-01-01T00%3A00%3A00Z&rvdir=older&rvlimit=1",
+      "title": "Telephone",
+      "topic": "telephone"
+    },
+    {
+      "language": "sv",
+      "reason": "429 Client Error: Too Many Requests for url: https://sv.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=Telefon&rvprop=ids%7Ctimestamp%7Cuser&rvstart=2018-01-01T00%3A00%3A00Z&rvdir=older&rvlimit=1",
+      "title": "Telefon",
+      "topic": "telephone"
+    },
+    {
+      "language": "en",
+      "reason": "429 Client Error: Too Many Requests for url: https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=Bicycle&rvprop=ids%7Ctimestamp%7Cuser&rvstart=2018-01-01T00%3A00%3A00Z&rvdir=older&rvlimit=1",
+      "title": "Bicycle",
+      "topic": "bicycle"
+    },
+    {
+      "language": "sv",
+      "reason": "429 Client Error: Too Many Requests for url: https://sv.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=Cykel&rvprop=ids%7Ctimestamp%7Cuser&rvstart=2018-01-01T00%3A00%3A00Z&rvdir=older&rvlimit=1",
+      "title": "Cykel",
+      "topic": "bicycle"
+    }
+  ]
+}

@@ -1,0 +1,2774 @@
+{
+  "timestamp_utc": "2026-11-02T19:24:08.068602+00:00",
+  "provider": "ollama",
+  "real_model_requests": true,
+  "synthetic_inputs_only": true,
+  "semantic_quality_verified": false,
+  "latency_note": "First observed call is measured; model unloading/cold start is not asserted.",
+  "models": [
+    {
+      "model": "llama3.2:3b",
+      "rewrites": [
+        {
+          "language": "sv",
+          "mode": "natural",
+          "seconds": 1.134,
+          "http_status": 200,
+          "input": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+          "output": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna på ett tydligare sätt utan att dra säkra slutsatser om orsaken.",
+          "exact_values_preserved": true,
+          "changed": true,
+          "response": {
+            "text": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna på ett tydligare sätt utan att dra säkra slutsatser om orsaken.",
+            "provider": "ollama",
+            "model": "llama3.2:3b",
+            "diff": [
+              {
+                "kind": "equal",
+                "text": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna "
+              },
+              {
+                "kind": "delete",
+                "text": "tydligt"
+              },
+              {
+                "kind": "insert",
+                "text": "på ett tydligare sätt"
+              },
+              {
+                "kind": "equal",
+                "text": " utan att dra säkra slutsatser om orsaken."
+              }
+            ],
+            "protected_count": 8,
+            "review_required": true,
+            "preservation": {
+              "exact_values_checked": true,
+              "semantic_equivalence_verified": false,
+              "names": "heuristic_and_explicit_terms"
+            },
+            "warning": "Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad."
+          }
+        },
+        {
+          "language": "sv",
+          "mode": "simple",
+          "seconds": 1.121,
+          "http_status": 200,
+          "input": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+          "output": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+          "exact_values_preserved": true,
+          "changed": false,
+          "response": {
+            "text": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+            "provider": "ollama",
+            "model": "llama3.2:3b",
+            "diff": [
+              {
+                "kind": "equal",
+                "text": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken."
+              }
+            ],
+            "protected_count": 8,
+            "review_required": true,
+            "preservation": {
+              "exact_values_checked": true,
+              "semantic_equivalence_verified": false,
+              "names": "heuristic_and_explicit_terms"
+            },
+            "warning": "Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad."
+          }
+        },
+        {
+          "language": "sv",
+          "mode": "professional",
+          "seconds": 1.173,
+          "http_status": 200,
+          "input": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+          "output": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+          "exact_values_preserved": true,
+          "changed": false,
+          "response": {
+            "text": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+            "provider": "ollama",
+            "model": "llama3.2:3b",
+            "diff": [
+              {
+                "kind": "equal",
+                "text": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken."
+              }
+            ],
+            "protected_count": 8,
+            "review_required": true,
+            "preservation": {
+              "exact_values_checked": true,
+              "semantic_equivalence_verified": false,
+              "names": "heuristic_and_explicit_terms"
+            },
+            "warning": "Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad."
+          }
+        },
+        {
+          "language": "sv",
+          "mode": "academic",
+          "seconds": 1.206,
+          "http_status": 200,
+          "input": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+          "output": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+          "exact_values_preserved": true,
+          "changed": false,
+          "response": {
+            "text": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+            "provider": "ollama",
+            "model": "llama3.2:3b",
+            "diff": [
+              {
+                "kind": "equal",
+                "text": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken."
+              }
+            ],
+            "protected_count": 8,
+            "review_required": true,
+            "preservation": {
+              "exact_values_checked": true,
+              "semantic_equivalence_verified": false,
+              "names": "heuristic_and_explicit_terms"
+            },
+            "warning": "Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad."
+          }
+        },
+        {
+          "language": "sv",
+          "mode": "concise",
+          "seconds": 1.027,
+          "http_status": 200,
+          "input": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+          "output": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna på ett tydligt sätt utan att dra säkra slutsatser om orsaken.",
+          "exact_values_preserved": true,
+          "changed": true,
+          "response": {
+            "text": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna på ett tydligt sätt utan att dra säkra slutsatser om orsaken.",
+            "provider": "ollama",
+            "model": "llama3.2:3b",
+            "diff": [
+              {
+                "kind": "equal",
+                "text": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna "
+              },
+              {
+                "kind": "insert",
+                "text": "på ett "
+              },
+              {
+                "kind": "equal",
+                "text": "tydligt"
+              },
+              {
+                "kind": "insert",
+                "text": " sätt"
+              },
+              {
+                "kind": "equal",
+                "text": " utan att dra säkra slutsatser om orsaken."
+              }
+            ],
+            "protected_count": 8,
+            "review_required": true,
+            "preservation": {
+              "exact_values_checked": true,
+              "semantic_equivalence_verified": false,
+              "names": "heuristic_and_explicit_terms"
+            },
+            "warning": "Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad."
+          }
+        },
+        {
+          "language": "sv",
+          "mode": "detailed",
+          "seconds": 1.12,
+          "http_status": 200,
+          "input": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+          "output": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna på ett tydligt sätt utan att driva säkra slutsatser om orsaken.",
+          "exact_values_preserved": true,
+          "changed": true,
+          "response": {
+            "text": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna på ett tydligt sätt utan att driva säkra slutsatser om orsaken.",
+            "provider": "ollama",
+            "model": "llama3.2:3b",
+            "diff": [
+              {
+                "kind": "equal",
+                "text": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna "
+              },
+              {
+                "kind": "insert",
+                "text": "på ett "
+              },
+              {
+                "kind": "equal",
+                "text": "tydligt"
+              },
+              {
+                "kind": "insert",
+                "text": " sätt"
+              },
+              {
+                "kind": "equal",
+                "text": " utan att "
+              },
+              {
+                "kind": "delete",
+                "text": "dra"
+              },
+              {
+                "kind": "insert",
+                "text": "driva"
+              },
+              {
+                "kind": "equal",
+                "text": " säkra slutsatser om orsaken."
+              }
+            ],
+            "protected_count": 8,
+            "review_required": true,
+            "preservation": {
+              "exact_values_checked": true,
+              "semantic_equivalence_verified": false,
+              "names": "heuristic_and_explicit_terms"
+            },
+            "warning": "Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad."
+          }
+        },
+        {
+          "language": "en",
+          "mode": "natural",
+          "seconds": 1.107,
+          "http_status": 200,
+          "input": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team tested 12 sensors and reduced energy use by 15 %. The report [Smith, 2026] states \"The results are preliminary\". More information is available at https://example.org/study. The aim is to explain the measured changes clearly without drawing firm conclusions about their cause.",
+          "output": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team conducted a thorough test of 12 sensors and achieved a significant reduction in energy use of 15 %. The report [Smith, 2026] highlights \"The results are preliminary\". For further details, please visit https://example.org/study. The goal is to present the measured changes in a transparent and objective manner, without jumping to conclusions about their underlying causes.",
+          "exact_values_preserved": true,
+          "changed": true,
+          "response": {
+            "text": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team conducted a thorough test of 12 sensors and achieved a significant reduction in energy use of 15 %. The report [Smith, 2026] highlights \"The results are preliminary\". For further details, please visit https://example.org/study. The goal is to present the measured changes in a transparent and objective manner, without jumping to conclusions about their underlying causes.",
+            "provider": "ollama",
+            "model": "llama3.2:3b",
+            "diff": [
+              {
+                "kind": "equal",
+                "text": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team "
+              },
+              {
+                "kind": "delete",
+                "text": "tested"
+              },
+              {
+                "kind": "insert",
+                "text": "conducted a thorough test of"
+              },
+              {
+                "kind": "equal",
+                "text": " 12 sensors and "
+              },
+              {
+                "kind": "delete",
+                "text": "reduced"
+              },
+              {
+                "kind": "insert",
+                "text": "achieved a significant reduction in"
+              },
+              {
+                "kind": "equal",
+                "text": " energy use "
+              },
+              {
+                "kind": "delete",
+                "text": "by"
+              },
+              {
+                "kind": "insert",
+                "text": "of"
+              },
+              {
+                "kind": "equal",
+                "text": " 15 %. The report [Smith, 2026] "
+              },
+              {
+                "kind": "delete",
+                "text": "states"
+              },
+              {
+                "kind": "insert",
+                "text": "highlights"
+              },
+              {
+                "kind": "equal",
+                "text": " \"The results are preliminary\". "
+              },
+              {
+                "kind": "delete",
+                "text": "More"
+              },
+              {
+                "kind": "insert",
+                "text": "For"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "information"
+              },
+              {
+                "kind": "insert",
+                "text": "further"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "is"
+              },
+              {
+                "kind": "insert",
+                "text": "details,"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "available"
+              },
+              {
+                "kind": "insert",
+                "text": "please"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "at"
+              },
+              {
+                "kind": "insert",
+                "text": "visit"
+              },
+              {
+                "kind": "equal",
+                "text": " https://example.org/study. The "
+              },
+              {
+                "kind": "delete",
+                "text": "aim"
+              },
+              {
+                "kind": "insert",
+                "text": "goal"
+              },
+              {
+                "kind": "equal",
+                "text": " is to "
+              },
+              {
+                "kind": "delete",
+                "text": "explain"
+              },
+              {
+                "kind": "insert",
+                "text": "present"
+              },
+              {
+                "kind": "equal",
+                "text": " the measured changes "
+              },
+              {
+                "kind": "delete",
+                "text": "clearly"
+              },
+              {
+                "kind": "insert",
+                "text": "in a transparent and objective manner,"
+              },
+              {
+                "kind": "equal",
+                "text": " without "
+              },
+              {
+                "kind": "delete",
+                "text": "drawing"
+              },
+              {
+                "kind": "insert",
+                "text": "jumping"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "firm"
+              },
+              {
+                "kind": "insert",
+                "text": "to"
+              },
+              {
+                "kind": "equal",
+                "text": " conclusions about their "
+              },
+              {
+                "kind": "delete",
+                "text": "cause"
+              },
+              {
+                "kind": "insert",
+                "text": "underlying causes"
+              },
+              {
+                "kind": "equal",
+                "text": "."
+              }
+            ],
+            "protected_count": 8,
+            "review_required": true,
+            "preservation": {
+              "exact_values_checked": true,
+              "semantic_equivalence_verified": false,
+              "names": "heuristic_and_explicit_terms"
+            },
+            "warning": "Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad."
+          }
+        },
+        {
+          "language": "en",
+          "mode": "simple",
+          "seconds": 0.937,
+          "http_status": 502,
+          "input": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team tested 12 sensors and reduced energy use by 15 %. The report [Smith, 2026] states \"The results are preliminary\". More information is available at https://example.org/study. The aim is to explain the measured changes clearly without drawing firm conclusions about their cause.",
+          "output": "",
+          "exact_values_preserved": false,
+          "changed": null,
+          "response": {
+            "detail": "Modellen ändrade skyddade uppgifter. Omskrivningen stoppades; originalet är oförändrat."
+          }
+        },
+        {
+          "language": "en",
+          "mode": "professional",
+          "seconds": 0.969,
+          "http_status": 200,
+          "input": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team tested 12 sensors and reduced energy use by 15 %. The report [Smith, 2026] states \"The results are preliminary\". More information is available at https://example.org/study. The aim is to explain the measured changes clearly without drawing firm conclusions about their cause.",
+          "output": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team tested 12 sensors and reduced energy use by 15 %. The report [Smith, 2026] states \"The results are preliminary\". For further information, please refer to https://example.org/study. The objective is to present the measured changes in a transparent and objective manner, without prematurely drawing conclusions about their underlying causes.",
+          "exact_values_preserved": true,
+          "changed": true,
+          "response": {
+            "text": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team tested 12 sensors and reduced energy use by 15 %. The report [Smith, 2026] states \"The results are preliminary\". For further information, please refer to https://example.org/study. The objective is to present the measured changes in a transparent and objective manner, without prematurely drawing conclusions about their underlying causes.",
+            "provider": "ollama",
+            "model": "llama3.2:3b",
+            "diff": [
+              {
+                "kind": "equal",
+                "text": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team tested 12 sensors and reduced energy use by 15 %. The report [Smith, 2026] states \"The results are preliminary\". "
+              },
+              {
+                "kind": "delete",
+                "text": "More"
+              },
+              {
+                "kind": "insert",
+                "text": "For further"
+              },
+              {
+                "kind": "equal",
+                "text": " information"
+              },
+              {
+                "kind": "insert",
+                "text": ","
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "is"
+              },
+              {
+                "kind": "insert",
+                "text": "please"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "available"
+              },
+              {
+                "kind": "insert",
+                "text": "refer"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "at"
+              },
+              {
+                "kind": "insert",
+                "text": "to"
+              },
+              {
+                "kind": "equal",
+                "text": " https://example.org/study. The "
+              },
+              {
+                "kind": "delete",
+                "text": "aim"
+              },
+              {
+                "kind": "insert",
+                "text": "objective"
+              },
+              {
+                "kind": "equal",
+                "text": " is to "
+              },
+              {
+                "kind": "delete",
+                "text": "explain"
+              },
+              {
+                "kind": "insert",
+                "text": "present"
+              },
+              {
+                "kind": "equal",
+                "text": " the measured changes "
+              },
+              {
+                "kind": "delete",
+                "text": "clearly"
+              },
+              {
+                "kind": "insert",
+                "text": "in a transparent and objective manner,"
+              },
+              {
+                "kind": "equal",
+                "text": " without "
+              },
+              {
+                "kind": "insert",
+                "text": "prematurely "
+              },
+              {
+                "kind": "equal",
+                "text": "drawing"
+              },
+              {
+                "kind": "delete",
+                "text": " firm"
+              },
+              {
+                "kind": "equal",
+                "text": " conclusions about their "
+              },
+              {
+                "kind": "delete",
+                "text": "cause"
+              },
+              {
+                "kind": "insert",
+                "text": "underlying causes"
+              },
+              {
+                "kind": "equal",
+                "text": "."
+              }
+            ],
+            "protected_count": 8,
+            "review_required": true,
+            "preservation": {
+              "exact_values_checked": true,
+              "semantic_equivalence_verified": false,
+              "names": "heuristic_and_explicit_terms"
+            },
+            "warning": "Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad."
+          }
+        },
+        {
+          "language": "en",
+          "mode": "academic",
+          "seconds": 1.003,
+          "http_status": 200,
+          "input": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team tested 12 sensors and reduced energy use by 15 %. The report [Smith, 2026] states \"The results are preliminary\". More information is available at https://example.org/study. The aim is to explain the measured changes clearly without drawing firm conclusions about their cause.",
+          "output": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team conducted a test of 12 sensors and reported a reduction in energy use by 15 %. The report [Smith, 2026] states that \"The results are preliminary\". Further information is available at https://example.org/study. The objective is to present the measured changes in a clear and transparent manner, without drawing firm conclusions about their underlying causes.",
+          "exact_values_preserved": true,
+          "changed": true,
+          "response": {
+            "text": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team conducted a test of 12 sensors and reported a reduction in energy use by 15 %. The report [Smith, 2026] states that \"The results are preliminary\". Further information is available at https://example.org/study. The objective is to present the measured changes in a clear and transparent manner, without drawing firm conclusions about their underlying causes.",
+            "provider": "ollama",
+            "model": "llama3.2:3b",
+            "diff": [
+              {
+                "kind": "equal",
+                "text": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team "
+              },
+              {
+                "kind": "delete",
+                "text": "tested"
+              },
+              {
+                "kind": "insert",
+                "text": "conducted a test of"
+              },
+              {
+                "kind": "equal",
+                "text": " 12 sensors and "
+              },
+              {
+                "kind": "delete",
+                "text": "reduced"
+              },
+              {
+                "kind": "insert",
+                "text": "reported a reduction in"
+              },
+              {
+                "kind": "equal",
+                "text": " energy use by 15 %. The report [Smith, 2026] states "
+              },
+              {
+                "kind": "insert",
+                "text": "that "
+              },
+              {
+                "kind": "equal",
+                "text": "\"The results are preliminary\". "
+              },
+              {
+                "kind": "delete",
+                "text": "More"
+              },
+              {
+                "kind": "insert",
+                "text": "Further"
+              },
+              {
+                "kind": "equal",
+                "text": " information is available at https://example.org/study. The "
+              },
+              {
+                "kind": "delete",
+                "text": "aim"
+              },
+              {
+                "kind": "insert",
+                "text": "objective"
+              },
+              {
+                "kind": "equal",
+                "text": " is to "
+              },
+              {
+                "kind": "delete",
+                "text": "explain"
+              },
+              {
+                "kind": "insert",
+                "text": "present"
+              },
+              {
+                "kind": "equal",
+                "text": " the measured changes "
+              },
+              {
+                "kind": "delete",
+                "text": "clearly"
+              },
+              {
+                "kind": "insert",
+                "text": "in a clear and transparent manner,"
+              },
+              {
+                "kind": "equal",
+                "text": " without drawing firm conclusions about their "
+              },
+              {
+                "kind": "delete",
+                "text": "cause"
+              },
+              {
+                "kind": "insert",
+                "text": "underlying causes"
+              },
+              {
+                "kind": "equal",
+                "text": "."
+              }
+            ],
+            "protected_count": 8,
+            "review_required": true,
+            "preservation": {
+              "exact_values_checked": true,
+              "semantic_equivalence_verified": false,
+              "names": "heuristic_and_explicit_terms"
+            },
+            "warning": "Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad."
+          }
+        },
+        {
+          "language": "en",
+          "mode": "concise",
+          "seconds": 1.168,
+          "http_status": 200,
+          "input": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team tested 12 sensors and reduced energy use by 15 %. The report [Smith, 2026] states \"The results are preliminary\". More information is available at https://example.org/study. The aim is to explain the measured changes clearly without drawing firm conclusions about their cause.",
+          "output": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team tested 12 sensors and reduced energy use by 15 %. The report [Smith, 2026] states \"The results are preliminary\". For more information, see https://example.org/study. The goal is to present the measured changes clearly without jumping to conclusions about their cause.",
+          "exact_values_preserved": true,
+          "changed": true,
+          "response": {
+            "text": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team tested 12 sensors and reduced energy use by 15 %. The report [Smith, 2026] states \"The results are preliminary\". For more information, see https://example.org/study. The goal is to present the measured changes clearly without jumping to conclusions about their cause.",
+            "provider": "ollama",
+            "model": "llama3.2:3b",
+            "diff": [
+              {
+                "kind": "equal",
+                "text": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team tested 12 sensors and reduced energy use by 15 %. The report [Smith, 2026] states \"The results are preliminary\". "
+              },
+              {
+                "kind": "delete",
+                "text": "More"
+              },
+              {
+                "kind": "insert",
+                "text": "For more"
+              },
+              {
+                "kind": "equal",
+                "text": " information"
+              },
+              {
+                "kind": "insert",
+                "text": ","
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "is available at"
+              },
+              {
+                "kind": "insert",
+                "text": "see"
+              },
+              {
+                "kind": "equal",
+                "text": " https://example.org/study. The "
+              },
+              {
+                "kind": "delete",
+                "text": "aim"
+              },
+              {
+                "kind": "insert",
+                "text": "goal"
+              },
+              {
+                "kind": "equal",
+                "text": " is to "
+              },
+              {
+                "kind": "delete",
+                "text": "explain"
+              },
+              {
+                "kind": "insert",
+                "text": "present"
+              },
+              {
+                "kind": "equal",
+                "text": " the measured changes clearly without "
+              },
+              {
+                "kind": "delete",
+                "text": "drawing"
+              },
+              {
+                "kind": "insert",
+                "text": "jumping"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "firm"
+              },
+              {
+                "kind": "insert",
+                "text": "to"
+              },
+              {
+                "kind": "equal",
+                "text": " conclusions about their cause."
+              }
+            ],
+            "protected_count": 8,
+            "review_required": true,
+            "preservation": {
+              "exact_values_checked": true,
+              "semantic_equivalence_verified": false,
+              "names": "heuristic_and_explicit_terms"
+            },
+            "warning": "Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad."
+          }
+        },
+        {
+          "language": "en",
+          "mode": "detailed",
+          "seconds": 1.084,
+          "http_status": 200,
+          "input": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team tested 12 sensors and reduced energy use by 15 %. The report [Smith, 2026] states \"The results are preliminary\". More information is available at https://example.org/study. The aim is to explain the measured changes clearly without drawing firm conclusions about their cause.",
+          "output": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team conducted a thorough examination of 12 sensors and achieved a notable reduction in energy use by 15 %. The report [Smith, 2026] notes \"The results are preliminary\". For further details, please refer to https://example.org/study. The objective is to present the measured changes in a clear and concise manner, without prematurely drawing conclusions about their underlying causes.",
+          "exact_values_preserved": true,
+          "changed": true,
+          "response": {
+            "text": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team conducted a thorough examination of 12 sensors and achieved a notable reduction in energy use by 15 %. The report [Smith, 2026] notes \"The results are preliminary\". For further details, please refer to https://example.org/study. The objective is to present the measured changes in a clear and concise manner, without prematurely drawing conclusions about their underlying causes.",
+            "provider": "ollama",
+            "model": "llama3.2:3b",
+            "diff": [
+              {
+                "kind": "equal",
+                "text": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team "
+              },
+              {
+                "kind": "delete",
+                "text": "tested"
+              },
+              {
+                "kind": "insert",
+                "text": "conducted a thorough examination of"
+              },
+              {
+                "kind": "equal",
+                "text": " 12 sensors and "
+              },
+              {
+                "kind": "delete",
+                "text": "reduced"
+              },
+              {
+                "kind": "insert",
+                "text": "achieved a notable reduction in"
+              },
+              {
+                "kind": "equal",
+                "text": " energy use by 15 %. The report [Smith, 2026] "
+              },
+              {
+                "kind": "delete",
+                "text": "states"
+              },
+              {
+                "kind": "insert",
+                "text": "notes"
+              },
+              {
+                "kind": "equal",
+                "text": " \"The results are preliminary\". "
+              },
+              {
+                "kind": "delete",
+                "text": "More"
+              },
+              {
+                "kind": "insert",
+                "text": "For"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "information"
+              },
+              {
+                "kind": "insert",
+                "text": "further"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "is"
+              },
+              {
+                "kind": "insert",
+                "text": "details,"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "available"
+              },
+              {
+                "kind": "insert",
+                "text": "please"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "at"
+              },
+              {
+                "kind": "insert",
+                "text": "refer to"
+              },
+              {
+                "kind": "equal",
+                "text": " https://example.org/study. The "
+              },
+              {
+                "kind": "delete",
+                "text": "aim"
+              },
+              {
+                "kind": "insert",
+                "text": "objective"
+              },
+              {
+                "kind": "equal",
+                "text": " is to "
+              },
+              {
+                "kind": "delete",
+                "text": "explain"
+              },
+              {
+                "kind": "insert",
+                "text": "present"
+              },
+              {
+                "kind": "equal",
+                "text": " the measured changes "
+              },
+              {
+                "kind": "delete",
+                "text": "clearly"
+              },
+              {
+                "kind": "insert",
+                "text": "in a clear and concise manner,"
+              },
+              {
+                "kind": "equal",
+                "text": " without "
+              },
+              {
+                "kind": "insert",
+                "text": "prematurely "
+              },
+              {
+                "kind": "equal",
+                "text": "drawing"
+              },
+              {
+                "kind": "delete",
+                "text": " firm"
+              },
+              {
+                "kind": "equal",
+                "text": " conclusions about their "
+              },
+              {
+                "kind": "delete",
+                "text": "cause"
+              },
+              {
+                "kind": "insert",
+                "text": "underlying causes"
+              },
+              {
+                "kind": "equal",
+                "text": "."
+              }
+            ],
+            "protected_count": 8,
+            "review_required": true,
+            "preservation": {
+              "exact_values_checked": true,
+              "semantic_equivalence_verified": false,
+              "names": "heuristic_and_explicit_terms"
+            },
+            "warning": "Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad."
+          }
+        }
+      ],
+      "first_observed_call_seconds": 0.356,
+      "readiness": {
+        "http_status": 200,
+        "ready": true,
+        "verified": true,
+        "message": "Den konfigurerade modellen har svarat med ett giltigt testsvar. Kvalitet och betydelse är inte verifierade."
+      }
+    },
+    {
+      "model": "qwen3.5:4b",
+      "rewrites": [
+        {
+          "language": "sv",
+          "mode": "natural",
+          "seconds": 2.181,
+          "http_status": 200,
+          "input": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+          "output": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och lyckades minska energianvändningen med 15 %. Rapporten [Öberg, 2026] beskriver ”Resultaten är preliminära”. Mer information finns tillgänglig på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+          "exact_values_preserved": true,
+          "changed": true,
+          "response": {
+            "text": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och lyckades minska energianvändningen med 15 %. Rapporten [Öberg, 2026] beskriver ”Resultaten är preliminära”. Mer information finns tillgänglig på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+            "provider": "ollama",
+            "model": "qwen3.5:4b",
+            "diff": [
+              {
+                "kind": "equal",
+                "text": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och "
+              },
+              {
+                "kind": "delete",
+                "text": "minskade"
+              },
+              {
+                "kind": "insert",
+                "text": "lyckades minska"
+              },
+              {
+                "kind": "equal",
+                "text": " energianvändningen med 15 %. Rapporten [Öberg, 2026] "
+              },
+              {
+                "kind": "delete",
+                "text": "säger"
+              },
+              {
+                "kind": "insert",
+                "text": "beskriver"
+              },
+              {
+                "kind": "equal",
+                "text": " ”Resultaten är preliminära”. Mer information finns"
+              },
+              {
+                "kind": "insert",
+                "text": " tillgänglig"
+              },
+              {
+                "kind": "equal",
+                "text": " på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken."
+              }
+            ],
+            "protected_count": 8,
+            "review_required": true,
+            "preservation": {
+              "exact_values_checked": true,
+              "semantic_equivalence_verified": false,
+              "names": "heuristic_and_explicit_terms"
+            },
+            "warning": "Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad."
+          }
+        },
+        {
+          "language": "sv",
+          "mode": "simple",
+          "seconds": 1.95,
+          "http_status": 200,
+          "input": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+          "output": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+          "exact_values_preserved": true,
+          "changed": false,
+          "response": {
+            "text": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+            "provider": "ollama",
+            "model": "qwen3.5:4b",
+            "diff": [
+              {
+                "kind": "equal",
+                "text": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken."
+              }
+            ],
+            "protected_count": 8,
+            "review_required": true,
+            "preservation": {
+              "exact_values_checked": true,
+              "semantic_equivalence_verified": false,
+              "names": "heuristic_and_explicit_terms"
+            },
+            "warning": "Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad."
+          }
+        },
+        {
+          "language": "sv",
+          "mode": "professional",
+          "seconds": 1.967,
+          "http_status": 200,
+          "input": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+          "output": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och uppnådde en minskning av energianvändningen med 15 %. Rapporten [Öberg, 2026] beskriver ”Resultaten är preliminära”. Mer information finns tillgänglig på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+          "exact_values_preserved": true,
+          "changed": true,
+          "response": {
+            "text": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och uppnådde en minskning av energianvändningen med 15 %. Rapporten [Öberg, 2026] beskriver ”Resultaten är preliminära”. Mer information finns tillgänglig på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+            "provider": "ollama",
+            "model": "qwen3.5:4b",
+            "diff": [
+              {
+                "kind": "equal",
+                "text": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och "
+              },
+              {
+                "kind": "delete",
+                "text": "minskade"
+              },
+              {
+                "kind": "insert",
+                "text": "uppnådde en minskning av"
+              },
+              {
+                "kind": "equal",
+                "text": " energianvändningen med 15 %. Rapporten [Öberg, 2026] "
+              },
+              {
+                "kind": "delete",
+                "text": "säger"
+              },
+              {
+                "kind": "insert",
+                "text": "beskriver"
+              },
+              {
+                "kind": "equal",
+                "text": " ”Resultaten är preliminära”. Mer information finns"
+              },
+              {
+                "kind": "insert",
+                "text": " tillgänglig"
+              },
+              {
+                "kind": "equal",
+                "text": " på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken."
+              }
+            ],
+            "protected_count": 8,
+            "review_required": true,
+            "preservation": {
+              "exact_values_checked": true,
+              "semantic_equivalence_verified": false,
+              "names": "heuristic_and_explicit_terms"
+            },
+            "warning": "Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad."
+          }
+        },
+        {
+          "language": "sv",
+          "mode": "academic",
+          "seconds": 1.848,
+          "http_status": 200,
+          "input": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+          "output": "Åsa Öberg redogjorde i rapporten som utarbetades den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och uppnådde en minskning av energianvändningen med 15 %. Rapporten [Öberg, 2026] presenterar ”Resultaten är preliminära”. Ytterligare information finns tillgänglig på https://example.org/studie. Syftet med detta är att beskriva de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsakssambandet.",
+          "exact_values_preserved": true,
+          "changed": true,
+          "response": {
+            "text": "Åsa Öberg redogjorde i rapporten som utarbetades den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och uppnådde en minskning av energianvändningen med 15 %. Rapporten [Öberg, 2026] presenterar ”Resultaten är preliminära”. Ytterligare information finns tillgänglig på https://example.org/studie. Syftet med detta är att beskriva de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsakssambandet.",
+            "provider": "ollama",
+            "model": "qwen3.5:4b",
+            "diff": [
+              {
+                "kind": "equal",
+                "text": "Åsa Öberg "
+              },
+              {
+                "kind": "delete",
+                "text": "skrev"
+              },
+              {
+                "kind": "insert",
+                "text": "redogjorde i"
+              },
+              {
+                "kind": "equal",
+                "text": " rapporten"
+              },
+              {
+                "kind": "insert",
+                "text": " som utarbetades"
+              },
+              {
+                "kind": "equal",
+                "text": " den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och "
+              },
+              {
+                "kind": "delete",
+                "text": "minskade"
+              },
+              {
+                "kind": "insert",
+                "text": "uppnådde en minskning av"
+              },
+              {
+                "kind": "equal",
+                "text": " energianvändningen med 15 %. Rapporten [Öberg, 2026] "
+              },
+              {
+                "kind": "delete",
+                "text": "säger"
+              },
+              {
+                "kind": "insert",
+                "text": "presenterar"
+              },
+              {
+                "kind": "equal",
+                "text": " ”Resultaten är preliminära”. "
+              },
+              {
+                "kind": "delete",
+                "text": "Mer"
+              },
+              {
+                "kind": "insert",
+                "text": "Ytterligare"
+              },
+              {
+                "kind": "equal",
+                "text": " information finns"
+              },
+              {
+                "kind": "insert",
+                "text": " tillgänglig"
+              },
+              {
+                "kind": "equal",
+                "text": " på https://example.org/studie. Syftet "
+              },
+              {
+                "kind": "insert",
+                "text": "med detta "
+              },
+              {
+                "kind": "equal",
+                "text": "är att "
+              },
+              {
+                "kind": "delete",
+                "text": "förklara"
+              },
+              {
+                "kind": "insert",
+                "text": "beskriva"
+              },
+              {
+                "kind": "equal",
+                "text": " de uppmätta förändringarna tydligt utan att dra säkra slutsatser om "
+              },
+              {
+                "kind": "delete",
+                "text": "orsaken"
+              },
+              {
+                "kind": "insert",
+                "text": "orsakssambandet"
+              },
+              {
+                "kind": "equal",
+                "text": "."
+              }
+            ],
+            "protected_count": 8,
+            "review_required": true,
+            "preservation": {
+              "exact_values_checked": true,
+              "semantic_equivalence_verified": false,
+              "names": "heuristic_and_explicit_terms"
+            },
+            "warning": "Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad."
+          }
+        },
+        {
+          "language": "sv",
+          "mode": "concise",
+          "seconds": 1.956,
+          "http_status": 200,
+          "input": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+          "output": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+          "exact_values_preserved": true,
+          "changed": false,
+          "response": {
+            "text": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+            "provider": "ollama",
+            "model": "qwen3.5:4b",
+            "diff": [
+              {
+                "kind": "equal",
+                "text": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken."
+              }
+            ],
+            "protected_count": 8,
+            "review_required": true,
+            "preservation": {
+              "exact_values_checked": true,
+              "semantic_equivalence_verified": false,
+              "names": "heuristic_and_explicit_terms"
+            },
+            "warning": "Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad."
+          }
+        },
+        {
+          "language": "sv",
+          "mode": "detailed",
+          "seconds": 1.991,
+          "http_status": 200,
+          "input": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och minskade energianvändningen med 15 %. Rapporten [Öberg, 2026] säger ”Resultaten är preliminära”. Mer information finns på https://example.org/studie. Syftet är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+          "output": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och uppnådde en minskning av energianvändningen med 15 %. Rapporten [Öberg, 2026] presenterar dessa resultat enligt ”Resultaten är preliminära”. Mer information finns tillgänglig på https://example.org/studie. Syftet med texten är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+          "exact_values_preserved": true,
+          "changed": true,
+          "response": {
+            "text": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och uppnådde en minskning av energianvändningen med 15 %. Rapporten [Öberg, 2026] presenterar dessa resultat enligt ”Resultaten är preliminära”. Mer information finns tillgänglig på https://example.org/studie. Syftet med texten är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken.",
+            "provider": "ollama",
+            "model": "qwen3.5:4b",
+            "diff": [
+              {
+                "kind": "equal",
+                "text": "Åsa Öberg skrev rapporten den 2 november 2026 för Projekt Orion. Teamet testade 12 sensorer och "
+              },
+              {
+                "kind": "delete",
+                "text": "minskade"
+              },
+              {
+                "kind": "insert",
+                "text": "uppnådde en minskning av"
+              },
+              {
+                "kind": "equal",
+                "text": " energianvändningen med 15 %. Rapporten [Öberg, 2026] "
+              },
+              {
+                "kind": "delete",
+                "text": "säger"
+              },
+              {
+                "kind": "insert",
+                "text": "presenterar dessa resultat enligt"
+              },
+              {
+                "kind": "equal",
+                "text": " ”Resultaten är preliminära”. Mer information finns "
+              },
+              {
+                "kind": "insert",
+                "text": "tillgänglig "
+              },
+              {
+                "kind": "equal",
+                "text": "på https://example.org/studie. Syftet"
+              },
+              {
+                "kind": "insert",
+                "text": " med texten"
+              },
+              {
+                "kind": "equal",
+                "text": " är att förklara de uppmätta förändringarna tydligt utan att dra säkra slutsatser om orsaken."
+              }
+            ],
+            "protected_count": 8,
+            "review_required": true,
+            "preservation": {
+              "exact_values_checked": true,
+              "semantic_equivalence_verified": false,
+              "names": "heuristic_and_explicit_terms"
+            },
+            "warning": "Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad."
+          }
+        },
+        {
+          "language": "en",
+          "mode": "natural",
+          "seconds": 1.87,
+          "http_status": 200,
+          "input": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team tested 12 sensors and reduced energy use by 15 %. The report [Smith, 2026] states \"The results are preliminary\". More information is available at https://example.org/study. The aim is to explain the measured changes clearly without drawing firm conclusions about their cause.",
+          "output": "Alice Smith prepared a report on 2 November 2026 for Project Orion. The team tested 12 sensors and achieved a reduction in energy use of 15 %. As noted in the report [Smith, 2026], \"The results are preliminary\" holds true. Further details can be found at https://example.org/study. The objective is to clarify the observed changes without asserting firm conclusions regarding their underlying causes.",
+          "exact_values_preserved": true,
+          "changed": true,
+          "response": {
+            "text": "Alice Smith prepared a report on 2 November 2026 for Project Orion. The team tested 12 sensors and achieved a reduction in energy use of 15 %. As noted in the report [Smith, 2026], \"The results are preliminary\" holds true. Further details can be found at https://example.org/study. The objective is to clarify the observed changes without asserting firm conclusions regarding their underlying causes.",
+            "provider": "ollama",
+            "model": "qwen3.5:4b",
+            "diff": [
+              {
+                "kind": "equal",
+                "text": "Alice Smith "
+              },
+              {
+                "kind": "delete",
+                "text": "wrote"
+              },
+              {
+                "kind": "insert",
+                "text": "prepared"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "the"
+              },
+              {
+                "kind": "insert",
+                "text": "a"
+              },
+              {
+                "kind": "equal",
+                "text": " report on 2 November 2026 for Project Orion. The team tested 12 sensors and "
+              },
+              {
+                "kind": "delete",
+                "text": "reduced"
+              },
+              {
+                "kind": "insert",
+                "text": "achieved a reduction in"
+              },
+              {
+                "kind": "equal",
+                "text": " energy use "
+              },
+              {
+                "kind": "delete",
+                "text": "by"
+              },
+              {
+                "kind": "insert",
+                "text": "of"
+              },
+              {
+                "kind": "equal",
+                "text": " 15 %. "
+              },
+              {
+                "kind": "delete",
+                "text": "The"
+              },
+              {
+                "kind": "insert",
+                "text": "As noted in the"
+              },
+              {
+                "kind": "equal",
+                "text": " report [Smith, 2026]"
+              },
+              {
+                "kind": "delete",
+                "text": " states"
+              },
+              {
+                "kind": "insert",
+                "text": ","
+              },
+              {
+                "kind": "equal",
+                "text": " \"The results are preliminary\""
+              },
+              {
+                "kind": "insert",
+                "text": " holds true"
+              },
+              {
+                "kind": "equal",
+                "text": ". "
+              },
+              {
+                "kind": "delete",
+                "text": "More"
+              },
+              {
+                "kind": "insert",
+                "text": "Further"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "information"
+              },
+              {
+                "kind": "insert",
+                "text": "details"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "is"
+              },
+              {
+                "kind": "insert",
+                "text": "can"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "available"
+              },
+              {
+                "kind": "insert",
+                "text": "be found"
+              },
+              {
+                "kind": "equal",
+                "text": " at https://example.org/study. The "
+              },
+              {
+                "kind": "delete",
+                "text": "aim"
+              },
+              {
+                "kind": "insert",
+                "text": "objective"
+              },
+              {
+                "kind": "equal",
+                "text": " is to "
+              },
+              {
+                "kind": "delete",
+                "text": "explain"
+              },
+              {
+                "kind": "insert",
+                "text": "clarify"
+              },
+              {
+                "kind": "equal",
+                "text": " the "
+              },
+              {
+                "kind": "delete",
+                "text": "measured"
+              },
+              {
+                "kind": "insert",
+                "text": "observed"
+              },
+              {
+                "kind": "equal",
+                "text": " changes "
+              },
+              {
+                "kind": "delete",
+                "text": "clearly "
+              },
+              {
+                "kind": "equal",
+                "text": "without "
+              },
+              {
+                "kind": "delete",
+                "text": "drawing"
+              },
+              {
+                "kind": "insert",
+                "text": "asserting"
+              },
+              {
+                "kind": "equal",
+                "text": " firm conclusions "
+              },
+              {
+                "kind": "delete",
+                "text": "about"
+              },
+              {
+                "kind": "insert",
+                "text": "regarding"
+              },
+              {
+                "kind": "equal",
+                "text": " their "
+              },
+              {
+                "kind": "delete",
+                "text": "cause"
+              },
+              {
+                "kind": "insert",
+                "text": "underlying causes"
+              },
+              {
+                "kind": "equal",
+                "text": "."
+              }
+            ],
+            "protected_count": 8,
+            "review_required": true,
+            "preservation": {
+              "exact_values_checked": true,
+              "semantic_equivalence_verified": false,
+              "names": "heuristic_and_explicit_terms"
+            },
+            "warning": "Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad."
+          }
+        },
+        {
+          "language": "en",
+          "mode": "simple",
+          "seconds": 1.806,
+          "http_status": 200,
+          "input": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team tested 12 sensors and reduced energy use by 15 %. The report [Smith, 2026] states \"The results are preliminary\". More information is available at https://example.org/study. The aim is to explain the measured changes clearly without drawing firm conclusions about their cause.",
+          "output": "Alice Smith wrote a report on 2 November 2026 for Project Orion. The team tested 12 sensors and cut energy use by 15 %. Report [Smith, 2026] says \"The results are preliminary\". More details are at https://example.org/study. The goal is to show the measured changes clearly, without making firm claims about what caused them.",
+          "exact_values_preserved": true,
+          "changed": true,
+          "response": {
+            "text": "Alice Smith wrote a report on 2 November 2026 for Project Orion. The team tested 12 sensors and cut energy use by 15 %. Report [Smith, 2026] says \"The results are preliminary\". More details are at https://example.org/study. The goal is to show the measured changes clearly, without making firm claims about what caused them.",
+            "provider": "ollama",
+            "model": "qwen3.5:4b",
+            "diff": [
+              {
+                "kind": "equal",
+                "text": "Alice Smith wrote "
+              },
+              {
+                "kind": "delete",
+                "text": "the"
+              },
+              {
+                "kind": "insert",
+                "text": "a"
+              },
+              {
+                "kind": "equal",
+                "text": " report on 2 November 2026 for Project Orion. The team tested 12 sensors and "
+              },
+              {
+                "kind": "delete",
+                "text": "reduced"
+              },
+              {
+                "kind": "insert",
+                "text": "cut"
+              },
+              {
+                "kind": "equal",
+                "text": " energy use by 15 %. "
+              },
+              {
+                "kind": "delete",
+                "text": "The report"
+              },
+              {
+                "kind": "insert",
+                "text": "Report"
+              },
+              {
+                "kind": "equal",
+                "text": " [Smith, 2026] "
+              },
+              {
+                "kind": "delete",
+                "text": "states"
+              },
+              {
+                "kind": "insert",
+                "text": "says"
+              },
+              {
+                "kind": "equal",
+                "text": " \"The results are preliminary\". More "
+              },
+              {
+                "kind": "delete",
+                "text": "information"
+              },
+              {
+                "kind": "insert",
+                "text": "details"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "is available"
+              },
+              {
+                "kind": "insert",
+                "text": "are"
+              },
+              {
+                "kind": "equal",
+                "text": " at https://example.org/study. The "
+              },
+              {
+                "kind": "delete",
+                "text": "aim"
+              },
+              {
+                "kind": "insert",
+                "text": "goal"
+              },
+              {
+                "kind": "equal",
+                "text": " is to "
+              },
+              {
+                "kind": "delete",
+                "text": "explain"
+              },
+              {
+                "kind": "insert",
+                "text": "show"
+              },
+              {
+                "kind": "equal",
+                "text": " the measured changes clearly"
+              },
+              {
+                "kind": "insert",
+                "text": ","
+              },
+              {
+                "kind": "equal",
+                "text": " without "
+              },
+              {
+                "kind": "delete",
+                "text": "drawing"
+              },
+              {
+                "kind": "insert",
+                "text": "making"
+              },
+              {
+                "kind": "equal",
+                "text": " firm "
+              },
+              {
+                "kind": "delete",
+                "text": "conclusions"
+              },
+              {
+                "kind": "insert",
+                "text": "claims"
+              },
+              {
+                "kind": "equal",
+                "text": " about "
+              },
+              {
+                "kind": "delete",
+                "text": "their"
+              },
+              {
+                "kind": "insert",
+                "text": "what"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "cause"
+              },
+              {
+                "kind": "insert",
+                "text": "caused them"
+              },
+              {
+                "kind": "equal",
+                "text": "."
+              }
+            ],
+            "protected_count": 8,
+            "review_required": true,
+            "preservation": {
+              "exact_values_checked": true,
+              "semantic_equivalence_verified": false,
+              "names": "heuristic_and_explicit_terms"
+            },
+            "warning": "Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad."
+          }
+        },
+        {
+          "language": "en",
+          "mode": "professional",
+          "seconds": 1.823,
+          "http_status": 200,
+          "input": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team tested 12 sensors and reduced energy use by 15 %. The report [Smith, 2026] states \"The results are preliminary\". More information is available at https://example.org/study. The aim is to explain the measured changes clearly without drawing firm conclusions about their cause.",
+          "output": "Alice Smith authored a report on 2 November 2026 for Project Orion. The team tested 12 sensors and achieved a reduction in energy consumption of 15 %. As noted in [Smith, 2026], \"The results are preliminary\" holds. Further details can be found at https://example.org/study. The objective is to present the observed changes clearly without establishing definitive conclusions regarding their underlying causes.",
+          "exact_values_preserved": true,
+          "changed": true,
+          "response": {
+            "text": "Alice Smith authored a report on 2 November 2026 for Project Orion. The team tested 12 sensors and achieved a reduction in energy consumption of 15 %. As noted in [Smith, 2026], \"The results are preliminary\" holds. Further details can be found at https://example.org/study. The objective is to present the observed changes clearly without establishing definitive conclusions regarding their underlying causes.",
+            "provider": "ollama",
+            "model": "qwen3.5:4b",
+            "diff": [
+              {
+                "kind": "equal",
+                "text": "Alice Smith "
+              },
+              {
+                "kind": "delete",
+                "text": "wrote"
+              },
+              {
+                "kind": "insert",
+                "text": "authored"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "the"
+              },
+              {
+                "kind": "insert",
+                "text": "a"
+              },
+              {
+                "kind": "equal",
+                "text": " report on 2 November 2026 for Project Orion. The team tested 12 sensors and "
+              },
+              {
+                "kind": "delete",
+                "text": "reduced"
+              },
+              {
+                "kind": "insert",
+                "text": "achieved a reduction in"
+              },
+              {
+                "kind": "equal",
+                "text": " energy "
+              },
+              {
+                "kind": "delete",
+                "text": "use"
+              },
+              {
+                "kind": "insert",
+                "text": "consumption"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "by"
+              },
+              {
+                "kind": "insert",
+                "text": "of"
+              },
+              {
+                "kind": "equal",
+                "text": " 15 %. "
+              },
+              {
+                "kind": "delete",
+                "text": "The"
+              },
+              {
+                "kind": "insert",
+                "text": "As"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "report"
+              },
+              {
+                "kind": "insert",
+                "text": "noted in"
+              },
+              {
+                "kind": "equal",
+                "text": " [Smith, 2026]"
+              },
+              {
+                "kind": "delete",
+                "text": " states"
+              },
+              {
+                "kind": "insert",
+                "text": ","
+              },
+              {
+                "kind": "equal",
+                "text": " \"The results are preliminary\""
+              },
+              {
+                "kind": "insert",
+                "text": " holds"
+              },
+              {
+                "kind": "equal",
+                "text": ". "
+              },
+              {
+                "kind": "delete",
+                "text": "More"
+              },
+              {
+                "kind": "insert",
+                "text": "Further"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "information"
+              },
+              {
+                "kind": "insert",
+                "text": "details"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "is"
+              },
+              {
+                "kind": "insert",
+                "text": "can"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "available"
+              },
+              {
+                "kind": "insert",
+                "text": "be found"
+              },
+              {
+                "kind": "equal",
+                "text": " at https://example.org/study. The "
+              },
+              {
+                "kind": "delete",
+                "text": "aim"
+              },
+              {
+                "kind": "insert",
+                "text": "objective"
+              },
+              {
+                "kind": "equal",
+                "text": " is to "
+              },
+              {
+                "kind": "delete",
+                "text": "explain"
+              },
+              {
+                "kind": "insert",
+                "text": "present"
+              },
+              {
+                "kind": "equal",
+                "text": " the "
+              },
+              {
+                "kind": "delete",
+                "text": "measured"
+              },
+              {
+                "kind": "insert",
+                "text": "observed"
+              },
+              {
+                "kind": "equal",
+                "text": " changes clearly without "
+              },
+              {
+                "kind": "delete",
+                "text": "drawing"
+              },
+              {
+                "kind": "insert",
+                "text": "establishing"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "firm"
+              },
+              {
+                "kind": "insert",
+                "text": "definitive"
+              },
+              {
+                "kind": "equal",
+                "text": " conclusions "
+              },
+              {
+                "kind": "delete",
+                "text": "about"
+              },
+              {
+                "kind": "insert",
+                "text": "regarding"
+              },
+              {
+                "kind": "equal",
+                "text": " their "
+              },
+              {
+                "kind": "delete",
+                "text": "cause"
+              },
+              {
+                "kind": "insert",
+                "text": "underlying causes"
+              },
+              {
+                "kind": "equal",
+                "text": "."
+              }
+            ],
+            "protected_count": 8,
+            "review_required": true,
+            "preservation": {
+              "exact_values_checked": true,
+              "semantic_equivalence_verified": false,
+              "names": "heuristic_and_explicit_terms"
+            },
+            "warning": "Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad."
+          }
+        },
+        {
+          "language": "en",
+          "mode": "academic",
+          "seconds": 2.025,
+          "http_status": 200,
+          "input": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team tested 12 sensors and reduced energy use by 15 %. The report [Smith, 2026] states \"The results are preliminary\". More information is available at https://example.org/study. The aim is to explain the measured changes clearly without drawing firm conclusions about their cause.",
+          "output": "Alice Smith composed a report on 2 November 2026 for Project Orion. The team evaluated 12 sensors and achieved a reduction in energy consumption of 15 %. As stated in [Smith, 2026], \"The results are preliminary\" holds. Further details can be accessed via https://example.org/study. The objective is to elucidate the observed variations with clarity, while refraining from asserting definitive causal explanations.",
+          "exact_values_preserved": true,
+          "changed": true,
+          "response": {
+            "text": "Alice Smith composed a report on 2 November 2026 for Project Orion. The team evaluated 12 sensors and achieved a reduction in energy consumption of 15 %. As stated in [Smith, 2026], \"The results are preliminary\" holds. Further details can be accessed via https://example.org/study. The objective is to elucidate the observed variations with clarity, while refraining from asserting definitive causal explanations.",
+            "provider": "ollama",
+            "model": "qwen3.5:4b",
+            "diff": [
+              {
+                "kind": "equal",
+                "text": "Alice Smith "
+              },
+              {
+                "kind": "delete",
+                "text": "wrote"
+              },
+              {
+                "kind": "insert",
+                "text": "composed"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "the"
+              },
+              {
+                "kind": "insert",
+                "text": "a"
+              },
+              {
+                "kind": "equal",
+                "text": " report on 2 November 2026 for Project Orion. The team "
+              },
+              {
+                "kind": "delete",
+                "text": "tested"
+              },
+              {
+                "kind": "insert",
+                "text": "evaluated"
+              },
+              {
+                "kind": "equal",
+                "text": " 12 sensors and "
+              },
+              {
+                "kind": "delete",
+                "text": "reduced"
+              },
+              {
+                "kind": "insert",
+                "text": "achieved a reduction in"
+              },
+              {
+                "kind": "equal",
+                "text": " energy "
+              },
+              {
+                "kind": "delete",
+                "text": "use"
+              },
+              {
+                "kind": "insert",
+                "text": "consumption"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "by"
+              },
+              {
+                "kind": "insert",
+                "text": "of"
+              },
+              {
+                "kind": "equal",
+                "text": " 15 %. "
+              },
+              {
+                "kind": "delete",
+                "text": "The"
+              },
+              {
+                "kind": "insert",
+                "text": "As"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "report"
+              },
+              {
+                "kind": "insert",
+                "text": "stated in"
+              },
+              {
+                "kind": "equal",
+                "text": " [Smith, 2026]"
+              },
+              {
+                "kind": "delete",
+                "text": " states"
+              },
+              {
+                "kind": "insert",
+                "text": ","
+              },
+              {
+                "kind": "equal",
+                "text": " \"The results are preliminary\""
+              },
+              {
+                "kind": "insert",
+                "text": " holds"
+              },
+              {
+                "kind": "equal",
+                "text": ". "
+              },
+              {
+                "kind": "delete",
+                "text": "More"
+              },
+              {
+                "kind": "insert",
+                "text": "Further"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "information"
+              },
+              {
+                "kind": "insert",
+                "text": "details"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "is"
+              },
+              {
+                "kind": "insert",
+                "text": "can"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "available"
+              },
+              {
+                "kind": "insert",
+                "text": "be"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "at"
+              },
+              {
+                "kind": "insert",
+                "text": "accessed via"
+              },
+              {
+                "kind": "equal",
+                "text": " https://example.org/study. The "
+              },
+              {
+                "kind": "delete",
+                "text": "aim"
+              },
+              {
+                "kind": "insert",
+                "text": "objective"
+              },
+              {
+                "kind": "equal",
+                "text": " is to "
+              },
+              {
+                "kind": "delete",
+                "text": "explain"
+              },
+              {
+                "kind": "insert",
+                "text": "elucidate"
+              },
+              {
+                "kind": "equal",
+                "text": " the "
+              },
+              {
+                "kind": "delete",
+                "text": "measured"
+              },
+              {
+                "kind": "insert",
+                "text": "observed"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "changes"
+              },
+              {
+                "kind": "insert",
+                "text": "variations"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "clearly"
+              },
+              {
+                "kind": "insert",
+                "text": "with"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "without"
+              },
+              {
+                "kind": "insert",
+                "text": "clarity,"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "drawing"
+              },
+              {
+                "kind": "insert",
+                "text": "while"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "firm"
+              },
+              {
+                "kind": "insert",
+                "text": "refraining"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "conclusions"
+              },
+              {
+                "kind": "insert",
+                "text": "from"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "about"
+              },
+              {
+                "kind": "insert",
+                "text": "asserting"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "their"
+              },
+              {
+                "kind": "insert",
+                "text": "definitive"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "cause"
+              },
+              {
+                "kind": "insert",
+                "text": "causal explanations"
+              },
+              {
+                "kind": "equal",
+                "text": "."
+              }
+            ],
+            "protected_count": 8,
+            "review_required": true,
+            "preservation": {
+              "exact_values_checked": true,
+              "semantic_equivalence_verified": false,
+              "names": "heuristic_and_explicit_terms"
+            },
+            "warning": "Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad."
+          }
+        },
+        {
+          "language": "en",
+          "mode": "concise",
+          "seconds": 1.839,
+          "http_status": 200,
+          "input": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team tested 12 sensors and reduced energy use by 15 %. The report [Smith, 2026] states \"The results are preliminary\". More information is available at https://example.org/study. The aim is to explain the measured changes clearly without drawing firm conclusions about their cause.",
+          "output": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team tested 12 sensors and reduced energy use by 15 %. The report [Smith, 2026] states \"The results are preliminary\". More information is available at https://example.org/study. The aim is to explain the measured changes clearly without drawing firm conclusions about their cause.",
+          "exact_values_preserved": true,
+          "changed": false,
+          "response": {
+            "text": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team tested 12 sensors and reduced energy use by 15 %. The report [Smith, 2026] states \"The results are preliminary\". More information is available at https://example.org/study. The aim is to explain the measured changes clearly without drawing firm conclusions about their cause.",
+            "provider": "ollama",
+            "model": "qwen3.5:4b",
+            "diff": [
+              {
+                "kind": "equal",
+                "text": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team tested 12 sensors and reduced energy use by 15 %. The report [Smith, 2026] states \"The results are preliminary\". More information is available at https://example.org/study. The aim is to explain the measured changes clearly without drawing firm conclusions about their cause."
+              }
+            ],
+            "protected_count": 8,
+            "review_required": true,
+            "preservation": {
+              "exact_values_checked": true,
+              "semantic_equivalence_verified": false,
+              "names": "heuristic_and_explicit_terms"
+            },
+            "warning": "Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad."
+          }
+        },
+        {
+          "language": "en",
+          "mode": "detailed",
+          "seconds": 1.927,
+          "http_status": 200,
+          "input": "Alice Smith wrote the report on 2 November 2026 for Project Orion. The team tested 12 sensors and reduced energy use by 15 %. The report [Smith, 2026] states \"The results are preliminary\". More information is available at https://example.org/study. The aim is to explain the measured changes clearly without drawing firm conclusions about their cause.",
+          "output": "Alice Smith authored the report concerning 2 November 2026 for Project Orion. The team conducted testing on 12 sensors, resulting in a reduction of energy consumption by 15 %. The report referenced as [Smith, 2026] outlines the findings described in \"The results are preliminary\". Additional details can be found at https://example.org/study. The objective is to present the observed changes with clarity, while refraining from establishing definitive conclusions regarding their underlying causes.",
+          "exact_values_preserved": true,
+          "changed": true,
+          "response": {
+            "text": "Alice Smith authored the report concerning 2 November 2026 for Project Orion. The team conducted testing on 12 sensors, resulting in a reduction of energy consumption by 15 %. The report referenced as [Smith, 2026] outlines the findings described in \"The results are preliminary\". Additional details can be found at https://example.org/study. The objective is to present the observed changes with clarity, while refraining from establishing definitive conclusions regarding their underlying causes.",
+            "provider": "ollama",
+            "model": "qwen3.5:4b",
+            "diff": [
+              {
+                "kind": "equal",
+                "text": "Alice Smith "
+              },
+              {
+                "kind": "delete",
+                "text": "wrote"
+              },
+              {
+                "kind": "insert",
+                "text": "authored"
+              },
+              {
+                "kind": "equal",
+                "text": " the report "
+              },
+              {
+                "kind": "delete",
+                "text": "on"
+              },
+              {
+                "kind": "insert",
+                "text": "concerning"
+              },
+              {
+                "kind": "equal",
+                "text": " 2 November 2026 for Project Orion. The team "
+              },
+              {
+                "kind": "delete",
+                "text": "tested"
+              },
+              {
+                "kind": "insert",
+                "text": "conducted testing on"
+              },
+              {
+                "kind": "equal",
+                "text": " 12 sensors"
+              },
+              {
+                "kind": "insert",
+                "text": ","
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "and"
+              },
+              {
+                "kind": "insert",
+                "text": "resulting"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "reduced"
+              },
+              {
+                "kind": "insert",
+                "text": "in a reduction of"
+              },
+              {
+                "kind": "equal",
+                "text": " energy "
+              },
+              {
+                "kind": "delete",
+                "text": "use"
+              },
+              {
+                "kind": "insert",
+                "text": "consumption"
+              },
+              {
+                "kind": "equal",
+                "text": " by 15 %. The report "
+              },
+              {
+                "kind": "insert",
+                "text": "referenced as "
+              },
+              {
+                "kind": "equal",
+                "text": "[Smith, 2026] "
+              },
+              {
+                "kind": "delete",
+                "text": "states"
+              },
+              {
+                "kind": "insert",
+                "text": "outlines the findings described in"
+              },
+              {
+                "kind": "equal",
+                "text": " \"The results are preliminary\". "
+              },
+              {
+                "kind": "delete",
+                "text": "More"
+              },
+              {
+                "kind": "insert",
+                "text": "Additional"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "information"
+              },
+              {
+                "kind": "insert",
+                "text": "details"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "is"
+              },
+              {
+                "kind": "insert",
+                "text": "can"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "available"
+              },
+              {
+                "kind": "insert",
+                "text": "be found"
+              },
+              {
+                "kind": "equal",
+                "text": " at https://example.org/study. The "
+              },
+              {
+                "kind": "delete",
+                "text": "aim"
+              },
+              {
+                "kind": "insert",
+                "text": "objective"
+              },
+              {
+                "kind": "equal",
+                "text": " is to "
+              },
+              {
+                "kind": "delete",
+                "text": "explain"
+              },
+              {
+                "kind": "insert",
+                "text": "present"
+              },
+              {
+                "kind": "equal",
+                "text": " the "
+              },
+              {
+                "kind": "delete",
+                "text": "measured"
+              },
+              {
+                "kind": "insert",
+                "text": "observed"
+              },
+              {
+                "kind": "equal",
+                "text": " changes "
+              },
+              {
+                "kind": "delete",
+                "text": "clearly"
+              },
+              {
+                "kind": "insert",
+                "text": "with"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "without"
+              },
+              {
+                "kind": "insert",
+                "text": "clarity,"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "drawing"
+              },
+              {
+                "kind": "insert",
+                "text": "while"
+              },
+              {
+                "kind": "equal",
+                "text": " "
+              },
+              {
+                "kind": "delete",
+                "text": "firm"
+              },
+              {
+                "kind": "insert",
+                "text": "refraining from establishing definitive"
+              },
+              {
+                "kind": "equal",
+                "text": " conclusions "
+              },
+              {
+                "kind": "delete",
+                "text": "about"
+              },
+              {
+                "kind": "insert",
+                "text": "regarding"
+              },
+              {
+                "kind": "equal",
+                "text": " their "
+              },
+              {
+                "kind": "delete",
+                "text": "cause"
+              },
+              {
+                "kind": "insert",
+                "text": "underlying causes"
+              },
+              {
+                "kind": "equal",
+                "text": "."
+              }
+            ],
+            "protected_count": 8,
+            "review_required": true,
+            "preservation": {
+              "exact_values_checked": true,
+              "semantic_equivalence_verified": false,
+              "names": "heuristic_and_explicit_terms"
+            },
+            "warning": "Skyddade textdelar har kontrollerats exakt. Namn identifieras med heuristik och valda exakta ord; alla namn och fakta kan inte identifieras automatiskt. Granska betydelse, fakta, namn och datum; semantisk likvärdighet är inte verifierad."
+          }
+        }
+      ],
+      "first_observed_call_seconds": 0.9,
+      "readiness": {
+        "http_status": 200,
+        "ready": true,
+        "verified": true,
+        "message": "Den konfigurerade modellen har svarat med ett giltigt testsvar. Kvalitet och betydelse är inte verifierade."
+      }
+    }
+  ]
+}
