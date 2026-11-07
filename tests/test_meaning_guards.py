@@ -89,6 +89,11 @@ def test_quota_covers_actual_large_quoted_source_body_and_output_cap(tmp_path, p
     """Removing nested JSON escaping from quota accounting must fail."""
     sent = []
     def handler(request):
+        if request.method == 'GET':
+            assert provider == 'openai'
+            assert request.url.path == '/v1/models/configured-model'
+            assert not request.content
+            return httpx.Response(200, json={'id': 'configured-model'})
         sent.append(request)
         body = json.loads(request.content)
         text = json.loads(body.get('input') or body['messages'][-1]['content'])['text']

@@ -1,22 +1,26 @@
-# Kvalitetsbedömning — TextLab v3
+# Kvalitetsbedömning — TextLab V4
 
-Målet är 9,5/10 per område. Det målet är **inte uppnått eller förutsatt**. Betygen nedan är interna tekniska bedömningar av leveransen, inte statistiskt uppmätta produktbetyg. De bygger på redovisad evidens och sänks vid bristande oberoende verifiering. Exakta körresultat finns i [VERIFICATION](docs/VERIFICATION.md).
+**Målet 9,5/10 är inte verifierat.** V4 stärker strukturen, providerfel,
+konfiguration, textskydd och testbarhet. Det gör inte de experimentella
+författarskapsmodellerna statistiskt tillförlitliga eller humanizern semantiskt
+verifierad. En teknisk grön testsuite får inte räknas som bevis för modellkvalitet.
 
-| Område | Bedömning | Evidens | Återstår till 9,5 |
-|---|---:|---|---|
-| Arkitektur | 8,5/10 | Lokal analys, separat serveradapter, delad atomisk kvotmodul, validerad UI-gräns, två-worker-container | Verifierad flerhostarkitektur och tydligare uppdelning av kvarvarande stor backendmodul |
-| Kodkvalitet | 8,0/10 | Regressioner, oberoende granskning, diffkontroll, inga nya runtimebibliotek; granskad metadatafix | Mer konsekvent formattering och statisk typ-/lintkontroll i befintlig kompakt kod |
-| Detektionsmotor | 5,0/10 | Källspårbar 60-raderspilot, tränad offlinebaslinje och auditerad dataisolering; extern kontroll visar 2/8 mänskliga ursprungsutdrag felaktigt flaggade | Större modern matchad korpus, lägre verifierad mänsklig FPR, färsk extern audit och separat kalibrering; pilotmodellen är inte aktiv i produkten |
-| Humanizer | 6,5/10 | Baseline 48 + slutjämförelse 48 + större modellprov 24; 62/72 accepterade slut-/diagnossvar, 52/72 klarar begränsade kontroller, endast 31 även ändrade. Sex senaste teckenprov gav 4 accepterade/2 säkert avvisade | Blindad bedömning av alla fakta/relationer/ton, bättre lägesnytta och färre avvisanden; konkreta betydelsefel finns även bland passerade kontroller |
-| Säkerhet | 8,0/10 | Token per användare, atomiska delade gränser, tids-/bytegränser, avbrott, CSP, audits och hemlighetsskanning | Oberoende penetrationstest, distribuerad drift, proxy/TLS/egress och identitetslivscykel i verklig miljö |
-| Integritet | 8,5/10 | Ingen text-/nyckelpersistens, minnesbaserad webbkod, inga analys-POST:ar, hashade kvotidentiteter | Leverantörs-/hostingvillkor, logg- och retentiongranskning i vald deployment |
-| UI/UX | 8,5/10 | Två browserflöden: original/diff/kopia/export/återställning, avbrott och fel; desktop/smala skärmar | Användartester, fler riktiga arbetsflöden och modellkvalitet utan säkerhetsavvisanden |
-| Tillgänglighet | 8,0/10 | 0 axe-överträdelser i 11 kontrollerade vyer; tangentbord, fokus, kontrast och 320 px | Manuell WCAG-/skärmläsarbedömning, zoom/high contrast och fler webbläsare |
-| Prestanda | 8,5/10 | Bundlegater, sex 100-sample analysmätningar, API-/minnesrapporter och samtidighetsprov | Lågpresterande mobiler, verklig produktionslast, isolerad allokering och verifierad kallstart |
-| Tester | 9,0/10 | 64 Node + 210 pytest godkända, rådataintegritet, två läckagegrindar, 72 byte-identiska replayanrop, verkliga modell-/teckenprov samt browser/axe/container | Större oberoende kvalitetskorpus, fler APIbehörigheter, manuell språkbedömning, fuzz/last och bredare browsermatris |
-| Dokumentation | 9,0/10 | README, progress, metod/schema, arkitektur/drift, slutverifiering och versionssparade rårapporter | Fler operatörsprov från en faktisk deployment och extern läsgranskning |
-| Produktionsberedskap | 6,5/10 | Byggd nonroot-container, två riktiga workers, gemensam auth/ratekontroll; CI förberett | Publik miljö med TLS/URL, larm/backup/återställning, credential-livscykel och godkänd modell-/säkerhetskvalitet |
+| Område | Faktisk bedömning | Underlag / kvarstående gräns |
+|---|---|---|
+| Arkitektur | Tydligare och verifierbar | Central AIService, separata providers/kontrakt/validering, fungerande V3-moduler bevarade |
+| Funktionell kod | Testad lokalt | 309 Python + 70 Node-tester, reproducerbart produktionsbygge och HTTP-/prestandaprov |
+| AI Detector | Beskrivande stilverktyg; ej tillförlitlig författarskapsdetektor | Experiment hålls offline. Känd FPR 2/8 på mycket liten modern kontroll kvarstår |
+| AI Humanizer | Skyddad redigering med obligatorisk granskning | Reparerat överlappningsfel. Historiska betydelseproblem kvarstår; inga nya liveprov här |
+| OpenAI | Tekniskt förberett och mocktestat | Responses, modellåtkomst, schema, quota/errors; projektets verkliga nyckel/modell ej verifierad |
+| Säkerhet | Kontroller och regressioner finns | Auth/origin/kvoter/timeout/bytegränser, hemlighetsskydd och audits; inget oberoende pentest |
+| UI | Kontrakt och inmatning testade | Tydligt oförändrat resultat och servergräns; V4-browser/axe behöver kandidat-CI |
+| Dataintegritet | Bevarad historik och skilda evidenstyper | Gamla dataset/modeller/loggar/snapshots kvar; inga återanvända testdata kallas oberoende |
+| Prestanda | Lokala teknikmätningar | Bundle- och analysgränser samt HTTP-/ASGI-prov; inte verklig modellkallstart eller produktionslast |
+| Dokumentation | Faktisk kodstruktur dokumenterad | Arkitektur/Mermaid, API, installation, OpenAI/Ollama, drift och verifieringsrapport |
+| Releaseberedskap | Kandidat under slutverifiering | Separat kodgranskning klar, dess utmatningsfel reparerat; ny GitHub-CI och branchrensning återstår vid denna rapportversion |
 
-De nya pilotresultaten är mätta, men generell detektionsprecision och låg populations-FPR är inte verifierade. Den historiska testmängdens 0/12 mänskliga fel ger fortfarande en övre Wilson-gräns på 24,25 %; den moderna lilla kontrollen gav 2/8 flaggningar. Därför är experimentmodellen inte aktiverad i produkten och ingen AI-sannolikhet visas. Syntetiska fixtures är enbart tekniska tester.
-
-Humanizerbetyget höjs inte utifrån 22/24 begränsade kontrollpass för 9B-modellen. Även den ändrade betydelsen i vissa passerade svar, och sju svar var oförändrade. Kontroller kan också avvisa säkra parafraser. Ett 502-svar är ett misslyckat modellfall med fungerande skydd, inte en lyckad omskrivning. [Verifieringen](docs/VERIFICATION.md) och [humanizerns rådata/metod](docs/HUMANIZER_QUALITY.md) redovisar gränserna.
+Exakta resultat och verifieringsstatus finns i [V4-rapporten](docs/VERIFICATION-V4.md).
+För att motivera 9,5/10 för hela produkten behövs större modern oberoende
+kvalitetsdata, bättre verifierad mänsklig falskpositivfrekvens och blindad
+redaktionell bedömning av verkliga modellutdata i samtliga lägen. En ny API-modell
+eller fler gröna mocktester ersätter inte dessa krav.

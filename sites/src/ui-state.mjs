@@ -8,19 +8,23 @@ export function validateBase(value) {
   return url.origin;
 }
 
-export function validateRewriteInput(text) {
-  return text.trim().length < 10 || text.length > 8000 ? 'AI-omskrivning kräver 10–8 000 tecken. Korta eller dela upp texten vid behov.' : '';
+export function validateRewriteInput(text, maxChars = 8000) {
+  return text.trim().length < 10 || text.length > maxChars ? `AI-omskrivning kräver 10–${maxChars.toLocaleString('sv-SE').replace(/\u00a0/g, ' ')} tecken. Korta eller dela upp texten vid behov.` : '';
 }
 
 export function normalizeRewriteResult(data, original) {
   if (!data || typeof data.text !== 'string' || !data.text.trim() || data.text.length > 16000 || !Number.isSafeInteger(data.protected_count) || data.protected_count < 0 || data.protected_count > original.length) throw new Error('Servern returnerade ingen giltig omskrivning. Originalet finns kvar.');
   const diff = data.diff;
   if (!Array.isArray(diff) || diff.length > 50000 || diff.some(part => !part || !['equal', 'insert', 'delete'].includes(part.kind) || typeof part.text !== 'string') || diff.filter(part => part.kind !== 'insert').map(part => part.text).join('') !== original || diff.filter(part => part.kind !== 'delete').map(part => part.text).join('') !== data.text) throw new Error('Serverns jämförelse stämmer inte med originalet. Originalet finns kvar.');
+  const unchanged = data.text === original;
+  if (data.unchanged !== undefined && metadataBoolean(data, 'unchanged') !== unchanged) throw new Error(METADATA_ERROR);
   return {
     text: data.text,
     diff: diff.map(part => ({kind:part.kind,text:part.text})),
     protected_count: data.protected_count,
     original,
+    unchanged,
+    explanation: metadataString(data, 'explanation', 2000, unchanged ? 'Servern gav ingen förklaring till att texten lämnades oförändrad. Granska texten innan du använder den.' : ''),
     provider: metadataString(data, 'provider', 128, 'AI'),
     model: metadataString(data, 'model', 256, ''),
     warning: metadataString(data, 'warning', 2000, 'Granska betydelse, namn och fakta. Semantisk likvärdighet är inte verifierad.'),
@@ -89,7 +93,9 @@ function metadataBoolean(data, key) {
 // API data is reduced to explicitly validated fields before it enters React state.
 export function normalizeHealthResponse(data) {
   assertRecord(data);
-  return {provider:metadataString(data,'provider',128,''),model:metadataString(data,'model',256,'')};
+  const maxInputChars = data.max_input_chars === undefined ? 8000 : data.max_input_chars;
+  if (!Number.isInteger(maxInputChars) || maxInputChars < 10 || maxInputChars > 8000) throw new Error(METADATA_ERROR);
+  return {provider:metadataString(data,'provider',128,''),model:metadataString(data,'model',256,''),max_input_chars:maxInputChars};
 }
 export function normalizeProviderStatus(data) {
   assertRecord(data);

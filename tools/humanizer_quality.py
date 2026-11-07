@@ -80,7 +80,7 @@ def reassess_reports(paths):
     result = {'schema': 2, 'assessment_version': 'quantity-literal-boundaries-v2',
               'timestamp_utc': datetime.now(timezone.utc).isoformat(), 'new_model_requests': False,
               'tool_sha256': sha256_file(__file__), 'fixtures_sha256': sha256_file(FIXTURES),
-              'validator_sha256': {str(p.relative_to(ROOT)): sha256_file(p) for p in sorted((ROOT / 'backend').glob('*.py'))},
+              'validator_sha256': {str(p.relative_to(ROOT)): sha256_file(p) for p in sorted([*(ROOT / 'backend').rglob('*.py'), *(ROOT / 'ai').rglob('*.py')])},
               'source_reports': [], 'rows': [], 'summaries': []}
     for path in paths:
         path = Path(path)
@@ -111,7 +111,7 @@ def reassess_reports(paths):
                         nonce = token.group(0).split('_')[3]
                         payload = RewriteRequest(text=case['text'], language=case['language'], tone=row['mode'],
                                                  protected_terms=case.get('protected_terms', []))
-                        with patch('backend.main.secrets.token_hex', return_value=nonce):
+                        with patch('ai.humanizer.validation.secrets.token_hex', return_value=nonce):
                             protected, _ = protect_text(case['text'], case.get('protected_terms', []))
                         settings = Settings(provider='ollama', model=model['model'],
                                             max_output_tokens=request_body['options']['num_predict'],
@@ -196,7 +196,7 @@ def main():
     report = {'schema': 1, 'label': args.label, 'timestamp_utc': datetime.now(timezone.utc).isoformat(),
               'real_model_requests': True, 'synthetic_inputs_only': True, 'ollama_version': version,
               'git_head': git_head, 'fixtures_sha256': sha256_file(args.fixtures), 'fixtures_path': str(args.fixtures),
-              'backend_sha256': {str(p.relative_to(ROOT)): sha256_file(p) for p in sorted((ROOT / 'backend').glob('*.py'))},
+              'backend_sha256': {str(p.relative_to(ROOT)): sha256_file(p) for p in sorted([*(ROOT / 'backend').rglob('*.py'), *(ROOT / 'ai').rglob('*.py')])},
               'tool_sha256': sha256_file(__file__), 'models': [],
               'semantic_equivalence_verified': False, 'human_review_completed': False,
               'test_client_limits_note': '300s timeout, 6000 output tokens, 100M daily budgets only in this opt-in process; production defaults unchanged.'}

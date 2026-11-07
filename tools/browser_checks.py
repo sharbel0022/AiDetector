@@ -9,7 +9,7 @@ async def main():
     out=Path('artifacts');out.mkdir(exist_ok=True)
     checks=[]
     async with async_playwright() as p:
-        browser=await p.chromium.launch()
+        browser=await p.chromium.launch(executable_path=os.getenv('TEXTLAB_BROWSER_EXECUTABLE') or None)
         page=await browser.new_page(viewport={'width':1440,'height':1050},device_scale_factor=1)
         errors=[]
         page.on('pageerror',lambda error:errors.append(str(error)))

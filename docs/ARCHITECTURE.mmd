@@ -1,0 +1,28 @@
+flowchart TD
+    U[Användare] --> F[React i webbläsaren]
+    F --> L[Lokal stilanalys]
+    L --> F
+    F --> S[Host, origin och autentisering]
+    S --> B[FastAPI]
+    B --> A[AIService i ai/ai.py]
+    A --> D[Stilanalys via API]
+    A --> H[Humanizer och skyddade värden]
+    H --> Q[Delade kvoter och avbrott]
+    Q <--> DB[SQLite på en värd]
+    Q --> P[Servervald AI-leverantör]
+    P --> O[OpenAI Responses API]
+    P --> LL[Ollama och installerad modell]
+    P --> C[Kompatibel schema-API]
+    O --> V[Svarsvalidering och granskningskrav]
+    LL --> V
+    C --> V
+    V --> R[Text, jämförelse och osäkerhet]
+    D --> R
+    R --> B
+    B --> F
+    ENV[Serverns .env] --> CFG[Settings]
+    CFG --> A
+    subgraph EXP[Endast offlineexperiment]
+        DS[Spårbara train, validation och testdata] --> ML[ML-klassificerare]
+        ML --> EV[Mätetal och regressionsrapporter]
+    end

@@ -9,7 +9,7 @@ REWRITTEN = 'Åsa ansvarar för Projekt Atlas. Vi betalade 125 kr.'
 
 async def main():
     async with async_playwright() as playwright:
-        browser = await playwright.chromium.launch()
+        browser = await playwright.chromium.launch(executable_path=os.getenv('TEXTLAB_BROWSER_EXECUTABLE') or None)
         page = await browser.new_page(viewport={'width': 1440, 'height': 1050})
         failures = []
         page.on('pageerror', lambda error: failures.append(str(error)))
@@ -50,6 +50,15 @@ async def main():
         await expect(page.locator('.output')).to_have_count(0)
         await page.get_by_role('button',name='Återställ original',exact=True).click()
         await expect(editor).to_have_value(ORIGINAL)
+        await page.unroute('**/api/rewrite')
+        explanation = 'Originalet behölls eftersom omskrivningen inte bevarade alla skyddade värden.'
+        await page.route('**/api/rewrite', lambda route: route.fulfill(json={'text':ORIGINAL,'diff':[{'kind':'equal','text':ORIGINAL}],'protected_count':3,'unchanged':True,'explanation':explanation,'provider':'mock','model':'test-only'}))
+        await page.get_by_role('button',name='Skriv om med AI',exact=True).click()
+        await expect(page.get_by_role('heading',name='Originalet är oförändrat',exact=True)).to_be_visible()
+        await expect(page.get_by_text(explanation,exact=True)).to_be_visible()
+        await expect(page.get_by_role('region',name='Oförändrad originaltext',exact=True)).to_have_text(ORIGINAL)
+        await expect(editor).to_have_value(ORIGINAL)
+        await expect(page.get_by_role('button',name='Använd som original')).to_be_disabled()
         await page.unroute('**/api/rewrite')
         async def slow(route):
             await asyncio.sleep(.4)
@@ -106,7 +115,7 @@ async def main():
         assert await page.evaluate('document.documentElement.scrollWidth <= innerWidth')
         assert not failures, failures
         await browser.close()
-        print('TextLab v3 UI: six modes, language, protected terms, keyboard submit, diff, TXT export, apply/restore, cancel, malformed rewrite/health/status metadata, dialog focus and 320px layout passed (mock model).')
+        print('TextLab UI: six modes, language, protected terms, keyboard submit, diff, TXT export, apply/restore, unchanged explanation, cancel, malformed rewrite/health/status metadata, dialog focus and 320px layout passed (mock model).')
 
 if __name__ == '__main__':
     asyncio.run(main())

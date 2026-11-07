@@ -86,6 +86,8 @@ function App() {
   if (!gate.current) gate.current = createRequestGate();
   const revision = useRef(0);
   const words = wordCount(text);
+  const rewriteMaxChars = connection?.max_input_chars ?? 8000;
+  const editorMaxChars = mode === 'rewrite' ? rewriteMaxChars : MAX_CHARS;
 
   function invalidate() {
     revision.current++;
@@ -161,7 +163,7 @@ function App() {
       } catch (error) { setError(error.message); }
       return;
     }
-    const validationError = validateRewriteInput(text);
+    const validationError = validateRewriteInput(text, rewriteMaxChars);
     if (validationError) { setError(validationError); inputRef.current?.focus(); return; }
     let protectedTerms;
     try { protectedTerms = parseProtectedTerms(protectedDraft, text); }
@@ -182,9 +184,10 @@ function App() {
     try {
       const data = await apiRequest(base, token, '/api/rewrite', { method: 'POST', body: JSON.stringify({ text: source, tone, language, ...(protectedTerms.length ? { protected_terms: protectedTerms } : {}) }), signal: controller.signal });
       if (!gate.current.isCurrent(controller)) return;
-      setResult(normalizeRewriteResult(data, source));
+      const normalized = normalizeRewriteResult(data, source);
+      setResult(normalized);
       setOriginalSnapshot(source);
-      setNotice('Omskrivningen är klar. Jämför versionerna och granska betydelsen innan du använder texten.');
+      setNotice(normalized.unchanged ? 'Originalet är oförändrat. Läs förklaringen och granska texten innan du använder den.' : 'Omskrivningen är klar. Jämför versionerna och granska betydelsen innan du använder texten.');
     } catch (error) {
       if (gate.current.isCurrent(controller)) { setError(error.message); setNotice(''); }
     } finally {
@@ -270,9 +273,9 @@ function App() {
         <div className="workspace">
           <section className="editor panel" aria-labelledby="editor-title">
             <div className="panel-heading"><div><span className="step">01</span><h2 id="editor-title">Din originaltext</h2></div><label className="language"><span className="sr-only">Textens språk</span><select aria-label="Textens språk" value={language} onChange={event => { invalidate(); setLanguage(event.target.value); }}><option value="sv">Svenska</option><option value="en">English</option></select></label></div>
-            <textarea ref={inputRef} className="source-editor" aria-label="Din originaltext" aria-describedby="editor-count editor-help" placeholder={'Börja med dina ord.\n\nKlistra in en text eller importera en textfil…'} value={text} maxLength={MAX_CHARS} onChange={event => changeText(event.target.value)} onKeyDown={event => { if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') { event.preventDefault(); run(); } }} spellCheck lang={language}/>
-            <div className="editor-meta"><span id="editor-count">{words.toLocaleString('sv-SE')} ord <span className="dot">·</span> {text.length.toLocaleString('sv-SE')} / {MAX_CHARS.toLocaleString('sv-SE')} tecken</span><button className="text-button" onClick={() => loadText('')} disabled={!text}>Rensa</button></div>
-            <p id="editor-help" className={mode === 'rewrite' && text.length > 8000 ? 'editor-help limit-warning' : 'editor-help'}>{mode === 'analyze' ? 'Välj textens språk. Stilindex kräver minst 80 ord och flera meningar.' : 'Omskrivning: 10–8 000 tecken. Språkvalet anger den nya versionens språk.'}</p>
+            <textarea ref={inputRef} className="source-editor" aria-label="Din originaltext" aria-describedby="editor-count editor-help" placeholder={'Börja med dina ord.\n\nKlistra in en text eller importera en textfil…'} value={text} maxLength={editorMaxChars} onChange={event => changeText(event.target.value)} onKeyDown={event => { if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') { event.preventDefault(); run(); } }} spellCheck lang={language}/>
+            <div className="editor-meta"><span id="editor-count">{words.toLocaleString('sv-SE')} ord <span className="dot">·</span> {text.length.toLocaleString('sv-SE')} / {editorMaxChars.toLocaleString('sv-SE')} tecken</span><button className="text-button" onClick={() => loadText('')} disabled={!text}>Rensa</button></div>
+            <p id="editor-help" className={mode === 'rewrite' && text.length > rewriteMaxChars ? 'editor-help limit-warning' : 'editor-help'}>{mode === 'analyze' ? 'Välj textens språk. Stilindex kräver minst 80 ord och flera meningar.' : `Omskrivning: 10–${rewriteMaxChars.toLocaleString('sv-SE')} tecken. Språkvalet anger den nya versionens språk.`}</p>
             {originalSnapshot !== null ? <div className="restore-row"><button className="text-button" onClick={restoreOriginal} disabled={text === originalSnapshot} title="Återställ texten från den senaste omskrivningen">Återställ original</button><span>Originalet från senaste omskrivningen finns i sidans minne.</span></div> : null}
             {mode === 'rewrite' ? <>
               <fieldset className="tone"><legend>Välj omskrivningsläge</legend>{TONES.map(([value, label, description]) => <label key={value} className={tone === value ? 'chosen' : ''}><input type="radio" name="tone" value={value} checked={tone === value} onChange={() => { invalidate(); setTone(value); }}/><span>{label}</span><small aria-hidden="true">{description}</small></label>)}</fieldset>
@@ -282,12 +285,13 @@ function App() {
             {busy ? <div className="cancel-row"><span>Originalet finns kvar medan du väntar.</span><button className="text-button cancel" onClick={cancel}>Avbryt</button></div> : null}
           </section>
           <section className="results panel" aria-labelledby="result-title" aria-busy={busy}>
-            <div className="panel-heading"><div><span className="step">02</span><h2 id="result-title" tabIndex={-1} ref={resultHeading}>{mode === 'analyze' ? 'Insikter, inte gissningar' : 'Din omskrivna text'}</h2></div><span className="live-tag">{mode === 'analyze' ? 'LOKAL ANALYS' : 'AI-BACKEND'}</span></div>
+            <div className="panel-heading"><div><span className="step">02</span><h2 id="result-title" tabIndex={-1} ref={resultHeading}>{mode === 'analyze' ? 'Insikter, inte gissningar' : result?.unchanged ? 'Originalet är oförändrat' : 'Din omskrivna text'}</h2></div><span className="live-tag">{mode === 'analyze' ? 'LOKAL ANALYS' : 'AI-BACKEND'}</span></div>
             {mode === 'analyze' ? analysis ? <Analysis result={analysis}/> : <div className="empty"><div className="illustration"><span/><span/><span/><span/><span/><i><Icon name="analyze" size={25}/></i></div><h3>Varje text har ett mönster.</h3><p>Se hur meningslängd, ordvariation och<br/>återkommande formuleringar samspelar.</p><div className="empty-tags"><span>Meningsrytm</span><span>Ordvariation</span><span>Språkmönster</span></div><small>Minst 80 ord och flera meningar för ett stilindex.<br/>Stilanalys kan inte avgöra om AI har skrivit texten.</small></div> : result ? <div className="rewrite-result">
-              <div className="result-tools"><label className="diff-toggle"><input type="checkbox" checked={showDiff} onChange={event => setShowDiff(event.target.checked)}/>Visa ändringar</label><div><button className="icon-button" onClick={copy} aria-label="Kopiera omskriven text" title="Kopiera omskriven text"><Icon name="copy"/></button><button className="icon-button" onClick={download} aria-label="Ladda ner omskriven text" title="Ladda ner omskriven text"><Icon name="download"/></button></div></div>
+              <div className="result-tools"><label className="diff-toggle"><input type="checkbox" checked={showDiff} onChange={event => setShowDiff(event.target.checked)}/>Visa ändringar</label><div><button className="icon-button" onClick={copy} aria-label={result.unchanged ? 'Kopiera originaltext' : 'Kopiera omskriven text'} title={result.unchanged ? 'Kopiera originaltext' : 'Kopiera omskriven text'}><Icon name="copy"/></button><button className="icon-button" onClick={download} aria-label={result.unchanged ? 'Ladda ner originaltext' : 'Ladda ner omskriven text'} title={result.unchanged ? 'Ladda ner originaltext' : 'Ladda ner omskriven text'}><Icon name="download"/></button></div></div>
+              {result.unchanged ? <p className="result-warning">{result.explanation}</p> : null}
               {showDiff ? <p className="diff-legend"><span><ins>Tillagt</ins></span><span><del>Borttaget</del></span><span>Originalet finns kvar i redigeraren.</span></p> : null}
-              <div className="output" tabIndex={0} role="region" aria-label={showDiff ? 'Ändringar jämfört med originalet' : 'Omskriven text'} lang={language}>{showDiff ? result.diff.map((part, index) => part.kind === 'insert' ? <ins key={index}>{part.text}</ins> : part.kind === 'delete' ? <del key={index}>{part.text}</del> : <React.Fragment key={index}>{part.text}</React.Fragment>) : result.text}</div>
-              <div className="version-actions"><button className="secondary" onClick={useResult}>Använd som original<Icon name="arrow" size={16}/></button><span>{wordCount(result.text).toLocaleString('sv-SE')} ord i den nya versionen</span></div>
+              <div className="output" tabIndex={0} role="region" aria-label={showDiff ? 'Ändringar jämfört med originalet' : result.unchanged ? 'Oförändrad originaltext' : 'Omskriven text'} lang={language}>{showDiff ? result.diff.map((part, index) => part.kind === 'insert' ? <ins key={index}>{part.text}</ins> : part.kind === 'delete' ? <del key={index}>{part.text}</del> : <React.Fragment key={index}>{part.text}</React.Fragment>) : result.text}</div>
+              <div className="version-actions"><button className="secondary" onClick={useResult} disabled={result.unchanged}>Använd som original<Icon name="arrow" size={16}/></button><span>{wordCount(result.text).toLocaleString('sv-SE')} ord i {result.unchanged ? 'originalet' : 'den nya versionen'}</span></div>
               <p className="protected"><Icon name="check"/>{result.protected_count} skyddade textdelar kontrollerade</p><p className="result-warning">{result.warning}</p><div className="model-label">{result.provider || 'AI'}{result.model ? ` / ${result.model}` : ''}</div>
             </div> : busy ? <div className="empty processing"><span className="processing-icon"><Icon name="edit" size={32}/></span><h3>En ny version tar form.</h3><p>Modellen bearbetar texten.<br/>Det kan ta ett par minuter vid lokal körning.</p><small>Du kan fortsätta redigera för att avbryta den här omskrivningen. Originalet finns kvar.</small></div> : <div className="empty"><div className="rewrite-symbol"><Icon name="edit" size={38}/></div><h3>Tydligare. Inte någon annans.</h3><p>Välj ett av sex lägen och jämför versionerna.<br/>Kontrollera alltid betydelse, namn och fakta.</p><div className="model-status"><i className={modelVerified ? 'ready' : ''}/>{connectionLabel}</div>{connection?.provider ? <p className="provider-name">{connection.provider}{connection.model ? ` · ${connection.model}` : ''}</p> : null}<small role={connectionError || provider?.error ? 'alert' : undefined}>{connectionError || provider?.message || (connection === false ? 'Backend kunde inte nås. Stilanalysen fungerar utan backend.' : 'Stilanalysen fungerar även utan backend.')}</small><div className="connection-actions"><button className="text-button" onClick={openSettings}>Anslut AI-backend</button><button className="text-button" disabled={provider === null} onClick={() => setConnectionAttempt(attempt => attempt + 1)}>Kontrollera igen</button></div></div>}
           </section>

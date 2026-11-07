@@ -137,9 +137,13 @@ def test_no_cache_headers():
 
 def test_openai_protocol_and_no_store():
     def handler(request):
+        assert request.url.host=='api.openai.com'
+        if request.method == 'GET':
+            assert request.url.path == '/v1/models/test-model'
+            assert not request.content
+            return httpx.Response(200, json={'id':'test-model'})
         body=json.loads(request.content)
         assert body['store'] is False
-        assert request.url.host=='api.openai.com'
         assert body['text']['format']['type']=='json_schema'
         protected=json.loads(body['input'])['text']
         return httpx.Response(200,json={'status':'completed','output':[{'type':'message','content':[{'type':'output_text','text':json.dumps({'text':protected})}]}]})

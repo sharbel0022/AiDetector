@@ -1,0 +1,4662 @@
+{
+  "calibration": {
+    "available": false,
+    "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+  },
+  "candidateSelection": {
+    "maxObservedHumanFPR": 0.05,
+    "modernHumanUsedForSelection": false,
+    "name": "audited_char_3_5",
+    "objective": "maximize recallAllAI subject to observed validation human FPR <= 0.05",
+    "predeclaredCandidateOrder": [
+      "audited_char_3_5",
+      "word_1_2",
+      "word_char_1_2_3_5"
+    ],
+    "productionApproved": false,
+    "selectionSplit": "validation",
+    "testUsedForSelection": false,
+    "tieBreak": [
+      "lower observed human FPR",
+      "higher coverage",
+      "predeclared preference: existing baseline, word, combined"
+    ],
+    "warning": "This small reused validation set cannot establish low population FPR or a generalizable winning model."
+  },
+  "candidates": [
+    {
+      "config": {
+        "C": 1.0,
+        "analyzer": "char",
+        "class_weight": "balanced",
+        "classifier": "LogisticRegression",
+        "eligibility": "same frozen analyzer language/minimum80words/minimum4sentences guard as style comparator",
+        "lowercase": true,
+        "maxObservedValidationHumanFPR": 0.05,
+        "max_features": 20000,
+        "max_iter": 1000,
+        "min_df": 2,
+        "minimumAssessedPerClass": {
+          "test": 2,
+          "train": 4,
+          "validation": 2
+        },
+        "minimumSourceGroupsPerClass": {
+          "test": 1,
+          "train": 2,
+          "validation": 1
+        },
+        "modelHoldoutDiagnostics": {
+          "models": [
+            "llama3.2:3b",
+            "qwen3.5:4b"
+          ],
+          "protocol": "Fit and select using one model; evaluate human plus the other, unseen model. Report both without choosing a winner."
+        },
+        "ngram_range": [
+          3,
+          5
+        ],
+        "norm": "l2",
+        "random_state": 42,
+        "smooth_idf": true,
+        "solver": "liblinear",
+        "sublinear_tf": true
+      },
+      "featureCount": 14488,
+      "historicalTestDiagnostics": {
+        "byGenre": {
+          "essay": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 5,
+            "auroc": 1.0,
+            "binaryAssessed": 5,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 3,
+              "tp": 2
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 3,
+              "assessedDenominator": 3,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "falsePositiveRate": {
+                "lower": 5.551115123125783e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 3,
+                "upper": 0.5614970317550454
+              },
+              "recallAssessed": {
+                "lower": 0.34238022750665303,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 2,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.042347328445350954,
+            "total": 5
+          },
+          "fiction": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 5,
+            "auroc": 1.0,
+            "binaryAssessed": 5,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 3,
+              "tp": 2
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 3,
+              "assessedDenominator": 3,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "falsePositiveRate": {
+                "lower": 5.551115123125783e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 3,
+                "upper": 0.5614970317550454
+              },
+              "recallAssessed": {
+                "lower": 0.34238022750665303,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 2,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.042347328445350954,
+            "total": 5
+          },
+          "memoir": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 5,
+            "auroc": 1.0,
+            "binaryAssessed": 5,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 3,
+              "tp": 2
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 3,
+              "assessedDenominator": 3,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "falsePositiveRate": {
+                "lower": 5.551115123125783e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 3,
+                "upper": 0.5614970317550454
+              },
+              "recallAssessed": {
+                "lower": 0.34238022750665303,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 2,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.042347328445350954,
+            "total": 5
+          },
+          "travel": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 5,
+            "auroc": 1.0,
+            "binaryAssessed": 5,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 3,
+              "tp": 2
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 3,
+              "assessedDenominator": 3,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "falsePositiveRate": {
+                "lower": 5.551115123125783e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 3,
+                "upper": 0.5614970317550454
+              },
+              "recallAssessed": {
+                "lower": 0.34238022750665303,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 2,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.042347328445350954,
+            "total": 5
+          }
+        },
+        "byLanguage": {
+          "en": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 10,
+            "auroc": 1.0,
+            "binaryAssessed": 10,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 6,
+              "tp": 4
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 6,
+              "assessedDenominator": 6,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.7224672001371107,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 10,
+                "upper": 0.9999999999999999
+              },
+              "coverage": {
+                "lower": 0.7224672001371107,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 10,
+                "upper": 0.9999999999999999
+              },
+              "falsePositiveRate": {
+                "lower": 2.7755575615628914e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 6,
+                "upper": 0.3903342879021653
+              },
+              "recallAssessed": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.042347328445350954,
+            "total": 10
+          },
+          "sv": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 10,
+            "auroc": 1.0,
+            "binaryAssessed": 10,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 6,
+              "tp": 4
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 6,
+              "assessedDenominator": 6,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.7224672001371107,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 10,
+                "upper": 0.9999999999999999
+              },
+              "coverage": {
+                "lower": 0.7224672001371107,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 10,
+                "upper": 0.9999999999999999
+              },
+              "falsePositiveRate": {
+                "lower": 2.7755575615628914e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 6,
+                "upper": 0.3903342879021653
+              },
+              "recallAssessed": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.042347328445350954,
+            "total": 10
+          }
+        },
+        "byLength": {
+          "long": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 3,
+            "auroc": null,
+            "binaryAssessed": 3,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 0,
+              "tp": 3
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": null,
+            "humanFalsePositives": {
+              "allHumanDenominator": 0,
+              "assessedDenominator": 0,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.4385029682449546,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 3,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.4385029682449546,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 3,
+                "upper": 1
+              },
+              "falsePositiveRate": null,
+              "recallAssessed": {
+                "lower": 0.4385029682449546,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 3,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.042347328445350954,
+            "total": 3
+          },
+          "medium": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 17,
+            "auroc": 1.0,
+            "binaryAssessed": 17,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 12,
+              "tp": 5
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 12,
+              "assessedDenominator": 12,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.8156818649911483,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 17,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.8156818649911483,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 17,
+                "upper": 1
+              },
+              "falsePositiveRate": {
+                "lower": 2.7755575615628914e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 12,
+                "upper": 0.24249400665524085
+              },
+              "recallAssessed": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.042347328445350954,
+            "total": 17
+          }
+        },
+        "byModel": {
+          "(human)": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 12,
+            "auroc": null,
+            "binaryAssessed": 12,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 12,
+              "tp": 0
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": null,
+            "falseNegativeRate": null,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 12,
+              "assessedDenominator": 12,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.7575059933447592,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 12,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.7575059933447592,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 12,
+                "upper": 1
+              },
+              "falsePositiveRate": {
+                "lower": 2.7755575615628914e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 12,
+                "upper": 0.24249400665524085
+              },
+              "recallAssessed": null
+            },
+            "precision": null,
+            "recallAllAI": null,
+            "recallAssessed": null,
+            "threshold": -0.042347328445350954,
+            "total": 12
+          },
+          "llama3.2:3b": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 4,
+            "auroc": null,
+            "binaryAssessed": 4,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 0,
+              "tp": 4
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": null,
+            "humanFalsePositives": {
+              "allHumanDenominator": 0,
+              "assessedDenominator": 0,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              },
+              "falsePositiveRate": null,
+              "recallAssessed": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.042347328445350954,
+            "total": 4
+          },
+          "qwen3.5:4b": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 4,
+            "auroc": null,
+            "binaryAssessed": 4,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 0,
+              "tp": 4
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": null,
+            "humanFalsePositives": {
+              "allHumanDenominator": 0,
+              "assessedDenominator": 0,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              },
+              "falsePositiveRate": null,
+              "recallAssessed": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.042347328445350954,
+            "total": 4
+          }
+        },
+        "evaluatedSplit": "test",
+        "evidenceUse": "historical-development-diagnostic",
+        "humanSourceGroups": {
+          "assessed": 4,
+          "estimand": "Fraction of source groups with at least one assessed human excerpt flagged; distinct from excerpt-level FPR.",
+          "interval95": {
+            "lower": 0,
+            "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+            "n": 4,
+            "upper": 0.4898908364545973
+          },
+          "rateWithAnyFalsePositive": 0.0,
+          "total": 4,
+          "warning": "Convenience sample of source groups. Interval assumes independent exchangeable groups; no population guarantee.",
+          "withAnyFalsePositive": 0
+        },
+        "independentEvidence": false,
+        "overall": {
+          "abstained": 0,
+          "abstentionsByLabel": {
+            "ai": 0,
+            "ai-edited": 0,
+            "human": 0
+          },
+          "accuracyAssessed": 1.0,
+          "aiEdited": {
+            "assessed": 0,
+            "flagged": 0,
+            "total": 0
+          },
+          "assessed": 20,
+          "auroc": 1.0,
+          "binaryAssessed": 20,
+          "calibration": {
+            "available": false,
+            "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+          },
+          "confusion": {
+            "fn": 0,
+            "fp": 0,
+            "tn": 12,
+            "tp": 8
+          },
+          "coverage": 1.0,
+          "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+          "f1": 1.0,
+          "falseNegativeRate": 0.0,
+          "falsePositiveRate": 0.0,
+          "humanFalsePositives": {
+            "allHumanDenominator": 12,
+            "assessedDenominator": 12,
+            "count": 0
+          },
+          "intervals95": {
+            "accuracyAssessed": {
+              "lower": 0.8388748419471806,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 20,
+              "upper": 1
+            },
+            "coverage": {
+              "lower": 0.8388748419471806,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 20,
+              "upper": 1
+            },
+            "falsePositiveRate": {
+              "lower": 2.7755575615628914e-17,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 12,
+              "upper": 0.24249400665524085
+            },
+            "recallAssessed": {
+              "lower": 0.6755924351161198,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 8,
+              "upper": 1
+            }
+          },
+          "precision": 1.0,
+          "recallAllAI": 1.0,
+          "recallAssessed": 1.0,
+          "threshold": -0.042347328445350954,
+          "total": 20
+        },
+        "predictions": [
+          {
+            "abstentionReasons": [],
+            "author_id": "mary-wollstonecraft",
+            "document_id": "pg3420",
+            "genre": "essay",
+            "label": "human",
+            "language": "en",
+            "model": "(human)",
+            "score": -0.1126598156629697,
+            "source_group_id": "pg3420",
+            "source_id": "pg3420-h1",
+            "split": "test",
+            "words": 229
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "mary-wollstonecraft",
+            "document_id": "pg3420",
+            "genre": "essay",
+            "label": "human",
+            "language": "en",
+            "model": "(human)",
+            "score": -0.1466202202222171,
+            "source_group_id": "pg3420",
+            "source_id": "pg3420-h2",
+            "split": "test",
+            "words": 187
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "mary-wollstonecraft",
+            "document_id": "pg3420",
+            "genre": "essay",
+            "label": "human",
+            "language": "en",
+            "model": "(human)",
+            "score": -0.07702950849022853,
+            "source_group_id": "pg3420",
+            "source_id": "pg3420-h3",
+            "split": "test",
+            "words": 296
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "henry-david-thoreau",
+            "document_id": "pg205",
+            "genre": "memoir",
+            "label": "human",
+            "language": "en",
+            "model": "(human)",
+            "score": -0.21078240717953511,
+            "source_group_id": "pg205",
+            "source_id": "pg205-h1",
+            "split": "test",
+            "words": 262
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "henry-david-thoreau",
+            "document_id": "pg205",
+            "genre": "memoir",
+            "label": "human",
+            "language": "en",
+            "model": "(human)",
+            "score": -0.15214842489779576,
+            "source_group_id": "pg205",
+            "source_id": "pg205-h2",
+            "split": "test",
+            "words": 214
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "henry-david-thoreau",
+            "document_id": "pg205",
+            "genre": "memoir",
+            "label": "human",
+            "language": "en",
+            "model": "(human)",
+            "score": -0.21298420914089788,
+            "source_group_id": "pg205",
+            "source_id": "pg205-h3",
+            "split": "test",
+            "words": 276
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "emilie-flygare-carlen",
+            "document_id": "pg46538",
+            "genre": "fiction",
+            "label": "human",
+            "language": "sv",
+            "model": "(human)",
+            "score": -0.12651251435788666,
+            "source_group_id": "pg46538",
+            "source_id": "pg46538-h1",
+            "split": "test",
+            "words": 194
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "emilie-flygare-carlen",
+            "document_id": "pg46538",
+            "genre": "fiction",
+            "label": "human",
+            "language": "sv",
+            "model": "(human)",
+            "score": -0.12068198226917287,
+            "source_group_id": "pg46538",
+            "source_id": "pg46538-h2",
+            "split": "test",
+            "words": 209
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "emilie-flygare-carlen",
+            "document_id": "pg46538",
+            "genre": "fiction",
+            "label": "human",
+            "language": "sv",
+            "model": "(human)",
+            "score": -0.17868912691041933,
+            "source_group_id": "pg46538",
+            "source_id": "pg46538-h3",
+            "split": "test",
+            "words": 189
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "georg-august-wallin",
+            "document_id": "pg59646",
+            "genre": "travel",
+            "label": "human",
+            "language": "sv",
+            "model": "(human)",
+            "score": -0.17269108265957614,
+            "source_group_id": "pg59646",
+            "source_id": "pg59646-h1",
+            "split": "test",
+            "words": 276
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "georg-august-wallin",
+            "document_id": "pg59646",
+            "genre": "travel",
+            "label": "human",
+            "language": "sv",
+            "model": "(human)",
+            "score": -0.17713965802806228,
+            "source_group_id": "pg59646",
+            "source_id": "pg59646-h2",
+            "split": "test",
+            "words": 288
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "georg-august-wallin",
+            "document_id": "pg59646",
+            "genre": "travel",
+            "label": "human",
+            "language": "sv",
+            "model": "(human)",
+            "score": -0.12156395939117856,
+            "source_group_id": "pg59646",
+            "source_id": "pg59646-h3",
+            "split": "test",
+            "words": 278
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg3420",
+            "document_id": "generation-pg3420",
+            "genre": "essay",
+            "label": "ai",
+            "language": "en",
+            "model": "llama3.2:3b",
+            "score": 0.051271957275167465,
+            "source_group_id": "pg3420",
+            "source_id": "pg3420-ai-llama3-2-3b",
+            "split": "test",
+            "words": 216
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg205",
+            "document_id": "generation-pg205",
+            "genre": "memoir",
+            "label": "ai",
+            "language": "en",
+            "model": "llama3.2:3b",
+            "score": 0.01580854570055057,
+            "source_group_id": "pg205",
+            "source_id": "pg205-ai-llama3-2-3b",
+            "split": "test",
+            "words": 212
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg46538",
+            "document_id": "generation-pg46538",
+            "genre": "fiction",
+            "label": "ai",
+            "language": "sv",
+            "model": "llama3.2:3b",
+            "score": 0.10665147173494853,
+            "source_group_id": "pg46538",
+            "source_id": "pg46538-ai-llama3-2-3b",
+            "split": "test",
+            "words": 234
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg59646",
+            "document_id": "generation-pg59646",
+            "genre": "travel",
+            "label": "ai",
+            "language": "sv",
+            "model": "llama3.2:3b",
+            "score": 0.1313202173952217,
+            "source_group_id": "pg59646",
+            "source_id": "pg59646-ai-llama3-2-3b",
+            "split": "test",
+            "words": 229
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg3420",
+            "document_id": "generation-pg3420",
+            "genre": "essay",
+            "label": "ai",
+            "language": "en",
+            "model": "qwen3.5:4b",
+            "score": 0.022081381580270218,
+            "source_group_id": "pg3420",
+            "source_id": "pg3420-ai-qwen3-5-4b",
+            "split": "test",
+            "words": 302
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg205",
+            "document_id": "generation-pg205",
+            "genre": "memoir",
+            "label": "ai",
+            "language": "en",
+            "model": "qwen3.5:4b",
+            "score": 0.006105258431616162,
+            "source_group_id": "pg205",
+            "source_id": "pg205-ai-qwen3-5-4b",
+            "split": "test",
+            "words": 323
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg46538",
+            "document_id": "generation-pg46538",
+            "genre": "fiction",
+            "label": "ai",
+            "language": "sv",
+            "model": "qwen3.5:4b",
+            "score": 0.14215948897024755,
+            "source_group_id": "pg46538",
+            "source_id": "pg46538-ai-qwen3-5-4b",
+            "split": "test",
+            "words": 307
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg59646",
+            "document_id": "generation-pg59646",
+            "genre": "travel",
+            "label": "ai",
+            "language": "sv",
+            "model": "qwen3.5:4b",
+            "score": 0.16283846440251737,
+            "source_group_id": "pg59646",
+            "source_id": "pg59646-ai-qwen3-5-4b",
+            "split": "test",
+            "words": 291
+          }
+        ],
+        "testSourceGroups": 4,
+        "usedForSelection": false,
+        "warning": "The existing test split was already inspected in V3. These are reused historical diagnostics, not new independent results."
+      },
+      "name": "audited_char_3_5",
+      "scoreSemantics": "uncalibrated_logistic_margin",
+      "source": "existing-audited-frozen-artifact",
+      "training": {
+        "authors": [
+          "august-strindberg",
+          "charles-darwin",
+          "charles-dickens",
+          "commission-pg1342",
+          "commission-pg1400",
+          "commission-pg14144",
+          "commission-pg2009",
+          "commission-pg28610",
+          "commission-pg30078",
+          "jane-austen",
+          "per-teodor-cleve",
+          "viktor-rydberg"
+        ],
+        "documentIds": [
+          "generation-pg1342",
+          "generation-pg1400",
+          "generation-pg14144",
+          "generation-pg2009",
+          "generation-pg28610",
+          "generation-pg30078",
+          "pg1342",
+          "pg1400",
+          "pg14144",
+          "pg2009",
+          "pg28610",
+          "pg30078"
+        ],
+        "normalizedTextSha256": [
+          "0046d7ba1dce2489515283f369f41fe3c2f068d78824a702dbcb58d61e2ff980",
+          "12431e27183d22b0947346ee4e32545f98961a5a9c8f02c3e98fa7e6d6cc774e",
+          "1385864ca27f3dafa51c6fcfa3807abde46d45efc99b127304ae57b2c420c372",
+          "15ebd3db305b43bdaaf2d06930a48f2c44ade276b34d4d7f3400413d39bb4133",
+          "21d18271002a2d5f8475992492284ce824826039347677b5508c18ba00da369e",
+          "35b07d06e9de6765f749dff48d1a3433fd180b19eccb40bb7054bd2a4cb33e7a",
+          "36760547ab63fe223a3208f31b883a908f50bc450e919ef6585e4d78eb547451",
+          "379acf1e98cc8b1931604566f031051711073d93dba6a0da23ac1e008bf224eb",
+          "473b37fd84fc64054c71df7887614389a3bac3d398f59d30f27d7ca41d358df5",
+          "5de415b6a9780e4a64f8b2e71555afea85838729803841bb97b78cf0d7251f23",
+          "6471f61ea73bf7e5f8b4916d0a20b8442a4b3d56f5924c76d5a1975f2695a8f7",
+          "720f2d4e0ede355e7aecc16e4d8e1c4264d2fef63edf7f96c6c5e27069a58991",
+          "743831b80c0c2c74c171272fe5e3971f7d613e51ec02e7d2a40e413ed6add0a8",
+          "81ed8e9a643ef2be2a3f806117f84d40c3e7ae5332fe3f221370be0bd1232012",
+          "9539d057a64c46ad08dd576a49de94ce6a8c21d5559673789b671ae8b9dd46f5",
+          "956d5af4096c0a3182d758589444096941952367e3fd1c3f5a81a93f88a58d2e",
+          "9cd598aa439e6b6dddcb417f7242bc5bbca1126d4b365d90cb85da800ea11ec0",
+          "9dd10fb06f5b79057cf9b403f2e5d0fca462789cbda17e6e3126ac16f3c8a6a9",
+          "a5305284d10dbb03208b0fb58be627b259313952082370c685eb9311792e891d",
+          "ac9512dc4a09ae546075cba13e33dadf878f71680f2b69c9fe1fcc32adfa70ec",
+          "b7eba11b6f746902fcc3b7f4563ae276c2b6d5feaa9df7d6761965f939826df0",
+          "bb5b70c2a7e7753a5c7e05f3212140cb08b7ddce32dea0a7f131cec55e083f70",
+          "c3b108f96facab6793c8938f6ab1bc40c94369db4db496f56d201d501faf5325",
+          "c535da2bc96fc7d6946172b77789a56b9fac5c458766c04f76a5e3ff885eb8d3",
+          "d78055e92ba023e8f32b17eb10c80e151783218018dd4b75751b035660246d36",
+          "e8417c5a882dcc726a28aeceb1b7890efe459e19a4e398d752c62b53013da1f6",
+          "f035d5c1f69dd207e9bd6b0865c0073642ed11c721646b154be36d7b04e98bfe",
+          "f0b664833cad9bc059cb09ecf846ccfe807548b9ca209efcb70dce16891cc14e",
+          "f240b32ee237a3c0cfbd782e13f3df12337fe625b967d78d3f4138c7cb1f8644",
+          "ff7149086255f8c12cf00c415825fc230047814555eaf5e415651e427f4207f7"
+        ],
+        "rowCount": 30,
+        "rowsSha256": "4df1fa0a518c71ccaff9a6fca8a9d3204d5956c85b274dc6f93793ed6144394e",
+        "sourceGroups": [
+          "pg1342",
+          "pg1400",
+          "pg14144",
+          "pg2009",
+          "pg28610",
+          "pg30078"
+        ],
+        "sourceIds": [
+          "pg1342-ai-llama3-2-3b",
+          "pg1342-ai-qwen3-5-4b",
+          "pg1342-h1",
+          "pg1342-h2",
+          "pg1342-h3",
+          "pg1400-ai-llama3-2-3b",
+          "pg1400-ai-qwen3-5-4b",
+          "pg1400-h1",
+          "pg1400-h2",
+          "pg1400-h3",
+          "pg14144-ai-llama3-2-3b",
+          "pg14144-ai-qwen3-5-4b",
+          "pg14144-h1",
+          "pg14144-h2",
+          "pg14144-h3",
+          "pg2009-ai-llama3-2-3b",
+          "pg2009-ai-qwen3-5-4b",
+          "pg2009-h1",
+          "pg2009-h2",
+          "pg2009-h3",
+          "pg28610-ai-llama3-2-3b",
+          "pg28610-ai-qwen3-5-4b",
+          "pg28610-h1",
+          "pg28610-h2",
+          "pg28610-h3",
+          "pg30078-ai-llama3-2-3b",
+          "pg30078-ai-qwen3-5-4b",
+          "pg30078-h1",
+          "pg30078-h2",
+          "pg30078-h3"
+        ],
+        "split": "train"
+      },
+      "validation": {
+        "maxObservedHumanFPR": 0.05,
+        "metrics": {
+          "abstained": 0,
+          "abstentionsByLabel": {
+            "ai": 0,
+            "ai-edited": 0,
+            "human": 0
+          },
+          "accuracyAssessed": 1.0,
+          "aiEdited": {
+            "assessed": 0,
+            "flagged": 0,
+            "total": 0
+          },
+          "assessed": 10,
+          "auroc": 1.0,
+          "binaryAssessed": 10,
+          "calibration": {
+            "available": false,
+            "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+          },
+          "confusion": {
+            "fn": 0,
+            "fp": 0,
+            "tn": 6,
+            "tp": 4
+          },
+          "coverage": 1.0,
+          "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+          "f1": 1.0,
+          "falseNegativeRate": 0.0,
+          "falsePositiveRate": 0.0,
+          "humanFalsePositives": {
+            "allHumanDenominator": 6,
+            "assessedDenominator": 6,
+            "count": 0
+          },
+          "intervals95": {
+            "accuracyAssessed": {
+              "lower": 0.7224672001371107,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 10,
+              "upper": 0.9999999999999999
+            },
+            "coverage": {
+              "lower": 0.7224672001371107,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 10,
+              "upper": 0.9999999999999999
+            },
+            "falsePositiveRate": {
+              "lower": 2.7755575615628914e-17,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 6,
+              "upper": 0.3903342879021653
+            },
+            "recallAssessed": {
+              "lower": 0.5101091635454027,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 4,
+              "upper": 1
+            }
+          },
+          "precision": 1.0,
+          "recallAllAI": 1.0,
+          "recallAssessed": 1.0,
+          "threshold": -0.042347328445350954,
+          "total": 10
+        },
+        "objective": "maximize recallAllAI subject to observed validation human FPR <= configured maximum",
+        "selectionSplit": "validation",
+        "threshold": -0.042347328445350954,
+        "thresholdSource": "preserved-from-audited-artifact",
+        "tieBreak": "lower observed human FPR, then lower threshold",
+        "warning": "The FPR constraint is empirical, not a statistical upper bound. Small validation groups cannot establish a low population FPR."
+      },
+      "weightsSha256": "b8fa095383fd369b3cdcf89620e8b406486a72f48d9f4b68011442518260c221"
+    },
+    {
+      "config": {
+        "classifier": {
+          "C": 1.0,
+          "class_weight": "balanced",
+          "max_iter": 1000,
+          "name": "LogisticRegression",
+          "random_state": 42,
+          "solver": "liblinear"
+        },
+        "combination": "single-l2-block",
+        "vectorizers": [
+          {
+            "analyzer": "word",
+            "lowercase": true,
+            "max_features": 10000,
+            "min_df": 2,
+            "ngram_range": [
+              1,
+              2
+            ],
+            "norm": "l2",
+            "smooth_idf": true,
+            "sublinear_tf": true,
+            "token_pattern": "(?u)\\b\\w\\w+\\b"
+          }
+        ]
+      },
+      "featureCount": 906,
+      "historicalTestDiagnostics": {
+        "byGenre": {
+          "essay": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 5,
+            "auroc": 1.0,
+            "binaryAssessed": 5,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 3,
+              "tp": 2
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 3,
+              "assessedDenominator": 3,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "falsePositiveRate": {
+                "lower": 5.551115123125783e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 3,
+                "upper": 0.5614970317550454
+              },
+              "recallAssessed": {
+                "lower": 0.34238022750665303,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 2,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.03359415323212878,
+            "total": 5
+          },
+          "fiction": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 5,
+            "auroc": 1.0,
+            "binaryAssessed": 5,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 3,
+              "tp": 2
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 3,
+              "assessedDenominator": 3,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "falsePositiveRate": {
+                "lower": 5.551115123125783e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 3,
+                "upper": 0.5614970317550454
+              },
+              "recallAssessed": {
+                "lower": 0.34238022750665303,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 2,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.03359415323212878,
+            "total": 5
+          },
+          "memoir": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 5,
+            "auroc": 1.0,
+            "binaryAssessed": 5,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 3,
+              "tp": 2
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 3,
+              "assessedDenominator": 3,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "falsePositiveRate": {
+                "lower": 5.551115123125783e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 3,
+                "upper": 0.5614970317550454
+              },
+              "recallAssessed": {
+                "lower": 0.34238022750665303,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 2,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.03359415323212878,
+            "total": 5
+          },
+          "travel": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 5,
+            "auroc": 1.0,
+            "binaryAssessed": 5,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 3,
+              "tp": 2
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 3,
+              "assessedDenominator": 3,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "falsePositiveRate": {
+                "lower": 5.551115123125783e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 3,
+                "upper": 0.5614970317550454
+              },
+              "recallAssessed": {
+                "lower": 0.34238022750665303,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 2,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.03359415323212878,
+            "total": 5
+          }
+        },
+        "byLanguage": {
+          "en": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 10,
+            "auroc": 1.0,
+            "binaryAssessed": 10,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 6,
+              "tp": 4
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 6,
+              "assessedDenominator": 6,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.7224672001371107,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 10,
+                "upper": 0.9999999999999999
+              },
+              "coverage": {
+                "lower": 0.7224672001371107,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 10,
+                "upper": 0.9999999999999999
+              },
+              "falsePositiveRate": {
+                "lower": 2.7755575615628914e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 6,
+                "upper": 0.3903342879021653
+              },
+              "recallAssessed": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.03359415323212878,
+            "total": 10
+          },
+          "sv": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 10,
+            "auroc": 1.0,
+            "binaryAssessed": 10,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 6,
+              "tp": 4
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 6,
+              "assessedDenominator": 6,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.7224672001371107,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 10,
+                "upper": 0.9999999999999999
+              },
+              "coverage": {
+                "lower": 0.7224672001371107,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 10,
+                "upper": 0.9999999999999999
+              },
+              "falsePositiveRate": {
+                "lower": 2.7755575615628914e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 6,
+                "upper": 0.3903342879021653
+              },
+              "recallAssessed": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.03359415323212878,
+            "total": 10
+          }
+        },
+        "byLength": {
+          "long": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 3,
+            "auroc": null,
+            "binaryAssessed": 3,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 0,
+              "tp": 3
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": null,
+            "humanFalsePositives": {
+              "allHumanDenominator": 0,
+              "assessedDenominator": 0,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.4385029682449546,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 3,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.4385029682449546,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 3,
+                "upper": 1
+              },
+              "falsePositiveRate": null,
+              "recallAssessed": {
+                "lower": 0.4385029682449546,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 3,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.03359415323212878,
+            "total": 3
+          },
+          "medium": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 17,
+            "auroc": 1.0,
+            "binaryAssessed": 17,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 12,
+              "tp": 5
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 12,
+              "assessedDenominator": 12,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.8156818649911483,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 17,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.8156818649911483,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 17,
+                "upper": 1
+              },
+              "falsePositiveRate": {
+                "lower": 2.7755575615628914e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 12,
+                "upper": 0.24249400665524085
+              },
+              "recallAssessed": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.03359415323212878,
+            "total": 17
+          }
+        },
+        "byModel": {
+          "(human)": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 12,
+            "auroc": null,
+            "binaryAssessed": 12,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 12,
+              "tp": 0
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": null,
+            "falseNegativeRate": null,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 12,
+              "assessedDenominator": 12,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.7575059933447592,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 12,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.7575059933447592,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 12,
+                "upper": 1
+              },
+              "falsePositiveRate": {
+                "lower": 2.7755575615628914e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 12,
+                "upper": 0.24249400665524085
+              },
+              "recallAssessed": null
+            },
+            "precision": null,
+            "recallAllAI": null,
+            "recallAssessed": null,
+            "threshold": -0.03359415323212878,
+            "total": 12
+          },
+          "llama3.2:3b": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 4,
+            "auroc": null,
+            "binaryAssessed": 4,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 0,
+              "tp": 4
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": null,
+            "humanFalsePositives": {
+              "allHumanDenominator": 0,
+              "assessedDenominator": 0,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              },
+              "falsePositiveRate": null,
+              "recallAssessed": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.03359415323212878,
+            "total": 4
+          },
+          "qwen3.5:4b": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 4,
+            "auroc": null,
+            "binaryAssessed": 4,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 0,
+              "tp": 4
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": null,
+            "humanFalsePositives": {
+              "allHumanDenominator": 0,
+              "assessedDenominator": 0,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              },
+              "falsePositiveRate": null,
+              "recallAssessed": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.03359415323212878,
+            "total": 4
+          }
+        },
+        "evaluatedSplit": "test",
+        "evidenceUse": "historical-development-diagnostic",
+        "humanSourceGroups": {
+          "assessed": 4,
+          "estimand": "Fraction of source groups with at least one assessed human excerpt flagged; distinct from excerpt-level FPR.",
+          "interval95": {
+            "lower": 0,
+            "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+            "n": 4,
+            "upper": 0.4898908364545973
+          },
+          "rateWithAnyFalsePositive": 0.0,
+          "total": 4,
+          "warning": "Convenience sample of source groups. Interval assumes independent exchangeable groups; no population guarantee.",
+          "withAnyFalsePositive": 0
+        },
+        "independentEvidence": false,
+        "overall": {
+          "abstained": 0,
+          "abstentionsByLabel": {
+            "ai": 0,
+            "ai-edited": 0,
+            "human": 0
+          },
+          "accuracyAssessed": 1.0,
+          "aiEdited": {
+            "assessed": 0,
+            "flagged": 0,
+            "total": 0
+          },
+          "assessed": 20,
+          "auroc": 1.0,
+          "binaryAssessed": 20,
+          "calibration": {
+            "available": false,
+            "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+          },
+          "confusion": {
+            "fn": 0,
+            "fp": 0,
+            "tn": 12,
+            "tp": 8
+          },
+          "coverage": 1.0,
+          "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+          "f1": 1.0,
+          "falseNegativeRate": 0.0,
+          "falsePositiveRate": 0.0,
+          "humanFalsePositives": {
+            "allHumanDenominator": 12,
+            "assessedDenominator": 12,
+            "count": 0
+          },
+          "intervals95": {
+            "accuracyAssessed": {
+              "lower": 0.8388748419471806,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 20,
+              "upper": 1
+            },
+            "coverage": {
+              "lower": 0.8388748419471806,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 20,
+              "upper": 1
+            },
+            "falsePositiveRate": {
+              "lower": 2.7755575615628914e-17,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 12,
+              "upper": 0.24249400665524085
+            },
+            "recallAssessed": {
+              "lower": 0.6755924351161198,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 8,
+              "upper": 1
+            }
+          },
+          "precision": 1.0,
+          "recallAllAI": 1.0,
+          "recallAssessed": 1.0,
+          "threshold": -0.03359415323212878,
+          "total": 20
+        },
+        "predictions": [
+          {
+            "abstentionReasons": [],
+            "author_id": "mary-wollstonecraft",
+            "document_id": "pg3420",
+            "genre": "essay",
+            "label": "human",
+            "language": "en",
+            "model": "(human)",
+            "score": -0.14405560508464715,
+            "source_group_id": "pg3420",
+            "source_id": "pg3420-h1",
+            "split": "test",
+            "words": 229
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "mary-wollstonecraft",
+            "document_id": "pg3420",
+            "genre": "essay",
+            "label": "human",
+            "language": "en",
+            "model": "(human)",
+            "score": -0.23099144693892182,
+            "source_group_id": "pg3420",
+            "source_id": "pg3420-h2",
+            "split": "test",
+            "words": 187
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "mary-wollstonecraft",
+            "document_id": "pg3420",
+            "genre": "essay",
+            "label": "human",
+            "language": "en",
+            "model": "(human)",
+            "score": -0.2164346828842345,
+            "source_group_id": "pg3420",
+            "source_id": "pg3420-h3",
+            "split": "test",
+            "words": 296
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "henry-david-thoreau",
+            "document_id": "pg205",
+            "genre": "memoir",
+            "label": "human",
+            "language": "en",
+            "model": "(human)",
+            "score": -0.336315554109289,
+            "source_group_id": "pg205",
+            "source_id": "pg205-h1",
+            "split": "test",
+            "words": 262
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "henry-david-thoreau",
+            "document_id": "pg205",
+            "genre": "memoir",
+            "label": "human",
+            "language": "en",
+            "model": "(human)",
+            "score": -0.2273267128734366,
+            "source_group_id": "pg205",
+            "source_id": "pg205-h2",
+            "split": "test",
+            "words": 214
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "henry-david-thoreau",
+            "document_id": "pg205",
+            "genre": "memoir",
+            "label": "human",
+            "language": "en",
+            "model": "(human)",
+            "score": -0.37691854924896007,
+            "source_group_id": "pg205",
+            "source_id": "pg205-h3",
+            "split": "test",
+            "words": 276
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "emilie-flygare-carlen",
+            "document_id": "pg46538",
+            "genre": "fiction",
+            "label": "human",
+            "language": "sv",
+            "model": "(human)",
+            "score": -0.24172473841007153,
+            "source_group_id": "pg46538",
+            "source_id": "pg46538-h1",
+            "split": "test",
+            "words": 194
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "emilie-flygare-carlen",
+            "document_id": "pg46538",
+            "genre": "fiction",
+            "label": "human",
+            "language": "sv",
+            "model": "(human)",
+            "score": -0.36388098758335147,
+            "source_group_id": "pg46538",
+            "source_id": "pg46538-h2",
+            "split": "test",
+            "words": 209
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "emilie-flygare-carlen",
+            "document_id": "pg46538",
+            "genre": "fiction",
+            "label": "human",
+            "language": "sv",
+            "model": "(human)",
+            "score": -0.27394293057558206,
+            "source_group_id": "pg46538",
+            "source_id": "pg46538-h3",
+            "split": "test",
+            "words": 189
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "georg-august-wallin",
+            "document_id": "pg59646",
+            "genre": "travel",
+            "label": "human",
+            "language": "sv",
+            "model": "(human)",
+            "score": -0.20887202015374662,
+            "source_group_id": "pg59646",
+            "source_id": "pg59646-h1",
+            "split": "test",
+            "words": 276
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "georg-august-wallin",
+            "document_id": "pg59646",
+            "genre": "travel",
+            "label": "human",
+            "language": "sv",
+            "model": "(human)",
+            "score": -0.1931911908256987,
+            "source_group_id": "pg59646",
+            "source_id": "pg59646-h2",
+            "split": "test",
+            "words": 288
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "georg-august-wallin",
+            "document_id": "pg59646",
+            "genre": "travel",
+            "label": "human",
+            "language": "sv",
+            "model": "(human)",
+            "score": -0.2546473573573007,
+            "source_group_id": "pg59646",
+            "source_id": "pg59646-h3",
+            "split": "test",
+            "words": 278
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg3420",
+            "document_id": "generation-pg3420",
+            "genre": "essay",
+            "label": "ai",
+            "language": "en",
+            "model": "llama3.2:3b",
+            "score": 0.02480586221482671,
+            "source_group_id": "pg3420",
+            "source_id": "pg3420-ai-llama3-2-3b",
+            "split": "test",
+            "words": 216
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg205",
+            "document_id": "generation-pg205",
+            "genre": "memoir",
+            "label": "ai",
+            "language": "en",
+            "model": "llama3.2:3b",
+            "score": 0.11746532126393129,
+            "source_group_id": "pg205",
+            "source_id": "pg205-ai-llama3-2-3b",
+            "split": "test",
+            "words": 212
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg46538",
+            "document_id": "generation-pg46538",
+            "genre": "fiction",
+            "label": "ai",
+            "language": "sv",
+            "model": "llama3.2:3b",
+            "score": 0.21511718905152444,
+            "source_group_id": "pg46538",
+            "source_id": "pg46538-ai-llama3-2-3b",
+            "split": "test",
+            "words": 234
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg59646",
+            "document_id": "generation-pg59646",
+            "genre": "travel",
+            "label": "ai",
+            "language": "sv",
+            "model": "llama3.2:3b",
+            "score": 0.27964113821211944,
+            "source_group_id": "pg59646",
+            "source_id": "pg59646-ai-llama3-2-3b",
+            "split": "test",
+            "words": 229
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg3420",
+            "document_id": "generation-pg3420",
+            "genre": "essay",
+            "label": "ai",
+            "language": "en",
+            "model": "qwen3.5:4b",
+            "score": 0.05509317096308432,
+            "source_group_id": "pg3420",
+            "source_id": "pg3420-ai-qwen3-5-4b",
+            "split": "test",
+            "words": 302
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg205",
+            "document_id": "generation-pg205",
+            "genre": "memoir",
+            "label": "ai",
+            "language": "en",
+            "model": "qwen3.5:4b",
+            "score": -0.01684634892622587,
+            "source_group_id": "pg205",
+            "source_id": "pg205-ai-qwen3-5-4b",
+            "split": "test",
+            "words": 323
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg46538",
+            "document_id": "generation-pg46538",
+            "genre": "fiction",
+            "label": "ai",
+            "language": "sv",
+            "model": "qwen3.5:4b",
+            "score": 0.28699944411451855,
+            "source_group_id": "pg46538",
+            "source_id": "pg46538-ai-qwen3-5-4b",
+            "split": "test",
+            "words": 307
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg59646",
+            "document_id": "generation-pg59646",
+            "genre": "travel",
+            "label": "ai",
+            "language": "sv",
+            "model": "qwen3.5:4b",
+            "score": 0.2495363636637697,
+            "source_group_id": "pg59646",
+            "source_id": "pg59646-ai-qwen3-5-4b",
+            "split": "test",
+            "words": 291
+          }
+        ],
+        "testSourceGroups": 4,
+        "usedForSelection": false,
+        "warning": "The existing test split was already inspected in V3. These are reused historical diagnostics, not new independent results."
+      },
+      "name": "word_1_2",
+      "scoreSemantics": "uncalibrated_logistic_margin",
+      "source": "train-only-fit",
+      "training": {
+        "authors": [
+          "august-strindberg",
+          "charles-darwin",
+          "charles-dickens",
+          "commission-pg1342",
+          "commission-pg1400",
+          "commission-pg14144",
+          "commission-pg2009",
+          "commission-pg28610",
+          "commission-pg30078",
+          "jane-austen",
+          "per-teodor-cleve",
+          "viktor-rydberg"
+        ],
+        "documentIds": [
+          "generation-pg1342",
+          "generation-pg1400",
+          "generation-pg14144",
+          "generation-pg2009",
+          "generation-pg28610",
+          "generation-pg30078",
+          "pg1342",
+          "pg1400",
+          "pg14144",
+          "pg2009",
+          "pg28610",
+          "pg30078"
+        ],
+        "normalizedTextSha256": [
+          "0046d7ba1dce2489515283f369f41fe3c2f068d78824a702dbcb58d61e2ff980",
+          "12431e27183d22b0947346ee4e32545f98961a5a9c8f02c3e98fa7e6d6cc774e",
+          "1385864ca27f3dafa51c6fcfa3807abde46d45efc99b127304ae57b2c420c372",
+          "15ebd3db305b43bdaaf2d06930a48f2c44ade276b34d4d7f3400413d39bb4133",
+          "21d18271002a2d5f8475992492284ce824826039347677b5508c18ba00da369e",
+          "35b07d06e9de6765f749dff48d1a3433fd180b19eccb40bb7054bd2a4cb33e7a",
+          "36760547ab63fe223a3208f31b883a908f50bc450e919ef6585e4d78eb547451",
+          "379acf1e98cc8b1931604566f031051711073d93dba6a0da23ac1e008bf224eb",
+          "473b37fd84fc64054c71df7887614389a3bac3d398f59d30f27d7ca41d358df5",
+          "5de415b6a9780e4a64f8b2e71555afea85838729803841bb97b78cf0d7251f23",
+          "6471f61ea73bf7e5f8b4916d0a20b8442a4b3d56f5924c76d5a1975f2695a8f7",
+          "720f2d4e0ede355e7aecc16e4d8e1c4264d2fef63edf7f96c6c5e27069a58991",
+          "743831b80c0c2c74c171272fe5e3971f7d613e51ec02e7d2a40e413ed6add0a8",
+          "81ed8e9a643ef2be2a3f806117f84d40c3e7ae5332fe3f221370be0bd1232012",
+          "9539d057a64c46ad08dd576a49de94ce6a8c21d5559673789b671ae8b9dd46f5",
+          "956d5af4096c0a3182d758589444096941952367e3fd1c3f5a81a93f88a58d2e",
+          "9cd598aa439e6b6dddcb417f7242bc5bbca1126d4b365d90cb85da800ea11ec0",
+          "9dd10fb06f5b79057cf9b403f2e5d0fca462789cbda17e6e3126ac16f3c8a6a9",
+          "a5305284d10dbb03208b0fb58be627b259313952082370c685eb9311792e891d",
+          "ac9512dc4a09ae546075cba13e33dadf878f71680f2b69c9fe1fcc32adfa70ec",
+          "b7eba11b6f746902fcc3b7f4563ae276c2b6d5feaa9df7d6761965f939826df0",
+          "bb5b70c2a7e7753a5c7e05f3212140cb08b7ddce32dea0a7f131cec55e083f70",
+          "c3b108f96facab6793c8938f6ab1bc40c94369db4db496f56d201d501faf5325",
+          "c535da2bc96fc7d6946172b77789a56b9fac5c458766c04f76a5e3ff885eb8d3",
+          "d78055e92ba023e8f32b17eb10c80e151783218018dd4b75751b035660246d36",
+          "e8417c5a882dcc726a28aeceb1b7890efe459e19a4e398d752c62b53013da1f6",
+          "f035d5c1f69dd207e9bd6b0865c0073642ed11c721646b154be36d7b04e98bfe",
+          "f0b664833cad9bc059cb09ecf846ccfe807548b9ca209efcb70dce16891cc14e",
+          "f240b32ee237a3c0cfbd782e13f3df12337fe625b967d78d3f4138c7cb1f8644",
+          "ff7149086255f8c12cf00c415825fc230047814555eaf5e415651e427f4207f7"
+        ],
+        "rowCount": 30,
+        "rowsSha256": "4df1fa0a518c71ccaff9a6fca8a9d3204d5956c85b274dc6f93793ed6144394e",
+        "sourceGroups": [
+          "pg1342",
+          "pg1400",
+          "pg14144",
+          "pg2009",
+          "pg28610",
+          "pg30078"
+        ],
+        "sourceIds": [
+          "pg1342-ai-llama3-2-3b",
+          "pg1342-ai-qwen3-5-4b",
+          "pg1342-h1",
+          "pg1342-h2",
+          "pg1342-h3",
+          "pg1400-ai-llama3-2-3b",
+          "pg1400-ai-qwen3-5-4b",
+          "pg1400-h1",
+          "pg1400-h2",
+          "pg1400-h3",
+          "pg14144-ai-llama3-2-3b",
+          "pg14144-ai-qwen3-5-4b",
+          "pg14144-h1",
+          "pg14144-h2",
+          "pg14144-h3",
+          "pg2009-ai-llama3-2-3b",
+          "pg2009-ai-qwen3-5-4b",
+          "pg2009-h1",
+          "pg2009-h2",
+          "pg2009-h3",
+          "pg28610-ai-llama3-2-3b",
+          "pg28610-ai-qwen3-5-4b",
+          "pg28610-h1",
+          "pg28610-h2",
+          "pg28610-h3",
+          "pg30078-ai-llama3-2-3b",
+          "pg30078-ai-qwen3-5-4b",
+          "pg30078-h1",
+          "pg30078-h2",
+          "pg30078-h3"
+        ],
+        "split": "train"
+      },
+      "validation": {
+        "maxObservedHumanFPR": 0.05,
+        "metrics": {
+          "abstained": 0,
+          "abstentionsByLabel": {
+            "ai": 0,
+            "ai-edited": 0,
+            "human": 0
+          },
+          "accuracyAssessed": 0.9,
+          "aiEdited": {
+            "assessed": 0,
+            "flagged": 0,
+            "total": 0
+          },
+          "assessed": 10,
+          "auroc": 0.9583333333333334,
+          "binaryAssessed": 10,
+          "calibration": {
+            "available": false,
+            "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+          },
+          "confusion": {
+            "fn": 1,
+            "fp": 0,
+            "tn": 6,
+            "tp": 3
+          },
+          "coverage": 1.0,
+          "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+          "f1": 0.8571428571428571,
+          "falseNegativeRate": 0.25,
+          "falsePositiveRate": 0.0,
+          "humanFalsePositives": {
+            "allHumanDenominator": 6,
+            "assessedDenominator": 6,
+            "count": 0
+          },
+          "intervals95": {
+            "accuracyAssessed": {
+              "lower": 0.5958499732047615,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 10,
+              "upper": 0.9821237869049271
+            },
+            "coverage": {
+              "lower": 0.7224672001371107,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 10,
+              "upper": 0.9999999999999999
+            },
+            "falsePositiveRate": {
+              "lower": 2.7755575615628914e-17,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 6,
+              "upper": 0.3903342879021653
+            },
+            "recallAssessed": {
+              "lower": 0.30064184258240184,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 4,
+              "upper": 0.9544127391902995
+            }
+          },
+          "precision": 1.0,
+          "recallAllAI": 0.75,
+          "recallAssessed": 0.75,
+          "threshold": -0.03359415323212878,
+          "total": 10
+        },
+        "objective": "maximize recallAllAI subject to observed validation human FPR <= configured maximum",
+        "selectionSplit": "validation",
+        "threshold": -0.03359415323212878,
+        "tieBreak": "lower observed human FPR, then lower threshold",
+        "warning": "The FPR constraint is empirical, not a statistical upper bound. Small validation groups cannot establish a low population FPR."
+      },
+      "weightsSha256": "3bf3d9cc6d2a248c029cc12d18a4c0b7a8645fe53126a9f4e8afceb3e0b11253"
+    },
+    {
+      "config": {
+        "classifier": {
+          "C": 1.0,
+          "class_weight": "balanced",
+          "max_iter": 1000,
+          "name": "LogisticRegression",
+          "random_state": 42,
+          "solver": "liblinear"
+        },
+        "combination": "equal-block-weights-then-global-l2",
+        "vectorizers": [
+          {
+            "analyzer": "word",
+            "lowercase": true,
+            "max_features": 10000,
+            "min_df": 2,
+            "ngram_range": [
+              1,
+              2
+            ],
+            "norm": "l2",
+            "smooth_idf": true,
+            "sublinear_tf": true,
+            "token_pattern": "(?u)\\b\\w\\w+\\b"
+          },
+          {
+            "analyzer": "char",
+            "lowercase": true,
+            "max_features": 20000,
+            "min_df": 2,
+            "ngram_range": [
+              3,
+              5
+            ],
+            "norm": "l2",
+            "smooth_idf": true,
+            "sublinear_tf": true
+          }
+        ]
+      },
+      "featureCount": 15394,
+      "historicalTestDiagnostics": {
+        "byGenre": {
+          "essay": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 5,
+            "auroc": 1.0,
+            "binaryAssessed": 5,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 3,
+              "tp": 2
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 3,
+              "assessedDenominator": 3,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "falsePositiveRate": {
+                "lower": 5.551115123125783e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 3,
+                "upper": 0.5614970317550454
+              },
+              "recallAssessed": {
+                "lower": 0.34238022750665303,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 2,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.09370718341935899,
+            "total": 5
+          },
+          "fiction": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 5,
+            "auroc": 1.0,
+            "binaryAssessed": 5,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 3,
+              "tp": 2
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 3,
+              "assessedDenominator": 3,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "falsePositiveRate": {
+                "lower": 5.551115123125783e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 3,
+                "upper": 0.5614970317550454
+              },
+              "recallAssessed": {
+                "lower": 0.34238022750665303,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 2,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.09370718341935899,
+            "total": 5
+          },
+          "memoir": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 5,
+            "auroc": 1.0,
+            "binaryAssessed": 5,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 3,
+              "tp": 2
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 3,
+              "assessedDenominator": 3,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "falsePositiveRate": {
+                "lower": 5.551115123125783e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 3,
+                "upper": 0.5614970317550454
+              },
+              "recallAssessed": {
+                "lower": 0.34238022750665303,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 2,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.09370718341935899,
+            "total": 5
+          },
+          "travel": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 5,
+            "auroc": 1.0,
+            "binaryAssessed": 5,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 3,
+              "tp": 2
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 3,
+              "assessedDenominator": 3,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              },
+              "falsePositiveRate": {
+                "lower": 5.551115123125783e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 3,
+                "upper": 0.5614970317550454
+              },
+              "recallAssessed": {
+                "lower": 0.34238022750665303,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 2,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.09370718341935899,
+            "total": 5
+          }
+        },
+        "byLanguage": {
+          "en": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 10,
+            "auroc": 1.0,
+            "binaryAssessed": 10,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 6,
+              "tp": 4
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 6,
+              "assessedDenominator": 6,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.7224672001371107,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 10,
+                "upper": 0.9999999999999999
+              },
+              "coverage": {
+                "lower": 0.7224672001371107,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 10,
+                "upper": 0.9999999999999999
+              },
+              "falsePositiveRate": {
+                "lower": 2.7755575615628914e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 6,
+                "upper": 0.3903342879021653
+              },
+              "recallAssessed": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.09370718341935899,
+            "total": 10
+          },
+          "sv": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 10,
+            "auroc": 1.0,
+            "binaryAssessed": 10,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 6,
+              "tp": 4
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 6,
+              "assessedDenominator": 6,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.7224672001371107,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 10,
+                "upper": 0.9999999999999999
+              },
+              "coverage": {
+                "lower": 0.7224672001371107,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 10,
+                "upper": 0.9999999999999999
+              },
+              "falsePositiveRate": {
+                "lower": 2.7755575615628914e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 6,
+                "upper": 0.3903342879021653
+              },
+              "recallAssessed": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.09370718341935899,
+            "total": 10
+          }
+        },
+        "byLength": {
+          "long": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 3,
+            "auroc": null,
+            "binaryAssessed": 3,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 0,
+              "tp": 3
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": null,
+            "humanFalsePositives": {
+              "allHumanDenominator": 0,
+              "assessedDenominator": 0,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.4385029682449546,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 3,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.4385029682449546,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 3,
+                "upper": 1
+              },
+              "falsePositiveRate": null,
+              "recallAssessed": {
+                "lower": 0.4385029682449546,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 3,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.09370718341935899,
+            "total": 3
+          },
+          "medium": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 17,
+            "auroc": 1.0,
+            "binaryAssessed": 17,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 12,
+              "tp": 5
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 12,
+              "assessedDenominator": 12,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.8156818649911483,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 17,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.8156818649911483,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 17,
+                "upper": 1
+              },
+              "falsePositiveRate": {
+                "lower": 2.7755575615628914e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 12,
+                "upper": 0.24249400665524085
+              },
+              "recallAssessed": {
+                "lower": 0.5655175352168251,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 5,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.09370718341935899,
+            "total": 17
+          }
+        },
+        "byModel": {
+          "(human)": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 12,
+            "auroc": null,
+            "binaryAssessed": 12,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 12,
+              "tp": 0
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": null,
+            "falseNegativeRate": null,
+            "falsePositiveRate": 0.0,
+            "humanFalsePositives": {
+              "allHumanDenominator": 12,
+              "assessedDenominator": 12,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.7575059933447592,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 12,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.7575059933447592,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 12,
+                "upper": 1
+              },
+              "falsePositiveRate": {
+                "lower": 2.7755575615628914e-17,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 12,
+                "upper": 0.24249400665524085
+              },
+              "recallAssessed": null
+            },
+            "precision": null,
+            "recallAllAI": null,
+            "recallAssessed": null,
+            "threshold": -0.09370718341935899,
+            "total": 12
+          },
+          "llama3.2:3b": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 4,
+            "auroc": null,
+            "binaryAssessed": 4,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 0,
+              "tp": 4
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": null,
+            "humanFalsePositives": {
+              "allHumanDenominator": 0,
+              "assessedDenominator": 0,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              },
+              "falsePositiveRate": null,
+              "recallAssessed": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.09370718341935899,
+            "total": 4
+          },
+          "qwen3.5:4b": {
+            "abstained": 0,
+            "abstentionsByLabel": {
+              "ai": 0,
+              "ai-edited": 0,
+              "human": 0
+            },
+            "accuracyAssessed": 1.0,
+            "aiEdited": {
+              "assessed": 0,
+              "flagged": 0,
+              "total": 0
+            },
+            "assessed": 4,
+            "auroc": null,
+            "binaryAssessed": 4,
+            "calibration": {
+              "available": false,
+              "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+            },
+            "confusion": {
+              "fn": 0,
+              "fp": 0,
+              "tn": 0,
+              "tp": 4
+            },
+            "coverage": 1.0,
+            "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+            "f1": 1.0,
+            "falseNegativeRate": 0.0,
+            "falsePositiveRate": null,
+            "humanFalsePositives": {
+              "allHumanDenominator": 0,
+              "assessedDenominator": 0,
+              "count": 0
+            },
+            "intervals95": {
+              "accuracyAssessed": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              },
+              "coverage": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              },
+              "falsePositiveRate": null,
+              "recallAssessed": {
+                "lower": 0.5101091635454027,
+                "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+                "n": 4,
+                "upper": 1
+              }
+            },
+            "precision": 1.0,
+            "recallAllAI": 1.0,
+            "recallAssessed": 1.0,
+            "threshold": -0.09370718341935899,
+            "total": 4
+          }
+        },
+        "evaluatedSplit": "test",
+        "evidenceUse": "historical-development-diagnostic",
+        "humanSourceGroups": {
+          "assessed": 4,
+          "estimand": "Fraction of source groups with at least one assessed human excerpt flagged; distinct from excerpt-level FPR.",
+          "interval95": {
+            "lower": 0,
+            "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+            "n": 4,
+            "upper": 0.4898908364545973
+          },
+          "rateWithAnyFalsePositive": 0.0,
+          "total": 4,
+          "warning": "Convenience sample of source groups. Interval assumes independent exchangeable groups; no population guarantee.",
+          "withAnyFalsePositive": 0
+        },
+        "independentEvidence": false,
+        "overall": {
+          "abstained": 0,
+          "abstentionsByLabel": {
+            "ai": 0,
+            "ai-edited": 0,
+            "human": 0
+          },
+          "accuracyAssessed": 1.0,
+          "aiEdited": {
+            "assessed": 0,
+            "flagged": 0,
+            "total": 0
+          },
+          "assessed": 20,
+          "auroc": 1.0,
+          "binaryAssessed": 20,
+          "calibration": {
+            "available": false,
+            "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+          },
+          "confusion": {
+            "fn": 0,
+            "fp": 0,
+            "tn": 12,
+            "tp": 8
+          },
+          "coverage": 1.0,
+          "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+          "f1": 1.0,
+          "falseNegativeRate": 0.0,
+          "falsePositiveRate": 0.0,
+          "humanFalsePositives": {
+            "allHumanDenominator": 12,
+            "assessedDenominator": 12,
+            "count": 0
+          },
+          "intervals95": {
+            "accuracyAssessed": {
+              "lower": 0.8388748419471806,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 20,
+              "upper": 1
+            },
+            "coverage": {
+              "lower": 0.8388748419471806,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 20,
+              "upper": 1
+            },
+            "falsePositiveRate": {
+              "lower": 2.7755575615628914e-17,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 12,
+              "upper": 0.24249400665524085
+            },
+            "recallAssessed": {
+              "lower": 0.6755924351161198,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 8,
+              "upper": 1
+            }
+          },
+          "precision": 1.0,
+          "recallAllAI": 1.0,
+          "recallAssessed": 1.0,
+          "threshold": -0.09370718341935899,
+          "total": 20
+        },
+        "predictions": [
+          {
+            "abstentionReasons": [],
+            "author_id": "mary-wollstonecraft",
+            "document_id": "pg3420",
+            "genre": "essay",
+            "label": "human",
+            "language": "en",
+            "model": "(human)",
+            "score": -0.12890841512569778,
+            "source_group_id": "pg3420",
+            "source_id": "pg3420-h1",
+            "split": "test",
+            "words": 229
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "mary-wollstonecraft",
+            "document_id": "pg3420",
+            "genre": "essay",
+            "label": "human",
+            "language": "en",
+            "model": "(human)",
+            "score": -0.1894865587834462,
+            "source_group_id": "pg3420",
+            "source_id": "pg3420-h2",
+            "split": "test",
+            "words": 187
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "mary-wollstonecraft",
+            "document_id": "pg3420",
+            "genre": "essay",
+            "label": "human",
+            "language": "en",
+            "model": "(human)",
+            "score": -0.14758530892903549,
+            "source_group_id": "pg3420",
+            "source_id": "pg3420-h3",
+            "split": "test",
+            "words": 296
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "henry-david-thoreau",
+            "document_id": "pg205",
+            "genre": "memoir",
+            "label": "human",
+            "language": "en",
+            "model": "(human)",
+            "score": -0.27416838662738674,
+            "source_group_id": "pg205",
+            "source_id": "pg205-h1",
+            "split": "test",
+            "words": 262
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "henry-david-thoreau",
+            "document_id": "pg205",
+            "genre": "memoir",
+            "label": "human",
+            "language": "en",
+            "model": "(human)",
+            "score": -0.1903406304219798,
+            "source_group_id": "pg205",
+            "source_id": "pg205-h2",
+            "split": "test",
+            "words": 214
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "henry-david-thoreau",
+            "document_id": "pg205",
+            "genre": "memoir",
+            "label": "human",
+            "language": "en",
+            "model": "(human)",
+            "score": -0.29606755840532595,
+            "source_group_id": "pg205",
+            "source_id": "pg205-h3",
+            "split": "test",
+            "words": 276
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "emilie-flygare-carlen",
+            "document_id": "pg46538",
+            "genre": "fiction",
+            "label": "human",
+            "language": "sv",
+            "model": "(human)",
+            "score": -0.18481937946826696,
+            "source_group_id": "pg46538",
+            "source_id": "pg46538-h1",
+            "split": "test",
+            "words": 194
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "emilie-flygare-carlen",
+            "document_id": "pg46538",
+            "genre": "fiction",
+            "label": "human",
+            "language": "sv",
+            "model": "(human)",
+            "score": -0.24284873111649746,
+            "source_group_id": "pg46538",
+            "source_id": "pg46538-h2",
+            "split": "test",
+            "words": 209
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "emilie-flygare-carlen",
+            "document_id": "pg46538",
+            "genre": "fiction",
+            "label": "human",
+            "language": "sv",
+            "model": "(human)",
+            "score": -0.22612226214420994,
+            "source_group_id": "pg46538",
+            "source_id": "pg46538-h3",
+            "split": "test",
+            "words": 189
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "georg-august-wallin",
+            "document_id": "pg59646",
+            "genre": "travel",
+            "label": "human",
+            "language": "sv",
+            "model": "(human)",
+            "score": -0.18963593910063345,
+            "source_group_id": "pg59646",
+            "source_id": "pg59646-h1",
+            "split": "test",
+            "words": 276
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "georg-august-wallin",
+            "document_id": "pg59646",
+            "genre": "travel",
+            "label": "human",
+            "language": "sv",
+            "model": "(human)",
+            "score": -0.18417153355998883,
+            "source_group_id": "pg59646",
+            "source_id": "pg59646-h2",
+            "split": "test",
+            "words": 288
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "georg-august-wallin",
+            "document_id": "pg59646",
+            "genre": "travel",
+            "label": "human",
+            "language": "sv",
+            "model": "(human)",
+            "score": -0.18860584960006604,
+            "source_group_id": "pg59646",
+            "source_id": "pg59646-h3",
+            "split": "test",
+            "words": 278
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg3420",
+            "document_id": "generation-pg3420",
+            "genre": "essay",
+            "label": "ai",
+            "language": "en",
+            "model": "llama3.2:3b",
+            "score": 0.0376991714506677,
+            "source_group_id": "pg3420",
+            "source_id": "pg3420-ai-llama3-2-3b",
+            "split": "test",
+            "words": 216
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg205",
+            "document_id": "generation-pg205",
+            "genre": "memoir",
+            "label": "ai",
+            "language": "en",
+            "model": "llama3.2:3b",
+            "score": 0.06639994564099219,
+            "source_group_id": "pg205",
+            "source_id": "pg205-ai-llama3-2-3b",
+            "split": "test",
+            "words": 212
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg46538",
+            "document_id": "generation-pg46538",
+            "genre": "fiction",
+            "label": "ai",
+            "language": "sv",
+            "model": "llama3.2:3b",
+            "score": 0.1621011953049018,
+            "source_group_id": "pg46538",
+            "source_id": "pg46538-ai-llama3-2-3b",
+            "split": "test",
+            "words": 234
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg59646",
+            "document_id": "generation-pg59646",
+            "genre": "travel",
+            "label": "ai",
+            "language": "sv",
+            "model": "llama3.2:3b",
+            "score": 0.20759312816361186,
+            "source_group_id": "pg59646",
+            "source_id": "pg59646-ai-llama3-2-3b",
+            "split": "test",
+            "words": 229
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg3420",
+            "document_id": "generation-pg3420",
+            "genre": "essay",
+            "label": "ai",
+            "language": "en",
+            "model": "qwen3.5:4b",
+            "score": 0.038802669798085165,
+            "source_group_id": "pg3420",
+            "source_id": "pg3420-ai-qwen3-5-4b",
+            "split": "test",
+            "words": 302
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg205",
+            "document_id": "generation-pg205",
+            "genre": "memoir",
+            "label": "ai",
+            "language": "en",
+            "model": "qwen3.5:4b",
+            "score": -0.005431259969984503,
+            "source_group_id": "pg205",
+            "source_id": "pg205-ai-qwen3-5-4b",
+            "split": "test",
+            "words": 323
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg46538",
+            "document_id": "generation-pg46538",
+            "genre": "fiction",
+            "label": "ai",
+            "language": "sv",
+            "model": "qwen3.5:4b",
+            "score": 0.2167377699924955,
+            "source_group_id": "pg46538",
+            "source_id": "pg46538-ai-qwen3-5-4b",
+            "split": "test",
+            "words": 307
+          },
+          {
+            "abstentionReasons": [],
+            "author_id": "commission-pg59646",
+            "document_id": "generation-pg59646",
+            "genre": "travel",
+            "label": "ai",
+            "language": "sv",
+            "model": "qwen3.5:4b",
+            "score": 0.2077681835843438,
+            "source_group_id": "pg59646",
+            "source_id": "pg59646-ai-qwen3-5-4b",
+            "split": "test",
+            "words": 291
+          }
+        ],
+        "testSourceGroups": 4,
+        "usedForSelection": false,
+        "warning": "The existing test split was already inspected in V3. These are reused historical diagnostics, not new independent results."
+      },
+      "name": "word_char_1_2_3_5",
+      "scoreSemantics": "uncalibrated_logistic_margin",
+      "source": "train-only-fit",
+      "training": {
+        "authors": [
+          "august-strindberg",
+          "charles-darwin",
+          "charles-dickens",
+          "commission-pg1342",
+          "commission-pg1400",
+          "commission-pg14144",
+          "commission-pg2009",
+          "commission-pg28610",
+          "commission-pg30078",
+          "jane-austen",
+          "per-teodor-cleve",
+          "viktor-rydberg"
+        ],
+        "documentIds": [
+          "generation-pg1342",
+          "generation-pg1400",
+          "generation-pg14144",
+          "generation-pg2009",
+          "generation-pg28610",
+          "generation-pg30078",
+          "pg1342",
+          "pg1400",
+          "pg14144",
+          "pg2009",
+          "pg28610",
+          "pg30078"
+        ],
+        "normalizedTextSha256": [
+          "0046d7ba1dce2489515283f369f41fe3c2f068d78824a702dbcb58d61e2ff980",
+          "12431e27183d22b0947346ee4e32545f98961a5a9c8f02c3e98fa7e6d6cc774e",
+          "1385864ca27f3dafa51c6fcfa3807abde46d45efc99b127304ae57b2c420c372",
+          "15ebd3db305b43bdaaf2d06930a48f2c44ade276b34d4d7f3400413d39bb4133",
+          "21d18271002a2d5f8475992492284ce824826039347677b5508c18ba00da369e",
+          "35b07d06e9de6765f749dff48d1a3433fd180b19eccb40bb7054bd2a4cb33e7a",
+          "36760547ab63fe223a3208f31b883a908f50bc450e919ef6585e4d78eb547451",
+          "379acf1e98cc8b1931604566f031051711073d93dba6a0da23ac1e008bf224eb",
+          "473b37fd84fc64054c71df7887614389a3bac3d398f59d30f27d7ca41d358df5",
+          "5de415b6a9780e4a64f8b2e71555afea85838729803841bb97b78cf0d7251f23",
+          "6471f61ea73bf7e5f8b4916d0a20b8442a4b3d56f5924c76d5a1975f2695a8f7",
+          "720f2d4e0ede355e7aecc16e4d8e1c4264d2fef63edf7f96c6c5e27069a58991",
+          "743831b80c0c2c74c171272fe5e3971f7d613e51ec02e7d2a40e413ed6add0a8",
+          "81ed8e9a643ef2be2a3f806117f84d40c3e7ae5332fe3f221370be0bd1232012",
+          "9539d057a64c46ad08dd576a49de94ce6a8c21d5559673789b671ae8b9dd46f5",
+          "956d5af4096c0a3182d758589444096941952367e3fd1c3f5a81a93f88a58d2e",
+          "9cd598aa439e6b6dddcb417f7242bc5bbca1126d4b365d90cb85da800ea11ec0",
+          "9dd10fb06f5b79057cf9b403f2e5d0fca462789cbda17e6e3126ac16f3c8a6a9",
+          "a5305284d10dbb03208b0fb58be627b259313952082370c685eb9311792e891d",
+          "ac9512dc4a09ae546075cba13e33dadf878f71680f2b69c9fe1fcc32adfa70ec",
+          "b7eba11b6f746902fcc3b7f4563ae276c2b6d5feaa9df7d6761965f939826df0",
+          "bb5b70c2a7e7753a5c7e05f3212140cb08b7ddce32dea0a7f131cec55e083f70",
+          "c3b108f96facab6793c8938f6ab1bc40c94369db4db496f56d201d501faf5325",
+          "c535da2bc96fc7d6946172b77789a56b9fac5c458766c04f76a5e3ff885eb8d3",
+          "d78055e92ba023e8f32b17eb10c80e151783218018dd4b75751b035660246d36",
+          "e8417c5a882dcc726a28aeceb1b7890efe459e19a4e398d752c62b53013da1f6",
+          "f035d5c1f69dd207e9bd6b0865c0073642ed11c721646b154be36d7b04e98bfe",
+          "f0b664833cad9bc059cb09ecf846ccfe807548b9ca209efcb70dce16891cc14e",
+          "f240b32ee237a3c0cfbd782e13f3df12337fe625b967d78d3f4138c7cb1f8644",
+          "ff7149086255f8c12cf00c415825fc230047814555eaf5e415651e427f4207f7"
+        ],
+        "rowCount": 30,
+        "rowsSha256": "4df1fa0a518c71ccaff9a6fca8a9d3204d5956c85b274dc6f93793ed6144394e",
+        "sourceGroups": [
+          "pg1342",
+          "pg1400",
+          "pg14144",
+          "pg2009",
+          "pg28610",
+          "pg30078"
+        ],
+        "sourceIds": [
+          "pg1342-ai-llama3-2-3b",
+          "pg1342-ai-qwen3-5-4b",
+          "pg1342-h1",
+          "pg1342-h2",
+          "pg1342-h3",
+          "pg1400-ai-llama3-2-3b",
+          "pg1400-ai-qwen3-5-4b",
+          "pg1400-h1",
+          "pg1400-h2",
+          "pg1400-h3",
+          "pg14144-ai-llama3-2-3b",
+          "pg14144-ai-qwen3-5-4b",
+          "pg14144-h1",
+          "pg14144-h2",
+          "pg14144-h3",
+          "pg2009-ai-llama3-2-3b",
+          "pg2009-ai-qwen3-5-4b",
+          "pg2009-h1",
+          "pg2009-h2",
+          "pg2009-h3",
+          "pg28610-ai-llama3-2-3b",
+          "pg28610-ai-qwen3-5-4b",
+          "pg28610-h1",
+          "pg28610-h2",
+          "pg28610-h3",
+          "pg30078-ai-llama3-2-3b",
+          "pg30078-ai-qwen3-5-4b",
+          "pg30078-h1",
+          "pg30078-h2",
+          "pg30078-h3"
+        ],
+        "split": "train"
+      },
+      "validation": {
+        "maxObservedHumanFPR": 0.05,
+        "metrics": {
+          "abstained": 0,
+          "abstentionsByLabel": {
+            "ai": 0,
+            "ai-edited": 0,
+            "human": 0
+          },
+          "accuracyAssessed": 1.0,
+          "aiEdited": {
+            "assessed": 0,
+            "flagged": 0,
+            "total": 0
+          },
+          "assessed": 10,
+          "auroc": 1.0,
+          "binaryAssessed": 10,
+          "calibration": {
+            "available": false,
+            "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+          },
+          "confusion": {
+            "fn": 0,
+            "fp": 0,
+            "tn": 6,
+            "tp": 4
+          },
+          "coverage": 1.0,
+          "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+          "f1": 1.0,
+          "falseNegativeRate": 0.0,
+          "falsePositiveRate": 0.0,
+          "humanFalsePositives": {
+            "allHumanDenominator": 6,
+            "assessedDenominator": 6,
+            "count": 0
+          },
+          "intervals95": {
+            "accuracyAssessed": {
+              "lower": 0.7224672001371107,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 10,
+              "upper": 0.9999999999999999
+            },
+            "coverage": {
+              "lower": 0.7224672001371107,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 10,
+              "upper": 0.9999999999999999
+            },
+            "falsePositiveRate": {
+              "lower": 2.7755575615628914e-17,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 6,
+              "upper": 0.3903342879021653
+            },
+            "recallAssessed": {
+              "lower": 0.5101091635454027,
+              "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+              "n": 4,
+              "upper": 1
+            }
+          },
+          "precision": 1.0,
+          "recallAllAI": 1.0,
+          "recallAssessed": 1.0,
+          "threshold": -0.09370718341935899,
+          "total": 10
+        },
+        "objective": "maximize recallAllAI subject to observed validation human FPR <= configured maximum",
+        "selectionSplit": "validation",
+        "threshold": -0.09370718341935899,
+        "tieBreak": "lower observed human FPR, then lower threshold",
+        "warning": "The FPR constraint is empirical, not a statistical upper bound. Small validation groups cannot establish a low population FPR."
+      },
+      "weightsSha256": "6f0b5d9c29401ec4303cfd4784babb92908c0ae221ef5a2c8b544f54829a20e8"
+    }
+  ],
+  "datasetAudit": {
+    "counts": {
+      "byLabel": {
+        "ai": 24,
+        "human": 36
+      },
+      "byLanguage": {
+        "en": 30,
+        "sv": 30
+      },
+      "bySplit": {
+        "test": 20,
+        "train": 30,
+        "validation": 10
+      },
+      "groups": {
+        "author_id": 24,
+        "document_id": 24,
+        "source_group_id": 12
+      },
+      "total": 60
+    },
+    "leakage": {
+      "exactDuplicates": 0,
+      "groupingFields": [
+        "author_id",
+        "document_id",
+        "source_group_id",
+        "related_source_id"
+      ],
+      "jaccardThreshold": 0.8,
+      "nearDuplicateComparisons": 4,
+      "nearDuplicates": 0,
+      "note": "Duplicate counts exclude explicitly documented human/AI-edited pairs with a shared human ancestor in the same split/source family. Related pairs are dependent observations, never independent examples. Token overlap cannot establish semantic independence; source-family audit and grouped uncertainty are still required.",
+      "passed": true,
+      "relatedEditExamples": [],
+      "relatedEditPairs": 0,
+      "relatedExactPairs": 0,
+      "relatedExamplesTruncated": false,
+      "relatedNearPairs": 0,
+      "shingleWords": 5
+    }
+  },
+  "limitations": [
+    "Existing train, validation and test material has already informed development. No new independent quality claim is supported.",
+    "Historical human books versus contemporary generated prose confound era, genre, spelling, topic and publisher with labels.",
+    "Only two generator models and very few source families are represented. Excerpts within source groups are dependent.",
+    "The validation FPR constraint is empirical. Observation-level Wilson intervals ignore source dependence.",
+    "Logistic margins rank examples; they are not calibrated authorship probabilities. No production classifier is activated.",
+    "Known modern-human regression examples must never tune feature choice, coefficients, threshold, or the candidate winner.",
+    "Fresh, group-disjoint contemporary data and a frozen evaluation plan are required for a future independent assessment."
+  ],
+  "modernHumanRegression": {
+    "allHistoricalMarginsMatch": true,
+    "baseline": "audited_char_3_5",
+    "byGenre": {
+      "encyclopedia": {
+        "abstained": 0,
+        "abstentionsByLabel": {
+          "ai": 0,
+          "ai-edited": 0,
+          "human": 0
+        },
+        "accuracyAssessed": null,
+        "aiEdited": {
+          "assessed": 0,
+          "flagged": 0,
+          "total": 0
+        },
+        "assessed": 8,
+        "auroc": null,
+        "binaryAssessed": 8,
+        "calibration": {
+          "available": false,
+          "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+        },
+        "confusion": {
+          "fn": 0,
+          "fp": 2,
+          "tn": 6,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+        "f1": null,
+        "falseNegativeRate": null,
+        "falsePositiveRate": 0.25,
+        "humanFalsePositives": {
+          "allHumanDenominator": 8,
+          "assessedDenominator": 8,
+          "count": 2
+        },
+        "intervals95": {
+          "accuracyAssessed": null,
+          "coverage": {
+            "lower": 0.6755924351161198,
+            "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+            "n": 8,
+            "upper": 1
+          },
+          "falsePositiveRate": {
+            "lower": 0.071479212752109,
+            "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+            "n": 8,
+            "upper": 0.5907245696898311
+          },
+          "recallAssessed": null
+        },
+        "precision": null,
+        "recallAllAI": null,
+        "recallAssessed": null,
+        "threshold": -0.042347328445350954,
+        "total": 8
+      }
+    },
+    "byLanguage": {
+      "en": {
+        "abstained": 0,
+        "abstentionsByLabel": {
+          "ai": 0,
+          "ai-edited": 0,
+          "human": 0
+        },
+        "accuracyAssessed": null,
+        "aiEdited": {
+          "assessed": 0,
+          "flagged": 0,
+          "total": 0
+        },
+        "assessed": 4,
+        "auroc": null,
+        "binaryAssessed": 4,
+        "calibration": {
+          "available": false,
+          "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+        },
+        "confusion": {
+          "fn": 0,
+          "fp": 1,
+          "tn": 3,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+        "f1": null,
+        "falseNegativeRate": null,
+        "falsePositiveRate": 0.25,
+        "humanFalsePositives": {
+          "allHumanDenominator": 4,
+          "assessedDenominator": 4,
+          "count": 1
+        },
+        "intervals95": {
+          "accuracyAssessed": null,
+          "coverage": {
+            "lower": 0.5101091635454027,
+            "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+            "n": 4,
+            "upper": 1
+          },
+          "falsePositiveRate": {
+            "lower": 0.04558726080970055,
+            "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+            "n": 4,
+            "upper": 0.6993581574175981
+          },
+          "recallAssessed": null
+        },
+        "precision": null,
+        "recallAllAI": null,
+        "recallAssessed": null,
+        "threshold": -0.042347328445350954,
+        "total": 4
+      },
+      "sv": {
+        "abstained": 0,
+        "abstentionsByLabel": {
+          "ai": 0,
+          "ai-edited": 0,
+          "human": 0
+        },
+        "accuracyAssessed": null,
+        "aiEdited": {
+          "assessed": 0,
+          "flagged": 0,
+          "total": 0
+        },
+        "assessed": 4,
+        "auroc": null,
+        "binaryAssessed": 4,
+        "calibration": {
+          "available": false,
+          "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+        },
+        "confusion": {
+          "fn": 0,
+          "fp": 1,
+          "tn": 3,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+        "f1": null,
+        "falseNegativeRate": null,
+        "falsePositiveRate": 0.25,
+        "humanFalsePositives": {
+          "allHumanDenominator": 4,
+          "assessedDenominator": 4,
+          "count": 1
+        },
+        "intervals95": {
+          "accuracyAssessed": null,
+          "coverage": {
+            "lower": 0.5101091635454027,
+            "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+            "n": 4,
+            "upper": 1
+          },
+          "falsePositiveRate": {
+            "lower": 0.04558726080970055,
+            "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+            "n": 4,
+            "upper": 0.6993581574175981
+          },
+          "recallAssessed": null
+        },
+        "precision": null,
+        "recallAllAI": null,
+        "recallAssessed": null,
+        "threshold": -0.042347328445350954,
+        "total": 4
+      }
+    },
+    "byLength": {
+      "medium": {
+        "abstained": 0,
+        "abstentionsByLabel": {
+          "ai": 0,
+          "ai-edited": 0,
+          "human": 0
+        },
+        "accuracyAssessed": null,
+        "aiEdited": {
+          "assessed": 0,
+          "flagged": 0,
+          "total": 0
+        },
+        "assessed": 8,
+        "auroc": null,
+        "binaryAssessed": 8,
+        "calibration": {
+          "available": false,
+          "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+        },
+        "confusion": {
+          "fn": 0,
+          "fp": 2,
+          "tn": 6,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+        "f1": null,
+        "falseNegativeRate": null,
+        "falsePositiveRate": 0.25,
+        "humanFalsePositives": {
+          "allHumanDenominator": 8,
+          "assessedDenominator": 8,
+          "count": 2
+        },
+        "intervals95": {
+          "accuracyAssessed": null,
+          "coverage": {
+            "lower": 0.6755924351161198,
+            "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+            "n": 8,
+            "upper": 1
+          },
+          "falsePositiveRate": {
+            "lower": 0.071479212752109,
+            "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+            "n": 8,
+            "upper": 0.5907245696898311
+          },
+          "recallAssessed": null
+        },
+        "precision": null,
+        "recallAllAI": null,
+        "recallAssessed": null,
+        "threshold": -0.042347328445350954,
+        "total": 8
+      }
+    },
+    "byModel": {
+      "(human)": {
+        "abstained": 0,
+        "abstentionsByLabel": {
+          "ai": 0,
+          "ai-edited": 0,
+          "human": 0
+        },
+        "accuracyAssessed": null,
+        "aiEdited": {
+          "assessed": 0,
+          "flagged": 0,
+          "total": 0
+        },
+        "assessed": 8,
+        "auroc": null,
+        "binaryAssessed": 8,
+        "calibration": {
+          "available": false,
+          "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+        },
+        "confusion": {
+          "fn": 0,
+          "fp": 2,
+          "tn": 6,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+        "f1": null,
+        "falseNegativeRate": null,
+        "falsePositiveRate": 0.25,
+        "humanFalsePositives": {
+          "allHumanDenominator": 8,
+          "assessedDenominator": 8,
+          "count": 2
+        },
+        "intervals95": {
+          "accuracyAssessed": null,
+          "coverage": {
+            "lower": 0.6755924351161198,
+            "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+            "n": 8,
+            "upper": 1
+          },
+          "falsePositiveRate": {
+            "lower": 0.071479212752109,
+            "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+            "n": 8,
+            "upper": 0.5907245696898311
+          },
+          "recallAssessed": null
+        },
+        "precision": null,
+        "recallAllAI": null,
+        "recallAssessed": null,
+        "threshold": -0.042347328445350954,
+        "total": 8
+      }
+    },
+    "evaluatedSplit": "test",
+    "evidenceUse": "historical-development-diagnostic",
+    "falsePositiveSourceIds": [
+      "wikipedia-en-816636789-p2",
+      "wikipedia-sv-42244645-p2"
+    ],
+    "humanSourceGroups": {
+      "assessed": 2,
+      "estimand": "Fraction of source groups with at least one assessed human excerpt flagged; distinct from excerpt-level FPR.",
+      "interval95": {
+        "lower": 0.34238022750665303,
+        "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+        "n": 2,
+        "upper": 1
+      },
+      "rateWithAnyFalsePositive": 1.0,
+      "total": 2,
+      "warning": "Convenience sample of source groups. Interval assumes independent exchangeable groups; no population guarantee.",
+      "withAnyFalsePositive": 2
+    },
+    "independentEvidence": false,
+    "overall": {
+      "abstained": 0,
+      "abstentionsByLabel": {
+        "ai": 0,
+        "ai-edited": 0,
+        "human": 0
+      },
+      "accuracyAssessed": null,
+      "aiEdited": {
+        "assessed": 0,
+        "flagged": 0,
+        "total": 0
+      },
+      "assessed": 8,
+      "auroc": null,
+      "binaryAssessed": 8,
+      "calibration": {
+        "available": false,
+        "reason": "No separate group-disjoint calibration corpus; logistic margins are not authorship probabilities."
+      },
+      "confusion": {
+        "fn": 0,
+        "fp": 2,
+        "tn": 6,
+        "tp": 0
+      },
+      "coverage": 1.0,
+      "evidenceWarning": "Exploratory corpus only. Observation-level intervals ignore source dependence; no production reliability claim.",
+      "f1": null,
+      "falseNegativeRate": null,
+      "falsePositiveRate": 0.25,
+      "humanFalsePositives": {
+        "allHumanDenominator": 8,
+        "assessedDenominator": 8,
+        "count": 2
+      },
+      "intervals95": {
+        "accuracyAssessed": null,
+        "coverage": {
+          "lower": 0.6755924351161198,
+          "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+          "n": 8,
+          "upper": 1
+        },
+        "falsePositiveRate": {
+          "lower": 0.071479212752109,
+          "method": "Wilson observation-level; repeated source groups violate independence and can make this interval too narrow",
+          "n": 8,
+          "upper": 0.5907245696898311
+        },
+        "recallAssessed": null
+      },
+      "precision": null,
+      "recallAllAI": null,
+      "recallAssessed": null,
+      "threshold": -0.042347328445350954,
+      "total": 8
+    },
+    "predictions": [
+      {
+        "abstentionReasons": [],
+        "author_id": "wikipedia-collaborative-contributors",
+        "document_id": "wikipedia-en-24544",
+        "genre": "encyclopedia",
+        "label": "human",
+        "language": "en",
+        "model": "(human)",
+        "score": -0.09507155610325957,
+        "source_group_id": "wikipedia-topic-photosynthesis",
+        "source_id": "wikipedia-en-816636789-p1",
+        "split": "test",
+        "words": 234
+      },
+      {
+        "abstentionReasons": [],
+        "author_id": "wikipedia-collaborative-contributors",
+        "document_id": "wikipedia-en-24544",
+        "genre": "encyclopedia",
+        "label": "human",
+        "language": "en",
+        "model": "(human)",
+        "score": -0.03572410146076867,
+        "source_group_id": "wikipedia-topic-photosynthesis",
+        "source_id": "wikipedia-en-816636789-p2",
+        "split": "test",
+        "words": 186
+      },
+      {
+        "abstentionReasons": [],
+        "author_id": "wikipedia-collaborative-contributors",
+        "document_id": "wikipedia-sv-2630",
+        "genre": "encyclopedia",
+        "label": "human",
+        "language": "sv",
+        "model": "(human)",
+        "score": -0.08162106645388223,
+        "source_group_id": "wikipedia-topic-photosynthesis",
+        "source_id": "wikipedia-sv-42127203-p1",
+        "split": "test",
+        "words": 230
+      },
+      {
+        "abstentionReasons": [],
+        "author_id": "wikipedia-collaborative-contributors",
+        "document_id": "wikipedia-sv-2630",
+        "genre": "encyclopedia",
+        "label": "human",
+        "language": "sv",
+        "model": "(human)",
+        "score": -0.04383453665045028,
+        "source_group_id": "wikipedia-topic-photosynthesis",
+        "source_id": "wikipedia-sv-42127203-p2",
+        "split": "test",
+        "words": 213
+      },
+      {
+        "abstentionReasons": [],
+        "author_id": "wikipedia-collaborative-contributors",
+        "document_id": "wikipedia-en-3397",
+        "genre": "encyclopedia",
+        "label": "human",
+        "language": "en",
+        "model": "(human)",
+        "score": -0.0658315892480986,
+        "source_group_id": "wikipedia-topic-bridge",
+        "source_id": "wikipedia-en-817433099-p1",
+        "split": "test",
+        "words": 204
+      },
+      {
+        "abstentionReasons": [],
+        "author_id": "wikipedia-collaborative-contributors",
+        "document_id": "wikipedia-en-3397",
+        "genre": "encyclopedia",
+        "label": "human",
+        "language": "en",
+        "model": "(human)",
+        "score": -0.09526731947681606,
+        "source_group_id": "wikipedia-topic-bridge",
+        "source_id": "wikipedia-en-817433099-p2",
+        "split": "test",
+        "words": 263
+      },
+      {
+        "abstentionReasons": [],
+        "author_id": "wikipedia-collaborative-contributors",
+        "document_id": "wikipedia-sv-5041",
+        "genre": "encyclopedia",
+        "label": "human",
+        "language": "sv",
+        "model": "(human)",
+        "score": -0.07537447127824219,
+        "source_group_id": "wikipedia-topic-bridge",
+        "source_id": "wikipedia-sv-42244645-p1",
+        "split": "test",
+        "words": 195
+      },
+      {
+        "abstentionReasons": [],
+        "author_id": "wikipedia-collaborative-contributors",
+        "document_id": "wikipedia-sv-5041",
+        "genre": "encyclopedia",
+        "label": "human",
+        "language": "sv",
+        "model": "(human)",
+        "score": 0.026704523616297285,
+        "source_group_id": "wikipedia-topic-bridge",
+        "source_id": "wikipedia-sv-42244645-p2",
+        "split": "test",
+        "words": 207
+      }
+    ],
+    "sourceAuditGap": "Revision date establishes historical publication, not human identity or absence of bots/templates/copied material. No complete contributor/history/talk-page copyright audit. Excerpts are a convenience sample and paired topics may share translated prose.",
+    "testSourceGroups": 2,
+    "usedForSelection": false,
+    "warning": "Previously inspected eight human-labelled Wikipedia excerpts. Human origin is historical-publication inference; bots and contributor identity are not excluded. Collection gaps and topic dependence remain. No tuning or new independent evidence."
+  },
+  "productionApproved": false,
+  "protocol": {
+    "calibrationDecision": "No calibration fitted: no separate group-disjoint calibration data; the reused validation corpus is too small.",
+    "candidateSelectionSplit": "validation",
+    "eligibility": "Unchanged browser language, >=80 words, >=4 sentences; zero-vector rows abstain.",
+    "evaluatedSplit": "test",
+    "fitSplit": "train",
+    "modernHumanUse": "frozen-baseline-regression-only-after-selection",
+    "testEvidenceUse": "historical-development-diagnostic",
+    "testIsNewIndependentHoldout": false,
+    "thresholdSplit": "validation"
+  },
+  "qualityEvidence": false,
+  "reproducibility": {
+    "baselineArtifactCanonicalSha256": "cf1b8f91ba0de95abffa0a558e7fcee0e8373753ab72e7e972c74eabe06cf163",
+    "codeSha256": {
+      "sites/src/analyzer.mjs": "05891b34c760b6bb67163436848f71e16bba731697e0ec5183313e0ec099ab4a",
+      "tools/compare_classifiers.py": "241e6c2b5b06d9d70d301735f45458aa0be7082d53d9e6bffb77f6030aa5f928",
+      "tools/evaluate.mjs": "9a1c23797d82ff91733b28259adff77d617d98f92db2c719b88e56331265cf30",
+      "tools/model_evaluate.py": "c528b5629092f71855622e57ae9275213433a944a0847acfaba02c32cdc84a62",
+      "tools/train_baseline.py": "27f5044ba29b9c8eea907335474ba4a4b45c70cf89beb6126b937facf94534b4"
+    },
+    "command": ".venv/bin/python tools/compare_classifiers.py --output <new-output.json>",
+    "datasetCanonicalSha256": "e66ac21718d8dc460335c8642efb5c7a084dee4c02780bfa97821bfa44ba51ad",
+    "environment": {
+      "dependencies": {
+        "joblib": "1.6.0",
+        "numpy": "2.5.4",
+        "scikit-learn": "1.9.1",
+        "scipy": "1.18.1",
+        "threadpoolctl": "3.7.0"
+      },
+      "node": "v24.22.1",
+      "python": "3.12.14"
+    },
+    "inputFileSha256": {
+      "data/modern-human/corpus.jsonl": "3266a5d574d61a11db438823c99e4e0fd80b25c664aca22a2cd568524592299b",
+      "data/modern-human/report.json": "27c7e35dbbdf279ae001657494c306b893f9eef382092b5ba667117766140dcb",
+      "data/pilot/corpus.jsonl": "50d65f6d8422d3c9d51f72fa4c7c07d0bf721e097ab604c71c2c502c69ff173a",
+      "models/experimental/pilot-v1-audited/model.json": "eaa474826b0da2f14b0aaefcebd4b9142159428a00d0e8b144476f5552dc261d"
+    },
+    "validationProvenance": {
+      "authors": [
+        "commission-pg26479",
+        "commission-pg34901",
+        "john-stuart-mill",
+        "toini-topelius"
+      ],
+      "documentIds": [
+        "generation-pg26479",
+        "generation-pg34901",
+        "pg26479",
+        "pg34901"
+      ],
+      "normalizedTextSha256": [
+        "30a7b2dabeb77eff23fdb28d0946a34088d13a075a63fd863bce4e3d6f0bc6a9",
+        "36a557565dadf69b46f324056d0cd0c2b7ca456ee4594dc40a47e58137285056",
+        "612f32cf0305f02f24b7e0bd6f5a8ea4c4193c08c5078c4b9cb2989f3ce0c990",
+        "862dfc8f097343c3595aba86873fe770fb0a0592e427d406e45231be110033b8",
+        "8b683d279f75498d931d04a5421ba19ce9a3e69d73b295e396ac8c254fa4f4ee",
+        "8e5ffcb5305e9f5bd7c185bea42a768e966c2a1fe0b944806350950a318091f3",
+        "aa9288e4cc55928109fc765202615bb760372207bdd0650ad6acf19bc5ee8f31",
+        "ae3e8fd97f169a83f078ba94859fbe9d13aee2694f50b80dd587c46ab1cb25fb",
+        "bece4d0ba759f9ed13b5290a7c39cee4361ab0574a7b5c2b38c38136ae2968bb",
+        "d522527c477ce5b2a9dfa4f91d579aa41bd36f64b9a4759b8fa6bfdf56ea88ca"
+      ],
+      "rowCount": 10,
+      "rowsSha256": "fe88be587ea79ed0cfbbbf654d6da95400cb9b02a139f376c08bcaef8d362f82",
+      "sourceGroups": [
+        "pg26479",
+        "pg34901"
+      ],
+      "sourceIds": [
+        "pg26479-ai-llama3-2-3b",
+        "pg26479-ai-qwen3-5-4b",
+        "pg26479-h1",
+        "pg26479-h2",
+        "pg26479-h3",
+        "pg34901-ai-llama3-2-3b",
+        "pg34901-ai-qwen3-5-4b",
+        "pg34901-h1",
+        "pg34901-h2",
+        "pg34901-h3"
+      ],
+      "split": "validation"
+    }
+  },
+  "schemaVersion": "textlab-offline-comparison-v4",
+  "status": "exploratory-historical-development-comparison"
+}

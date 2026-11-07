@@ -1,0 +1,56 @@
+{
+  "version": "4.0.0",
+  "generated_at_utc": "2026-11-07T11:02:39.866993+00:00",
+  "base_commit": "5c6328d7c341411042c7d2db150cb88578998302",
+  "python": "3.12.14",
+  "node": "v24.22.1",
+  "unit_tests": {
+    "python_passed": 309,
+    "node_passed": 70,
+    "warnings": [
+      "Existing Starlette TestClient/httpx deprecation"
+    ]
+  },
+  "live_models": {
+    "openai_key_present": false,
+    "openai_model_present": false,
+    "ollama_available": false,
+    "live_generation_verified": false
+  },
+  "local_browser": {
+    "status": "blocked",
+    "reason": "Bundled Chromium download invalid; system Chromium socket() Operation not permitted"
+  },
+  "local_container": {
+    "status": "unavailable",
+    "reason": "No Docker binary, daemon or socket"
+  },
+  "remote_ci": {
+    "status": "pending_for_v4"
+  },
+  "historical_replay": {
+    "rows": 72,
+    "accepted_rows_replayed": 62,
+    "accepted_by_current_validator": 62,
+    "byte_identical_replayed_requests": 62,
+    "new_generation_calls": 0
+  },
+  "classification": {
+    "production_enabled": false,
+    "new_independent_evaluation": false,
+    "historical_modern_human_fp": 2,
+    "historical_modern_human_n": 8
+  },
+  "reproducible_build": {
+    "identical_runs": 2,
+    "hashes": "build-sha256.txt"
+  },
+  "independent_code_review": {
+    "status": "complete",
+    "critical_open": 0,
+    "important_found": 1,
+    "important_fixed": 1,
+    "focused_tests_passed": 81,
+    "fix_regression_tests_passed": 4
+  }
+}

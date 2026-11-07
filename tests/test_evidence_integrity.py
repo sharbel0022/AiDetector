@@ -29,7 +29,7 @@ def test_frozen_humanizer_snapshots_and_reassessed_report_hashes_match():
         assert hashlib.sha256(evidence_path(root,item['path']).read_bytes()).hexdigest()==item['sha256']
 
 
-def test_all_72_frozen_requests_match_current_payload_without_new_inference():
+def test_all_72_frozen_requests_and_their_historical_validators_are_preserved():
     root=Path(__file__).resolve().parents[1]
     report=json.loads((root/'data/humanizer/request-replay-v2.json').read_text(encoding='utf8'))
     assert report['new_model_requests'] is False and len(report['rows'])==72
@@ -37,5 +37,10 @@ def test_all_72_frozen_requests_match_current_payload_without_new_inference():
         assert item['byte_identical'] is True
         assert item['recorded_request_sha256']==item['current_request_sha256']
         assert hashlib.sha256(evidence_path(root,item['report']).read_bytes()).hexdigest()==item['report_sha256']
+    # "current" in this frozen V3 report meant the validator at its recorded
+    # time. Bind it to immutable snapshots so a runtime refactor cannot silently
+    # redefine historical evidence, and do not claim it verifies today's code.
     for path, expected in report['validator_sha256'].items():
-        assert hashlib.sha256(evidence_path(root,path).read_bytes()).hexdigest()==expected
+        stem=Path(path.replace('\\','/')).stem
+        snapshot=root/'data/humanizer/backend-snapshots'/f'{stem}-{expected}.py'
+        assert hashlib.sha256(snapshot.read_bytes()).hexdigest()==expected

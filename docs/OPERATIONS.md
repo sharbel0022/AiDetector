@@ -4,7 +4,7 @@
 
 React/Vite bygger en statisk frontend. Stilanalys körs synkront i webbläsaren och skickar ingen text till backend. Humanizern skickar original, språk, ton och eventuella exakta textdelar till FastAPI. Backend ersätter identifierade skyddsvärden med slumpmässiga markörer, anropar den serverkonfigurerade modellen, kontrollerar svar och återställer värden. Ingen alternativ regelbaserad omskrivning används vid modellfel.
 
-`backend/main.py` ansvarar för validering, adaptrar och HTTP. `backend/limits.py` hanterar atomiska kvoter med SQLite-transaktioner. `sites/src/ui-state.mjs` validerar svar, diffar, evidensintervall och revisioner innan UI uppdateras. Detektorns metod och benchmarkgränser finns i `DETECTOR_BENCHMARK.md`.
+`backend/main.py` ansvarar för HTTP, autentisering och resurskontroll. `ai/ai.py` koordinerar validering, detektor och humanizer; adaptrar ligger i `ai/providers/` och konfiguration i `backend/config.py`. Se [V4-arkitekturen](ARCHITECTURE.md). `backend/limits.py` hanterar atomiska kvoter med SQLite-transaktioner. `sites/src/ui-state.mjs` validerar svar, diffar, evidensintervall och revisioner innan UI uppdateras. Detektorns metod och benchmarkgränser finns i `DETECTOR_BENCHMARK.md`.
 
 Text och modellsvar sparas inte av applikationen. Åtkomsttoken finns endast i webbläsarminnet. SQLite lagrar hashade kvotidentiteter, förbrukningsreservationer, tidsstämplar och tillfälliga anropslås. Gamla poster rensas när nya kvotoperationer körs; det är inte en timerbaserad raderingsgaranti. Undvik request-/response-body-loggning, APM-inspelning och proxyloggning av Authorization.
 
@@ -44,8 +44,8 @@ Prompt injection begränsas genom separat systeminstruktion, JSON-fält för oti
 `Dockerfile` bygger frontend från `package-lock.json`, installerar runtime från `requirements-lock.txt` och kör Python 3.12 som UID 10001. Miljön är production, två workers, delad `/state`-volym, ingen åtkomstlogg och inga proxyheaders. Tillför env-konfiguration vid start; lägg aldrig hemligheter i image eller Git. Rootless runtime är inte en fullständig containerhärdning: använd read-only appfilesystem, resursgränser, begränsad egress och betrodd reverse proxy i verklig drift.
 
 ```powershell
-docker build -t textlab:v3-review .
-python tools/container_checks.py --image textlab:v3-review
+docker build -t textlab:v4-review .
+python tools/container_checks.py --image textlab:v4-review
 ```
 
 Kontrollverktyget skapar och tar bort en egen loopback-bunden testcontainer, utan publik URL, med en slumpmässig tillfällig användartoken. Det kontrollerar två workers, nonroot, frontend/headers, auth och gemensam rategräns. Ingen modell hämtas eller exponeras. Se `VERIFICATION.md` för verkligt körresultat.

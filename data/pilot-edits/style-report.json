@@ -982,7 +982,7 @@
     "tuneOnValidation": false,
     "nearDuplicateThreshold": 0.8,
     "recordsOrdered": true,
-    "runtime": "v22.16.0",
+    "runtime": "v24.22.1",
     "fileSha256": "2854edefefbb52c1b9fe33968511f72f6b4d8096ad173b407e7b90557ce54fd1",
     "analyzerSha256": "05891b34c760b6bb67163436848f71e16bba731697e0ec5183313e0ec099ab4a",
     "evaluatorSha256": "9a1c23797d82ff91733b28259adff77d617d98f92db2c719b88e56331265cf30"

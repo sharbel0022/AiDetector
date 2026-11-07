@@ -20,6 +20,10 @@ def config(**values):
 
 
 def provider(request):
+    if request.method == 'GET':
+        assert request.url.path.startswith('/v1/models/')
+        assert not request.content
+        return httpx.Response(200, json={'id': request.url.path.rsplit('/', 1)[-1]})
     body = json.loads(request.content)
     if request.url.path.endswith('/responses'):
         source = json.loads(body['input'])['text']
@@ -104,9 +108,11 @@ def test_ready_means_successful_configured_model_generation_cached():
         second = client.get('/api/provider-status').json()
         assert first['ready'] is True and first['verified'] is True
         assert second['ready'] is True
-        assert len(requests) == 1
-        assert json.loads(requests[0].content)['model'] == 'actual-configured-model'
-        assert json.loads(requests[0].content)['max_output_tokens'] <= 128
+        assert len(requests) == 2
+        assert requests[0].method == 'GET'
+        assert requests[1].method == 'POST'
+        assert json.loads(requests[1].content)['model'] == 'actual-configured-model'
+        assert json.loads(requests[1].content)['max_output_tokens'] <= 128
 
 
 def test_compatible_provider_uses_server_url_and_bounded_schema():

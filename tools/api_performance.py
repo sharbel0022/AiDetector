@@ -57,7 +57,8 @@ async def main():
         for _ in range(20):
             measured,responses=await batch(client,'/api/rewrite',1,{'text':text,'language':'sv'})
             assert responses[0].status_code==200, responses[0].text
-            assert responses[0].json()['text']==text.strip()
+            assert responses[0].json()['text']==text
+            assert responses[0].json()['unchanged'] is True
             durations.append(measured['p50Ms'])
         report['asgiLongRewriteMockProvider'] = dict(timing(durations),characters=len(text),provider='HTTP mock echo with fixed 10ms delay',qualityEvidence=False)
         report['asgiConcurrentRewriteMockProvider'], responses=await batch(client,'/api/rewrite',8,{'text':text,'language':'sv'})

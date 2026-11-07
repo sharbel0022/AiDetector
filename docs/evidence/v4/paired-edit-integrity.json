@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "humanRecords": 36,
+  "editedRecords": 12,
+  "unchangedEdits": 0,
+  "models": {
+    "llama3.2:3b": 6,
+    "qwen3.5:4b": 6
+  },
+  "qualityEvidence": false,
+  "notice": "Actual recorded model interventions, not proof of preserved meaning or independent modern human writing; pairs share source families."
+}

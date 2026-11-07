@@ -18,7 +18,7 @@ def docker(*args):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--image',default='textlab:v3-review')
+    parser.add_argument('--image',default='textlab:v4-review')
     args=parser.parse_args()
     name='textlab-check-'+secrets.token_hex(5)
     token=secrets.token_urlsafe(32)
@@ -37,13 +37,13 @@ def main():
             try:
                 with urllib.request.urlopen(url+'/api/health',timeout=1) as response:
                     health=json.load(response)
-                    assert health['version']=='3.0.0' and health['auth_required']
+                    assert health['version']=='4.0.0' and health['auth_required']
                 break
             except (urllib.error.URLError,ConnectionError,TimeoutError):
                 time.sleep(.2)
         else:
             raise AssertionError('Production container did not become healthy')
-        report['checks'].append('Production config starts and reports v3 authenticated health')
+        report['checks'].append('Production config starts and reports v4 authenticated health')
         assert docker('exec',name,'id','-u')=='10001'
         report['checks'].append('Server runs as nonroot UID 10001')
         processes=docker('top',name,'-eo','pid,args')

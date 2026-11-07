@@ -12,7 +12,7 @@ async def main():
     axe = Path('node_modules/axe-core/axe.min.js').read_text(encoding='utf8')
     results = []
     async with async_playwright() as p:
-        browser = await p.chromium.launch()
+        browser = await p.chromium.launch(executable_path=os.getenv('TEXTLAB_BROWSER_EXECUTABLE') or None)
         page = await browser.new_page()
         await page.route('**/api/health', lambda route: route.fulfill(json={'provider':'ollama','model':'unavailable-test','auth_required':False}))
         await page.route('**/api/provider-status', lambda route: route.fulfill(json={'ready':False,'verified':False,'message':'Ingen testmodell.'}))
