@@ -25,7 +25,8 @@ def main():
     digest=hashlib.sha256(token.encode()).hexdigest()
     detector_token=secrets.token_urlsafe(32)
     detector_digest=hashlib.sha256(detector_token.encode()).hexdigest()
-    report={'image':args.image,'published':False,'checks':[],'modelsTested':False}
+    report={'image':args.image,'published':False,'checks':[],
+            'generativeModelsTested':False,'detectorIntegrationTested':False}
     try:
         docker('run','--rm','-d','--name',name,'-p','127.0.0.1::8767',
                '-e','TEXTLAB_AUTH_MODE=multiuser',
@@ -82,6 +83,7 @@ def main():
             assert isinstance(usage,dict)
             assert source not in json.dumps(usage)
         report['checks'].append('Packaged detector and authenticated text-free usage work without a generative provider')
+        report['detectorIntegrationTested']=True
         def request(_):
             req=urllib.request.Request(url+'/api/provider-status',headers={'Authorization':'Bearer '+token})
             try:

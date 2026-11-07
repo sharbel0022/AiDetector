@@ -97,7 +97,7 @@ async def main():
         await segment.focus(); await page.keyboard.press('Enter')
         await expect(page.locator('#segment-detail h3')).to_have_text('Mänskligt-liknande')
         await expect(page.locator('#segment-detail')).to_contain_text('Ej tillgängligt')
-        checks.append('independently validated document/share, four labels, exact Unicode source, keyboard segment details and separate segment-calibration gate')
+        checks.append('labeled UI fixtures exercise separate document/share gates, four labels, exact Unicode source, keyboard details and segment-calibration gating')
         for kind in ['TXT', 'JSON']:
             async with page.expect_download() as download_info:
                 await page.get_by_role('button', name='Rapport ' + kind, exact=True).click()

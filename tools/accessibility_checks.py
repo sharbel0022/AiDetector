@@ -67,6 +67,8 @@ async def main():
                     return {violations:r.violations.map(v=>({id:v.id,impact:v.impact,help:v.help,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),passes:r.passes.length,incomplete:r.incomplete.length,incompleteChecks:r.incomplete.map(v=>({id:v.id,impact:v.impact,help:v.help,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))};
                 }""")
                 results.append(dict(report,width=width,mode=mode+'-result'))
+                if report['incomplete']:
+                    await page.screenshot(path=str(out/f'accessibility-{mode}-{width}.png'),full_page=True)
                 assert await page.evaluate('document.documentElement.scrollWidth <= innerWidth'), f'Result overflow at {width}px'
         await page.set_viewport_size({'width':1440,'height':900})
         await page.get_by_role('button',name='Inställningar').click()

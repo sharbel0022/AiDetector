@@ -29,12 +29,20 @@ def source_word_count(text):
 def detection_fixture(text, *, verified=False, raw_unvalidated_scores=False):
     segments = []
     categories = ['ai_like', 'human_like', 'uncertain', 'unassessed']
-    for index, match in enumerate(re.finditer(r'[^\n]+(?:\n+|$)', text)):
-        value = match.group()
+    for match in re.finditer(r'[^\n]+', text):
+        raw = match.group()
+        value = raw.strip()
+        if not value:
+            continue
+        index = len(segments)
+        start = match.start() + len(raw) - len(raw.lstrip())
+        end = start + len(value)
+        # Match runtime span edges: preserve paragraph whitespace as source
+        # gaps, outside the interactive segment buttons.
         segments.append({
             'id': f'fixture-{index + 1}',
-            'start': utf16_length(text[:match.start()]),
-            'end': utf16_length(text[:match.end()]),
+            'start': utf16_length(text[:start]),
+            'end': utf16_length(text[:end]),
             'text': value,
             'wordCount': source_word_count(value),
             'eligible': not verified or categories[index % len(categories)] != 'unassessed',

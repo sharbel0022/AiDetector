@@ -441,6 +441,7 @@ footer { display: flex; justify-content: space-between; border-top: 1px solid #d
   .usage-details > summary > span { float: none; display: block; margin-left: 14px; }
 }
 @media print {
+  @page { margin: 12mm; }
   :root { background: white; color: black; }
   .app { padding: 0; max-width: none; }
   .header { min-height: 60px; }
@@ -450,6 +451,8 @@ footer { display: flex; justify-content: space-between; border-top: 1px solid #d
   .results, .source-review { margin: 12px 0; }
   .detector-summary, .source-intro, .annotated-source { padding: 16px; }
   .metric-card, .coverage-grid, .segment-detail, .method-grid > div { break-inside: avoid; }
+  .signal-list details, .method-grid { break-inside: avoid; }
+  .panel-heading, .method-details > summary { break-after: avoid; }
   .document-layout { display: block; }
   .source-segment { color: black !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
   .source-segment.active { outline: none; }
