@@ -2,10 +2,17 @@
 from collections import Counter
 import re
 import secrets
-from ai.humanizer.meaning import QUANTITY_PATTERN, changed_risk_categories
+from ai.humanizer.meaning import QUANTITY_PATTERN, changed_risk_categories, marker_counts
 
 class PreservationError(ValueError):
     pass
+
+
+class ProtectedValues(dict):
+    """Dictionary-compatible anchors with their original offsets, kept in memory."""
+    def __init__(self, spans):
+        super().__init__()
+        self.spans = tuple(spans)
 
 NUMBER = re.compile(r'\d+(?:[ ,.:/\-]\d+)*(?:\s?%)?')
 FACT_PATTERN = (
@@ -13,6 +20,7 @@ FACT_PATTERN = (
     r'|"[^"\n]+"|“[^”\n]+”|”[^”\n]+”'
     r"|(?<!\w)'[^'\n]+'(?!\w)|‘[^’\n]+’"
     r'|\[[^\]\n]{1,160}\]'
+    r'|\([A-ZÅÄÖÉÜ][^()\n]{0,120}?\b(?:19|20)\d{2}[a-z]?[^()\n]{0,40}\)'
     r'|\d+(?:[ ,.:/\-]\d+)*(?:\s?%)?'
 )
 FACTS = re.compile(FACT_PATTERN)
@@ -55,7 +63,7 @@ def protect_text(text: str, protected_terms: list[str] | None = None) -> tuple[s
             merged[-1] = (previous_start, max(previous_end, end))
         else:
             merged.append((start, end))
-    mapping: dict[str, str] = {}
+    mapping: dict[str, str] = ProtectedValues(merged)
     nonce = secrets.token_hex(8)
     parts: list[str] = []
     cursor = 0
@@ -72,6 +80,27 @@ def restore_text(output: str, mapping: dict[str,str], original: str) -> str:
         raise PreservationError('Empty or oversized output')
     if Counter(TOKEN.findall(output)) != Counter(mapping.keys()):
         raise PreservationError('Protected values changed')
+    if TOKEN.findall(output) != list(mapping):
+        raise PreservationError('Protected actor, quantity or reference order changed')
+    if mapping:
+        # Reconstruct the editable intervals from the ordered exact spans. The
+        # generated counterpart must keep risk markers within those intervals;
+        # a matching document-wide count does not suffice when actors swap scope.
+        cursor, source_parts = 0, []
+        spans = getattr(mapping, 'spans', None)
+        for index, value in enumerate(mapping.values()):
+            # Explicit offsets avoid confusing a later name with an identical
+            # substring inside an earlier editable word. Plain dictionaries from
+            # older internal callers retain the sequential fallback.
+            start, end = spans[index] if spans is not None else (original.find(value, cursor), None)
+            end = start + len(value) if end is None else end
+            if start < cursor or original[start:end] != value:
+                raise PreservationError('Invalid protected value mapping')
+            source_parts.append(original[cursor:start])
+            cursor = end
+        source_parts.append(original[cursor:])
+        if [marker_counts(part) for part in source_parts] != [marker_counts(part) for part in TOKEN.split(output)]:
+            raise PreservationError('Meaning-bearing markers moved between protected values')
     for key,value in mapping.items():
         output=output.replace(key,value)
     if '__TL_' in output:

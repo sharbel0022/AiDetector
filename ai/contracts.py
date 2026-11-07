@@ -44,7 +44,7 @@ class ModelText(BaseModel):
 class DetectRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
     text: str = Field(min_length=1, max_length=12000)
-    language: Literal["sv", "en"] = "sv"
+    language: Literal["auto", "sv", "en"] = "auto"
 
     @field_validator('text')
     @classmethod

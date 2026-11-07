@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "textlab-v5-references-1",
+  "newIndependentRows": 0,
+  "sources": [
+    {
+      "path": "data/pilot/corpus.jsonl",
+      "sha256": "50d65f6d8422d3c9d51f72fa4c7c07d0bf721e097ab604c71c2c502c69ff173a",
+      "rows": 60,
+      "evidenceUse": "historical training, validation, and test",
+      "freshIndependentEvidence": false
+    },
+    {
+      "path": "data/modern-human/corpus.jsonl",
+      "sha256": "3266a5d574d61a11db438823c99e4e0fd80b25c664aca22a2cd568524592299b",
+      "rows": 8,
+      "evidenceUse": "historical modern-human regression",
+      "freshIndependentEvidence": false
+    },
+    {
+      "path": "data/pilot-edits/corpus.jsonl",
+      "sha256": "2854edefefbb52c1b9fe33968511f72f6b4d8096ad173b407e7b90557ce54fd1",
+      "rows": 48,
+      "evidenceUse": "historical AI-edit diagnostics",
+      "freshIndependentEvidence": false
+    },
+    {
+      "path": "data/v5-mixed-regression/corpus.jsonl",
+      "sha256": "11a0f84560aa1cd67e1044ff90ac17e9b409a30467a33870175ef25d93750466",
+      "rows": 24,
+      "evidenceUse": "derived historical exact-span diagnostics",
+      "freshIndependentEvidence": false
+    }
+  ]
+}

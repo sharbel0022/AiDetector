@@ -1,16 +1,34 @@
-# TextLab V4 — AI Detector & AI Humanizer
+# TextLab V5 — AI Detector & AI Humanizer
 
-TextLab är en textverkstad för svenska och engelska. **AI Detector visar ett
-förklarbart stilindex. AI Humanizer föreslår språkredigering med OpenAI, Ollama
-eller en kompatibel modellserver.** Originalet bevaras och användaren kan jämföra,
-kopiera, exportera och granska resultatet.
+TextLab är en textverkstad för svenska och engelska. **AI Detector kör en tränad
+textklassificerare och visar vilka bedömningar underlaget räcker till. AI Humanizer
+föreslår språkredigering med OpenAI, Ollama eller en kompatibel modellserver.**
+Originalet bevaras för jämförelse, kopiering och export.
 
-**Stilindex är inte AI-sannolikhet. Text kan inte säkert tillskrivas en människa
-eller en AI enbart utifrån dess stil.** Den experimentella ML-klassificeraren är
-inte aktiverad i webbappen. En omskrivning som klarar exakta kontroller kräver
-fortfarande granskning av betydelse, relationer och nya påståenden.
+**Den medföljande detektormodellen är en forskningspilot. Dokumentets AI-sannolikhet
+och andelen AI-markerad text är spärrade eftersom oberoende validering och
+kalibrering saknas.** Den moderna kontrollen ger fortfarande två falska positiva
+av åtta mänskliga utdrag. Gränssnittet visar begränsningen i stället för en
+påhittad procentsiffra. Textens författarskap kan inte bevisas av modellen.
 
-## Nytt i V4
+## Nytt i V5
+
+- Tränad TF-IDF/logistisk modell med jämförelse av ord-, tecken- och kombinerade
+  representationer. Ren Python-inferens läser ett begränsat, integritetskontrollerat
+  JSON-format; scikit-learn behövs bara för träning.
+- Separata evidenskrav för dokumentklassificering, dokumentkalibrering,
+  segmentklassificering och segmentkalibrering. Dokumentpoäng används aldrig
+  automatiskt som meningsetiketter eller textandelar.
+- Automatisk svenska/engelska, manuell överstyrning, exakt segmentering och
+  förklaringar vid språkblandning eller otillräckligt underlag.
+- Tvådelad arbetsyta med resultatkort, klickbara textsegment, osäkerhet,
+  analyserbar täckning, TXT/JSON-export och utskriftsrapport.
+- Faktiska tokenräknare, versionshanterade prisuppskattningar, egen aggregerad
+  förbrukning och atomiska token-/kostnadsbudgetar utan användartext i loggen.
+- Blandade regressioner med kända källintervall. De återanvänder historiska
+  texter och räknas inte som ny oberoende kvalitetsdata.
+
+## Bevarad grund från V4
 
 - Centralt Python-gränssnitt i [`ai/ai.py`](ai/ai.py): `AIService.detect`,
   `AIService.humanize` och `AIService.provider_status`.
@@ -35,6 +53,7 @@ Krav: Node.js 22.12+ och Python 3.12+ för den låsta test-/ML-miljön.
 ```powershell
 git clone https://github.com/sharbel0022/AiDetector.git
 cd AiDetector
+git switch feature/textlab-v5
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
 npm ci
@@ -46,11 +65,12 @@ npm run dev
 Öppna `http://127.0.0.1:5173`. Backend använder port `8767`.
 På Linux/macOS används `.venv/bin/python` och `source .venv/bin/activate`.
 Enbart runtime behöver `requirements-lock.txt`; ML-beroenden används bara av
-experimentverktygen. Separat uppstart och felsökning finns i
+tränings- och utvärderingsverktygen. Separat uppstart och felsökning finns i
 [installations- och driftguiden](docs/DEPLOYMENT.md).
 
-Appen startar även utan konfigurerad modell. Den lokala stilanalysen fungerar
-utan betalt AI-API. Humanizern visar ett ärligt fel när modellen saknas.
+Detektor och lokal stilanalys kräver ingen generativ API-nyckel. ML-analysen
+skickar text till den egna TextLab-backenden, utan att skicka den till OpenAI
+eller Ollama. Humanizern visar ett konfigurationsfel när dess modell saknas.
 
 ## Aktivera OpenAI
 
@@ -75,7 +95,7 @@ Vid saknad konfiguration visas:
 Statuskontrollen kan göra en liten riktig generering och använder kvot. Ett
 lyckat statusprov verifierar inte språk- eller betydelsekvalitet. Verkliga
 OpenAI-resultat redovisas bara när de faktiskt har körts; se
-[verifieringsrapporten](docs/VERIFICATION-V4.md).
+[verifieringsrapporten](docs/VERIFICATION-V5.md).
 
 ## Använd Ollama
 
@@ -95,23 +115,30 @@ adapter finns kvar; dess konfiguration beskrivs i [driftguiden](docs/DEPLOYMENT.
 
 ## Hur AI Detector fungerar
 
-Webbläsaren beräknar ordvariation med MATTR, meningslängdsvariation,
-återkommande inledningar, standardfraser och återkommande ordsekvenser.
-Markeringarna pekar på faktiska textintervall. Analysen skickar ingen text till
-backend eller modellleverantör. Ett separat `/api/detect`-gränssnitt erbjuder
-motsvarande modellfria analys för serverintegrationer.
+Webbläsaren håller beskrivande stilanalys separat från serverns ML-resultat.
+MATTR, meningsrytm, upprepningar och standardfraser är språkegenskaper;
+stilindex är aldrig en sannolikhet för AI. Analysknappen använder `/api/detect`.
+
+Servern delar upp originalet utan att ändra det och bedömer varje användbart
+segment självständigt. Positioner är halvöppna UTF-16-intervall. Korta eller
+språkligt osäkra segment kan exkluderas. Textandelen definieras som
+`AI-markerade analyserbara ord / samtliga analyserbara ord × 100` och får
+visas först efter separat validering av segmentmetoden. Dokumentets kalibrerade
+klassannolikhet är ett annat mått. Inget av dem är den verifierade andelen
+AI-författad text.
 
 Stilindex visas först vid minst 80 ord, fyra meningar och tillräckligt stöd för
 valt språk. Annars avstår analysen och förklarar varför. Namnet AI Detector
 innebär inte att författarskap går att fastställa.
 
-Den historiska TF-IDF/logistiska piloten bygger på 36 mänskliga utdrag och
-24 genereringar. Den tidigare externa kontrollen gav **2 av 8 falska flaggningar
-av mänskliga utdrag**. Det är ett känt generaliseringsproblem. Dessa exempel
-är bevarade som regression, inte omdöpta till en ny oberoende testmängd.
-Se [V4-jämförelsen](docs/DETECTOR_V4.md),
-[experimentmodellen](docs/EXPERIMENTAL_DETECTOR.md) och
-[metod och benchmark](docs/DETECTOR_BENCHMARK.md).
+Träningen använder 60 spårbara historiska pilottexter från 12 källfamiljer:
+36 mänskliga utdrag och 24 genereringar. Åtta moderna mänskliga utdrag,
+tolv AI-redigerade texter och 24 konstruerade blandningar används som märkta
+regressioner. Den moderna kontrollen ger fortfarande **2 av 8 falska positiva**.
+Återanvända tester ger ingen ny oberoende evidens.
+Se [V5-detektorn](docs/DETECTOR_V5.md),
+[mätresultaten](docs/MODEL_EVALUATION.md) och
+[datasetgranskningen](docs/DATASET-REVIEW-V5.md).
 
 ## Hur AI Humanizer fungerar
 
@@ -123,13 +150,28 @@ kan originalet returneras oförändrat.
 Backend maskerar identifierade tal, kända enheter, datum, namn, URL:er, citat,
 referenser och användarens egna exakta uttryck. Överlappande skydd sammanfogas.
 Svaret måste följa schema, vara fullständigt och klara bevarandekontrollerna.
-Separata ytregler söker utvalda förändringar av negation, osäkerhet och orsak.
+Separata regler söker utvalda förändringar av negation, osäkerhet, orsak och
+tidsrelationer. De kan missa betydelsefel och kan avvisa en säker redigering.
 
 **Exakta kontroller är inte betydelseverifiering.** Namnidentifiering och
 betydelserisker bedöms delvis heuristiskt. Även ett accepterat svar kan ändra
 relationer eller lägga till något som inte fångas av reglerna. Därför är
 `review_required` alltid true och `semantic_equivalence_verified` alltid false.
-Se [humanizerns historiska kvalitetsrapport](docs/HUMANIZER_QUALITY.md).
+Se [humanizerns historiska kvalitetsrapport](docs/HUMANIZER_QUALITY.md) och
+[V5-verifieringen](docs/VERIFICATION-V5.md).
+
+## Förbrukning och budget
+
+Leverantörens rapporterade input-, output- och totaltoken följer med resultatet.
+En total som summeras från delräknare märks som härledd. Saknade värden visas
+som **Ej tillgängligt**. `GET /api/usage` ger den autentiserade användarens
+aggregerade UTC-dygn, ofullständig rapportering och kvarstående reservationer.
+
+[Prisregistret](config/model-prices.json) anger exakta modell-ID:n, valuta,
+version, källdatum och officiella priskällor. Okända modeller eller tjänstenivåer
+får ingen påhittad kostnad. Uppskattningar är inte fakturor. Valfria USD-gränser
+kompletterar tokenbudgetarna; okända priser stoppar anrop när en sådan
+kostnadsgräns krävs. Se [API](docs/API.md) och [drift](docs/DEPLOYMENT.md).
 
 ## Tester och bygg
 
@@ -146,9 +188,10 @@ beroendegranskning, hemlighetsskanning, dataintegritet, två jämförda byggen o
 en produktionscontainer med två workers.
 
 ```powershell
-python tools/compare_classifiers.py --output artifacts/classifier-comparison.json
-docker build -t textlab:v4-review .
-python tools/container_checks.py --image textlab:v4-review
+python -m tools.train_v5 --output-dir artifacts/v5-reproduced
+python -m tools.evaluate_v5 --data data/modern-human/corpus.jsonl --output artifacts/v5-evaluation.json
+docker build -t textlab:v5-review .
+python tools/container_checks.py --image textlab:v5-review
 ```
 
 Mockade providerresultat, återspelade historiska svar och verkliga modellanrop
@@ -160,10 +203,11 @@ Mockade providerresultat, återspelade historiska svar och verkliga modellanrop
 Efter `npm run build` kan FastAPI servera `dist/` på port 8767. Använd HTTPS,
 explicit host/origin och autentisering vid fjärrdrift. Privat drift använder
 `TEXTLAB_TOKEN`; fleranvändarläge använder separata hashade token och gemensam
-SQLite-kvotfil på en värd. Dagliga tokenreservationer och samtidighet begränsar
-modellarbete. Sätt även kontogränser hos leverantören.
+SQLite-kvotfil på en värd. Atomiska token- och kostnadsreservationer samt
+samtidighetsgränser begränsar modellarbete. Sätt även kontogränser hos leverantören.
 
-TextLab lagrar inte användartexter, omskrivningar eller råa token. Hosting,
+TextLab lagrar inte användartexter, omskrivningar eller råa åtkomsttoken.
+Användnings- och kvotmetadata lagras utan text. Hosting,
 proxy och modellleverantör kan ha egna logg- och lagringsregler. Nycklar eller
 `.env` ska inte finnas i Git, frontend eller containerimage. Det finns ingen
 verifierad arkitektur för flera värdar med separata kvotfiler.
@@ -173,8 +217,11 @@ verifierad arkitektur för flera värdar med separata kvotfiler.
 - [Arkitektur med Mermaid-diagram](docs/ARCHITECTURE.md) och [diagramkälla](docs/ARCHITECTURE.mmd)
 - [API-kontrakt](docs/API.md)
 - [Installation, OpenAI, Ollama och deployment](docs/DEPLOYMENT.md)
-- [V4-verifiering och kvarstående begränsningar](docs/VERIFICATION-V4.md)
+- [V5-verifiering och kvarstående begränsningar](docs/VERIFICATION-V5.md)
+- [Detektor och mätresultat](docs/MODEL_EVALUATION.md)
+- [Konkurrenternas resultatsemantik](docs/COMPETITOR-RESEARCH.md)
 - [Kvalitetsbedömning](QUALITY-SCORECARD.md)
+- [Bevarad V4-verifiering](docs/VERIFICATION-V4.md)
 - [Historisk V3-verifiering](docs/VERIFICATION.md)
 
 Målet 9,5/10 är ett kvalitetsmål, inte ett förutbestämt betyg. Faktisk evidens

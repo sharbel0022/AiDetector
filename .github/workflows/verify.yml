@@ -1,7 +1,7 @@
 name: Verify and build TextLab
 on:
   push:
-    branches: [main, codex/textlab-v3, integration/textlab-v4]
+    branches: [main, codex/textlab-v3, integration/textlab-v4, feature/textlab-v5]
   pull_request:
   workflow_dispatch:
 permissions:
@@ -62,9 +62,15 @@ jobs:
           python tools/model_evaluate.py --model models/experimental/pilot-v1-audited/model.json --data data/pilot/corpus.jsonl > artifacts/pilot-reproduced.json
           python tools/model_evaluate.py --model models/experimental/pilot-v1-audited/model.json --data data/modern-human/corpus.jsonl > artifacts/modern-human-reproduced.json
           python tools/paired_edits.py > artifacts/paired-edit-integrity.json
+          python tools/mixed_v5.py --output artifacts/mixed-v5-reproduced > artifacts/mixed-v5-console.json
           python tools/model_evaluate.py --model models/experimental/pilot-v1-audited/model.json --data data/pilot-edits/corpus.jsonl > artifacts/paired-edit-reproduced.json
           python tools/compare_classifiers.py --output artifacts/classifier-comparison.json > artifacts/classifier-comparison-console.json
-          python tools/humanizer_quality.py --label v4-offline-reassessment --reassess data/humanizer/runs/final.json data/humanizer/runs/diagnostic-qwen9b.json --output artifacts/humanizer-reassessment-v4.json
+          python -m tools.train_v5 --output-dir artifacts/v5-reproduced > artifacts/v5-training-console.json
+          cmp models/v5/detector.json artifacts/v5-reproduced/detector.json
+          python -m tools.evaluate_v5 --data data/modern-human/corpus.jsonl --output artifacts/v5-modern-human.json
+          python -m tools.evaluate_v5 --data data/pilot-edits/corpus.jsonl --output artifacts/v5-ai-edited.json
+          python -m tools.evaluate_mixed_v5 --output artifacts/v5-mixed-segments.json
+          python tools/humanizer_quality.py --label v5-offline-reassessment --reassess data/humanizer/runs/final.json data/humanizer/runs/diagnostic-qwen9b.json --output artifacts/humanizer-reassessment-v5.json
       - name: Reproducible production build and performance budgets
         run: |
           npm run build
@@ -91,8 +97,8 @@ jobs:
           python tools/api_performance.py
       - name: Container with two production workers
         run: |
-          docker build -t textlab:v4-review .
-          python tools/container_checks.py --image textlab:v4-review
+          docker build -t textlab:v5-review .
+          python tools/container_checks.py --image textlab:v5-review
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:

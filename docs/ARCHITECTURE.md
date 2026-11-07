@@ -1,118 +1,152 @@
-# TextLab V4: faktisk arkitektur
+# TextLab V5: faktisk arkitektur
 
-TextLab har två separata användarflöden. **AI-detektorn visar beskrivande
-stilanalys**. **AI-humanizern föreslår språkredigering med en servervald modell**.
-Ingen funktion fastställer vem som skrivit en text eller bevisar att en omskrivning
-har samma betydelse.
+TextLab har två användarflöden med olika modellansvar. Detektorn kör en fryst
+textklassificerare på den egna servern. Humanizern skickar en skyddad text till
+en servervald generativ modell. Båda kan avstå. Ingen av dem bevisar textens
+författarskap eller fullständig betydelseekvivalens.
 
 ## Komponenter
 
-| Kod | Ansvar | Status |
-|---|---|---|
-| `sites/src/App.jsx` | React, två arbetslägen, textjämförelse, kopiering/export, avbrott | Aktiv |
-| `sites/src/analyzer.mjs` | Lokal språkregel, segmentering, MATTR, meningsrytm, upprepningar | Aktiv, ingen nätverksöverföring av analystext |
-| `sites/src/ui-state.mjs` | Validering av backendmetadata, diffar, inställningar och inmatning | Aktiv |
-| `backend/main.py` | FastAPI, host/origin, åtkomst, bodygräns, timeout, avbrott och statiska filer | Aktiv |
-| `backend/config.py` | Serverns miljövariabler och kompatibla äldre namn | Aktiv |
-| `backend/limits.py` | Atomiska rategränser, samtidighet och dagliga reservationer i SQLite | Aktiv, en värd |
-| `ai/ai.py` | `AIService.detect`, `humanize`, `provider_status` | Aktiv |
-| `ai/contracts.py` | Pydantic-kontrakt för text, språk, ton och skyddade textdelar | Aktiv |
-| `ai/humanizer/` | Sex promptlägen, exakta ankare, riskmarkörer, återställning och diff | Aktiv |
-| `ai/providers/` | OpenAI Responses, Ollama och kompatibel Chat Completions | Aktiv när konfigurerad |
-| `ai/detector/` | Beskrivande serveranalys för `/api/detect` | Aktiv, inget modell-API |
-| `tools/train_baseline.py`, `tools/model_evaluate.py`, `tools/compare_classifiers.py` | Träning och utvärdering | Endast offlineexperiment |
-| `models/experimental/`, `data/` | Frysta modeller, korpusar, modellkörningar och proveniens | Bevarad evidens, laddas inte i webbappen |
+| Kod | Ansvar |
+|---|---|
+| `sites/src/App.jsx`, `style.css` | Två arbetslägen, resultatkort, segmentdetaljer, export, original/diff och avbrott |
+| `sites/src/analyzer.mjs` | Beskrivande lokal stilanalys, Unicode-ord och meningssegmentering |
+| `sites/src/detection-state.mjs` | Validera detektorsvar, separata procentgrindar och exakta källintervall |
+| `sites/src/ui-state.mjs` | Validera humanizersvar/usage, rekonstruera diffar och hantera inställningar |
+| `backend/main.py` | FastAPI, åtkomst före body, timeout/avbrott, API-rutter och statiska filer |
+| `backend/config.py` | Serverinställningar, bakåtkompatibla namn, modellfil och budgetgränser |
+| `backend/limits.py` | Delad SQLite, atomiska reservationer, idempotent avstämning och egna totalsummor |
+| `ai/ai.py`, `ai/contracts.py` | AIService och Pydantic-kontrakt; modellval kan inte styras av klienten |
+| `ai/detector/features.py` | Bevarad, beskrivande V4-analys med JavaScript-paritet |
+| `ai/detector/linear.py` | Begränsad JSON-modell, TF-IDF och logistisk inferens i ren Python |
+| `ai/detector/evidence.py` | Separata krav på dokument-, segment- och kalibreringsevidens |
+| `ai/detector/runtime.py` | Språkval, dokument/segmentinferens, exakta positioner och avstående |
+| `models/v5/detector.json` | Fryst pilotmodell, trösklar, härkomst och evidensmetadata |
+| `ai/humanizer/` | Sex promptlägen, maskering, skydd, riskkontroller, återställning och diff |
+| `ai/providers/` | OpenAI Responses, Ollama och kompatibel Chat Completions |
+| `ai/usage.py`, `config/model-prices.json` | Faktiska provider-räknare och versionshanterade kostnadsuppskattningar |
+| `tools/train_v5.py`, `tools/evaluate_v5.py` | Reproducerbar träning, kandidatjämförelse och fryst utvärdering |
+| `data/`, `models/experimental/`, `docs/evidence/` | Bevarade korpusar, äldre modeller, råresultat och proveniens |
 
-`backend/main.py` återexporterar några V3-symboler så befintliga offlineverktyg
-fortsätter fungera. Implementationen av dem finns bara på ett ställe i `ai/`.
-Frontendkatalogen heter fortsatt `sites/` för att bevara fungerande byggkonfiguration.
+`backend/main.py` återexporterar fortfarande vissa äldre symboler för offlineverktyg.
+Implementationen har ett hem i `ai/`. Frontend ligger kvar i `sites/`.
 
-## Diagram
+## Dataflöde
 
-Den redigerbara källan finns i [ARCHITECTURE.mmd](ARCHITECTURE.mmd).
+Den fristående diagramkällan finns i [ARCHITECTURE.mmd](ARCHITECTURE.mmd).
 
 ```mermaid
 flowchart TD
-    U[Användare] --> F[React i webbläsaren]
-    F --> L[Lokal stilanalys]
-    L --> F
-    F --> S[Host, origin och autentisering]
-    S --> B[FastAPI]
-    B --> A[AIService i ai/ai.py]
-    A --> D[Stilanalys via API]
-    A --> H[Humanizer och skyddade värden]
-    H --> Q[Delade kvoter och avbrott]
-    Q <--> DB[SQLite på en värd]
-    Q --> P[Servervald AI-leverantör]
-    P --> O[OpenAI Responses API]
-    P --> LL[Ollama och installerad modell]
-    P --> C[Kompatibel schema-API]
-    O --> V[Svarsvalidering och granskningskrav]
-    LL --> V
-    C --> V
-    V --> R[Text, jämförelse och osäkerhet]
-    D --> R
-    R --> B
-    B --> F
-    ENV[Serverns .env] --> CFG[Settings]
-    CFG --> A
-    subgraph EXP[Endast offlineexperiment]
-        DS[Spårbara train, validation och testdata] --> ML[ML-klassificerare]
-        ML --> EV[Mätetal och regressionsrapporter]
+    User[Användare] --> React[React och resultatpresentation]
+    React --> Local[Lokal språkregel och stilanalys]
+    React --> HTTP[FastAPI med åtkomst och gränser]
+    HTTP --> AI[AIService]
+    AI --> Detector[Detektor och segmentering]
+    Detector --> Weights[Tränade JSON-vikter]
+    Weights --> Gates[Separata valideringskrav]
+    Gates --> Results[Bedömning eller avstående]
+    Results --> React
+    AI --> Humanizer[Humanizer och skyddade värden]
+    Humanizer --> Quota[Atomiska budgetreservationer]
+    Quota --> Providers[Servervald leverantör]
+    Providers --> OpenAI[OpenAI Responses]
+    Providers --> Ollama[Ollama]
+    Providers --> Compatible[Kompatibel API]
+    Providers --> Usage[Tokenmätning och versionspriser]
+    Usage --> SQLite[SQLite utan användartext]
+    Quota <--> SQLite
+    Providers --> Validation[Svarsvalidering och betydelserisker]
+    Validation --> Comparison[Original och ändringsjämförelse]
+    Comparison --> React
+    subgraph Research[Träning och diagnostik]
+        Data[Historiska data med härkomst] --> Training[Träning på train]
+        Training --> Selection[Modell och tröskelval på validation]
+        Selection --> Evaluation[Frysta historiska regressioner]
+        Evaluation --> Manifest[Modell och evidensmanifest]
     end
+    Manifest --> Weights
+    Manifest --> Gates
 ```
 
-Webbläsarens vanliga analysknapp använder den lokala grenen. `/api/detect` är ett
-extra autentiserat servergränssnitt för integrationer och skickar heller ingen text
-till OpenAI eller Ollama. Det finns ingen automatisk väg från ML-experimenten till
-produktionsklassificering.
+Diagrammet visar den implementerade piloten. Kalibrering och en ny oberoende
+valideringsmängd saknas. Träningsverktyget sätter därför inte produktionsgrindarna
+till godkända. Att ett artefaktformat kan bära evidens betyder inte att denna
+evidens har samlats in.
 
-## Ett omskrivningsanrop från början till slut
+## Detektorns beslutsordning
 
-1. Användaren skriver svenska eller engelska, väljer ett av sex tonlägen och kan
-   ange exakta textdelar att skydda. Frontend kontrollerar teckengränsen.
-2. React skickar JSON till `POST /api/rewrite` med TextLab-åtkomstkod när sådan
-   krävs. TextLab-koden är aldrig OpenAI-nyckeln.
-3. ASGI-lagret kontrollerar åtkomst och origin innan body läses. Faktiska bodybyte
-   och lästid begränsas; Pydantic validerar språk, ton och text.
-4. `AIService.humanize` skyddar identifierade namn, tal, enheter, datum, citat,
-   referenser, URL:er och uttryckliga textdelar med engångsmarkörer.
-5. Backend reserverar en konservativ tokenbudget och en delad samtidighetsplats.
-   HTTP-anrop och modellarbete har tidsgräns. Klientavbrott avbryter väntande arbete.
-6. Serverns konfiguration väljer adapter och modell. OpenAI använder Responses API
-   och strikt JSON-schema; Ollama använder sin lokala chatt-API med JSON-schema.
-7. Ofullständiga, felaktiga eller för stora svar avvisas. Exakta markörer återställs
-   och kontrolleras. Separata heuristiker söker utvalda betydelserisker.
-8. Resultatet innehåller text, diff, skyddsräkning, `unchanged`, förklaring och krav
-   på granskning. Om modellen återlämnar samma text bevaras originalet exakt.
-9. Frontend verifierar att diffen verkligen återskapar både original och resultat
-   innan den visar något. Försenade svar får inte skriva över ändrad inmatning.
+1. Frontend håller den lokala stilanalysen separat och skickar originaltext och
+   `auto`, `sv` eller `en` till den egna `/api/detect`-routen.
+2. Åtkomst, origin, rategräns, bytegräns och UTF-16-längd kontrolleras före analys.
+   Den generativa modellen kontaktas inte och ingen generativ tokenbudget används.
+3. AIService kör CPU-inferensen utanför den asynkrona eventloopen. Den servervalda
+   modellfilen läses som begränsad JSON, inte pickle eller exekverbar kod. Format,
+   koefficienter och integritet kontrolleras; en liten cache undviker upprepad läsning.
+4. Språkregel, ordantal och meningar avgör om dokumentet kan bedömas. Ursprungliga
+   meningsintervall bevaras i UTF-16. Varje användbart segment får egen inferens;
+   dokumentpoängen kopieras aldrig till segmenten.
+5. Fyra separata evidensgrindar avgör dokumentklass, dokumentsannolikhet,
+   segmentklass och segmentsannolikhet. Saknad/ogiltig modell eller evidens
+   ger null, en avståendekategori och ett begripligt skäl.
+6. Textandelen beräknas enbart av validerat flaggade, icke överlappande segment.
+   Exkluderade ord redovisas separat. Dokumentets klassannolikhet och textandelen
+   har olika nämnare och olika betydelse.
+7. Klienten kontrollerar kontrakt, intervall, textöverensstämmelse och räknare
+   innan resultat visas. Ändrad text eller språk ogiltigförklarar väntande svar.
 
-`exact_values_checked: true` beskriver maskinella kontroller.
-`semantic_equivalence_verified: false` är separat och får inte tolkas som sann
-bara för att exakta kontroller passerade. Datum kan få fel grammatisk roll och
-nya sakpåståenden kan passera heuristiker; användaren måste granska betydelsen.
+Filhashar upptäcker ofrivilliga ändringar och binder metadata till modellen.
+De bevisar inte etiketternas riktighet, licens, oberoende eller att ett mått
+beräknats ärligt. En administratör som installerar en annan modell måste granska
+källor, träningsloggar, statistik och kalibrering. Ett handskrivet manifest får
+inte behandlas som ny kvalitetsvalidering. Se [detektordokumentationen](DETECTOR_V5.md).
 
-## Nycklar, lagring och kostnader
+## Ett humanizeranrop från början till slut
 
-`.env` läses endast av backendens konfiguration. `OPENAI_API_KEY` används i
-serverns Authorization-header till OpenAI. Variabeln har inget `VITE_`-prefix,
-skickas inte i API-svar och bakas inte in i frontend. `.env` ingår inte i Git
-eller containerbygget. Håll privat konfiguration utanför `dist/`.
+1. Användaren väljer språk, ett av sex redigeringslägen och eventuella exakta
+   textdelar att skydda. UI och API kontrollerar textgränserna.
+2. `/api/rewrite` autentiserar TextLab-koden. Denna kod är aldrig OpenAI-nyckeln.
+3. AIService maskerar identifierade ankare och sammanfogar överlappande skydd.
+4. Backend reserverar token, eventuell USD-budget och en global samtidighetsplats
+   i en SQLite-transaktion innan leverantörsanropet skickas.
+5. Servern väljer OpenAI Responses, Ollama eller kompatibel strikt schema-API.
+   HTTP- och svarsstorleksgränser gäller. Timeout/klientavbrott avbryter väntan.
+6. Adaptern fångar verklig usage även när ett mottaget svar är ofullständigt eller
+   felaktigt. En strängkompatibel `GenerationResult` bär text och metadata vidare.
+7. Faktiska räknare stämmer av reservationen idempotent. Saknad usage lämnar
+   reservationen belastad. Providerutfall bokförs separat från senare textkontroller.
+8. Exakta ankare återställs och betydelserisker kontrolleras. Ett avvisat svar kan
+   vara debiterbart och registreras som avvisat, inte som gratis.
+9. Resultatet innehåller text, diff, skydd, begränsningar och usage. Frontend
+   verifierar att diffen återskapar både original och resultat. Originalet bevaras.
 
-TextLab lagrar inte analystext, omskrivningar eller råa åtkomsttoken. SQLite
-innehåller hashade kvotidentiteter, tidsstämplar, budgetreservationer och kortlivade
-lås. Alla processer på samma värd ska använda samma fil. Flera värdar kräver en
-separat, gemensam auth- och kvotlösning och stöds inte av denna SQLite-arkitektur.
+`review_required: true` och `semantic_equivalence_verified: false` gäller alltid.
+Språkreglerna kan upptäcka vissa fel men är ingen generell faktagranskning eller
+grammatikkontroll. Någon separat AI-granskare används inte utan en konfigurerad
+och utvärderad sådan integration.
 
-Statuskontrollen är autentiserad och kan göra en liten riktig generering. Dess
-framgång säger att modellen svarade på proben, inte att språk- eller betydelsekvalitet
-är verifierad. Reservationer återbetalas inte vid fel/avbrott; modellleverantörens
-verkliga kostnad och lagringspolicy är separata. Se [drift](DEPLOYMENT.md).
+## Åtkomst, lagring och kostnad
 
-## Historisk evidens
+Nycklar läses enbart på backend och saknar `VITE_`-prefix. `.env` ingår inte i
+Git eller imagen. Extern åtkomst kräver autentisering och tillåtna origins/hosts.
+Klienten får inte välja modell, provider-URL, modellfil eller annan användares
+statistik. Provider-URL:er är serverkonfiguration och följer inte omdirigeringar.
 
-V3-rapporter, råkörningar, korpusar och modellartefakter har bevarats. Historiska
-rapporter som säger ”current validator” binds till sina sparade källkodssnapshots.
-V4-resultat ska ha egna filer och får inte skrivas över gamla rapporter eller
-beskriva återanvända testdata som en ny oberoende kontroll.
+SQLite innehåller hashade kvotidentiteter, tidsstämplar, räknare, modell-ID:n,
+prisversion, utfall och reservationer. Den innehåller inga originaltexter,
+omskrivningar, prompts, råa providerfel eller råa åtkomsttoken. Poster äldre än
+31 UTC-dygn rensas vid användning av bokföringen. `/api/usage` visar endast
+anropande användares aktuella UTC-dygn och märker ofullständiga delsummor.
+
+Alla workers på en värd använder samma fil. En död workers samtidighetslås kan
+löpa ut utan att dess okända förbrukning återbetalas. Flera värdar kräver en
+annan gemensam kvot-/authlösning. Lokala reservationer är inte leverantörens
+faktura; även leverantörens egna kontogränser behövs.
+
+## Evidens och reproduktion
+
+Äldre modeller, data, råkörningar och verifieringsrapporter bevaras. V5 har egna
+filer och skiljer tekniska tester, handbyggda UI-fixtures, historisk återspelning
+och faktiska nya modellkörningar. Pilotens train/validation/test och alla derivats
+källfamiljer hålls ihop. Historiska tester kan visa regression men blir inte nya
+oberoende tester genom ett nytt filnamn. Se [MODEL_EVALUATION.md](MODEL_EVALUATION.md)
+och [VERIFICATION-V5.md](VERIFICATION-V5.md).

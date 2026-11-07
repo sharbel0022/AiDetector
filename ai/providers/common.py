@@ -1,6 +1,7 @@
 """Bounded HTTP and structured text validation shared by provider adapters."""
 from __future__ import annotations
 
+from contextlib import contextmanager
 import json
 import re
 
@@ -9,6 +10,18 @@ from fastapi import HTTPException
 from pydantic import ValidationError
 
 from ai.contracts import ModelText
+from ai.usage import provider_usage
+
+
+@contextmanager
+def metered_response(provider, data, latency_ms):
+    """Capture billing before schema, refusal or completion checks can reject it."""
+    usage = provider_usage(provider, data, latency_ms)
+    try:
+        yield usage
+    except HTTPException as exc:
+        exc.usage = usage
+        raise
 
 
 def upstream_error(status: int, provider: str, retry_after: str = '') -> HTTPException:
