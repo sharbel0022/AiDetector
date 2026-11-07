@@ -381,6 +381,9 @@ footer { display: flex; justify-content: space-between; border-top: 1px solid #d
 .aggregate-usage { margin: 0 24px 24px; border-top: 1px solid #dfe6d7; font-size: 11px; line-height: 1.8; color: var(--muted); }
 .aggregate-usage > summary { min-height: 48px; padding: 14px 0; font-size: 12px; cursor: pointer; color: #425937; }
 .aggregate-usage > summary > span { float: right; font-size: 10px; }
+.usage-pending, .usage-refresh-error { margin: 0 24px 16px; padding: 12px; background: #f4f6ef; color: #425937; border-radius: 6px; font-size: 11px; line-height: 1.8; }
+.usage-refresh { margin: -12px 24px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; }
+.usage-refresh > span { font-size: 10px; line-height: 1.8; color: var(--muted); }
 .print-segment-list { display: none; }
 @media (max-width: 1100px) {
   .detector-summary { padding: 20px; }

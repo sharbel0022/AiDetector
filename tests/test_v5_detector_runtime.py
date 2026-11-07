@@ -133,6 +133,154 @@ def evidence_fixture():
     return artifact
 
 
+def rebind_evidence(evidence):
+    evidence['lineageAudit']['bindingSha256'] = digest({
+        key: value for key, value in evidence.items() if key != 'lineageAudit'
+    })
+
+
+@pytest.mark.parametrize(('level', 'calibration_gate'), [
+    ('document', 'calibration'), ('segment', 'segmentCalibration'),
+])
+@pytest.mark.parametrize('scope', ['overall', 'sv', 'en'])
+def test_binary_assessed_cannot_exceed_assessed(level, calibration_gate, scope):
+    artifact = evidence_fixture()
+    assert gate_results(artifact)[level]['passed']
+    evidence = artifact['evidence'][level]
+    metrics = evidence['metrics'] if scope == 'overall' else evidence['byLanguage'][scope]
+    metrics['assessed'] = metrics['binaryAssessed'] * 7 // 10
+    metrics['coverage'] = .7
+    rebind_evidence(evidence)
+    gates = gate_results(artifact)
+    assert not gates[level]['passed']
+    assert not gates[calibration_gate]['passed']
+    other_level = 'segment' if level == 'document' else 'document'
+    assert gates[other_level]['passed']
+
+
+@pytest.mark.parametrize(('level', 'calibration_gate'), [
+    ('document', 'calibration'), ('segment', 'segmentCalibration'),
+])
+@pytest.mark.parametrize('scope', ['overall', 'sv', 'en'])
+def test_calibration_without_evaluated_records_cannot_open_probability_gate(level, calibration_gate, scope):
+    artifact = evidence_fixture()
+    assert gate_results(artifact)[calibration_gate]['passed']
+    evidence = artifact['evidence'][level]
+    metrics = evidence['metrics'] if scope == 'overall' else evidence['byLanguage'][scope]
+    metrics['calibration'] = {'count': 0, 'ece10': 0., 'brier': 0., 'bins': []}
+    rebind_evidence(evidence)
+    gates = gate_results(artifact)
+    assert gates[level]['passed']
+    assert not gates[calibration_gate]['passed']
+    other_gate = 'segmentCalibration' if level == 'document' else 'calibration'
+    assert gates[other_gate]['passed']
+
+
+@pytest.mark.parametrize(('path', 'value'), [
+    (('count',), 799),
+    (('count',), 800.0),
+    (('count',), True),
+    (('bins',), []),
+    (('bins',), {}),
+    (('bins',), [{}]),
+    (('bins', 0, 'count'), 0),
+    (('bins', 0, 'count'), -1),
+    (('bins', 0, 'count'), 399),
+    (('bins', 0, 'count'), 400.0),
+    (('bins', 0, 'lower'), -.1),
+    (('bins', 0, 'lower'), .01),
+    (('bins', 0, 'upper'), 1.1),
+    (('bins', 0, 'upper'), .2),
+    (('bins', 0, 'meanProbability'), -.01),
+    (('bins', 0, 'meanProbability'), 1.01),
+    (('bins', 0, 'meanProbability'), .2),
+    (('bins', 0, 'meanProbability'), False),
+    (('bins', 0, 'observedAiFraction'), -.01),
+    (('bins', 0, 'observedAiFraction'), 1.01),
+    (('bins', 0, 'observedAiFraction'), False),
+    (('ece10',), 0.),
+])
+def test_contradictory_calibration_summaries_fail_closed_after_rebinding(path, value):
+    artifact = evidence_fixture()
+    assert gate_results(artifact)['calibration']['passed']
+    evidence = artifact['evidence']['document']
+    target = evidence['metrics']['calibration']
+    for key in path[:-1]:
+        target = target[key]
+    target[path[-1]] = value
+    rebind_evidence(evidence)
+    gates = gate_results(artifact)
+    assert gates['document']['passed']
+    assert not gates['calibration']['passed']
+
+
+def test_duplicate_calibration_bins_fail_closed_even_when_counts_and_ece_match():
+    artifact = evidence_fixture()
+    evidence = artifact['evidence']['document']
+    bins = evidence['metrics']['calibration']['bins']
+    bins[1] = copy.deepcopy(bins[0])
+    rebind_evidence(evidence)
+    gates = gate_results(artifact)
+    assert gates['document']['passed']
+    assert not gates['calibration']['passed']
+
+
+@pytest.mark.parametrize(('level', 'calibration_gate'), [
+    ('document', 'calibration'), ('segment', 'segmentCalibration'),
+])
+def test_calibration_bins_cannot_claim_fractional_ai_observations(level, calibration_gate):
+    artifact = evidence_fixture()
+    evidence = artifact['evidence'][level]
+    for metrics in [evidence['metrics'], *evidence['byLanguage'].values()]:
+        for bucket in metrics['calibration']['bins']:
+            bucket['observedAiFraction'] = bucket['meanProbability']
+        metrics['calibration']['ece10'] = 0.
+    rebind_evidence(evidence)
+    gates = gate_results(artifact)
+    assert gates[level]['passed']
+    assert not gates[calibration_gate]['passed']
+
+
+@pytest.mark.parametrize('scope', ['overall', 'sv', 'en'])
+def test_calibration_bins_must_match_assessed_ai_truth_count(scope):
+    from tools.model_evaluate import wilson
+    artifact = evidence_fixture()
+    evidence = artifact['evidence']['document']
+    metrics = evidence['metrics'] if scope == 'overall' else evidence['byLanguage'][scope]
+    calibration = metrics['calibration']
+    first, last = calibration['bins']
+    first['observedAiFraction'] = 1 / first['count']
+    first['observedAiFractionInterval95'] = wilson(1, first['count'])
+    calibration['ece10'] = (first['observedAiFraction'] - first['meanProbability'] +
+                            1 - last['meanProbability']) / 2
+    rebind_evidence(evidence)
+    gates = gate_results(artifact)
+    assert gates['document']['passed']
+    assert not gates['calibration']['passed']
+
+
+@pytest.mark.parametrize(('field', 'value'), [
+    ('lower', -.01), ('lower', .01), ('upper', 1.01), ('upper', .02),
+    ('n', 399), ('n', 400.), ('n', True),
+])
+def test_calibration_bin_wilson_intervals_must_match_observed_counts(field, value):
+    artifact = evidence_fixture()
+    evidence = artifact['evidence']['document']
+    evidence['metrics']['calibration']['bins'][0]['observedAiFractionInterval95'][field] = value
+    rebind_evidence(evidence)
+    gates = gate_results(artifact)
+    assert gates['document']['passed']
+    assert not gates['calibration']['passed']
+
+
+def test_calibration_bins_require_the_reported_wilson_interval():
+    artifact = evidence_fixture()
+    evidence = artifact['evidence']['document']
+    del evidence['metrics']['calibration']['bins'][0]['observedAiFractionInterval95']
+    rebind_evidence(evidence)
+    assert not gate_results(artifact)['calibration']['passed']
+
+
 @pytest.mark.parametrize(('field', 'value'), [
     ('coverage', 1.1), ('coverage', -1.),
     ('classCounts', {'human': 400.5, 'ai': 400}),

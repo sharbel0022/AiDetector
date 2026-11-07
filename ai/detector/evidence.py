@@ -63,7 +63,9 @@ def _valid_metric_counts(metrics):
         return False
     if any(not _count(metrics.get(key)) for key in ('total', 'assessed', 'binaryAssessed')):
         return False
-    if metrics['total'] < sum(counts.values()) or metrics['assessed'] > metrics['total'] or metrics['binaryAssessed'] != tp+fp+tn+fn:
+    if (metrics['total'] < sum(counts.values()) or
+            not metrics['binaryAssessed'] <= metrics['assessed'] <= metrics['total'] or
+            metrics['binaryAssessed'] != tp+fp+tn+fn):
         return False
     if not _probability(metrics.get('coverage')) or metrics['coverage'] != metrics['assessed']/max(1, metrics['total']):
         return False
@@ -76,6 +78,51 @@ def _valid_metric_counts(metrics):
         if metrics.get(key) is not None and not _probability(metrics[key]):
             return False
     return True
+
+
+def _valid_calibration_metrics(metrics):
+    calibration = metrics.get('calibration', {})
+    if not isinstance(calibration, dict):
+        return False
+    count, bins = calibration.get('count'), calibration.get('bins')
+    if not _count(count) or count == 0 or count != metrics.get('binaryAssessed'):
+        return False
+    if not isinstance(bins, list) or not 1 <= len(bins) <= 10:
+        return False
+    if not _probability(calibration.get('ece10')) or not _probability(calibration.get('brier')):
+        return False
+    seen, bin_count, ai_count, errors = set(), 0, 0, []
+    for bucket in bins:
+        if not isinstance(bucket, dict) or not _count(bucket.get('count')) or bucket['count'] == 0:
+            return False
+        lower, upper = bucket.get('lower'), bucket.get('upper')
+        predicted, observed = bucket.get('meanProbability'), bucket.get('observedAiFraction')
+        if not all(_probability(value) for value in (lower, upper, predicted, observed)):
+            return False
+        index = round(lower * 10)
+        if (not 0 <= index < 10 or index in seen or
+                lower != index/10 or upper != (index+1)/10 or
+                not lower - 1e-12 <= predicted <= upper + 1e-12):
+            return False
+        observed_count = observed * bucket['count']
+        observed_ai = round(observed_count)
+        if not math.isclose(observed_count, observed_ai, rel_tol=0., abs_tol=1e-8):
+            return False
+        interval = bucket.get('observedAiFractionInterval95')
+        if (not isinstance(interval, dict) or not _count(interval.get('n')) or
+                interval['n'] != bucket['count']):
+            return False
+        supplied = [interval.get('lower'), interval.get('upper')]
+        expected = _wilson(observed_ai, bucket['count'])
+        if not _interval(supplied) or any(abs(left-right) > 1e-10 for left, right in zip(supplied, expected, strict=True)):
+            return False
+        seen.add(index)
+        bin_count += bucket['count']
+        ai_count += observed_ai
+        errors.append(bucket['count'] * abs(observed-predicted))
+    # Brier needs individual squared errors; bin means only reconstruct ECE.
+    return (bin_count == count and ai_count == metrics['confusion']['tp'] + metrics['confusion']['fn'] and
+            math.isclose(calibration['ece10'], math.fsum(errors)/count, rel_tol=0., abs_tol=1e-10))
 
 
 def _classification_reasons(artifact, level):
@@ -141,7 +188,9 @@ def _calibration_reasons(artifact, level, classification_passed):
             reasons.append('calibration_fitting_sample_insufficient')
     for name, metrics in [('overall', evidence.get('metrics', {})), *[(lang, evidence.get('byLanguage', {}).get(lang, {})) for lang in ('sv', 'en')]]:
         calibration = metrics.get('calibration', {})
-        if not _finite_le(calibration.get('ece10'), POLICY['maximumCalibrationECE']) or not _finite_le(calibration.get('brier'), POLICY['maximumCalibrationBrier']):
+        if (not _valid_calibration_metrics(metrics) or
+                not _finite_le(calibration.get('ece10'), POLICY['maximumCalibrationECE']) or
+                not _finite_le(calibration.get('brier'), POLICY['maximumCalibrationBrier'])):
             reasons.append(name + '_calibration_error_not_validated')
     return sorted(set(reasons))
 

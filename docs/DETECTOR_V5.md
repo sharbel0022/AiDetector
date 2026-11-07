@@ -154,11 +154,18 @@ not validated population guarantees. Convenience sampling, correlated sources,
 unknown genres, later generators and dataset shift still limit any passing
 result. Numeric/interval/count consistency checks prevent malformed metadata
 from enabling a gate. The bundled evidence cannot satisfy these requirements.
+Calibration bins must contain a positive, consistent observation count; their
+AI observation counts must be integral and agree with the assessed truth labels.
+The loader checks count-derived Wilson intervals and recomputes ECE from the
+bins. Brier score requires individual predictions and is not reconstructed from
+bin means.
 
 ## Reproduction and future imports
 
 ```bash
 python -m tools.train_v5 --output-dir artifacts/v5-reproduced
+python -m tools.check_v5_reproduction models/v5/detector.json \
+  artifacts/v5-reproduced/detector.json
 python -m tools.evaluate_v5 --data data/modern-human/corpus.jsonl \
   --model artifacts/v5-reproduced/detector.json --output artifacts/v5-modern-human.json
 ```
@@ -166,6 +173,16 @@ python -m tools.evaluate_v5 --data data/modern-human/corpus.jsonl \
 Use the repository's pinned offline ML requirements to train. Runtime needs only
 the normal API dependencies. Use a separate output directory for exploratory
 runs. Existing outputs are rejected unless `--overwrite` is explicitly supplied.
+Cross-platform reproduction validates both artifacts independently and requires
+exact structure, types, vocabulary, data identities, counts, gate decisions and
+prediction categories. Finite floats may differ only within an absolute plus
+relative tolerance of `1e-12`. Enumerated derived hashes and the model version
+are recomputed before comparison. CI also repeats training in the same
+environment and requires those two artifacts to match byte for byte.
+The calibration fitting `scoredRowsSha256` remains an exact identity. A future
+calibrated artifact may therefore fail cross-platform comparison when its
+calibration input scores differ by rounding; supporting that case requires
+auditable calibration rows, not a blanket exception for hashes.
 `--data`, `--manifest`, `--evidence-use`, `--segment-data`,
 `--segment-manifest`, and `--segment-evidence-use` provide a reusable curated-data
 path. Details and the independent-custodian manifest format are in

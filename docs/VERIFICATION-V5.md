@@ -56,14 +56,15 @@ produktionsgrindar dokumenteras i [modellutvärderingen](MODEL_EVALUATION.md).
 
 ## Lokal integrationsverifiering
 
-Den fullständiga integrationskörningen efter implementationen gav **417
-godkända Python-tester** och **81 godkända JavaScript-tester**. Regressionerna
+Den fullständiga integrationskörningen efter kodgranskningen gav **482
+godkända Python-tester** och **84 godkända JavaScript-tester**. Regressionerna
 omfattar bland annat separata evidensgrindar, Unicode-intervall, ordandelar,
 förfalskade räknare, källfamiljsläckage, språkval, providerfel, actual usage,
 parallella budgetreservationer, användarisolering och äldre kvotdata.
 
-En separat träningskörning reproducerade både modell- och utvärderingsfil byte
-för byte. Maximal skillnad mellan scikit-learn och JSON-inferens var cirka
+En separat träningskörning reproducerade modellen byte för byte i samma miljö.
+Utvärderingsrapporten uppdaterades med hash för de skärpta evidenskontrollerna;
+modellvikter, data och mätvärden är oförändrade. Maximal skillnad mellan scikit-learn och JSON-inferens var cirka
 `4,55e-15`. Produktionsbygget passerade; två byggen av samma källversion gav
 samma filhashar. Inga dependency-versioner ändrades för V5.
 
@@ -75,6 +76,27 @@ Browser-, axe- och containerresultat ska redovisas från den nya branchens
 GitHub Actions. En genomförd lokal build eller kompilering av browser-testkoden
 räknas inte som ett godkänt webbläsarprov. Oberoende kodgranskning och CI-status
 kompletteras i denna rapport efter kandidatkontrollen.
+
+### Granskningsfynd och första CI-körningen
+
+Oberoende granskning identifierade motsägelsefulla kalibreringsräknare som kunde
+passera valideringen samt en förbrukningsvy som kunde se aktuell ut efter ett
+avbrutet modellanrop. Nya regressioner reproducerade problemen före rättning.
+Kalibreringsgrinden kontrollerar nu positiva observationsantal, heltaliga
+AI-observationer, överensstämmelse med facit, ECE och Wilson-intervall. UI bevarar
+en tydlig osäkerhetsmarkering efter avbrott och erbjuder manuell uppdatering.
+En hämtad totalsumma påstår inte att ett visst avbrutet anrop har slutförts.
+
+[Första PR-körningen](https://github.com/sharbel0022/AiDetector/actions/runs/42377205003)
+passerade 417 Python- och 81 JavaScript-tester samt beroende- och
+hemlighetskontroller, men stoppades av en bytejämförelse mellan träningsmiljöer.
+Den nedladdade CI-artefakten hade en största numerisk skillnad på
+`1,1102230246251565e-16`; klassutfall, räknare och grindbeslut var identiska.
+Den rättade reproduktionskontrollen kräver fortfarande exakta strukturer,
+datakällor, typer, heltal och beslut, men accepterar ändliga flyttal inom absolut
+plus relativ tolerans `1e-12`. Varje artefakts härledda hashvärden verifieras
+separat. CI tränar dessutom två gånger i samma miljö och kräver byteidentitet
+mellan dessa körningar. Modellvikterna ändrades inte för att dölja skillnaden.
 
 ## Humanizer: historisk återspelning
 

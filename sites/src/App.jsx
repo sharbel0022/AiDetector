@@ -1,7 +1,7 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useReducer, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { wordCount, MAX_CHARS } from './analyzer.mjs';
-import { validateBase, validateRewriteInput, normalizeRewriteResult, sourceHighlights, createRequestGate, parseProtectedTerms, normalizeHealthResponse, normalizeProviderStatus, normalizeUsageTotals, apiErrorMessage } from './ui-state.mjs';
+import { validateBase, validateRewriteInput, normalizeRewriteResult, sourceHighlights, createRequestGate, usageStateReducer, parseProtectedTerms, normalizeHealthResponse, normalizeProviderStatus, normalizeUsageTotals, apiErrorMessage } from './ui-state.mjs';
 import { prepareLocalAnalysis, normalizeDetectionResult, segmentParts, CATEGORY_LABELS, buildAnalysisReport, analysisReportText, REPORT_LIMITATION } from './detection-state.mjs';
 import './style.css';
 
@@ -77,9 +77,9 @@ function App() {
   const [connectionError, setConnectionError] = useState('');
   const [provider, setProvider] = useState(null);
   const [connectionAttempt, setConnectionAttempt] = useState(0);
-  const [usageTotals, setUsageTotals] = useState(null);
-  const [usageError, setUsageError] = useState(false);
+  const [usageByScope, dispatchUsage] = useReducer(usageStateReducer, {});
   const [usageRefresh, setUsageRefresh] = useState(0);
+  const usageScope = JSON.stringify([base, token]);
   const inputRef = useRef(null);
   const fileRef = useRef(null);
   const dialogRef = useRef(null);
@@ -88,6 +88,7 @@ function App() {
   const resultHeading = useRef(null);
   const gate = useRef(null);
   if (!gate.current) gate.current = createRequestGate();
+  const activeRewrite = useRef(null);
   const revision = useRef(0);
   const words = wordCount(text);
   const rewriteMaxChars = connection?.max_input_chars ?? 8000;
@@ -95,9 +96,17 @@ function App() {
   const localPreview = useMemo(() => prepareLocalAnalysis(text, language), [text, language]);
   const languageInfo = localPreview.languageAssessment;
 
+  function cancelCurrentRequest() {
+    const pending = activeRewrite.current;
+    if (pending && gate.current.isCurrent(pending.controller)) {
+      dispatchUsage({type:'uncertain',scope:pending.scope});
+      activeRewrite.current = null;
+    }
+    gate.current.cancel();
+  }
   function invalidate() {
     revision.current++;
-    gate.current.cancel();
+    cancelCurrentRequest();
     setBusy(false);
     setResult(null);
     setAnalysis(null);
@@ -153,13 +162,13 @@ function App() {
     let active = true;
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 8000);
-    setUsageTotals(null); setUsageError(false);
+    dispatchUsage({type:'loading',scope:usageScope});
     apiRequest(base, token, '/api/usage', { signal:controller.signal })
-      .then(data => { const normalized=normalizeUsageTotals(data); if (active) setUsageTotals(normalized); })
-      .catch(() => { if (active) setUsageError(true); })
+      .then(data => { const normalized=normalizeUsageTotals(data); if (active) dispatchUsage({type:'received',scope:usageScope,totals:normalized,at:new Date().toISOString()}); })
+      .catch(() => { if (active) dispatchUsage({type:'failed',scope:usageScope}); })
       .finally(() => clearTimeout(timeout));
     return () => { active=false; controller.abort(); clearTimeout(timeout); };
-  }, [mode, base, token, connectionAttempt, usageRefresh]);
+  }, [mode, base, token, connectionAttempt, usageRefresh, usageScope]);
   useEffect(() => {
     if (settingsOpen) dialogRef.current?.showModal();
     else dialogRef.current?.close();
@@ -211,9 +220,10 @@ function App() {
     catch (error) { setError(error.message); return; }
     const source = text;
     const controller = gate.current.begin();
+    activeRewrite.current = {controller,scope:usageScope};
     const timeout = setTimeout(() => {
       if (!gate.current.isCurrent(controller)) return;
-      gate.current.cancel();
+      cancelCurrentRequest();
       setBusy(false);
       setError('Omskrivningen tog för lång tid. Originalet finns kvar. Försök igen när modellen är tillgänglig.');
       setNotice('');
@@ -233,6 +243,7 @@ function App() {
       if (gate.current.isCurrent(controller)) { setError(error.message); setNotice(''); }
     } finally {
       clearTimeout(timeout);
+      if (activeRewrite.current?.controller === controller) activeRewrite.current = null;
       if (gate.current.isCurrent(controller)) { setBusy(false); setUsageRefresh(value => value + 1); }
     }
   }
@@ -346,7 +357,7 @@ function App() {
               <div className="version-actions"><button className="secondary" onClick={useResult} disabled={result.unchanged}>Använd som original<Icon name="arrow" size={16}/></button><span>{wordCount(result.text).toLocaleString('sv-SE')} ord i {result.unchanged ? 'originalet' : 'den nya versionen'}</span></div>
               <p className="protected"><Icon name="check"/>{result.protected_count} skyddade textdelar kontrollerade</p><p className="result-warning">{result.warning}</p><div className="model-label">{result.provider || 'AI'}{result.model ? ` / ${result.model}` : ''}</div><UsageDetails usage={result.usage}/>
             </div> : busy ? <div className="empty processing"><span className="processing-icon"><Icon name="edit" size={32}/></span><h3>En ny version tar form.</h3><p>Modellen bearbetar texten.<br/>Det kan ta ett par minuter vid lokal körning.</p><small>Du kan fortsätta redigera för att avbryta den här omskrivningen. Originalet finns kvar.</small></div> : <div className="empty"><div className="rewrite-symbol"><Icon name="edit" size={38}/></div><h3>Tydligare. Inte någon annans.</h3><p>Välj ett av sex lägen och jämför versionerna.<br/>Kontrollera alltid betydelse, namn och fakta.</p><div className="model-status"><i className={modelVerified ? 'ready' : ''}/>{connectionLabel}</div>{connection?.provider ? <p className="provider-name">{connection.provider}{connection.model ? ` · ${connection.model}` : ''}</p> : null}<small role={connectionError || provider?.error ? 'alert' : undefined}>{connectionError || provider?.message || (connection === false ? 'Backend kunde inte nås. Stilanalysen fungerar utan backend.' : 'Stilanalysen fungerar även utan backend.')}</small><div className="connection-actions"><button className="text-button" onClick={openSettings}>Anslut AI-backend</button><button className="text-button" disabled={provider === null} onClick={() => setConnectionAttempt(attempt => attempt + 1)}>Kontrollera igen</button></div></div>}
-            {mode === 'rewrite' ? <UsageTotals totals={usageTotals} unavailable={usageError}/> : null}
+            {mode === 'rewrite' ? <UsageTotals state={usageByScope[usageScope]} onRefresh={() => setUsageRefresh(value => value + 1)}/> : null}
           </section>
         </div>
       </div>
@@ -417,10 +428,11 @@ function UsageDetails({ usage }) {
   return <details className="usage-details"><summary>Förbrukning & kostnad <span>{usage?.total_tokens == null ? 'Usage saknas' : `${count(usage.total_tokens)} tokens`}</span></summary><dl className="usage-grid"><div><dt>Input-tokens</dt><dd>{count(usage?.input_tokens)}</dd></div><div><dt>Output-tokens</dt><dd>{count(usage?.output_tokens)}</dd></div><div><dt>Totala tokens</dt><dd>{count(usage?.total_tokens)}</dd></div><div><dt>Uppskattad kostnad</dt><dd>{cost}</dd></div></dl>{usage ? <p className="usage-meta">{usage.model}{usage.recorded_at ? ` · ${new Date(usage.recorded_at).toLocaleString('sv-SE')}` : ''}{usage.cost.pricing_version ? ` · Prisversion ${usage.cost.pricing_version}` : ''}</p> : null}<p>Tokens visas när leverantören rapporterar dem. Okända priser och saknad usage ersätts inte med uppskattade tokenantal.</p></details>;
 }
 
-function UsageTotals({ totals, unavailable }) {
+function UsageTotals({ state, onRefresh }) {
+  const {totals=null,unavailable=false,refreshing=true,refreshedAt=null,uncertain=false} = state || {};
   const tokensIncomplete = totals && (totals.unreported_counters.total_tokens > 0 || totals.legacy_usage_unavailable);
   const costIncomplete = totals && (totals.estimated_cost.unknown_requests > 0 || totals.legacy_usage_unavailable);
-  return <details className="aggregate-usage"><summary>Dagens samlade förbrukning <span>UTC</span></summary>{totals ? <>
+  return <>{uncertain ? <p className="usage-pending" role="status">Ett avbrutet anrop kan fortfarande slutföras på servern. Summorna kan därför sakna förbrukning. Uppdatera igen senare; en hämtning bekräftar inte att det avbrutna anropet är färdigt.</p> : null}<details className="aggregate-usage"><summary>Dagens samlade förbrukning <span>UTC</span></summary>{totals ? <>
     <p>{totals.requests.toLocaleString('sv-SE')} registrerade modellanrop under perioden {new Date(totals.period.start).toLocaleDateString('sv-SE', { timeZone:'UTC' })}.</p>
     <dl className="usage-grid"><div><dt>Rapporterade tokens</dt><dd>{totals.total_tokens === null ? 'Ej tillgängligt' : totals.total_tokens.toLocaleString('sv-SE')}{tokensIncomplete ? ' · ofullständig summa' : ''}</dd></div><div><dt>Uppskattad kostnad</dt><dd>{totals.estimated_cost.amount === null ? 'Ej tillgänglig' : `${totals.estimated_cost.amount.toLocaleString('sv-SE', { minimumFractionDigits:2, maximumFractionDigits:6 })} USD`}{costIncomplete ? ' · ofullständig summa' : ''}</dd></div></dl>
     {totals.legacy_usage_unavailable ? <p>Förbrukning från äldre anrop är inte tillgänglig. Token- och kostnadssummorna omfattar endast rapporterade uppgifter och är därför ofullständiga.</p> : null}
@@ -428,7 +440,10 @@ function UsageTotals({ totals, unavailable }) {
     {totals.estimated_cost.unknown_requests ? <p>Kostnaden är okänd för {totals.estimated_cost.unknown_requests} anrop.</p> : null}
     {totals.estimated_cost.not_applicable_requests ? <p>Tokenpris är inte tillämpligt för {totals.estimated_cost.not_applicable_requests} anrop.</p> : null}
     <p>Även genereringar som avvisats av kvalitetskontrollen kan ha använt tokens. Originaltext och omskrivningar ingår inte i förbrukningsloggen.</p>
-  </> : <p>{unavailable ? 'Samlad förbrukning är inte tillgänglig just nu. Kontrollera anslutningen och åtkomstkoden.' : 'Hämtar samlad förbrukning…'}</p>}</details>;
+  </> : <p>{unavailable ? 'Ingen förbrukning har kunnat hämtas.' : 'Hämtar samlad förbrukning…'}</p>}</details>
+    {unavailable ? <p className="usage-refresh-error" role="alert">Samlad förbrukning kunde inte uppdateras. Kontrollera anslutningen och åtkomstkoden.{totals ? ' De senast hämtade värdena visas.' : ''}</p> : null}
+    <div className="usage-refresh"><button type="button" className="text-button" onClick={onRefresh} disabled={refreshing}>Uppdatera förbrukning</button><span aria-live="polite">{refreshing ? 'Hämtar förbrukning…' : refreshedAt ? `Senast hämtad ${new Date(refreshedAt).toLocaleString('sv-SE')}` : ''}</span></div>
+  </>;
 }
 
 function Analysis({ result }) {

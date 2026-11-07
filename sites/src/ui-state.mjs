@@ -64,6 +64,21 @@ export function createRequestGate() {
   };
 }
 
+// A usage read cannot prove that a cancelled server request has settled.
+// Keep that uncertainty, and each last-read snapshot, within its connection scope.
+export function usageStateReducer(state, action) {
+  const previous = state[action.scope] || {totals:null,unavailable:false,refreshing:false,refreshedAt:null,uncertain:false};
+  let next;
+  switch (action.type) {
+    case 'loading': next = {...previous,refreshing:true,unavailable:false}; break;
+    case 'received': next = {...previous,totals:action.totals,refreshing:false,unavailable:false,refreshedAt:action.at}; break;
+    case 'failed': next = {...previous,refreshing:false,unavailable:true}; break;
+    case 'uncertain': next = {...previous,uncertain:true}; break;
+    default: return state;
+  }
+  return {...state,[action.scope]:next};
+}
+
 export function parseProtectedTerms(draft, text) {
   const terms = [...new Set(draft.split(/\r?\n/u).map(term => term.trim()).filter(Boolean))];
   if (terms.length > 40) throw new Error('Ange högst 40 textdelar att behålla exakt.');

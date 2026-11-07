@@ -185,6 +185,51 @@ async def main():
         await expect(page.locator('.aggregate-usage .usage-grid dd')).to_have_text(['125 · ofullständig summa', '0,001 USD · ofullständig summa'])
         checks.append('legacy ledger records keep token and cost totals incomplete even with zero current missing counters')
         await page.unroute('**/api/rewrite')
+        await page.unroute('**/api/usage')
+        billed_totals = {**USAGE_TOTALS_FIXTURE, 'cached_input_tokens': 0,
+                         'unreported_counters': {key: 0 for key in USAGE_TOTALS_FIXTURE['unreported_counters']},
+                         'estimated_cost': {**USAGE_TOTALS_FIXTURE['estimated_cost'], 'unknown_requests': 0}}
+        await page.route('**/api/usage', lambda route: route.fulfill(json=billed_totals))
+        refresh_usage = page.get_by_role('button', name='Uppdatera förbrukning', exact=True)
+        async with page.expect_response('**/api/usage'):
+            await refresh_usage.click()
+        await expect(page.locator('.aggregate-usage .usage-grid dd')).to_have_text(['125', '0,001 USD'])
+        rewrite_started, allow_billing, billing_done = asyncio.Event(), asyncio.Event(), asyncio.Event()
+        billing_tasks = []
+        async def record_delayed_charge():
+            await allow_billing.wait()
+            billed_totals.update(requests=3, input_tokens=200, output_tokens=50, total_tokens=250,
+                                 estimated_cost={**billed_totals['estimated_cost'], 'amount': .002})
+            billing_done.set()
+        async def cancelled_billed_rewrite(route):
+            original = route.request.post_data_json['text']
+            billing_tasks.append(asyncio.create_task(record_delayed_charge()))
+            rewrite_started.set()
+            await billing_done.wait()
+            try: await route.fulfill(json={'text': original, 'diff': [{'kind': 'equal', 'text': original}], 'protected_count': 0, 'usage': USAGE_FIXTURE})
+            except Exception: pass
+        await page.route('**/api/rewrite', cancelled_billed_rewrite)
+        await page.get_by_role('button', name='Skriv om med AI', exact=True).click()
+        await asyncio.wait_for(rewrite_started.wait(), timeout=5)
+        await page.get_by_role('button', name='Avbryt', exact=True).click()
+        await expect(page.locator('.usage-pending')).to_be_visible()
+        async with page.expect_response('**/api/usage'):
+            await refresh_usage.click()
+        await expect(page.locator('.aggregate-usage')).to_contain_text('2 registrerade modellanrop')
+        await expect(page.locator('.usage-pending')).to_be_visible()
+        allow_billing.set()
+        await asyncio.wait_for(billing_done.wait(), timeout=5)
+        await asyncio.gather(*billing_tasks)
+        async with page.expect_response('**/api/usage'):
+            await refresh_usage.click()
+        await expect(page.locator('.aggregate-usage')).to_contain_text('3 registrerade modellanrop')
+        await expect(page.locator('.aggregate-usage .usage-grid dd')).to_have_text(['250', '0,002 USD'])
+        await expect(page.locator('.usage-pending')).to_be_visible()
+        await expect(page.locator('.usage-refresh')).to_contain_text('Senast hämtad')
+        await expect(page.locator('.output')).to_have_count(0)
+        await expect(editor).to_have_value('Vi betalade 125 kr. Det här är originalet.')
+        checks.append('cancelled rewrites retain a usage warning through early and later manual reads, including a delayed bill')
+        await page.unroute('**/api/rewrite')
         async def slow_rewrite(route):
             await asyncio.sleep(.4)
             try: await route.fulfill(json={'text':'STALE','diff':[],'protected_count':0})
@@ -204,6 +249,7 @@ async def main():
         await page.get_by_role('button', name='Inställningar').click()
         await page.get_by_label('TextLab-åtkomstkod').fill('test-only-token')
         await page.get_by_role('button', name='Anslut', exact=True).click()
+        await expect(page.locator('.usage-pending')).to_have_count(0)
         assert await page.evaluate('Object.values(localStorage).join("")') == ''
         assert await page.evaluate('Object.values(sessionStorage).join("")') == ''
         checks.append('access token is not persisted in browser storage')
